@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="movieApp">
+<head>
+    <meta charset="UTF-8">
+    <title>Movie application</title>
+    <script src="app/feature/dashboard/dashboard-controller.js"></script>
+</head>
+<body>
+<ul>
+    <li ><a ui-sref="dashboard">Dashboard</a></li>
+    <li><a ui-sref="addmovie">Add movie</a></li>
+    <li><a ui-sref="getmovie">Get movies</a></li>
+</ul>
+
+    <div ui-view></div>
+    <!-- Angular modules-->
+    <script src="scripts/angular.min.js"></script>
+    <script src="scripts/ui-router.min.js"></script>
+
+    <!-- App and state manager-->
+    <script src="app/app.js"></script>
+    <script src="app/app-state-manager.js"></script>
+
+    <!-- Services-->
+    <script src="app/service/dal/dal.js"></script>
+    <script src="app/service/dal/movie.js"></script>
+
+    <!-- Features-->
+    <!--<script src="app/feature/dashboard/dashboard-controller.js"></script>-->
+    <script src="app/feature/movie/add/add-movie-controller.js"></script>
+    <script src="app/feature/movie/get/get-movie-controller.js"></script>
+
+
+
+</body>
+</html>
