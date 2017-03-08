@@ -1,0 +1,13 @@
+<div ng-controller="addUserController as ctrl">
+    <h1>Add a new User</h1>
+
+    <form role="form">
+        <input id="email" placeholder="Email Address" ng-model="user.email">
+
+        <input id="name" placeholder="Your Name" ng-model="user.name">
+
+        <input id="password" placeholder="Password" ng-model="user.password">
+
+        <button type="submit" ng-click="ctrl.addUser(user)">Add User</button>
+    </form>
+</div>
