@@ -4,8 +4,6 @@
         var vm = this;
 
         vm.addMovie = function(movieToAdd) {
-            var movieToJson = JSON.stringify(movieToAdd);
-            console.log(movieToJson);
             movieDal.saveMovie(movieToAdd).then(function (results) {
                 vm.movieAddMessage  = results;
                 $state.go('getmovie');
