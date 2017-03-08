@@ -31,4 +31,10 @@ public class MapMovieService implements MovieService {
 		return null;
 	}
 
+	@Override
+	public String searchByTitle(String title) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }

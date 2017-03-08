@@ -1,5 +1,7 @@
 package com.qa.cinema.persistence;
 
+import java.util.Date;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -10,52 +12,132 @@ public class Movie {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	private Long id;
+	private Long movieId;
+	
 	private String title;
 	private String genre;
-	private String year;
+	private Date releaseDate;
+	private String classification;
+	private String posterUrl;
+	private String trailerUrl;
+	private Double rating;
+	private Integer runtime;
+	private String description;
+	
 
 	public Movie() {
+		
 	}
-
-	public Movie(Long id, String title, String genre, String year) {
-		super();
-		this.id = id;
+	
+	public Movie(String title, String genre, Date releaseDate, String classification, String posterUrl,
+			String trailerUrl, Double rating, Integer runtime, String description) {
+		
 		this.title = title;
 		this.genre = genre;
-		this.year = year;
+		this.releaseDate = releaseDate;
+		this.classification = classification;
+		this.posterUrl = posterUrl;
+		this.trailerUrl = trailerUrl;
+		this.rating = rating;
+		this.runtime = runtime;
+		this.description = description;
 	}
 
-	public Long getId() {
-		return id;
-	}
-
-	public void setId(Long id) {
-		this.id = id;
-	}
 
 	public String getTitle() {
 		return title;
 	}
 
+
 	public void setTitle(String title) {
 		this.title = title;
 	}
+
 
 	public String getGenre() {
 		return genre;
 	}
 
+
 	public void setGenre(String genre) {
 		this.genre = genre;
 	}
 
-	public String getYear() {
-		return year;
+
+	public Date getReleaseDate() {
+		return releaseDate;
 	}
 
-	public void setYear(String year) {
-		this.year = year;
+
+	public void setReleaseDate(Date releaseDate) {
+		this.releaseDate = releaseDate;
 	}
+
+
+	public String getClassification() {
+		return classification;
+	}
+
+
+	public void setClassification(String classification) {
+		this.classification = classification;
+	}
+
+
+	public String getPosterUrl() {
+		return posterUrl;
+	}
+
+
+	public void setPosterUrl(String posterUrl) {
+		this.posterUrl = posterUrl;
+	}
+
+
+	public String getTrailerUrl() {
+		return trailerUrl;
+	}
+
+
+	public void setTrailerUrl(String trailerUrl) {
+		this.trailerUrl = trailerUrl;
+	}
+
+
+	public double getRating() {
+		return rating;
+	}
+
+
+	public void setRating(Double rating) {
+		this.rating = rating;
+	}
+
+
+	public int getRuntime() {
+		return runtime;
+	}
+
+
+	public void setRuntime(Integer runtime) {
+		this.runtime = runtime;
+	}
+
+
+	public String getDescription() {
+		return description;
+	}
+
+
+	public void setDescription(String description) {
+		this.description = description;
+	}
+
+
+	public Long getMovieId() {
+		return movieId;
+	}
+	
+	
 
 }
