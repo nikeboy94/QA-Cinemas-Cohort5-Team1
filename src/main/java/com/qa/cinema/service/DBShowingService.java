@@ -42,7 +42,9 @@ public class DBShowingService implements ShowingService {
 		Showing showingInDB = findShowing(showingId);
 		
 		if (showingInDB != null) {
-			showingInDB = updatedShowing;
+			showingInDB.setScreen(updatedShowing.getScreen());
+			showingInDB.setMovie(updatedShowing.getMovie());
+			showingInDB.setDateTime(updatedShowing.getDateTime());
 			manager.merge(showingInDB);
 			return "{\"message\": \"Showing sucessfully updated\"}";
 		} else {
