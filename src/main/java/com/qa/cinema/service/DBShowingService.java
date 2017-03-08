@@ -30,6 +30,13 @@ public class DBShowingService implements ShowingService {
 	}
 	
 	@Override
+	public String findShowingByScreenId(Long screenId) {
+		Query query = manager.createQuery("SELECT s FROM Showing s WHERE s.screenId = " + screenId);
+		Collection<Showing> showings = (Collection<Showing>) query.getResultList();
+		return util.getJSONForObject(showings);
+	}
+	
+	@Override
 	public String findShowingByMovieId(Long movieId) {
 		Query query = manager.createQuery("SELECT s FROM Showing s WHERE s.movieId = " + movieId);
 		Collection<Showing> showings = (Collection<Showing>) query.getResultList();
