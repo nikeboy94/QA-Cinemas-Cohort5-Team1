@@ -13,6 +13,13 @@ import com.qa.cinema.persistence.Ticket;
 import com.qa.cinema.persistence.Showing;
 import com.qa.cinema.util.JSONUtil;
 
+/**
+ * 
+ * @author Omar
+ * @author Phil
+ *
+ */
+
 @Stateless
 @Default
 public class DBTicketService implements TicketService {
