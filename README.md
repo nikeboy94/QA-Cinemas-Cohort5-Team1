@@ -3,7 +3,7 @@
 ## Branch naming convention:
 QA-XX where XX is the issue name on JIRA.
 
-Use "git commit -m "#comment ..." to add (something meaningful) to JIRA.
+Use "git commit -m "QA-XX #comment ..." to add (something meaningful) to JIRA.
 
 ## Git commands
 To pull new files from master into your branch:
