@@ -36,28 +36,45 @@ public class DBMovieService implements MovieService {
 		return "{\"message\": \"movie sucessfully added\"}";
 	}
 
+	
 	@Override
 	public String updateMovie(Long movieId, String movie) {
 		Movie updateMovie = util.getObjectForJSON(movie, Movie.class);
-		Movie movieInDB = findMovie(new Long(movieId));
+		Movie movieInDB = findMovie(movieId);
 		if (movieInDB != null) {
 			movieInDB = updateMovie;
-			em.merge(movie);
+			em.merge(movieInDB);
+			return "{\"message\": \"Movie successfully updated\"}";
 		}
-		return "{\"message\": \"movie sucessfully updated\"}";
+		else {
+			return "{\"message\": \"Updating movie failed\"}";
+		}
+		
 	}
+
 
 	@Override
 	public String deleteMovie(Long movieId) {
-		Movie movieInDB = findMovie(new Long(movieId));
+		Movie movieInDB = findMovie(movieId);
 		if (movieInDB != null) {
 			em.remove(movieInDB);
+			return "{\"message\": \"Movie successfully deleted\"}";
 		}
-		return "{\"message\": \"movie sucessfully deleted\"}";
+		else {
+			return "{\"message\": \"Deleting movie failed\"}";
+		}
+		
 	}
 
 	private Movie findMovie(Long id) {
 		return em.find(Movie.class, id);
+	}
+
+	@Override
+	public String searchByTitle(String searchedTitle) {
+		Query query = em.createQuery("SELECT m FROM Movie m WHERE m.title = :title").setParameter("title" , searchedTitle);
+		Collection<Movie> movies = (Collection<Movie>) query.getResultList();
+		return util.getJSONForObject(movies);
 	}
 
 }
