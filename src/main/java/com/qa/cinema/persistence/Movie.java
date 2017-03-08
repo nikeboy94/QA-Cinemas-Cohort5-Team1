@@ -1,5 +1,7 @@
 package com.qa.cinema.persistence;
 
+import java.util.Date;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -14,7 +16,7 @@ public class Movie {
 	
 	private String title;
 	private String genre;
-	private String releaseDate;
+	private Date releaseDate;
 	private String classification;
 	private String posterUrl;
 	private String trailerUrl;
@@ -27,7 +29,7 @@ public class Movie {
 		
 	}
 	
-	public Movie(String title, String genre, String releaseDate, String classification, String posterUrl,
+	public Movie(String title, String genre, Date releaseDate, String classification, String posterUrl,
 			String trailerUrl, Double rating, Integer runtime, String description) {
 		
 		this.title = title;
@@ -62,12 +64,12 @@ public class Movie {
 	}
 
 
-	public String getReleaseDate() {
+	public Date getReleaseDate() {
 		return releaseDate;
 	}
 
 
-	public void setReleaseDate(String releaseDate) {
+	public void setReleaseDate(Date releaseDate) {
 		this.releaseDate = releaseDate;
 	}
 
