@@ -34,6 +34,13 @@
                     <li><a ui-sref="deleteuser">Delete User</a></li>
                 </ul>
             </li>
+            <li class="dropdown">
+                <a class="dropdown-toggle" data-toggle="dropdown">Showings
+                    <span class="caret"></span></a>
+                <ul class="dropdown-menu">
+                    <li><a ui-sref="getshowings">Get Showings</a></li>
+                </ul>
+            </li>
         </ul>
     </div>
 </nav>
@@ -54,6 +61,7 @@
     <script src="app/service/dal/dal.js"></script>
     <script src="app/service/dal/movie.js"></script>
     <script src="app/service/dal/user.js"></script>
+    <script src="app/service/dal/showing.js"></script>
 
     <!-- Features-->
     <script src="app/feature/dashboard/dashboard-controller.js"></script>
@@ -64,6 +72,8 @@
 
     <script src="app/feature/user/add/add-user-controller.js"></script>
     <script src="app/feature/user/get/get-user-controller.js"></script>
+    
+    <script src="app/feature/showing/get/get-showing-controller.js"></script>
 
 </body>
 </html>

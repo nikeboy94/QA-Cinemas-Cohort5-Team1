@@ -33,6 +33,9 @@
         }).state("deleteuser", {
             url: "/deleteuser",
             templateUrl: "app/feature/user/delete/delete-user.html"
+        }).state("getshowings", {
+        	url: "/getshowings",
+        	templateUrl: "app/feature/showing/get/get-showing.html"
         })
     });
 }());
