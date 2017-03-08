@@ -1,5 +1,15 @@
 .settings
-target
+/target/
+/bin/
+
+*.class
 .classpath
 .factorypath
 .project
+
+*.jar
+*.war
+*.ear
+hs_err_pid*
+
+/.idea/

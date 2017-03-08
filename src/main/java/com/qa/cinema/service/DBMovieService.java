@@ -33,7 +33,7 @@ public class DBMovieService implements MovieService {
 	public String createNewMovie(String movie) {
 		Movie newMovie = util.getObjectForJSON(movie, Movie.class);
 		em.persist(newMovie);
-		return "{\"message\": \"movie sucessfully added\"}";
+		return "{\"message\": \"Movie successfully added\"}";
 	}
 
 	
