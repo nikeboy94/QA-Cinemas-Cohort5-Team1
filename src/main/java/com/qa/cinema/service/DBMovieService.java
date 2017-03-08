@@ -42,7 +42,15 @@ public class DBMovieService implements MovieService {
 		Movie updateMovie = util.getObjectForJSON(movie, Movie.class);
 		Movie movieInDB = findMovie(movieId);
 		if (movieInDB != null) {
-			movieInDB = updateMovie;
+			movieInDB.setTitle(updateMovie.getTitle());
+			movieInDB.setGenre(updateMovie.getGenre());
+			movieInDB.setReleaseDate(updateMovie.getReleaseDate());
+			movieInDB.setClassification(updateMovie.getClassification());
+			movieInDB.setPosterUrl(updateMovie.getPosterUrl());
+			movieInDB.setTrailerUrl(updateMovie.getTrailerUrl());
+			movieInDB.setRating(updateMovie.getRating());
+			movieInDB.setRuntime(updateMovie.getRuntime());
+			movieInDB.setDescription(updateMovie.getDescription());
 			em.merge(movieInDB);
 			return "{\"message\": \"Movie successfully updated\"}";
 		}
@@ -73,6 +81,13 @@ public class DBMovieService implements MovieService {
 	@Override
 	public String searchByTitle(String searchedTitle) {
 		Query query = em.createQuery("SELECT m FROM Movie m WHERE m.title = :title").setParameter("title" , searchedTitle);
+		Collection<Movie> movies = (Collection<Movie>) query.getResultList();
+		return util.getJSONForObject(movies);
+	}
+
+	@Override
+	public String searchByGenre(String searchedGenre) {
+		Query query = em.createQuery("SELECT m FROM Movie m WHERE m.genre = :genre").setParameter("genre" , searchedGenre);
 		Collection<Movie> movies = (Collection<Movie>) query.getResultList();
 		return util.getJSONForObject(movies);
 	}
