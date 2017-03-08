@@ -67,7 +67,7 @@ public class DBTicketService implements TicketService {
 		.setParameter("showingId", showingId);
 		int bookedTickets = query.getFirstResult();
 		Showing s = manager.find(Showing.class, showingId);
-		Long screenId = s.getScreenId();
+		Long screenId = s.getScreen();
 		query = manager.createQuery("Select Count(s) From Seat s Where showingId = :showingId")
 		.setParameter("showingId", showingId);
 		int seatsInScreen = query.getFirstResult();
