@@ -5,6 +5,8 @@ public interface MovieService {
 	String listAllMovies();
 	
 	String searchByTitle(String title);
+	
+	String searchByGenre(String genre);
 
 	String createNewMovie(String movie);
 

@@ -31,6 +31,14 @@ public class MovieEndpoint {
 		return service.searchByTitle(title);
 	}
 	
+	@Path("/json/searchByGenre/{genre}")
+	@GET
+	@Produces({"application/json"})
+	public String getMovieByGenre(@PathParam("genre") String genre) {
+		return service.searchByGenre(genre);
+	}
+	
+	
 	@Path("/json")
 	@POST
 	@Produces({ "application/json" })

@@ -77,4 +77,11 @@ public class DBMovieService implements MovieService {
 		return util.getJSONForObject(movies);
 	}
 
+	@Override
+	public String searchByGenre(String searchedGenre) {
+		Query query = em.createQuery("SELECT m FROM Movie m WHERE m.genre = :genre").setParameter("genre" , searchedGenre);
+		Collection<Movie> movies = (Collection<Movie>) query.getResultList();
+		return util.getJSONForObject(movies);
+	}
+
 }
