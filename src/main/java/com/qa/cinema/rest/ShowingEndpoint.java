@@ -24,7 +24,14 @@ public class ShowingEndpoint {
 		return service.getAllShowings();
 	}
 	
-	@Path("/json/{movieId}")
+	@Path("/json/screen/{screenId}")
+	@GET
+	@Produces({"application/json"})
+	public String findShowingByScreenId(@PathParam("screenId") Long screenId) {
+		return service.findShowingByScreenId(screenId);
+	}
+	
+	@Path("/json/movie/{movieId}")
 	@GET
 	@Produces({"application/json"})
 	public String findShowingByMovieId(@PathParam("movieId") Long movieId) {
