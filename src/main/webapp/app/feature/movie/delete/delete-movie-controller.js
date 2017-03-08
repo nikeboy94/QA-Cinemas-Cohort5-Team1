@@ -4,8 +4,6 @@
         var vm = this;
 
         vm.deleteMovie = function(movieToDeleteId) {
-            console.log("This is the id of movie to delete " + movieToDeleteId);
-            console.log(movieToDeleteId);
             var movieToJson = JSON.stringify(movieToDeleteId);
             console.log(movieToJson);
             movieDal.deleteMovie(movieToDeleteId).then(function (results) {

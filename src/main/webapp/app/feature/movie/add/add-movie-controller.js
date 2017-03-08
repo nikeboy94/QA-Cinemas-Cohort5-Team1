@@ -4,8 +4,6 @@
         var vm = this;
 
         vm.addMovie = function(movieToAdd) {
-            console.log("This is the value of movie to add " + movieToAdd);
-            console.log(movieToAdd);
             var movieToJson = JSON.stringify(movieToAdd);
             console.log(movieToJson);
             movieDal.saveMovie(movieToAdd).then(function (results) {
