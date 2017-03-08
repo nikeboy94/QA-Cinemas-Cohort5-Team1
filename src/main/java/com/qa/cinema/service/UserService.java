@@ -3,7 +3,7 @@ package com.qa.cinema.service;
 public interface UserService {
 	String listAllUsers();
 
-	String createNewUsers(String User);
+	String createNewUser(String User);
 
 	String updateUser(String email, String User);
 

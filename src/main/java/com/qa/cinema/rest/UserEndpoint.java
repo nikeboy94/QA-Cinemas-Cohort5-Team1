@@ -27,7 +27,7 @@ public class UserEndpoint {
 	@Path("/json")
 	@POST
 	@Produces({ "application/json" })
-	public String addUser(String movie) {
+	public String addUser(String email) {
 		return service.createNewUser(email);
 	}
 
