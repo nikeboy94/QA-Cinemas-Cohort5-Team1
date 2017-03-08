@@ -36,6 +36,7 @@ public class DBMovieService implements MovieService {
 		return "{\"message\": \"Movie successfully added\"}";
 	}
 
+	
 	@Override
 	public String updateMovie(Long movieId, String movie) {
 		Movie updateMovie = util.getObjectForJSON(movie, Movie.class);
@@ -50,6 +51,7 @@ public class DBMovieService implements MovieService {
 		}
 		
 	}
+
 
 	@Override
 	public String deleteMovie(Long movieId) {
@@ -66,6 +68,13 @@ public class DBMovieService implements MovieService {
 
 	private Movie findMovie(Long id) {
 		return em.find(Movie.class, id);
+	}
+
+	@Override
+	public String searchByTitle(String searchedTitle) {
+		Query query = em.createQuery("SELECT m FROM Movie m WHERE m.title = :title").setParameter("title" , searchedTitle);
+		Collection<Movie> movies = (Collection<Movie>) query.getResultList();
+		return util.getJSONForObject(movies);
 	}
 
 }

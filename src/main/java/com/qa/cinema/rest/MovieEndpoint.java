@@ -24,6 +24,13 @@ public class MovieEndpoint {
 		return service.listAllMovies();
 	}
 
+	@Path("/json/searchByTitle/{title}")
+	@GET
+	@Produces({"application/json"})
+	public String getMovieByTitle(@PathParam("title") String title) {
+		return service.searchByTitle(title);
+	}
+	
 	@Path("/json")
 	@POST
 	@Produces({ "application/json" })
@@ -41,7 +48,8 @@ public class MovieEndpoint {
 	@Path("/json/{id}")
 	@DELETE
 	@Produces({ "application/json" })
-	public String deleteMovie(@PathParam("id") Long moviedId) {
-		return service.deleteMovie(moviedId);
+	public String deleteMovie(@PathParam("id") Long movieId) {
+		return service.deleteMovie(movieId);
 	}
+	
 }
