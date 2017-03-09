@@ -66,7 +66,7 @@ function($http, $rootScope, $window, Session, AUTH_EVENTS) {
 		Session.destroy();
 		$window.sessionStorage.removeItem("userInfo");
 		$rootScope.$broadcast(AUTH_EVENTS.logoutSuccess);
-	}
+	};
 
 	return authService;
 } ]);

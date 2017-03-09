@@ -12,6 +12,13 @@
             });
         }
         init();
+
+        vm.replace = function(movie) {
+            console.log("omar pls");
+            alert("omar pls");
+            $('#modalImg').attr('src', movie.title);
+        };
+
     };
 
     angular.module('movieApp').controller('getMovieController', ['movieDal', GetMovieController]);

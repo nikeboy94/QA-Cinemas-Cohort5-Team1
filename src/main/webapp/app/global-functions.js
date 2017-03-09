@@ -26,7 +26,7 @@ angular.module('movieApp').run(function($rootScope, $state, Auth, AUTH_EVENTS) {
 		} else {
 			return "";
 		}
-	}
+	};
 	
 	$rootScope.logout = function(){
 		Auth.logout();
