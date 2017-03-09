@@ -1,0 +1,11 @@
+<div ng-controller="getByTitleController as ctrl">
+    <h1>This is the value of movies by title</h1>
+    <form role="form">
+        <input id = "title" placeholder="title" ng-model="title">
+
+        <button type="submit" ng-click="ctrl.getByTitle(title)">getMovie</button>
+    </form>
+
+    {{ctrl.movies}}
+
+</div>
