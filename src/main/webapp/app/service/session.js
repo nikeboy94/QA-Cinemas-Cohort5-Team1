@@ -10,11 +10,11 @@ angular.module('movieApp').service('Session', function($rootScope, USER_ROLES) {
 
     this.create = function(user) {
         this.user = user;
-        this.userRole = user.userRole;
+        this.role = user.role;
     };
     this.destroy = function() {
         this.user = null;
-        this.userRole = null;
+        this.role = null;
     };
     return this;
 });

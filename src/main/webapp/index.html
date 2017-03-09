@@ -61,7 +61,7 @@
 </nav>
 	
 	<div class="container">
-		<div ng-if="currentUser"><b>Welcome, {{ currentUser.username }}</b></div>
+		<div ng-if="(currentUser.email != undefined)"><b>Welcome, {{ currentUser.email }}</b></div>
 		<div ui-view></div>
 	</div>
 
