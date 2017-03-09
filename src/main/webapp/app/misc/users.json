@@ -1,17 +1,17 @@
 {
     "users": {
         "admin": {
-            "username": "admin",
+            "email": "admin",
             "password": "admin",
             "userRole": "admin"
         },
         "editor": {
-            "username": "editor",
+            "email": "editor",
             "password": "editor",
             "userRole": "editor"
         },
         "guest": {
-            "username": "guest",
+            "email": "guest",
             "password": "guest",
             "userRole": "guest"
         }
