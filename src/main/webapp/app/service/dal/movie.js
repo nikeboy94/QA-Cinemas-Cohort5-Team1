@@ -14,6 +14,10 @@
             return dal.http.GET("rest/movie/json/searchByTitle/"+title);
         };
 
+        this.getMoviesByGenre = function(genre) {
+            return dal.http.GET("rest/movie/json/searchByGenre/" + genre)
+        };
+
         this.saveMovie = function (movieToSave) {
             return dal.http.POST("rest/movie/json", movieToSave);
         };

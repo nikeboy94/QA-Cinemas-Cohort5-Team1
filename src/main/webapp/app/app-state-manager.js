@@ -3,7 +3,6 @@ function($stateProvider, $urlRouterProvider, USER_ROLES) {
 
   // For any unmatched url, redirect to /
   $urlRouterProvider.otherwise("/dashboard");
-
     $stateProvider.state("dashboard", {
         url: "/dashboard",
         templateUrl: "app/feature/dashboard/dashboard-partial.html"
@@ -37,5 +36,8 @@ function($stateProvider, $urlRouterProvider, USER_ROLES) {
     }).state("getmoviebytitle",{
         url: "/getmoviebytitle",
         templateUrl: "app/feature/movie/get-by-title/get-by-title.html"
-    });
+    }).state("getmoviebygenre", {
+            url: "/getmoviebygenre",
+            templateUrl: "app/feature/movie/get-by-genre/get-movie-by-genre-partial.html"
+    })
 }());
