@@ -20,6 +20,10 @@ import com.qa.cinema.util.JSONUtil;
  *
  */
 
+/*
+ * TODO: When Seat class is updated, the query in getAvailableTickets will also need updating
+ */
+
 @Stateless
 @Default
 public class DBTicketService implements TicketService {
@@ -33,7 +37,7 @@ public class DBTicketService implements TicketService {
 	
 	@Override
 	public String getUserTickets(String email) {
-		Query query = manager.createQuery("Select t From Ticket t Where t.email = :email")
+		Query query = manager.createQuery("Select t From Ticket t Where t.user.email = :email")
 		.setParameter("email", email);		
 		Collection<Ticket> tickets = (Collection<Ticket>) query.getResultList();
 		return util.getJSONForObject(tickets);
@@ -51,7 +55,7 @@ public class DBTicketService implements TicketService {
 		Ticket updatedTicket = util.getObjectForJSON(newTicket, Ticket.class);
 		Ticket ticketInDB = findTicket(ticketId);
 		if (ticketInDB != null){
-			ticketInDB = updatedTicket;
+			ticketInDB.updateField(updatedTicket);
 			manager.merge(ticketInDB);
 			return "{\"messege\": \"ticket successfully upadted\"}";
 		}
@@ -70,19 +74,21 @@ public class DBTicketService implements TicketService {
 
 	@Override
 	public String getAvailableTickets(Long showingId) {
-		Query query = manager.createQuery("Select Count(t) From Ticket t Where showingId = :showingId")
-		.setParameter("showingId", showingId);
+		Query query = manager.createQuery("Select t From Ticket t Where t.showing.showingId = :showingId").setParameter("showingId", showingId);
 		int bookedTickets = query.getFirstResult();
+		
 		Showing s = manager.find(Showing.class, showingId);
 		Long screenId = s.getScreen();
-		query = manager.createQuery("Select Count(s) From Seat s Where showingId = :showingId")
-		.setParameter("showingId", showingId);
+		query = manager.createQuery("Select Count(s) From Seat s Where screenId = :screenId")
+		.setParameter("screenId", screenId);
+		
 		int seatsInScreen = query.getFirstResult();
 		int availableTickets = seatsInScreen - bookedTickets;
+		
 		return "{\"availableTickets\": \"" +availableTickets +"\"}";
 	}
 	
-	public Ticket findTicket(Long ticketId){
+	public Ticket findTicket(Long ticketId) {
 		return manager.find(Ticket.class, ticketId);
 	}
 

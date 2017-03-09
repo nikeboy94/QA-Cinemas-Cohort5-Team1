@@ -6,11 +6,18 @@ import javax.persistence.Id;
 @Entity
 public class Seat {
 	@Id
-	private Long id;
+	private Long seatId;
 
-	public Long getId() {
-		return id;
+	private Long screenId;
+	
+	public Long getSeatId() {
+		return seatId;
 	}
+	
+	public Long getScreenId() {
+		return screenId;
+	}
+
 
 	
 	
