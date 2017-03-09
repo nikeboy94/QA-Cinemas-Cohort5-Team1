@@ -53,7 +53,7 @@ public class DBTicketService implements TicketService {
 	public String createTicket(String ticket) {
 		Ticket aTicket = util.getObjectForJSON(ticket, Ticket.class);
 		manager.persist(aTicket);
-		return "{\"messege\": \"ticket successfully added\"}";
+		return "{\"message\": \"ticket successfully added\"}";
 	}
 
 	@Override
@@ -66,7 +66,7 @@ public class DBTicketService implements TicketService {
 		logger.info("DBTICKETSERVICE: updatedShowing created");
 		
 		if(updatedShowing == null) {
-			return "{\"messege\": \"Showing not found\"}";
+			return "{\"message\": \"Showing not found\"}";
 		}
 	
 		logger.info("DBTICKETSERVICE: About to call updatedTicket.setShowing");
@@ -76,9 +76,9 @@ public class DBTicketService implements TicketService {
 		if (ticketInDB != null){
 			ticketInDB.updateField(updatedTicket);
 			manager.merge(ticketInDB);
-			return "{\"messege\": \"ticket successfully upadted\"}";
+			return "{\"message\": \"ticket successfully upadted\"}";
 		}
-		return "{\"messege\": \"ticket not found\"}";
+		return "{\"message\": \"ticket not found\"}";
 	}
 
 	@Override
@@ -86,9 +86,9 @@ public class DBTicketService implements TicketService {
 		Ticket ticketInDB = findTicket(ticketId);
 		if(ticketInDB != null)	{
 			manager.remove(ticketInDB);
-			return "{\"messege\": \"ticket successfully deleted\"}";
+			return "{\"message\": \"ticket successfully deleted\"}";
 		}
-		return "{\"messege\": \"ticket not found\"}";
+		return "{\"message\": \"ticket not found\"}";
 	}
 
 	@Override
@@ -112,17 +112,14 @@ public class DBTicketService implements TicketService {
 	}
 	
 	private Showing getShowing(Long showingId) {
-
+		logger.info("DBTICKETSERVICE entered getShowing with param " + showingId);
 		logger.info("DBTICKETSERVICE - getShowing. About to create string from showing service");
 		String allShowingsJSON = showingService.getAllShowings();
 		
 		logger.info("DBTICKETSERVICE - getShowing. About to make a collection of allShowings");
 		Showing[]allShowings = (Showing[]) util.getObjectForJSON(showingService.getAllShowings(), Showing[].class);
 		
-		logger.info("DBTICKETSERVICE - getShowing. About to loop over allShowings");
 		for(Showing aShowing : allShowings) {
-			
-			logger.info("DBTICKETSERVICE - getShowing. About to call getShowingId() and compare against showing");
 			if(aShowing.getShowingId().equals(showingId)) {
 				logger.info("DBTICKETSERVICE - getShowing. Correct showing found, about to return aShowing");
 				return aShowing;
