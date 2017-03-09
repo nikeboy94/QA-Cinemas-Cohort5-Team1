@@ -87,9 +87,8 @@ function($http, $rootScope, $window, Session, AUTH_EVENTS, userDAL) {
 		Session.destroy();
 		$window.sessionStorage.removeItem("userInfo");
 		$rootScope.$broadcast(AUTH_EVENTS.logoutSuccess);
-        $rootScope.currentUser.email = undefined;
-
-    }
+    $rootScope.currentUser.email = undefined;
+  }
 
 	return authService;
 } ]);

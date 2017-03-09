@@ -1,0 +1,18 @@
+<div ng-controller="updateShowingController as ctrl">
+	<h1>Update Movie Showing</h1>
+
+	<form role="form">
+	
+		<input id="updateShowingId" placeholder="Showing Id" ng-model="showing.showingId">
+		
+		<input id="newScreenId" placeholder="Screen Id" ng-model="showing.screenId">
+		
+		<input id="newMovieId" placeholder="Movie Id" ng-model="showing.movieId">
+		
+		<input id="newDateTime" placeholder="Date (YYYY-MM-DD)" ng-model="showing.dateTime">
+		
+		<button type="submit" ng-click="ctrl.updateShowing(showing)">Update Showing</button>
+	
+	</form>
+
+</div>
