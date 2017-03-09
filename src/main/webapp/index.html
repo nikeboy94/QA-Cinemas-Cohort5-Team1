@@ -1,60 +1,64 @@
-<!DOCTYPE html>
-<html lang="en" ng-app="movieApp">
+<!doctype html>
+<html ng-app="movieApp">
 <head>
-    <meta charset="UTF-8">
-    <title>QA Cinemas - Team Pink</title>
-
-    <link rel="stylesheet" href="scripts/bootstrap.min.css">
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.0-rc.4/angular.min.js"></script>
+<title>Cinema Booking App</title>
+	<link rel="stylesheet" href="scripts/bootstrap.css">
 </head>
-<body>
+<body ng-controller="ParentController">
 <nav class="navbar navbar-inverse">
-    <div class="container-fluid">
-        <div class="navbar-header">
-            <a class="navbar-brand" ui-sref="dashboard">QA Cinema</a>
-        </div>
-        <ul class="nav navbar-nav">
-            <li class="active"><a ui-sref="dashboard">Dashboard</a></li>
-            <li class="dropdown">
-                <a class="dropdown-toggle" data-toggle="dropdown">Movie
-                    <span class="caret"></span></a>
-                <ul class="dropdown-menu">
-                    <li><a ui-sref="addmovie">Add Movie</a></li>
-                    <li><a ui-sref="getmovie">Get Movie</a></li>
-                    <li><a ui-sref="updatemovie">Update Movie</a></li>
-                    <li><a ui-sref="deletemovie">Delete Movie</a></li>
-                    <li><a ui-sref="getmoviebytitle">Get movie by title</a></li>
-                </ul>
-            </li>
-            <li class="dropdown">
-                <a class="dropdown-toggle" data-toggle="dropdown">User
-                    <span class="caret"></span></a>
-                <ul class="dropdown-menu">
-                    <li><a ui-sref="adduser">Add User</a></li>
-                    <li><a ui-sref="getuser">Get User</a></li>
-                    <li><a ui-sref="updateuser">Update User</a></li>
-                    <li><a ui-sref="deleteuser">Delete User</a></li>
-                </ul>
-            </li>
-        </ul>
-    </div>
+	<div class="container-fluid">
+		<div class="navbar-header">
+			<a class="navbar-brand" ui-sref="dashboard">QA Cinema</a>
+		</div>
+		<ul class="nav navbar-nav">
+			<li class="active"><a ui-sref="dashboard">Dashboard</a></li>
+			<li class="dropdown">
+				<a class="dropdown-toggle" data-toggle="dropdown">Movie
+					<span class="caret"></span></a>
+				<ul class="dropdown-menu">
+					<li><a ui-sref="addmovie">Add Movie</a></li>
+					<li><a ui-sref="getmovie">Get Movie</a></li>
+					<li><a ui-sref="updatemovie">Update Movie</a></li>
+					<li><a ui-sref="deletemovie">Delete Movie</a></li>
+          <li><a ui-sref="getmoviebytitle">Get movie by title</a></li>
+				</ul>
+			</li>
+			<li class="dropdown">
+				<a class="dropdown-toggle" data-toggle="dropdown">User
+					<span class="caret"></span></a>
+				<ul class="dropdown-menu">
+					<li><a ui-sref="adduser">Add User</a></li>
+					<li><a ui-sref="getuser">Get User</a></li>
+					<li><a ui-sref="updateuser">Update User</a></li>
+					<li><a ui-sref="deleteuser">Delete User</a></li>
+				</ul>
+			</li>
+		</ul>
+		<ul class="nav navbar-nav navbar-right">
+			<li><a href="#" ng-click="logout()">Log Out</a></li>
+		</ul>
+	</div>
 </nav>
-    <div ui-view></div>
+	
+	<div class="container">
+		<div ng-if="currentUser"><b>Welcome, {{ currentUser.username }}</b></div>
+		<div ui-view></div>
+	</div>
 
 
-    <!-- Angular modules-->
-    <script src="scripts/jquery-2.1.4.min.js"></script>
-    <script src="scripts/angular.min.js"></script>
-    <script src="scripts/ui-router.min.js"></script>
-    <script src="scripts/bootstrap.min.js"></script>
 
-    <!-- App and state manager-->
-    <script src="app/app.js"></script>
-    <script src="app/app-state-manager.js"></script>
+	<script src="scripts/jquery-2.1.4.min.js"></script>
+	<script src="scripts/bootstrap.min.js"></script>
+	<script src="scripts/ui-router.min.js"></script>
+	<script src="scripts/ui-bootstrap-tpls-0.11.2.min.js"></script>
+	<script src="app/app.js"></script>
+	<script src="app/app-state-manager.js"></script>
+	<script src="app/global-functions.js"></script>
 
-    <!-- Services-->
-    <script src="app/service/dal/dal.js"></script>
-    <script src="app/service/dal/movie.js"></script>
-    <script src="app/service/dal/user.js"></script>
+	<!--FACTORY -->
+	<script src="app/service/authInterceptor.js"></script>
+	
 
     <!-- Features-->
     <script src="app/feature/dashboard/dashboard-controller.js"></script>
@@ -63,9 +67,14 @@
     <script src="app/feature/movie/delete/delete-movie-controller.js"></script>
     <script src="app/feature/movie/update/update-movie-controller.js"></script>
     <script src="app/feature/movie/get-by-title/get-movie-by-title-controller.js"></script>
+  
+	<!--CONTROLLERS -->
+	<script src="app/feature/login/parentController.js"></script>
+	<script src="app/feature/login/login.js"></script>
 
-    <script src="app/feature/user/add/add-user-controller.js"></script>
-    <script src="app/feature/user/get/get-user-controller.js"></script>
+	<!--SERVICES -->
+	<script src="app/service/auth.js"></script>
+	<script src="app/service/session.js"></script>
 
 </body>
 </html>
