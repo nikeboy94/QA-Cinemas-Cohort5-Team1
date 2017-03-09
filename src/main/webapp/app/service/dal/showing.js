@@ -12,5 +12,8 @@
 		this.saveShowing = function(showingToAdd) {
 			return dal.http.POST("rest/showing/json", showingToAdd);
 		};
+		this.removeShowing = function(showingId) {
+			return dal.http.DELETE("rest/showing/json/" + showingId);
+		}
 	}
 }());

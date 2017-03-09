@@ -46,5 +46,8 @@ angular.module('movieApp').config(['$stateProvider', '$urlRouterProvider', 'USER
         }).state("addshowing", {
         	url: "/addshowing",
         	templateUrl: "app/feature/showing/add/add-showing.html"
+        }).state("deleteshowing", {
+        	url: "/deleteshowing",
+        	templateUrl: "app/feature/showing/delete/delete-showing.html"
         })
     }]);
