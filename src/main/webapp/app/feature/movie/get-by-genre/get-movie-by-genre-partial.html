@@ -1,0 +1,15 @@
+<div ng-controller="getMovieByGenreController as ctrl">
+    <h1>Please type in a genre</h1>
+
+    <form role="form">
+
+        <input id = "genre" placeholder="genre" ng-model="genre">
+
+        <button type="submit" ng-click="ctrl.searchGenre(genre)">Search </button>
+
+
+    </form>
+
+    {{ctrl.movies}}
+
+</div>

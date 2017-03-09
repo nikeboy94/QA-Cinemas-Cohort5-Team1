@@ -36,6 +36,9 @@
         }).state("getmoviebytitle",{
             url: "/getmoviebytitle",
             templateUrl: "app/feature/movie/get-by-title/get-by-title.html"
+        }).state("getmoviebygenre", {
+            url: "/getmoviebygenre",
+            templateUrl: "app/feature/movie/get-by-genre/get-movie-by-genre-partial.html"
         })
     });
 }());
