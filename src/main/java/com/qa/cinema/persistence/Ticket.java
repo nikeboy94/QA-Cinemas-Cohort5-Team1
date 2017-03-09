@@ -97,9 +97,5 @@ public class Ticket {
 		this.showing = updatedTicket.getShowing();
 	}
 	
-	
-
-	
-	
 
 }
