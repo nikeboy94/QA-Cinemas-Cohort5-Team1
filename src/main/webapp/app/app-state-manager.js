@@ -43,5 +43,8 @@ angular.module('movieApp').config(['$stateProvider', '$urlRouterProvider', 'USER
         }).state("getshowings", {
             url: "/getshowings",
             templateUrl: "app/feature/showing/get/get-showing.html"
+        }).state("addshowing", {
+        	url: "/addshowing",
+        	templateUrl: "app/feature/showing/add/add-showing.html"
         })
     }]);
