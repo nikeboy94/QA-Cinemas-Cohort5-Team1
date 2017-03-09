@@ -39,5 +39,8 @@ function($stateProvider, $urlRouterProvider, USER_ROLES) {
     }).state("getmoviebygenre", {
             url: "/getmoviebygenre",
             templateUrl: "app/feature/movie/get-by-genre/get-movie-by-genre-partial.html"
+    }).state("getshowings", {
+        	url: "/getshowings",
+        	templateUrl: "app/feature/showing/get/get-showing.html"
     })
 }());
