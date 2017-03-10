@@ -1,0 +1,9 @@
+<div ng-controller="getShowingByMovieController as ctrl">
+	<form type="form">
+		<input id="movieId" placeholder="Movie Id" ng-model="movieId">
+		
+		<button type="submit" ng-click="ctrl.getByMovie(movieId)">Get Showings</button>
+	</form>
+	
+	{{ctrl.showings}}
+</div>

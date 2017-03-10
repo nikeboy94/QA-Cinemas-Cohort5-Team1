@@ -52,11 +52,17 @@ angular.module('movieApp').config(['$stateProvider', '$urlRouterProvider', 'USER
         }).state("updateshowing", {
         	url: "/updateshowing",
         	templateUrl: "app/feature/showing/update/update-showing.html"
+        }).state("getshowingsbymovie", {
+        	url: "/getshowingbymovie",
+        	templateUrl: "app/feature/showing/get-by-movie/get-showing-by-movie.html"
         }).state("gettickets", {
             url: "/gettickets",
             templateUrl: "app/feature/ticket/get/get-user-tickets.html"
         }).state("updateticket", {
             url: "/updateticket",
             templateUrl: "app/feature/ticket/update/update-ticket.html"
+        }).state("deleteticket", {
+            url: "/deleteticket",
+            templateUrl: "app/feature/ticket/delete/delete-ticket.html"
         })
     }]);

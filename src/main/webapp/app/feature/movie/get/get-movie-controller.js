@@ -14,7 +14,9 @@
         init();
 
         vm.replace = function(movie) {
-            $('#modalImg').attr('src', movie.title);
+            $('#modalImg').attr('src', movie.posterUrl);
+            $('#modalTitle').text(movie.title);
+            $('#modalDescription').text(movie.description);
         };
 
     };

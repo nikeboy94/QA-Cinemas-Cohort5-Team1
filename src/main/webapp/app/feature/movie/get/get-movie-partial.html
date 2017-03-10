@@ -1,8 +1,7 @@
 <!-- div ng-controller="getMovieController as ctrl"> <h1>This is the value of movies</h1><div ng-repeat="x in ctrl.movies"><img src={{x.posterUrl}}></div></div>
 
 <!-- Content goes here -->
-<link rel="stylesheet" href="css\globalStyle.css" />
-<link rel="stylesheet" href="css\get-movie.css" />
+<link rel="stylesheet" href="app/feature/movie/get/get-movie.css" />
 
 
 <div class="container" ng-controller="getMovieController as ctrl">
@@ -76,11 +75,11 @@
                 <div class="modal-body">
                     <div class="row">
                         <div class="col-xs-6">
-                            <img id="modalImg" src="spider-man_2.jpg" class="modal-img img-responsive"/>
+                            <img id="modalImg" src="lolscott" class="modal-img img-responsive"/>
                         </div>
                         <div class="col-xs-6">
-                            <h2 class='film-title'>Title</h2>
-                            <p class='film-description'>Summary</p>
+                            <h2 id="modalTitle" class='film-title'>Title</h2>
+                            <p id="modalDescription" class='film-description'>Summary</p>
                         </div>
                     </div>
                 </div>
