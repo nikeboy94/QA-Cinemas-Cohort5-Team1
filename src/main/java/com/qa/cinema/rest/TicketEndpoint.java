@@ -24,10 +24,10 @@ public class TicketEndpoint {
 	@Inject
 	private TicketService service;
 	
-	@Path("/json")
+	@Path("/json/{email}")
 	@GET
 	@Produces({"application/json"})
-	public String getUserTickets(String email) {
+	public String getUserTickets(@PathParam("email") String email) {
 		return service.getUserTickets(email);
 	}
 	
@@ -38,17 +38,17 @@ public class TicketEndpoint {
 		return service.createTicket(ticket);
 	}
 	
-	@Path("/json")
+	@Path("/json/{id}")
 	@PUT
 	@Produces({"application/json"})
-	public String updateTicket(Long ticketId, String newTicket) {
+	public String updateTicket(@PathParam("id") Long ticketId, String newTicket) {
 		return service.updateTicket(ticketId, newTicket);
 	}
 	
-	@Path("/json")
+	@Path("/json/{id}")
 	@DELETE
 	@Produces({"application/json"})
-	public String deleteTicket(Long ticketId) {
+	public String deleteTicket(@PathParam("id") Long ticketId) {
 		return service.deleteTicket(ticketId);
 	}
 	
