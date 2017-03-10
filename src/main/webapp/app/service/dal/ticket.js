@@ -14,5 +14,9 @@
             return dal.http.PUT("rest/ticket/json/" + ticketIdToUpdate, updatedTicket);
         };
 
+        this.deleteTicket = function (ticketIdToDelete) {
+            return dal.http.DELETE("rest/ticket/json/" + ticketIdToDelete);
+        };
+
     }
 }());

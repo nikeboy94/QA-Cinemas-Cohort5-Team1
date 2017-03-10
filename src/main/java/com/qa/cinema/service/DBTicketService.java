@@ -76,7 +76,7 @@ public class DBTicketService implements TicketService {
 		if (ticketInDB != null){
 			ticketInDB.updateField(updatedTicket);
 			manager.merge(ticketInDB);
-			return "{\"message\": \"ticket successfully upadted\"}";
+			return "{\"message\": \"ticket successfully updated\"}";
 		}
 		return "{\"message\": \"ticket not found\"}";
 	}
