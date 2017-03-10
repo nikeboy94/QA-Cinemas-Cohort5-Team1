@@ -9,6 +9,9 @@
 		this.getAllShowings = function() {
 			return dal.http.GET("rest/showing/json");
 		};
+		this.getShowingByMovie = function(movieId) {
+			return dal.http.GET("rest/showing/json/movie/" + movieId);
+		};
 		this.saveShowing = function(showingToAdd) {
 			return dal.http.POST("rest/showing/json", showingToAdd);
 		};
