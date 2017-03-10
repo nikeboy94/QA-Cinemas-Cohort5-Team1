@@ -1,0 +1,9 @@
+<div ng-controller="getTicketsController as ctrl">
+
+    <form role="form">
+        <input id="email" placeholder="Email Address" ng-model="email">
+        <button type="submit" ng-click="ctrl.getTickets(email)">Get Tickets</button>
+    </form>
+
+    {{ctrl.tickets}}
+</div>

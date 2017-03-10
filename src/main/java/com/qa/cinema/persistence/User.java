@@ -9,6 +9,7 @@ public class User {
 	@Id
 	private String email;
 	private String name;
+	private String role;
 	private String password;
 	private String salt;
 
@@ -16,10 +17,11 @@ public class User {
 		//Empty constructor
 	}
 
-	public User(String email, String name, String password, String salt) {
+	public User(String email, String name, String role, String password, String salt) {
 		super();
 		this.email = email;
 		this.name = name;
+		this.role = role;
 		this.password = password;
 		this.salt = salt;
 	}
@@ -38,6 +40,14 @@ public class User {
 
 	public void setName(String name) {
 		this.name = name;
+	}
+
+	public String getRole() {
+		return role;
+	}
+
+	public void setRole(String role) {
+		this.role = role;
 	}
 
 	public String getPassword() {

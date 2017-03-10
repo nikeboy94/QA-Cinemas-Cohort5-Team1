@@ -35,8 +35,7 @@ public class Ticket {
 	public Ticket() {
 		
 	}
-	
-	
+		
 
 	public Ticket(String price, String orderId, Seat seat, Showing showing, User user) {
 		super();
@@ -46,8 +45,6 @@ public class Ticket {
 		this.showing = showing;
 		this.user = user;
 	}
-
-
 
 	public String getPrice() {
 		return price;
@@ -92,10 +89,13 @@ public class Ticket {
 	public Long getTicketId() {
 		return ticketId;
 	}
-	
-	
 
-	
+	public void updateField(Ticket updatedTicket) {
+		this.orderId = updatedTicket.getOrderId();
+		this.price = updatedTicket.getPrice();
+		this.seat = updatedTicket.getSeat();
+		this.showing = updatedTicket.getShowing();
+	}
 	
 
 }

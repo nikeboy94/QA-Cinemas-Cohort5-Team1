@@ -1,9 +1,7 @@
-"use strict";
+angular.module('movieApp').config(['$stateProvider', '$urlRouterProvider', 'USER_ROLES',
+    function($stateProvider, $urlRouterProvider, USER_ROLES) {
 
-(function () {
-
-    angular.module('movieApp').config(function ($stateProvider, $urlRouterProvider) {
-
+        // For any unmatched url, redirect to /
         $urlRouterProvider.otherwise("/dashboard");
 
         $stateProvider.state("dashboard", {
@@ -11,7 +9,10 @@
             templateUrl: "app/feature/dashboard/dashboard-partial.html"
         }).state("addmovie", {
             url: "/addmovie",
-            templateUrl: "app/feature/movie/add/add-movie-partial.html"
+            templateUrl: "app/feature/movie/add/add-movie-partial.html",
+            data: {
+                authorizedRoles: [USER_ROLES.admin, USER_ROLES.editor, USER_ROLES.guest]
+            }
         }).state("getmovie", {
             url: "/getmovie",
             templateUrl: "app/feature/movie/get/get-movie-partial.html"
@@ -33,6 +34,32 @@
         }).state("deleteuser", {
             url: "/deleteuser",
             templateUrl: "app/feature/user/delete/delete-user.html"
+        }).state("getmoviebytitle",{
+            url: "/getmoviebytitle",
+            templateUrl: "app/feature/movie/get-by-title/get-by-title.html"
+        }).state("getmoviebygenre", {
+            url: "/getmoviebygenre",
+            templateUrl: "app/feature/movie/get-by-genre/get-movie-by-genre-partial.html"
+        }).state("getshowings", {
+            url: "/getshowings",
+            templateUrl: "app/feature/showing/get/get-showing.html"
+        }).state("addshowing", {
+        	url: "/addshowing",
+        	templateUrl: "app/feature/showing/add/add-showing.html"
+        }).state("deleteshowing", {
+        	url: "/deleteshowing",
+        	templateUrl: "app/feature/showing/delete/delete-showing.html"
+        }).state("updateshowing", {
+        	url: "/updateshowing",
+        	templateUrl: "app/feature/showing/update/update-showing.html"
+        }).state("getshowingsbymovie", {
+        	url: "/getshowingbymovie",
+        	templateUrl: "app/feature/showing/get-by-movie/get-showing-by-movie.html"
+        }).state("gettickets", {
+            url: "/gettickets",
+            templateUrl: "app/feature/ticket/get/get-user-tickets.html"
+        }).state("updateticket", {
+            url: "/updateticket",
+            templateUrl: "app/feature/ticket/update/update-ticket.html"
         })
-    });
-}());
+    }]);
