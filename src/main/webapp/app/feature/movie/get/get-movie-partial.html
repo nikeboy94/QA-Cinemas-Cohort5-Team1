@@ -3,7 +3,6 @@
 <!-- Content goes here -->
 <link rel="stylesheet" href="app/feature/movie/get/get-movie.css" />
 
-
 <div class="container" ng-controller="getMovieController as ctrl">
     <section class="row search-row">
         <div class="col-xs-12 col-sm-10 col-md-8 col-sm-offset-1 col-md-offset-2">
@@ -75,7 +74,7 @@
                 <div class="modal-body">
                     <div class="row">
                         <div class="col-xs-6">
-                            <img id="modalImg" src="lolscott" class="modal-img img-responsive"/>
+                            <img id="modalImg" src="lolscott.jpg" class="modal-img img-responsive"/>
                         </div>
                         <div class="col-xs-6">
                             <h2 id="modalTitle" class='film-title'>Title</h2>
@@ -84,7 +83,7 @@
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-default">More info</button>
+                    <button id="moreInfoButton" ng-click="ctrl.goToMovie()" type="button" class="btn btn-default">More info</button>
                     <button type="button" class="btn btn-primary">Book now</button>
                 </div>
             </div>
