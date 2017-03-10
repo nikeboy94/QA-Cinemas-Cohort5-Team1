@@ -5,4 +5,7 @@ INSERT INTO Movie(movieID, title, genre, releaseDate, classification, posterUrl,
 INSERT INTO Screen(id, screenType, screenDesc) VALUES(1, 'screen type', 'screen description');
 INSERT INTO Showing(showingId, screenId, movieId, dateTime) VALUES(1, 1, 1, '2017-01-13');
 INSERT INTO Seat(seatId, screenId) VALUES (1,1);
+INSERT INTO Seat(seatId, screenId) VALUES (2,1);
+INSERT INTO Seat(seatId, screenId) VALUES (3,1);
+INSERT INTO Seat(seatId, screenId) VALUES (4,1);
 INSERT INTO Ticket(ticketId, price, orderId, seatId, showingId, email) VALUES(1,'1','a', 1, 1, 'a1@email.com');

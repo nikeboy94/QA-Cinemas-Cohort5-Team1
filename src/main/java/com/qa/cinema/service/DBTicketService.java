@@ -12,6 +12,7 @@ import javax.persistence.Query;
 import org.apache.log4j.Logger;
 
 import com.qa.cinema.persistence.Ticket;
+import com.qa.cinema.persistence.Seat;
 import com.qa.cinema.persistence.Showing;
 import com.qa.cinema.util.JSONUtil;
 
@@ -94,14 +95,17 @@ public class DBTicketService implements TicketService {
 	@Override
 	public String getAvailableTickets(Long showingId) {
 		Query query = manager.createQuery("Select t From Ticket t Where t.showing.showingId = :showingId").setParameter("showingId", showingId);
-		int bookedTickets = query.getFirstResult();
+		Collection<Ticket> availableTicketList = (Collection<Ticket>)query.getResultList();
+		
+		int bookedTickets = availableTicketList.size();
 		
 		Showing s = manager.find(Showing.class, showingId);
 		Long screenId = s.getScreen();
-		query = manager.createQuery("Select Count(s) From Seat s Where screenId = :screenId")
+		query = manager.createQuery("Select s From Seat s Where screenId = :screenId")
 		.setParameter("screenId", screenId);
+		Collection<Seat> numberOfSeatsInScreen = (Collection<Seat>)query.getResultList();
 		
-		int seatsInScreen = query.getFirstResult();
+		int seatsInScreen = numberOfSeatsInScreen.size();
 		int availableTickets = seatsInScreen - bookedTickets;
 		
 		return "{\"availableTickets\": \"" +availableTickets +"\"}";
