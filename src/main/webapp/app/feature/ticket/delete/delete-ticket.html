@@ -1,0 +1,10 @@
+<div ng-controller="deleteTicketController as ctrl">
+    {{ctrl.test}} <br>
+    {{ctrl.returnMessage}} <br>
+    {{ctrl.error}} <br>
+    {{ctrl.errorMessage}} <br>
+    <form role="form">
+        <input id="email" placeholder="Ticket ID" ng-model="ticketID">
+        <button type="submit" ng-click="ctrl.deleteTicket(ticketID)">Delete ticket</button>
+    </form>
+</div>

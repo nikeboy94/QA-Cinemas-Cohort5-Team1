@@ -49,5 +49,8 @@ angular.module('movieApp').config(['$stateProvider', '$urlRouterProvider', 'USER
         }).state("updateticket", {
             url: "/updateticket",
             templateUrl: "app/feature/ticket/update/update-ticket.html"
+        }).state("deleteticket", {
+            url: "/deleteticket",
+            templateUrl: "app/feature/ticket/delete/delete-ticket.html"
         })
     }]);
