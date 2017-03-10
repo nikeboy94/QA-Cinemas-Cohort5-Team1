@@ -1,4 +1,103 @@
-<div ng-controller="getMovieController as ctrl">
-    <h1>This is the value of movies</h1>
-    {{ctrl.movies}}
+<!-- div ng-controller="getMovieController as ctrl"> <h1>This is the value of movies</h1><div ng-repeat="x in ctrl.movies"><img src={{x.posterUrl}}></div></div>
+
+<!-- Content goes here -->
+<link rel="stylesheet" href="css\globalStyle.css" />
+<link rel="stylesheet" href="css\get-movie.css" />
+
+
+<div class="container" ng-controller="getMovieController as ctrl">
+    <section class="row search-row">
+        <div class="col-xs-12 col-sm-10 col-md-8 col-sm-offset-1 col-md-offset-2">
+            <form>
+                <div class="form-group">
+                    <input type="search" name="filmsearch" placeholder="Search for a film or actor" class="form-control form-control-lg" id="film-search">
+                </div>
+            </form>
+        </div>
+    </section>
+
+    <div clas="row">
+        <ul class="nav nav-tabs" role="tablist">
+            <li role="presentation" class="active"><a href="getmovie#NowShowing" aria-controls="NowShowing" role="tab" data-toggle="tab">Now Showing</a></li>
+            <li role="presentation"><a href="/getmovie#ComingSoon" aria-controls="ComingSoon" role="tab" data-toggle="tab">Coming Soon</a></li>
+        </ul>
+        <div class="row">
+            <div class="tab-content">
+
+                <!-- NOW SHOWING -->
+                <div class="tab-pane active" id="NowShowing" role="tabpanel">
+                    <div class="row">
+                        <div class="film-poster col-xs-6 col-sm-4 col-xl-3" ng-repeat="x in ctrl.movies">
+                            <a ng-click="ctrl.replace(x)" ng-href="/getmovie#myModal" role="button" data-img="{{x.posterUrl}}" data-title="{{x.title}}" data-desc="{{x.description}}" data-toggle="modal">
+                                <img alt="{{x.title}} poster" src="{{x.posterUrl}}" height="545" width="397" class="img-responsive"\>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- COMING SOON -->
+                <div class="tab-pane" id="ComingSoon" role="tabpanel">
+                    <div class="row">
+                        <div class="film-poster col-xs-6 col-sm-4 col-xl-3">
+                            <a href="/getmovie#myModal" role="button" data-img="img/cars3.jpg" data-title="Cars 3" data-desc="Summary of cars 3" data-toggle="modal">
+                                <img alt="Cars 3 film poster" src="https://pbs.twimg.com/profile_images/506886122396336128/E6Zq19wf_400x400.png" class="img-responsive"\>
+                            </a>
+                        </div>
+
+                        <div class="film-poster col-xs-6 col-sm-4 col-xl-3">
+                            <a href="/getmovie#myModal" role="button" data-img="img/cars3.jpg" data-title="Cars 3" data-desc="Summary of cars 3" data-toggle="modal">
+                                <img alt="Cars 3 film poster" src="https://pbs.twimg.com/profile_images/506886122396336128/E6Zq19wf_400x400.png" class="img-responsive"\>
+                            </a>
+                        </div>
+
+                        <div class="film-poster col-xs-6 col-sm-4 col-xl-3">
+                            <a href="/getmovie#myModal" role="button" data-img="img/cars3.jpg" data-title="Cars 3" data-desc="Summary of cars 3" data-toggle="modal">
+                                <img alt="Cars 3 film poster" src="https://pbs.twimg.com/profile_images/506886122396336128/E6Zq19wf_400x400.png" class="img-responsive"\>
+                            </a>
+                        </div>
+
+                        <div class="film-poster col-xs-6 col-sm-4 col-xl-3">
+                            <a href="/getmovie#myModal" role="button" data-img="img/cars3.jpg" data-title="Cars 3" data-desc="Summary of cars 3" data-toggle="modal">
+                                <img alt="Cars 3 film poster" src="https://pbs.twimg.com/profile_images/506886122396336128/E6Zq19wf_400x400.png" class="img-responsive"\>
+                            </a>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- MOVIE MODAL -->
+
+    <div class="modal" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" >
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-xs-6">
+                            <img id="modalImg" src="spider-man_2.jpg" class="modal-img img-responsive"/>
+                        </div>
+                        <div class="col-xs-6">
+                            <h2 class='film-title'>Title</h2>
+                            <p class='film-description'>Summary</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default">More info</button>
+                    <button type="button" class="btn btn-primary">Book now</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- END OF MODAL -->
+
+
 </div>
+
+
+
+
+
