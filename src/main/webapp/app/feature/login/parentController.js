@@ -39,8 +39,9 @@ function($scope, $rootScope, $modal, Auth, AUTH_EVENTS, USER_ROLES){
 	//listen to events of unsuccessful logins, to run the login dialog
 	$rootScope.$on(AUTH_EVENTS.notAuthorized, showNotAuthorized);
 	$rootScope.$on(AUTH_EVENTS.notAuthenticated, showLoginDialog);
-	$rootScope.$on(AUTH_EVENTS.sessionTimeout, showLoginDialog);
-	$rootScope.$on(AUTH_EVENTS.logoutSuccess, showLoginDialog);
+    $rootScope.$on(AUTH_EVENTS.loginRequest, showLoginDialog);
+	//$rootScope.$on(AUTH_EVENTS.sessionTimeout, showLoginDialog);
+	//$rootScope.$on(AUTH_EVENTS.logoutSuccess, showLoginDialog);
 	$rootScope.$on(AUTH_EVENTS.loginSuccess, setCurrentUser);
 	
 } ]);

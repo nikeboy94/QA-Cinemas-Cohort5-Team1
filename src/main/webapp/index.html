@@ -4,6 +4,7 @@
 <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.0-rc.4/angular.min.js"></script>
 <title>Cinema Booking App</title>
 	<link rel="stylesheet" href="scripts/bootstrap.css">
+	<link rel="stylesheet" href="css/globalStyle.css" />
 </head>
 <body ng-controller="ParentController">
 <nav class="navbar navbar-inverse">
@@ -40,6 +41,10 @@
               <span class="caret"></span></a>
           <ul class="dropdown-menu">
               <li><a ui-sref="getshowings">Get Showings</a></li>
+              <li><a ui-sref="getshowingsbymovie">Get Showings By Movie</a></li>
+              <li><a ui-sref="addshowing">Add Showing</a></li>
+              <li><a ui-sref="deleteshowing">Delete Showing</a></li>
+              <li><a ui-sref="updateshowing">Update Showing</a></li>
           </ul>
       </li>
 			<li class="dropdown">
@@ -52,14 +57,21 @@
 				</ul>
 			</li>
 		</ul>
-		<ul class="nav navbar-nav navbar-right">
-			<li><a href="#" ng-click="logout()">Log Out</a></li>
-		</ul>
+		<div ng-if="(globals.currentUser.email == undefined)">
+			<ul class="nav navbar-nav navbar-right">
+				<li><a href="#" ng-click="openLogin()">Log In</a></li>
+			</ul>
+		</div>
+		<div ng-if="(globals.currentUser.email != undefined)">
+			<ul class="nav navbar-nav navbar-right">
+				<li><a href="#" ng-click="logout()">Log Out</a></li>
+			</ul>
+		</div>
 	</div>
 </nav>
 	
 	<div class="container">
-		<div ng-if="currentUser"><b>Welcome, {{ currentUser.username }}</b></div>
+		<div ng-if="(globals.currentUser.email != undefined)"><b>Welcome, {{ globals.currentUser.email }}</b></div>
 		<div ui-view></div>
 	</div>
 
@@ -69,6 +81,7 @@
 	<script src="scripts/bootstrap.min.js"></script>
 	<script src="scripts/ui-router.min.js"></script>
 	<script src="scripts/ui-bootstrap-tpls-0.11.2.min.js"></script>
+	<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.3.0-beta.1/angular-cookies.min.js"></script>
 	<script src="app/app.js"></script>
 	<script src="app/app-state-manager.js"></script>
 	<script src="app/global-functions.js"></script>
@@ -95,13 +108,17 @@
     <script src="app/feature/user/add/add-user-controller.js"></script>
     <script src="app/feature/user/get/get-user-controller.js"></script>
     <script src="app/feature/showing/get/get-showing-controller.js"></script>
-	<script src="app/feature/ticket/get/get-user-tickets-controller.js"></script>
-	<script src="app/feature/ticket/update/update-ticket-controller.js"></script>
-	<script src="app/feature/ticket/delete/delete-ticket-controller.js"></script>
+    <script src="app/feature/showing/add/add-showing-controller.js"></script>
+    <script src="app/feature/showing/delete/delete-showing-controller.js"></script>
+    <script src="app/feature/showing/update/update-showing-controller.js"></script>
+    <script src="app/feature/showing/get-by-movie/get-showing-by-movie-controller.js"></script>
+    <script src="app/feature/ticket/get/get-user-tickets-controller.js"></script>
+    <script src="app/feature/ticket/update/update-ticket-controller.js"></script>
+	  <script src="app/feature/ticket/delete/delete-ticket-controller.js"></script>
   
     <!--CONTROLLERS -->
-    <script src="app/feature/login/parentController.js"></script>
-    <script src="app/feature/login/login.js"></script>
+	<script src="app/feature/login/parentController.js"></script>
+	<script src="app/feature/login/login.js"></script>
 
 
     <!--SERVICES -->

@@ -43,6 +43,18 @@ angular.module('movieApp').config(['$stateProvider', '$urlRouterProvider', 'USER
         }).state("getshowings", {
             url: "/getshowings",
             templateUrl: "app/feature/showing/get/get-showing.html"
+        }).state("addshowing", {
+        	url: "/addshowing",
+        	templateUrl: "app/feature/showing/add/add-showing.html"
+        }).state("deleteshowing", {
+        	url: "/deleteshowing",
+        	templateUrl: "app/feature/showing/delete/delete-showing.html"
+        }).state("updateshowing", {
+        	url: "/updateshowing",
+        	templateUrl: "app/feature/showing/update/update-showing.html"
+        }).state("getshowingsbymovie", {
+        	url: "/getshowingbymovie",
+        	templateUrl: "app/feature/showing/get-by-movie/get-showing-by-movie.html"
         }).state("gettickets", {
             url: "/gettickets",
             templateUrl: "app/feature/ticket/get/get-user-tickets.html"

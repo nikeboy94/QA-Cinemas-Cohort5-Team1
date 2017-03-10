@@ -1,24 +1,49 @@
 package com.qa.cinema.persistence;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Entity
 public class Seat {
 	@Id
-	private Long seatId;
+	@GeneratedValue(strategy=GenerationType.AUTO)
+	private Long Id;
+	private String row;
+	private String column;
+	@ManyToOne
+	@JoinColumn(name="screenId", nullable=false)
+	private Screen screen;
 
-	private Long screenId;
-	
-	public Long getSeatId() {
-		return seatId;
+	public Seat() {
 	}
-	
-	public Long getScreenId() {
-		return screenId;
+
+	public Seat(String row, String column) {
+		super();
+		this.row = row;
+		this.column = column;
 	}
 
+	public Long getId() {
+		return Id;
+	}
 
-	
-	
+	public String getRow() {
+		return row;
+	}
+
+	public void setRow(String row) {
+		this.row = row;
+	}
+
+	public String getColumn() {
+		return column;
+	}
+
+	public void setColumn(String column) {
+		this.column = column;
+	}
+
 }
+
+
+	
+	
