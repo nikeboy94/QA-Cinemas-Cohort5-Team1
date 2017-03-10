@@ -55,14 +55,21 @@
 				</ul>
 			</li>
 		</ul>
-		<ul class="nav navbar-nav navbar-right">
-			<li><a href="#" ng-click="logout()">Log Out</a></li>
-		</ul>
+		<div ng-if="(globals.currentUser.email == undefined)">
+			<ul class="nav navbar-nav navbar-right">
+				<li><a href="#" ng-click="openLogin()">Log In</a></li>
+			</ul>
+		</div>
+		<div ng-if="(globals.currentUser.email != undefined)">
+			<ul class="nav navbar-nav navbar-right">
+				<li><a href="#" ng-click="logout()">Log Out</a></li>
+			</ul>
+		</div>
 	</div>
 </nav>
 	
 	<div class="container">
-		<div ng-if="(currentUser.email != undefined)"><b>Welcome, {{ currentUser.email }}</b></div>
+		<div ng-if="(globals.currentUser.email != undefined)"><b>Welcome, {{ globals.currentUser.email }}</b></div>
 		<div ui-view></div>
 	</div>
 
@@ -72,6 +79,7 @@
 	<script src="scripts/bootstrap.min.js"></script>
 	<script src="scripts/ui-router.min.js"></script>
 	<script src="scripts/ui-bootstrap-tpls-0.11.2.min.js"></script>
+	<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.3.0-beta.1/angular-cookies.min.js"></script>
 	<script src="app/app.js"></script>
 	<script src="app/app-state-manager.js"></script>
 	<script src="app/global-functions.js"></script>
