@@ -4,12 +4,6 @@
 		var vm = this;
 		
 		vm.addShowing = function(showingToAdd) {
-			console.log("This is the value of showing to add " + showingToAdd);
-			console.log(showingToAdd);
-			
-			var showingToJson = JSON.stringify(showingToAdd);
-			console.log(showingToJson);
-			
 			showingDal.saveShowing(showingToAdd).then(function(results) {
 				vm.showingAddMessage = results;
 				$state.go("getshowings");

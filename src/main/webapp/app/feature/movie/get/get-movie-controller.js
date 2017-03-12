@@ -15,7 +15,6 @@
         init();
 
         vm.replace = function(movie) {
-            console.log("replacing modal values");
             $('#modalImg').attr('src', movie.posterUrl);
             $('#modalTitle').text(movie.title);
             $('#modalDescription').text(movie.description);
