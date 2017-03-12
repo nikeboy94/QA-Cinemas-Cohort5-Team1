@@ -8,7 +8,8 @@ public class User {
 
 	@Id
 	private String email;
-	private String name;
+	private String fName;
+	private String lName;
 	private String role;
 	private String password;
 	private String salt;
@@ -17,10 +18,11 @@ public class User {
 		//Empty constructor
 	}
 
-	public User(String email, String name, String role, String password, String salt) {
+	public User(String email, String fName, String lName, String role, String password, String salt) {
 		super();
 		this.email = email;
-		this.name = name;
+		this.fName = fName;
+		this.lName = lName;
 		this.role = role;
 		this.password = password;
 		this.salt = salt;
@@ -34,12 +36,21 @@ public class User {
 		this.email = email;
 	}
 
-	public String getName() {
-		return name;
+
+	public String getFName() {
+		return fName;
 	}
 
-	public void setName(String name) {
-		this.name = name;
+	public void setFName(String fName) {
+		this.fName = fName;
+	}
+
+	public String getLName() {
+		return lName;
+	}
+
+	public void setLName(String lName) {
+		this.lName = lName;
 	}
 
 	public String getRole() {
