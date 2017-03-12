@@ -8,7 +8,9 @@
 
         <input id="password" placeholder="Password" ng-model="user.password">
 
-        <input id="role" placeholder="Role" ng-model="user.role">
+        <div ng-hide="(globals.currentUser.role != 'admin')">
+            <input id="role" placeholder="Password" ng-model="user.role">
+        </div>
 
         <button type="submit" ng-click="ctrl.addUser(user)">Add User</button>
     </form>
