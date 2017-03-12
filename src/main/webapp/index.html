@@ -59,14 +59,19 @@
 				</ul>
 			</li>
 		</ul>
-		<div ng-if="(globals.currentUser.email == undefined)">
+		<div ng-if="(globals.currentUser.role == undefined)">
 			<ul class="nav navbar-nav navbar-right">
-				<li><a href="#" ng-click="openLogin()">Log In</a></li>
+				<li><a href="#" ng-click="openLogin()">Sign up</a></li>
 			</ul>
 		</div>
-		<div ng-if="(globals.currentUser.email != undefined)">
+		<div ng-if="(globals.currentUser.email == undefined)">
 			<ul class="nav navbar-nav navbar-right">
-				<li><a href="#" ng-click="logout()">Log Out</a></li>
+				<li><a style="cursor: default; color: inherit;">or</a></li>
+			</ul>
+		</div>
+		<div ng-if="(globals.currentUser.email == undefined)">
+			<ul class="nav navbar-nav navbar-right">
+				<li><a href="#" ng-click="logout()">Sign in</a></li>
 			</ul>
 		</div>
 	</div>

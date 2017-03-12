@@ -67,12 +67,6 @@ function($http, $rootScope, $window, $cookieStore, Session, AUTH_EVENTS, userDAL
 	};
 
 	authService.setCredentials = function() {
-		$rootScope.globals = {
-			currentUser: {
-				email: $rootScope.globals.currentUser.email
-			}
-		};
-
         $http.defaults.headers.common['Authorization'] = 'Basic ' + $rootScope.globals.currentUser.email;
         $cookieStore.put('globals', $rootScope.globals);
 	};
