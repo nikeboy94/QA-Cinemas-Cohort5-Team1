@@ -33,7 +33,7 @@ public class Ticket {
 	private User user;
 	
 	public Ticket() {
-		
+		//Empty constructor
 	}
 		
 

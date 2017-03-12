@@ -15,7 +15,9 @@ public class Showing {
 	private Long movieId;
 	private String dateTime;
 	
-	public Showing() {}
+	public Showing() {
+		//Empty constructor
+	}
 	
 	public Showing(Long screenId, Long movieId, String dateTime) {
 		this.screenId = screenId;
