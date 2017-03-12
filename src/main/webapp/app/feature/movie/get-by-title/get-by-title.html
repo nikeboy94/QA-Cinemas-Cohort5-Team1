@@ -1,17 +1,17 @@
 <div ng-controller="getByTitleController as ctrl">
-    <form role="form">
+    <!--form role="form">
         <input id = "title" placeholder="title" ng-model="title">
 
-        <button type="submit" ng-click="ctrl.getByTitle(title)">getMovie</button>
-    </form>
+        <button type="submit" ng-click="ctrl.getByTitle(movieTitle)">getMovie</button>
+    <form -->
 
 
-    <div class="container">
+    <div class="container" >
         <div class="jumbotron">
             <div class="row">
                 <div class="poster">
                     <div class="col-md-6">
-                        <img src={{ctrl.movies[0].posterUrl}} alt="Poster"
+                        <img src="{{ctrl.movies[0].posterUrl}}" alt="Poster"
                              class="img-responsive center-block img-rounded" width="300px"
                              height="400px" />
 

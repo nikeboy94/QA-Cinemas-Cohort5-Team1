@@ -35,6 +35,6 @@ angular.module('movieApp').run(function($rootScope, $state, Auth, AUTH_EVENTS) {
 
 	$rootScope.openLogin = function() {
 		$rootScope.$broadcast(AUTH_EVENTS.loginRequest);
-	}
+	};
 
 });

@@ -35,7 +35,7 @@ angular.module('movieApp').config(['$stateProvider', '$urlRouterProvider', 'USER
             url: "/deleteuser",
             templateUrl: "app/feature/user/delete/delete-user.html"
         }).state("getmoviebytitle",{
-            url: "/getmoviebytitle",
+            url: "/getmoviebytitle/",
             templateUrl: "app/feature/movie/get-by-title/get-by-title.html"
         }).state("getmoviebygenre", {
             url: "/getmoviebygenre",
