@@ -1,0 +1,24 @@
+<div ng-controller="addTicketController as ctrl">
+<h1>Create a ticket</h1>
+{{ctrl.test}}
+    {{ctrl.ticketAddMessage}}
+    <br>
+    {{ctrl.error}}
+    <br>
+    {{ctrl.errorMessage}}
+<form role="form">
+
+    <input id="price" placeholder="price" ng-model="ticket.price">
+
+    <input id="orderId" placeholder="orderId" ng-model="ticket.orderId">
+
+    <input id="seat" placeholder="seat" ng-model="ticket.seat.seatId">
+
+    <input id="showing" placeholder="showing" ng-model="ticket.showing.showingId">
+
+    <input id="email" placeholder="email" ng-model="ticket.user.email">
+
+    <button type="submit" ng-click="ctrl.addTicket(ticket)">addTicket</button>
+
+</form>
+</div>
