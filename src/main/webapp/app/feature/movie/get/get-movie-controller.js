@@ -14,9 +14,9 @@
         init();
 
         vm.replace = function(movie) {
-            console.log("omar pls");
-            alert("omar pls");
-            $('#modalImg').attr('src', movie.title);
+            $('#modalImg').attr('src', movie.posterUrl);
+            $('#modalTitle').text(movie.title);
+            $('#modalDescription').text(movie.description);
         };
 
     };

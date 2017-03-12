@@ -1,0 +1,14 @@
+<div ng-controller="updateTicketController as ctrl">
+    {{ctrl.returnMessage}}
+
+                <form role="form">
+                    <input id="ticketId" placeholder="Original ticket ID" ng-model="ticketId">
+                    <input id="price" placeholder="New ticket: price " ng-model="ticket.price">
+                    <input id="orderID" placeholder="New ticket: order ID" ng-model="ticket.orderId">
+                    <input id="seat_seatID" placeholder="New ticket: seat ID" ng-model="ticket.seat.seatId">
+                    <input id="showing_showingID" placeholder="New ticket: showingId" ng-model="ticket.showing.showingId">
+
+                    <button type="submit" ng-click="ctrl.updateTicket(ticketId, ticket)">Update Tickets</button>
+                </form>
+
+</div>

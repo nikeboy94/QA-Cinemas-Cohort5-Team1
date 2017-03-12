@@ -5,8 +5,6 @@
         var vm = this;
 
         vm.searchGenre = function(genre) {
-            console.log("This is the genre" + genre)
-
             movieDal.getMoviesByGenre(genre).then(function (results) {
                 console.log(results);
                 vm.movies = results;

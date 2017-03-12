@@ -31,7 +31,7 @@ import com.qa.cinema.util.JSONUtil;
 @Default
 public class DBTicketService implements TicketService {
 
-	final static Logger logger = Logger.getLogger(DBTicketService.class);
+	static final Logger LOGGER = Logger.getLogger(DBTicketService.class);
 	
 	@PersistenceContext(unitName = "primary")
 	private EntityManager manager;
@@ -59,25 +59,25 @@ public class DBTicketService implements TicketService {
 
 	@Override
 	public String updateTicket(Long ticketId, String newTicket) {
-		logger.info("DBTICKETSERVICE: Entered updateTicket method. About to get updatedTicket object");
+		LOGGER.info("DBTICKETSERVICE: Entered updateTicket method. About to get updatedTicket object");
 		Ticket updatedTicket = util.getObjectForJSON(newTicket, Ticket.class);
 		
-		logger.info("DBTICKETSERVICE: About to get updatedShowing object");
+		LOGGER.info("DBTICKETSERVICE: About to get updatedShowing object");
 		Showing updatedShowing = getShowing(updatedTicket.getShowing().getShowingId());
-		logger.info("DBTICKETSERVICE: updatedShowing created");
+		LOGGER.info("DBTICKETSERVICE: updatedShowing created");
 		
 		if(updatedShowing == null) {
 			return "{\"message\": \"Showing not found\"}";
 		}
 	
-		logger.info("DBTICKETSERVICE: About to call updatedTicket.setShowing");
+		LOGGER.info("DBTICKETSERVICE: About to call updatedTicket.setShowing");
 		updatedTicket.setShowing(updatedShowing);
 		
 		Ticket ticketInDB = findTicket(ticketId);
 		if (ticketInDB != null){
 			ticketInDB.updateField(updatedTicket);
 			manager.merge(ticketInDB);
-			return "{\"message\": \"ticket successfully upadted\"}";
+			return "{\"message\": \"ticket successfully updated\"}";
 		}
 		return "{\"message\": \"ticket not found\"}";
 	}
@@ -116,20 +116,20 @@ public class DBTicketService implements TicketService {
 	}
 	
 	private Showing getShowing(Long showingId) {
-		logger.info("DBTICKETSERVICE entered getShowing with param " + showingId);
-		logger.info("DBTICKETSERVICE - getShowing. About to create string from showing service");
+		LOGGER.info("DBTICKETSERVICE entered getShowing with param " + showingId);
+		LOGGER.info("DBTICKETSERVICE - getShowing. About to create string from showing service");
 		String allShowingsJSON = showingService.getAllShowings();
 		
-		logger.info("DBTICKETSERVICE - getShowing. About to make a collection of allShowings");
-		Showing[]allShowings = (Showing[]) util.getObjectForJSON(showingService.getAllShowings(), Showing[].class);
+		LOGGER.info("DBTICKETSERVICE - getShowing. About to make a collection of allShowings");
+		Showing[]allShowings = (Showing[]) util.getObjectForJSON(allShowingsJSON, Showing[].class);
 		
 		for(Showing aShowing : allShowings) {
 			if(aShowing.getShowingId().equals(showingId)) {
-				logger.info("DBTICKETSERVICE - getShowing. Correct showing found, about to return aShowing");
+				LOGGER.info("DBTICKETSERVICE - getShowing. Correct showing found, about to return aShowing");
 				return aShowing;
 			}
 		}
-		logger.info("DBTICKETSERVICE - getShowing. Loop finished, about to return null");
+		LOGGER.info("DBTICKETSERVICE - getShowing. Loop finished, about to return null");
 		return null;
 	}
 

@@ -4,9 +4,6 @@
         var vm = this;
 
         vm.getByTitle = function(title) {
-            console.log("This is the value of movie to delete " + title);
-            console.log(title);
-
             movieDal.getMoviesByTitle(title).then(function (results) {
                 vm.movies  = results;
             }, function (error) {
