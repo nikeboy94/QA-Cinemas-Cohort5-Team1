@@ -1,13 +1,15 @@
 <!doctype html>
 <html ng-app="movieApp">
 <head>
-<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.0-rc.4/angular.min.js"></script>
-<title>Cinema Booking App</title>
-	<link rel="stylesheet" href="scripts/bootstrap.css">
-	<link rel="stylesheet" href="css/globalStyle.css" />
+    <script type="text/javascript"
+            src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.0-rc.4/angular.min.js"></script>
+    <title>Cinema Booking App</title>
+    <link rel="stylesheet" href="scripts/bootstrap.css">
+    <link rel="stylesheet" href="css/globalStyle.css"/>
 </head>
 <body ng-controller="ParentController">
 <nav class="navbar navbar-inverse">
+
 	<div class="container-fluid">
 		<div class="navbar-header">
 			<a class="navbar-brand" ui-sref="dashboard">QA Cinema</a>
@@ -58,6 +60,16 @@
 					<li><a ui-sref="deleteticket">Delete Ticket</a></li>
 				</ul>
 			</li>
+      <li class="dropdown">
+                <a class="dropdown-toggle" data-toggle="dropdown">Seat
+                    <span class="caret"></span></a>
+                <ul class="dropdown-menu">
+                    <li><a ui-sref="addseat">Add Seat</a></li>
+                    <li><a ui-sref="getseat">Get Seat</a></li>
+                    <li><a ui-sref="updateseat">Update Seat</a></li>
+                    <li><a ui-sref="deleteseat">Delete Seat</a></li>
+                </ul>
+            </li>
 		</ul>
 		<div ng-if="(globals.currentUser.email == undefined)">
 			<ul class="nav navbar-nav navbar-right">
@@ -70,36 +82,35 @@
 			</ul>
 		</div>
 	</div>
+
 </nav>
-	
-	<div class="container">
-		<div ng-if="(globals.currentUser.email != undefined)"><b>Welcome, {{ globals.currentUser.email }}</b></div>
-		<div ui-view></div>
-	</div>
+
+<div class="container">
+    <div ng-if="(globals.currentUser.email != undefined)"><b>Welcome, {{ globals.currentUser.email }}</b></div>
+    <div ui-view></div>
+</div>
 
 
+<script src="scripts/jquery-2.1.4.min.js"></script>
+<script src="scripts/bootstrap.min.js"></script>
+<script src="scripts/ui-router.min.js"></script>
+<script src="scripts/ui-bootstrap-tpls-0.11.2.min.js"></script>
+<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.3.0-beta.1/angular-cookies.min.js"></script>
+<script src="app/app.js"></script>
+<script src="app/app-state-manager.js"></script>
+<script src="app/global-functions.js"></script>
 
-	<script src="scripts/jquery-2.1.4.min.js"></script>
-	<script src="scripts/bootstrap.min.js"></script>
-	<script src="scripts/ui-router.min.js"></script>
-	<script src="scripts/ui-bootstrap-tpls-0.11.2.min.js"></script>
-	<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.3.0-beta.1/angular-cookies.min.js"></script>
-	<script src="app/app.js"></script>
-	<script src="app/app-state-manager.js"></script>
-	<script src="app/global-functions.js"></script>
+<!-- Services-->
+<script src="app/service/dal/dal.js"></script>
+<script src="app/service/dal/movie.js"></script>
+<script src="app/service/dal/user.js"></script>
+<script src="app/service/dal/showing.js"></script>
+<script src="app/service/dal/ticket.js"></script>
+<script src="app/service/dal/seat.js"></script>
+<!--FACTORY -->
+<script src="app/service/authInterceptor.js"></script>
 
-    <!-- Services-->
-    <script src="app/service/dal/dal.js"></script>
-    <script src="app/service/dal/movie.js"></script>
-    <script src="app/service/dal/user.js"></script>
-    <script src="app/service/dal/showing.js"></script>
-	<script src="app/service/dal/ticket.js"></script>
-  
-    <!--FACTORY -->
-    <script src="app/service/authInterceptor.js"></script>
-	
 
-    <!-- Features-->
     <script src="app/feature/dashboard/dashboard-controller.js"></script>
     <script src="app/feature/movie/add/add-movie-controller.js"></script>
     <script src="app/feature/movie/get/get-movie-controller.js"></script>
@@ -119,15 +130,18 @@
 	<script src="app/feature/ticket/add/add-ticket-controller.js"></script>
 	<script src="app/feature/ticket/get-available-for-showing/get-available-for-showing-controller.js"></script>
 	  <script src="app/feature/ticket/delete/delete-ticket-controller.js"></script>
+  <script src="app/feature/seat/add/add-seat-controller.js"></script>
+<script src="app/feature/seat/get/get-seat-controller.js"></script>
+<script src="app/feature/seat/delete/delete-seat-controller.js"></script>
   
     <!--CONTROLLERS -->
 	<script src="app/feature/login/parentController.js"></script>
 	<script src="app/feature/login/login.js"></script>
 
 
-    <!--SERVICES -->
-    <script src="app/service/auth.js"></script>
-    <script src="app/service/session.js"></script>
+<!--SERVICES -->
+<script src="app/service/auth.js"></script>
+<script src="app/service/session.js"></script>
 
 </body>
 </html>
