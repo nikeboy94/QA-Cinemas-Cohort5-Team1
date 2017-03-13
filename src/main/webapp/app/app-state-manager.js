@@ -1,5 +1,5 @@
 angular.module('movieApp').config(['$stateProvider', '$urlRouterProvider', 'USER_ROLES',
-    function($stateProvider, $urlRouterProvider, USER_ROLES) {
+    function ($stateProvider, $urlRouterProvider, USER_ROLES) {
 
         // For any unmatched url, redirect to /
         $urlRouterProvider.otherwise("/dashboard");
@@ -9,10 +9,10 @@ angular.module('movieApp').config(['$stateProvider', '$urlRouterProvider', 'USER
             templateUrl: "app/feature/dashboard/dashboard-partial.html"
         }).state("addmovie", {
             url: "/addmovie",
-            templateUrl: "app/feature/movie/add/add-movie-partial.html",
-            data: {
+            templateUrl: "app/feature/movie/add/add-movie-partial.html"
+            /**data: {
                 authorizedRoles: [USER_ROLES.admin, USER_ROLES.editor, USER_ROLES.guest]
-            }
+            }*/
         }).state("getmovie", {
             url: "/getmovie",
             templateUrl: "app/feature/movie/get/get-movie-partial.html"
@@ -34,8 +34,10 @@ angular.module('movieApp').config(['$stateProvider', '$urlRouterProvider', 'USER
         }).state("deleteuser", {
             url: "/deleteuser",
             templateUrl: "app/feature/user/delete/delete-user.html"
-        }).state("getmoviebytitle",{
-            url: "/getmoviebytitle/",
+
+        }).state("getmoviebytitle", {
+            url: "/getmoviebytitle",
+
             templateUrl: "app/feature/movie/get-by-title/get-by-title.html"
         }).state("getmoviebygenre", {
             url: "/getmoviebygenre",
@@ -44,17 +46,17 @@ angular.module('movieApp').config(['$stateProvider', '$urlRouterProvider', 'USER
             url: "/getshowings",
             templateUrl: "app/feature/showing/get/get-showing.html"
         }).state("addshowing", {
-        	url: "/addshowing",
-        	templateUrl: "app/feature/showing/add/add-showing.html"
+            url: "/addshowing",
+            templateUrl: "app/feature/showing/add/add-showing.html"
         }).state("deleteshowing", {
-        	url: "/deleteshowing",
-        	templateUrl: "app/feature/showing/delete/delete-showing.html"
+            url: "/deleteshowing",
+            templateUrl: "app/feature/showing/delete/delete-showing.html"
         }).state("updateshowing", {
-        	url: "/updateshowing",
-        	templateUrl: "app/feature/showing/update/update-showing.html"
+            url: "/updateshowing",
+            templateUrl: "app/feature/showing/update/update-showing.html"
         }).state("getshowingsbymovie", {
-        	url: "/getshowingbymovie",
-        	templateUrl: "app/feature/showing/get-by-movie/get-showing-by-movie.html"
+            url: "/getshowingbymovie",
+            templateUrl: "app/feature/showing/get-by-movie/get-showing-by-movie.html"
         }).state("gettickets", {
             url: "/gettickets",
             templateUrl: "app/feature/ticket/get/get-user-tickets.html"
@@ -73,6 +75,16 @@ angular.module('movieApp').config(['$stateProvider', '$urlRouterProvider', 'USER
         }).state("addmovieposter", {
             url: "/addmovieposter",
             templateUrl: "app/feature/movie/add-movie-poster/add-movie-poster-partial.html"
+        }).state("addseat", {
+            url: "/addseat",
+            templateUrl: "app/feature/seat/add/add-seat.html"
+        }).state("getseat", {
+            url: "/getseat",
+            templateUrl: "app/feature/seat/get/get-seat.html"
+        }).state("deleteseat", {
+            url: "/deleteseat",
+            templateUrl: "app/feature/seat/delete/delete-seat.html"
+
         })
 
     }]);

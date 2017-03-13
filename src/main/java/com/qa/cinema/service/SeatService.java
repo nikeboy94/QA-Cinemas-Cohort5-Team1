@@ -5,6 +5,7 @@ public interface SeatService {
 	String createSeat(String seat);
 	String updateSeat(Long seatId, String seat);
 	String deleteSeat(Long seatId);
+	String findAllSeats();
 	
 
 }
