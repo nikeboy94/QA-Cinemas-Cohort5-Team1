@@ -41,6 +41,14 @@
                                 {{ctrl.movies[0].runtime}}
                             </div>
                             </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <input id="id2" value={{ctrl.movies[0].id}} placeholder="rating" ng-model="id">
+                                <input id="rating2" placeholder="rating" ng-model="rating">
+                                <button type="submit" ng-click="ctrl.updateRating(id, rating)">Update Rating</button>
+                            </div>
+
+                        </div>
                         </div>
                     </div>
                 </div>

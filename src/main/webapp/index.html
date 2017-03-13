@@ -5,6 +5,7 @@
 <title>Cinema Booking App</title>
 	<link rel="stylesheet" href="scripts/bootstrap.css">
 	<link rel="stylesheet" href="css/globalStyle.css" />
+	<link rel="stylesheet" href="css/index.css" />
 </head>
 <body ng-controller="ParentController">
 <nav class="navbar navbar-inverse">
@@ -69,6 +70,12 @@
 				<li><a href="#" ng-click="logout()">Log Out</a></li>
 			</ul>
 		</div>
+		<form class="navbar-form navbar-right">
+			<div class="form-group">
+				<input type="text" class="form-control" placeholder="Search Film" class="search-button" id="searchBox">
+			</div>
+			<button type="submit" class="btn btn-default" ng-click="goToResults('Harry')">Submit</button>
+		</form>
 	</div>
 </nav>
 	
@@ -118,7 +125,7 @@
     <!--<script src="app/feature/ticket/update/update-ticket-controller.js"></script>-->
 	<script src="app/feature/ticket/add/add-ticket-controller.js"></script>
 	<script src="app/feature/ticket/get-available-for-showing/get-available-for-showing-controller.js"></script>
-	  <script src="app/feature/ticket/delete/delete-ticket-controller.js"></script>
+	<script src="app/feature/ticket/delete/delete-ticket-controller.js"></script>
   
     <!--CONTROLLERS -->
 	<script src="app/feature/login/parentController.js"></script>

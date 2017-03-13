@@ -1,7 +1,7 @@
 /**
  * Contains functions that are added to the root AngularJs scope.
  */
-angular.module('movieApp').run(function($rootScope, $state, Auth, AUTH_EVENTS) {
+angular.module('movieApp').run(function($rootScope, $state, Auth, AUTH_EVENTS, movieDal) {
 
 	//before each state change, check if the user is logged in
 	//and authorized to move onto the next state
@@ -36,5 +36,10 @@ angular.module('movieApp').run(function($rootScope, $state, Auth, AUTH_EVENTS) {
 	$rootScope.openLogin = function() {
 		$rootScope.$broadcast(AUTH_EVENTS.loginRequest);
 	};
+
+	$rootScope.goToResults = function(title) {
+		movieDal.movieTitle = title;
+		$state.go('searchresults');
+	}
 
 });
