@@ -33,6 +33,9 @@
         }).state("deleteuser", {
             url: "/deleteuser",
             templateUrl: "app/feature/user/delete/delete-user.html"
+        }).state("contactus", {
+            url: "/contactus",
+            templateUrl: "app/feature/contactUs/contact-us.html"
         })
     });
 }());
