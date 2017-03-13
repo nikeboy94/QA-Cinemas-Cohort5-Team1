@@ -38,6 +38,26 @@
                     return deferred.promise;
                 },
 
+                POSTIMAGE: function (apiPath, itemToSave) {
+                    var deferred = $q.defer();
+                    $http(
+                        {
+                            method: "post",
+                            url: apiPath,
+                            headers: {
+                                "Accept": "application/json, text/plain, */*",
+                                "Content-Type": "multipart/form-data"
+                            },
+                            data: itemToSave
+                        }
+                    ).then(function (results) {
+                        deferred.resolve(results.data);
+                    }, function (e) {
+                        deferred.reject(e);
+                    });
+                    return deferred.promise;
+                },
+
                 PUT: function (apiPath, itemToSave) {
                     var deferred = $q.defer();
                     $http(

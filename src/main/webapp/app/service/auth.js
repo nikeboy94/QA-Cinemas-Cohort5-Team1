@@ -90,7 +90,7 @@ function($http, $rootScope, $window, $cookieStore, Session, AUTH_EVENTS, userDAL
 	      authorizedRoles = [authorizedRoles];
 	    }
 	    return (authService.isAuthenticated() &&
-	      authorizedRoles.indexOf(Session.userRole) !== -1);
+	      authorizedRoles.indexOf(Session.role) !== -1);
 	};
 	
 	//log out the user and broadcast the logoutSuccess event

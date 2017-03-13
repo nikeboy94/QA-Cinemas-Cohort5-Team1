@@ -70,6 +70,9 @@ angular.module('movieApp').config(['$stateProvider', '$urlRouterProvider', 'USER
         }).state("deleteticket", {
             url: "/deleteticket",
             templateUrl: "app/feature/ticket/delete/delete-ticket.html"
+        }).state("addmovieposter", {
+            url: "/addmovieposter",
+            templateUrl: "app/feature/movie/add-movie-poster/add-movie-poster-partial.html"
         })
 
     }]);

@@ -18,6 +18,7 @@
 					<span class="caret"></span></a>
 				<ul class="dropdown-menu">
 					<li><a ui-sref="addmovie">Add Movie</a></li>
+					<li><a ui-sref="addmovieposter">Add Movie Poster</a></li>
 					<li><a ui-sref="getmovie">Get Movie</a></li>
 					<li><a ui-sref="updatemovie">Update Movie</a></li>
 					<li><a ui-sref="deletemovie">Delete Movie</a></li>
@@ -60,7 +61,7 @@
 		</ul>
 		<div ng-if="(globals.currentUser.role == undefined)">
 			<ul class="nav navbar-nav navbar-right">
-				<li><a href="#" ng-click="openLogin()">Sign up</a></li>
+				<li><a ui-sref="adduser">Sign up</a></li>
 			</ul>
 		</div>
 		<div ng-if="(globals.currentUser.email == undefined)">
@@ -70,7 +71,32 @@
 		</div>
 		<div ng-if="(globals.currentUser.email == undefined)">
 			<ul class="nav navbar-nav navbar-right">
-				<li><a href="#" ng-click="logout()">Sign in</a></li>
+				<li><a href="#" ng-click="openLogin()">Sign in</a></li>
+			</ul>
+		</div>
+		<div ng-if="(globals.currentUser.role == 'admin')">
+			<ul class="nav navbar-nav navbar-right">
+				<li class="dropdown">
+					<a class="dropdown-toggle" data-toggle="dropdown">Admin
+						<span class="caret"></span></a>
+					<ul class="dropdown-menu">
+						<li><a ui-sref="addmovie">Add Movie</a></li>
+						<li><a ui-sref="addshowing">Add Showing</a></li>
+						<li><a ui-sref="adduser">Add User</a></li>
+						<li><a href="#" ng-click="logout()">logout</a></li>
+					</ul>
+				</li>
+			</ul>
+		</div>
+		<div ng-if="(globals.currentUser.role == 'customer')">
+			<ul class="nav navbar-nav navbar-right">
+				<li class="dropdown">
+					<a class="dropdown-toggle" data-toggle="dropdown">{{ globals.currentUser.fName }}
+						<span class="caret"></span></a>
+					<ul class="dropdown-menu">
+						<li><a href="#" ng-click="logout()">logout</a></li>
+					</ul>
+				</li>
 			</ul>
 		</div>
 	</div>
