@@ -15,6 +15,8 @@
 
         vm.addMoviePoster = function() {
             var movieToAdd = document.getElementById('file').files[0];
+            document.getElementById('posterUrl').value = movieToAdd.name;
+            document.getElementById('posterUrl').disabled = 'disabled';
             movieDal.saveMoviePoster(movieToAdd).then(function (results) {
                 vm.movieAddMessage  = results;
             }, function (error) {
