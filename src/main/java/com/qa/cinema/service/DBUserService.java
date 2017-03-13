@@ -28,6 +28,17 @@ public class DBUserService implements UserService {
 		Collection<User> users = (Collection<User>) query.getResultList();
 		return util.getJSONForObject(users);
 	}
+	
+	@Override 
+	public String findUser(String email, String password) {
+		Query query = em.createQuery("SELECT m FROM User m WHERE m.email = :email AND m.password = :password").setParameter("email", email).setParameter("password", password);
+		Collection<User> users = (Collection<User>) query.getResultList();
+		if(users.size() == 1) {
+			return util.getJSONForObject(users);
+		} else {
+			return "[]";
+		}
+	}
 
 	@Override
 	public String createNewUser(String user) {

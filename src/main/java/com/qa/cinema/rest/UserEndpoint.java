@@ -23,6 +23,13 @@ public class UserEndpoint {
 	public String getAllUsers() {
 		return service.listAllUsers();
 	}
+	
+	@Path("/json/login/{email}/{password}")
+	@GET
+	@Produces({"application/json"})
+	public String userAuthAttempt(@PathParam("email") String email, @PathParam("password") String password) {
+		return service.findUser(email, password);
+	}
 
 	@Path("/json")
 	@POST

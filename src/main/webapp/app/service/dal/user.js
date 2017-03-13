@@ -9,6 +9,10 @@
             return dal.http.GET("rest/user/json");
         };
 
+        this.authAttempt = function(email, password) {
+            return dal.http.GET("rest/user/json/login/" + email + "/" + password);
+        }
+
         this.saveUser = function(userToSave){
             return dal.http.POST("rest/user/json", userToSave);
         };

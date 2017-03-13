@@ -1,0 +1,19 @@
+{
+    "users": {
+        "admin": {
+            "email": "admin",
+            "password": "admin",
+            "userRole": "admin"
+        },
+        "editor": {
+            "email": "editor",
+            "password": "editor",
+            "userRole": "editor"
+        },
+        "guest": {
+            "email": "guest",
+            "password": "guest",
+            "userRole": "guest"
+        }
+    }
+}
