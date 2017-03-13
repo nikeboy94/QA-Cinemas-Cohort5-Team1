@@ -1,25 +1,69 @@
 <div ng-controller="addMovieController as ctrl">
-    <h1>Add a new movie</h1>
 
-    <form role="form">
 
-        <input id="title" placeholder="title" ng-model="movie.title">
+<div class="jumbotron jumbotron-fluid">
+    <div class="container">
+        <h1>Add Movie</h1>
+    </div>
+</div>
 
-        <input id="genre" placeholder="genre" ng-model="movie.genre">
-
-        <input id="releasedate" placeholder="releasedate" ng-model="movie.releasedate">
-
-        <input id="classification" placeholder="classification" ng-model="movie.classification">
-
-        <input id="trailerUrl" placeholder="trailerUrl" ng-model="movie.trailerUrl">
-
-        <input id="rating" placeholder="rating" ng-model="movie.rating">
-
-        <input id="runtime" placeholder="runtime" ng-model="movie.runtime">
-
-        <input id="description" placeholder="description" ng-model="movie.description">
-
-        <button type="submit" ng-click="ctrl.addMovie(movie)">addMovie</button>
-
+<div class="container">
+    <form class="form-horizontal" role="form">
+        <div class="form-group">
+            <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 col-xl-5">
+                <label for="title" class="control-label">Title: </label>
+                <input type="text" class="form-control" id="title" placeholder="Title..." ng-model="movie.title">
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 col-xl-5">
+                <label for="genre" class="control-label">Genre: </label>
+                <input type="text" class="form-control" id="genre" placeholder="Genre..." ng-model="movie.genre">
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 col-xl-5">
+                <label for="releasedate" class="control-label">Release Date: </label>
+                <input type="text" class="form-control" id="releasedate" placeholder="Release Date..." ng-model="movie.releasedate">
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 col-xl-5">
+                <label for="classification" class="control-label">Classification: </label>
+                <input type="text" class="form-control" id="classification" placeholder="Classification..." ng-model="movie.classification">
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 col-xl-5">
+                <label for="trailerUrl" class="control-label">Trailer URL: </label>
+                <input type="text" class="form-control" id="trailerUrl" placeholder="Trailer URL..." ng-model="movie.trailerUrl">
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 col-xl-5">
+                <label for="runtime" class="control-label">Runtime: </label>
+                <input type="text" class="form-control" id="runtime" placeholder="Runtime..." ng-model="movie.runtime">
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 col-xl-5">
+                <label for="description" class="control-label">Description: </label>
+                <input type="text" class="form-control" id="description" placeholder="Description..." ng-model="movie.description">
+            </div>
+        </div>
+        <div class="form-group">
+            <div class=" col-lg-12">
+                <button type="submit" ng-click="ctrl.addMovie(movie)" class="btn col-xs-12 col-sm-12 col-md-2 col-lg-2 col-xl-2">Submit</button>
+            </div>
+        </div>
     </form>
 </div>
+
+
+Profile Picture: <input id="file" type="file">
+
+<button ng-click="ctrl.addMoviePoster()">Submit</button>
+
+
+</div>
+

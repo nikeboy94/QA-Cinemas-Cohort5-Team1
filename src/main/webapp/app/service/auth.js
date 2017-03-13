@@ -27,42 +27,6 @@ function($http, $rootScope, $window, $cookieStore, Session, AUTH_EVENTS, userDAL
         }, function (error) {
             return error;
         });
-        /**
-		$http.get('app/misc/users.json').success(function(data) {
-		
-		//this is my dummy technique, normally here the 
-		//user is returned with his data from the db
-		var users = data.users;
-		if(users[user.username]){
-			var loginData = users[user.username];
-			//insert your custom login function here 
-			if(user.email == loginData.email && user.password == loginData.username){
-				//set the browser session, to avoid relogin on refresh
-				$window.sessionStorage["userInfo"] = JSON.stringify(loginData);
-				
-				//delete password not to be seen clientside 
-				delete loginData.password;
-				
-				//update current user into the Session service or $rootScope.currentUser
-				//whatever you prefer
-				Session.create(loginData);
-				//or
-				$rootScope.currentUser = loginData;
-
-				//fire event of successful login
-				$rootScope.$broadcast(AUTH_EVENTS.loginSuccess);
-				//run success function
-				success(loginData);
-			} else{
-				//OR ELSE
-				//unsuccessful login, fire login failed event for 
-				//the according functions to run
-				$rootScope.$broadcast(AUTH_EVENTS.loginFailed);
-				error();
-			}
-		}	
-		});
-		 */
 		
 	};
 
