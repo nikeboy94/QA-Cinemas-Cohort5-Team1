@@ -1,0 +1,11 @@
+<div ng-controller="addSeatController as ctrl">
+    <h1>Add a new Seat</h1>
+
+    <form role="form">
+        <input id="row" placeholder="Row" ng-model="seat.row">
+
+        <input id="column" placeholder="Columm" ng-model="seat.col">
+
+        <button type="submit" ng-click="ctrl.addSeat(seat)">Add Seat</button>
+    </form>
+</div>
