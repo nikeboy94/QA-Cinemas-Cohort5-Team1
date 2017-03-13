@@ -4,7 +4,6 @@
         var vm = this;
 
         vm.deleteMovie = function(movieToDeleteId) {
-            var movieToJson = JSON.stringify(movieToDeleteId);
             movieDal.deleteMovie(movieToDeleteId).then(function (results) {
                 vm.movieAddMessage  = results;
                 $state.go('getmovie');

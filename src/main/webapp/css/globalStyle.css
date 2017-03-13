@@ -1,0 +1,85 @@
+.logo-link {
+	height: 95%;
+	width: 100px;
+		margin-bottom: auto;	
+	border: 1px solid black;
+	padding: 0;
+}
+
+.navbar {
+	background: radial-gradient(#811839, #3F0C1C) !important;
+	font-size: 1.2em;
+}
+
+html {
+  position: relative;
+  min-height: 100%;
+}
+body {
+  /* Margin bottom by footer height */
+  margin-bottom: 60px;
+  background: radial-gradient(#3A3A3A, #0D1515) no-repeat center fixed;
+  color: #9E9E9E;
+}
+
+.footer {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  /* Set the fixed height of the footer here */
+  height: 60px;
+  line-height: 60px; /* Vertically center the text there */
+  background-color: #9E9E9E;
+  color: #0D1515;
+}
+
+.footer-links > li{
+	display: inline-block;
+	/*margin-left: 15px;*/
+	padding-right: 5px;
+	padding-left: 5px;
+}
+
+.footer-links > li > a {
+	color: #F0F0F0;
+}
+
+.footer-links > li > a:hover, .footer-links > li > a:focus {
+	color: #3F0C1C;
+}
+
+#searchBox{
+	width:150px;
+	box-sizing:border-box;
+	border-radius:5px;
+	background-color:white;
+	background-image:url("../img/searchIcon.png");
+	background-position:10px 10px;
+	background-repeat:no-repeat;
+	padding:10px 10px 10px 40px;
+	transition:width 0.3s ease-in-out 0s;
+}
+
+#searchBox:focus{
+	width:300px;
+	border-color:white;
+	box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.15);
+	transition: 0.3s;
+}
+
+.jumbotron{
+	background:#9E9E9E;
+	color:black;
+}
+
+.nav-link{
+	margin:0px 20px;
+	text-align:center;
+	font-size:24px;
+	border-radius:8px;
+}
+
+.nav-link:hover{
+	box-shadow: 0 4px 8px 0 rgba(0,0,0,0.25), 0 6px 20px 0 rgba(0,0,0,0.18);
+	transition:0.05s;
+}
