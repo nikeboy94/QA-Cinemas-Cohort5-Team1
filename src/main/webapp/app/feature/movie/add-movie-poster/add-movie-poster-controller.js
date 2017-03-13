@@ -3,10 +3,10 @@
     var AddMoviePosterController =  function($state, movieDal) {
         var vm = this;
 
-        vm.uploadMoviePoster = function(movieToAdd) {
+        vm.addMoviePoster = function() {
+            var movieToAdd = document.getElementById('file').files[0];
             movieDal.saveMoviePoster(movieToAdd).then(function (results) {
                 vm.movieAddMessage  = results;
-                $state.go('getmovie');
             }, function (error) {
                 vm.error = true;
                 vm.errorMessage = error;

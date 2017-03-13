@@ -91,7 +91,6 @@ public class MovieEndpoint {
 
         Map<String, List<InputPart>> uploadForm = input.getFormDataMap();
         List<InputPart> inputParts = uploadForm.get(UPLOADED_FILE_PARAMETER_NAME);
-
         for (InputPart inputPart : inputParts){
             MultivaluedMap<String, String> headers = inputPart.getHeaders();
             String filename = getFileName(headers);
@@ -106,7 +105,10 @@ public class MovieEndpoint {
                     return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity(e.getMessage()).build();
             }
         }
+        
+        
         return Response.status(Response.Status.OK).build();
+        
     }
 
     private void writeFile(byte[] content, String filename) throws IOException {

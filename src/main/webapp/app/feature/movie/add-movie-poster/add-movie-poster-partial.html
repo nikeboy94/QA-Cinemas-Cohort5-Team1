@@ -1,13 +1,15 @@
 <div ng-controller="addMoviePosterController as ctrl">
-    <h1>Add a new movie</h1>
+        <form name="myForm">
+                <fieldset>
+                        <legend>Upload on form submit</legend>
 
-    <form role="form" enctype="multipart/form-data">
+                        Profile Picture: <input id="file" type="file">
+                        <i ng-show="myForm.file.$error.required">*required</i>
+                        <br>
 
-        <input type="hidden" name="action" value="upload" />
-        <label>Load your file:</label>
-        <input type="file" name="attachment" />
-        <br />
-        <input type="submit" value="Upload file" />
-
-    </form>
+                        <button ng-click="ctrl.addMoviePoster()">Submit</button>
+              </span>
+                </fieldset>
+                <br>
+        </form>
 </div>
