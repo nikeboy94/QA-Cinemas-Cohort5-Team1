@@ -4,9 +4,15 @@
     <form role="form">
         <input id="email" placeholder="Email Address" ng-model="user.email">
 
-        <input id="name" placeholder="Your Name" ng-model="user.name">
+        <input id="fName" placeholder="First Name" ng-model="user.fName">
+
+        <input id="lName" placeholder="Last Name" ng-model="user.lName">
 
         <input id="password" placeholder="Password" ng-model="user.password">
+
+        <div ng-hide="(globals.currentUser.role != 'admin')">
+            <input id="role" placeholder="Role" ng-model="user.role">
+        </div>
 
         <button type="submit" ng-click="ctrl.addUser(user)">Add User</button>
     </form>
