@@ -1,0 +1,18 @@
+<div ng-controller="getAvailableForShowingController as ctrl">
+
+    {{ctrl.test}}
+    <br>
+    {{ctrl.error}}
+    <br>
+    {{ctrl.errorMessage}}
+
+    <form role="form">
+
+        <input id="showingId" placeholder="showingId" ng-model="showingId">
+
+        <button type="submit" ng-click="ctrl.getAvailableForShowing(showingId)">Get Avialable Tickets</button>
+
+    </form>
+
+    {{ctrl.availableTickets}}
+</div>

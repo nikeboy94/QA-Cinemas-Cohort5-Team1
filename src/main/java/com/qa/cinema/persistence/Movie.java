@@ -20,17 +20,17 @@ public class Movie {
 	private String classification;
 	private String posterUrl;
 	private String trailerUrl;
-	private Double rating;
+	private Double rating = 0.0;
 	private Integer runtime;
 	private String description;
 	
 
 	public Movie() {
-		
+		//Empty constructor
 	}
 	
 	public Movie(String title, String genre, Date releaseDate, String classification, String posterUrl,
-			String trailerUrl, Double rating, Integer runtime, String description) {
+			String trailerUrl, Integer runtime) {
 		
 		this.title = title;
 		this.genre = genre;
@@ -38,9 +38,8 @@ public class Movie {
 		this.classification = classification;
 		this.posterUrl = posterUrl;
 		this.trailerUrl = trailerUrl;
-		this.rating = rating;
 		this.runtime = runtime;
-		this.description = description;
+		this.description = "Temporary description for: " + title;
 	}
 
 

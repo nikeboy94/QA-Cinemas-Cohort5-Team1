@@ -30,5 +30,7 @@
             return dal.http.DELETE("rest/movie/json/" + movieToDeleteId);
         };
 
+        this.movieTitle = "Default";
+
     }
 }());
