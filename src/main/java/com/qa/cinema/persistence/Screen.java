@@ -10,7 +10,7 @@ public class Screen {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	private Long id;
+	private Long screenId;
 	
 	private String screenType;
 	private String screenDesc;
@@ -42,7 +42,7 @@ public class Screen {
 	}
 
 	public Long getId() {
-		return id;
+		return screenId;
 	}
 	
 }

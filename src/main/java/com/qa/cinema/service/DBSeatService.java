@@ -72,7 +72,7 @@ public class DBSeatService implements SeatService {
 		return em.find(Seat.class, id);
 	}
 
-	@Override
+	
 	public String findAllSeats() {
 		Query query = em.createQuery("SELECT s from Seat s");
 		Collection<Seat> seats = (Collection<Seat>) query.getResultList();

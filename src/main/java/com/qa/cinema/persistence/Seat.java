@@ -2,6 +2,9 @@ package com.qa.cinema.persistence;
 
 import javax.persistence.*;
 
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
+
 @Entity
 public class Seat {
 	@Id
@@ -9,7 +12,9 @@ public class Seat {
 	private Long seatId;
 	private String row;
 	private String col;
+	
 	@ManyToOne
+	@OnDelete(action=OnDeleteAction.CASCADE)
 	@JoinColumn(name="screenId", nullable=false)
 	private Screen screen;
 
