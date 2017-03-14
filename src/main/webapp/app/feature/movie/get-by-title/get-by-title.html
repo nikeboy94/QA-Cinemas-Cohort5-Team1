@@ -41,6 +41,16 @@
                                 {{ctrl.movies[0].runtime}}
                             </div>
                         </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <h4>Your Rating</h4>
+                                <button ng-click="ctrl.calculate(1)">1</button>
+                                <button ng-click="ctrl.calculate(2)">2</button>
+                                <button ng-click="ctrl.calculate(3)">3</button>
+                                <button ng-click="ctrl.calculate(4)">4</button>
+                                <button ng-click="ctrl.calculate(5)">5</button>
+                            </div>
+                        </div>
                         <div ng-controller="getShowingByMovieController as ctrler">
                             <div>
                                 <button type="submit" ng-click="ctrler.getByMovie(ctrl.movies[0].movieId); Today = !Today ">Today
