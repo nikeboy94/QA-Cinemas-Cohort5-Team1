@@ -8,7 +8,7 @@ import org.hibernate.annotations.OnDeleteAction;
 @Entity
 public class Seat {
 	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Long seatId;
 	private String row;
 	private String col;
