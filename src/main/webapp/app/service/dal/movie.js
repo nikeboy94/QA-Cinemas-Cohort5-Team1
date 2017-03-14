@@ -26,6 +26,10 @@
             return dal.http.POST("rest/movie/json", movieToSave);
         };
 
+        this.saveMoviePoster = function (movieToSave) {
+            return dal.http.POST_IMAGE("rest/movie/upload", movieToSave);
+        };
+
         this.updateMovie = function (movieToUpdateId, movieToUpdate) {
             return dal.http.PUT("rest/movie/json/" + movieToUpdateId, movieToUpdate);
         };

@@ -1,12 +1,12 @@
 package com.qa.cinema.rest;
 
 import javax.inject.Inject;
-import javax.ws.rs.GET;
 
 import com.qa.cinema.service.SeatService;
 
 import javax.ws.rs.*;
 
+@Path("/seat")
 public class SeatEndPoint {
 	
 	@Inject
@@ -15,12 +15,18 @@ public class SeatEndPoint {
 	@Path("/json")
 	@GET
 	@Produces({"application/json"})
-	public String getSeatByScreenId(Long screenId){
-		return service.findByScreenId(screenId);
-		
+	public String findAllSeats(){
+		return service.findAllSeats();
 	}
+	/**@Path("/json")
+	@GET
+	@Produces({"application/json"})
+	public String getSeatByScreenId(Long screenId){
+		return service.findByScreenId(screenId);**/
+		
 	
-	@Path("/jason")
+	
+	@Path("/json")
 	@POST
 	@Produces({ "application/json"})
 	public String addSeat(String seat){

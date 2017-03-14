@@ -2,14 +2,19 @@ package com.qa.cinema.persistence;
 
 import javax.persistence.*;
 
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
+
 @Entity
 public class Seat {
 	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
-	private Long Id;
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	private Long seatId;
 	private String row;
-	private String column;
+	private String col;
+	
 	@ManyToOne
+	@OnDelete(action=OnDeleteAction.CASCADE)
 	@JoinColumn(name="screenId", nullable=false)
 	private Screen screen;
 
@@ -17,13 +22,12 @@ public class Seat {
 	}
 
 	public Seat(String row, String column) {
-		super();
 		this.row = row;
-		this.column = column;
+		this.col = column;
 	}
 
 	public Long getId() {
-		return Id;
+		return seatId;
 	}
 
 	public String getRow() {
@@ -35,15 +39,11 @@ public class Seat {
 	}
 
 	public String getColumn() {
-		return column;
+		return col;
 	}
 
 	public void setColumn(String column) {
-		this.column = column;
+		this.col = column;
 	}
 
 }
-
-
-	
-	
