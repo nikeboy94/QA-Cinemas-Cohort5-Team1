@@ -23,7 +23,7 @@ public class Ticket {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long ticketId;
-	private String price;
+	private double price;
 	private String orderId;
 	
 	@ManyToOne
@@ -46,7 +46,7 @@ public class Ticket {
 	}
 		
 
-	public Ticket(String price, String orderId, Seat seat, Showing showing, User user) {
+	public Ticket(double price, String orderId, Seat seat, Showing showing, User user) {
 		super();
 		this.price = price;
 		this.orderId = orderId;
@@ -55,11 +55,11 @@ public class Ticket {
 		this.user = user;
 	}
 
-	public String getPrice() {
+	public double getPrice() {
 		return price;
 	}
 
-	public void setPrice(String price) {
+	public void setPrice(double price) {
 		this.price = price;
 	}
 
