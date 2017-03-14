@@ -1,0 +1,12 @@
+<div ng-controller="addScreenController as ctrl">
+    <h1>Add a new Screen</h1>
+
+    <form role="form">
+        <input id="screenType" placeholder="Screen Type" ng-model="screen.screenType">
+
+        <input id="screenDesc" placeholder="Screen Description" ng-model="screen.screenDesc">
+
+        <button type="submit" ng-click="ctrl.addScreen(screen)">Add Screen</button>
+    </form>
+
+</div>
