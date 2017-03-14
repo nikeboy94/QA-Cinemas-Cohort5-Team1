@@ -59,4 +59,11 @@ public class TicketEndpoint {
 		return service.getAvailableTickets(showingId);
 	}
 	
+	@Path("/json/order")
+	@POST
+	@Produces({"application/json"})
+	public String createMultipleTicket(String ticket) {
+		return service.createMultipleTicket(ticket);
+	}
+	
 }

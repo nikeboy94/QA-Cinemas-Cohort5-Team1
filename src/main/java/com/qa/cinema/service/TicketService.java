@@ -17,5 +17,7 @@ public interface TicketService {
 	String deleteTicket(Long ticketId);
 	
 	String getAvailableTickets(Long showingId);
+	
+	String createMultipleTicket(String ticket);
 
 }

@@ -4,6 +4,25 @@
         var vm = this;
         vm.test = "error here";
 
+        this.ticketArray = [];
+
+        this.addText = function(ticket, qty) {
+
+
+            ticket.orderId=new Date().getTime()
+            for (var i = 0; i < qty; i++) {
+
+                var obj = {
+                    text: "something"
+                };
+
+                console.log(i);
+                this.ticketArray.push(ticket);
+            }
+
+        }
+
+
         vm.addTicket = function(ticketToAdd) {
             console.log("This is the value of ticket to add " + ticketToAdd);
             console.log(ticketToAdd);
