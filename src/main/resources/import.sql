@@ -11,10 +11,10 @@ INSERT INTO Movie(movieID, title, genre, releaseDate, classification, posterUrl,
 INSERT INTO Movie(movieID, title, genre, releaseDate, classification, posterUrl, trailerUrl, rating, runtime, description) VALUES (9,'The Lego Batman Movie', 'Animation', '2017-02-10', 'U', 'https://images-na.ssl-images-amazon.com/images/M/MV5BMTcyNTEyOTY0M15BMl5BanBnXkFtZTgwOTAyNzU3MDI@._V1_SY1000_CR0,0,674,1000_AL_.jpg', 'https://www.youtube.com/embed/iMdQXYQ_MD8', 4.6, 130, 'Bruce Wayne must not only deal with the criminals of Gotham City, but also the responsibility of raising a boy he adopted.');
 INSERT INTO Movie(movieID, title, genre, releaseDate, classification, posterUrl, trailerUrl, rating, runtime, description) VALUES (10,'The Lego Batman Movie', 'Animation', '2017-02-10', 'U', 'https://images-na.ssl-images-amazon.com/images/M/MV5BMTcyNTEyOTY0M15BMl5BanBnXkFtZTgwOTAyNzU3MDI@._V1_SY1000_CR0,0,674,1000_AL_.jpg', 'https://www.youtube.com/embed/iMdQXYQ_MD8', 4.6, 130, 'Bruce Wayne must not only deal with the criminals of Gotham City, but also the responsibility of raising a boy he adopted.');
 INSERT INTO Movie(movieID, title, genre, releaseDate, classification, posterUrl, trailerUrl, rating, runtime, description) VALUES (11,'The Lego Batman Movie', 'Animation', '2017-02-10', 'U', 'https://images-na.ssl-images-amazon.com/images/M/MV5BMTcyNTEyOTY0M15BMl5BanBnXkFtZTgwOTAyNzU3MDI@._V1_SY1000_CR0,0,674,1000_AL_.jpg', 'https://www.youtube.com/embed/iMdQXYQ_MD8', 4.6, 130, 'Bruce Wayne must not only deal with the criminals of Gotham City, but also the responsibility of raising a boy he adopted.');
-INSERT INTO Screen(id, screenType, screenDesc) VALUES(1, 'screen type', 'screen description');
+INSERT INTO Screen(screenId, screenType, screenDesc) VALUES(1, 'screen type', 'screen description');
+INSERT INTO Screen(screenId, screenType, screenDesc) VALUES(2, 'screen type', 'screen description');
 INSERT INTO Showing(showingId, screenId, movieId, dateTime) VALUES(1, 1, 1, '2017-01-13');
-INSERT INTO Seat(seatId, screenId) VALUES (1,1);
-INSERT INTO Seat(seatId, screenId) VALUES (2,1);
-INSERT INTO Seat(seatId, screenId) VALUES (3,1);
-INSERT INTO Seat(seatId, screenId) VALUES (4,1);
+INSERT INTO Showing(showingId, screenId, movieId, dateTime) VALUES(2, 1, 1, '2017-01-13');
+INSERT INTO Seat(seatId, row, col, screenId) VALUES (1,'1', 'A', 1);
+INSERT INTO Seat(seatId, row, col, screenId) VALUES (2,'2', 'A', 1);
 INSERT INTO Ticket(ticketId, price, orderId, seatId, showingId, email) VALUES(1,'1','a', 1, 1, 'a1@email.com');

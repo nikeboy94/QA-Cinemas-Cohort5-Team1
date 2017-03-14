@@ -9,8 +9,8 @@ import javax.persistence.Id;
 public class Screen {
 	
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
-	private Long id;
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Long screenId;
 	
 	private String screenType;
 	private String screenDesc;
@@ -42,7 +42,7 @@ public class Screen {
 	}
 
 	public Long getId() {
-		return id;
+		return screenId;
 	}
 	
 }
