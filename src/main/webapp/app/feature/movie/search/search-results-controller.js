@@ -21,6 +21,6 @@
 
     };
 
-    angular.module('movieApp').controller('searchResultsController', ['$state','movieDal', SearchResultsController]);
+    angular.module('movieApp').controller('searchResultsController', ['$state', 'movieDal', SearchResultsController]);
 
 }());
