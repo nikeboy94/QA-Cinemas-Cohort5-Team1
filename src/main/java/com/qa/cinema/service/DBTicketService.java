@@ -144,6 +144,12 @@ public class DBTicketService implements TicketService {
 		Collection<Ticket> ticketsInOrder = (Collection<Ticket>) query.getResultList();
 		return util.getJSONForObject(ticketsInOrder);
 	}
+
+	@Override
+	public String createMultipleTicket(String ticket) {
+		// TODO Auto-generated method stub
+		return null;
+	}
 	
 	
 
