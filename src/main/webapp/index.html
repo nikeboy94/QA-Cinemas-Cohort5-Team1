@@ -72,9 +72,9 @@
 		</div>
 		<form class="navbar-form navbar-right">
 			<div class="form-group">
-				<input type="text" class="form-control" placeholder="Search Film" class="search-button" id="searchBox">
+				<input type="text" class="form-control" placeholder="Search Film" class="search-button" id="searchBox" ng-model="string">
 			</div>
-			<button type="submit" class="btn btn-default" ng-click="goToResults('Harry')">Submit</button>
+			<button type="submit" class="btn btn-default" ng-click="goToResults(string)">Submit</button>
 		</form>
 	</div>
 </nav>
@@ -113,7 +113,8 @@
     <script src="app/feature/movie/delete/delete-movie-controller.js"></script>
     <script src="app/feature/movie/update/update-movie-controller.js"></script>
     <script src="app/feature/movie/get-by-title/get-movie-by-title-controller.js"></script>
-    <script src="app/feature/movie/get-by-genre/get-movie-by-genre-controller.js"></script>  
+    <script src="app/feature/movie/get-by-genre/get-movie-by-genre-controller.js"></script>
+    <script src="app/feature/movie/search/search-results-controller.js"></script>  
     <script src="app/feature/user/add/add-user-controller.js"></script>
     <script src="app/feature/user/get/get-user-controller.js"></script>
     <script src="app/feature/showing/get/get-showing-controller.js"></script>

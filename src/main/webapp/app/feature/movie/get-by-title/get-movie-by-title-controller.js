@@ -18,6 +18,7 @@
         }
         getByTitle();
 
+
         vm.updateRating = function(movieToUpdateId, movieToUpdate) {
 
             movieDal.updateRating(movieToUpdateId, movieToUpdate).then(function (results) {
