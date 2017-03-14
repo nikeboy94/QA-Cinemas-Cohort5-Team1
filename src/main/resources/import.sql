@@ -4,6 +4,7 @@ INSERT INTO User(email, fName, lName, role, password, salt) VALUES('o.fahmy@outl
 INSERT INTO Movie(movieID, title, genre, releaseDate, classification, posterUrl, trailerUrl, rating, runtime, description) VALUES (1,'Spider-Man 2', 'Action', '2004-05-01', '12A', 'https://images-na.ssl-images-amazon.com/images/M/MV5BMzY2ODk4NmUtOTVmNi00ZTdkLTlmOWYtMmE2OWVhNTU2OTVkXkEyXkFqcGdeQXVyMTQxNzMzNDI@._V1_SY1000_CR0,0,729,1000_AL_.jpg', 'https://www.youtube.com/embed/enmFqm_N_ZE', 4.6, 130, 'film description...');
 INSERT INTO Movie(movieID, title, genre, releaseDate, classification, posterUrl, trailerUrl, rating, runtime, description) VALUES (2,'Harry Potter and the Philosophers Stone', 'Fantasy', '2001-08-16', '12A', 'https://images-na.ssl-images-amazon.com/images/M/MV5BNjQ3NWNlNmQtMTE5ZS00MDdmLTlkZjUtZTBlM2UxMGFiMTU3XkEyXkFqcGdeQXVyNjUwNzk3NDc@._V1_.jpg', 'https://www.youtube.com/embed/VyHV0BRtdxo', 4.6, 130, 'film description...');
 INSERT INTO Movie(movieID, title, genre, releaseDate, classification, posterUrl, trailerUrl, rating, runtime, description) VALUES (3,'The Lego Batman Movie', 'Animation', '2017-02-10', 'U', 'https://images-na.ssl-images-amazon.com/images/M/MV5BMTcyNTEyOTY0M15BMl5BanBnXkFtZTgwOTAyNzU3MDI@._V1_SY1000_CR0,0,674,1000_AL_.jpg', 'https://www.youtube.com/embed/iMdQXYQ_MD8', 4.6, 130, 'Bruce Wayne must not only deal with the criminals of Gotham City, but also the responsibility of raising a boy he adopted.');
+
 INSERT INTO Movie(movieID, title, genre, releaseDate, classification, posterUrl, trailerUrl, rating, runtime, description) VALUES (4,'The Fate Of The Furious', 'Action', '2017-04-12', '12A', 'https://images-na.ssl-images-amazon.com/images/M/MV5BMjMxODI2NDM5Nl5BMl5BanBnXkFtZTgwNjgzOTk1MTI@._V1_SY1000_CR0,0,631,1000_AL_.jpg', 'https://www.youtube.com/embed/9GvX2uexGkA', 4.4, 136, 'When a mysterious woman seduces Dom into the world of crime and a betrayal of those closest to him, the crew face trials that will test them as never before.');
 INSERT INTO Movie(movieID, title, genre, releaseDate, classification, posterUrl, trailerUrl, rating, runtime, description) VALUES (5,'Wonder Woman', 'Fantasy', '2017-06-02', 'TBC', 'https://images-na.ssl-images-amazon.com/images/M/MV5BMzUxNjQ5MjAyOF5BMl5BanBnXkFtZTgwMjIzOTA1MDI@._V1_SY1000_CR0,0,674,1000_AL_.jpg', 'https://www.youtube.com/embed/INLzqh7rZ-U', 4.6, 130, 'An Amazon princess leaves her island home to explore the world and, in doing so, becomes one of the worlds greatest heroes.');
 INSERT INTO Movie(movieID, title, genre, releaseDate, classification, posterUrl, trailerUrl, rating, runtime, description) VALUES (6,'Beauty And The Beast', 'Fantasy', '2017-03-17', 'PG', 'https://images-na.ssl-images-amazon.com/images/M/MV5BMTUwNjUxMTM4NV5BMl5BanBnXkFtZTgwODExMDQzMTI@._V1_SY1000_CR0,0,674,1000_AL_.jpg', 'https://www.youtube.com/embed/e3Nl_TCQXuw', 4.7, 129, 'An adaptation of the Disney fairy tale about a monstrous-looking prince and a young woman who fall in love.');
@@ -16,8 +17,13 @@ INSERT INTO Movie(movieID, title, genre, releaseDate, classification, posterUrl,
 INSERT INTO Screen(screenId, screenType, screenDesc) VALUES(1, 'Standard', 'A standard screen, for standard people.');
 INSERT INTO Screen(screenId, screenType, screenDesc) VALUES(2, 'Standard', 'Another standard screen.');
 INSERT INTO Screen(screenId, screenType, screenDesc) VALUES(3, 'Deluxe', 'A fancy screen, like a sir.');
-INSERT INTO Showing(showingId, screenId, movieId, dateTime) VALUES(1, 1, 1, '2017-01-13');
-INSERT INTO Showing(showingId, screenId, movieId, dateTime) VALUES(2, 1, 1, '2017-01-13');
+INSERT INTO Showing(showingId, screenId, movieId, dateTime) VALUES(1, 1, 1, '2017-03-14 12:00:00');
+INSERT INTO Showing(showingId, screenId, movieId, dateTime) VALUES(2, 1, 1, '2017-03-14 16:00:00');
+INSERT INTO Showing(showingId, screenId, movieId, dateTime) VALUES(3, 1, 1, '2017-03-15 12:00:00');
+INSERT INTO Showing(showingId, screenId, movieId, dateTime) VALUES(4, 1, 1, '2017-03-16 12:00:00');
+INSERT INTO Showing(showingId, screenId, movieId, dateTime) VALUES(5, 2, 2, '2017-03-14 16:00:00');
+INSERT INTO Showing(showingId, screenId, movieId, dateTime) VALUES(6, 2, 2, '2017-03-16 12:00:00');
+INSERT INTO Showing(showingId, screenId, movieId, dateTime) VALUES(7, 2, 2, '2017-03-15 12:00:00');
 INSERT INTO Seat(seatId, row, col, screenId) VALUES (1,'1', 'A', 1);
 INSERT INTO Seat(seatId, row, col, screenId) VALUES (2,'2', 'A', 1);
 INSERT INTO Seat(seatId, row, col, screenId) VALUES (3,'3', 'A', 1);
