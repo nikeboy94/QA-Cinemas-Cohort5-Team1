@@ -1,6 +1,6 @@
 (function() {
 
-    var SearchResultsController =  function(movieDal) {
+    var SearchResultsController =  function($state, movieDal) {
         var vm = this;
 
         function searchMovies() {
@@ -14,8 +14,13 @@
         }
         searchMovies();
 
+        vm.goToMovie = function(theTitle) {
+            movieDal.movieTitle = theTitle;
+            $state.go('getmoviebytitle');
+        };
+
     };
 
-    angular.module('movieApp').controller('searchResultsController', ['movieDal', SearchResultsController]);
+    angular.module('movieApp').controller('searchResultsController', ['$state', 'movieDal', SearchResultsController]);
 
 }());

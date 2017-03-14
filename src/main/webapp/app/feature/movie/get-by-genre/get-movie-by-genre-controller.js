@@ -6,7 +6,6 @@
 
         vm.searchGenre = function(genre) {
             movieDal.getMoviesByGenre(genre).then(function (results) {
-                console.log(results);
                 vm.movies = results;
             }, function (error) {
                 vm.error = true;

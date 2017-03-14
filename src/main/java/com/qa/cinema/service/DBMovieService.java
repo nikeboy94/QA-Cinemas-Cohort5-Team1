@@ -74,6 +74,7 @@ public class DBMovieService implements MovieService {
 		Movie movieInDB = findMovie(movieId);
 		if (movieInDB != null) {
 			movieInDB.setRating(updateMovie.getRating());
+			em.merge(movieInDB);
 			return "{\"message\": \"Rating successfully updated\"}";	
 		}
 		else {
