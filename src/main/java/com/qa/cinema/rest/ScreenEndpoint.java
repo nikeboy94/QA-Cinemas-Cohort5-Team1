@@ -21,7 +21,7 @@ public class ScreenEndpoint {
 	@GET
 	@Produces({"application/json"})
 	public String getAllScreens(){
-		return service.listAllScreens();
+		return service.getAllScreens();
 	}
 	
 	@Path("/json")

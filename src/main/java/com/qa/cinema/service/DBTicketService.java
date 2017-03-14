@@ -1,5 +1,6 @@
 package com.qa.cinema.service;
 
+import java.util.ArrayList;
 import java.util.Collection;
 
 import javax.ejb.Stateless;
@@ -122,5 +123,28 @@ public class DBTicketService implements TicketService {
 		LOGGER.info("DBTICKETSERVICE - getShowing. Loop finished, about to return null");
 		return null;
 	}
+
+	@Override
+	public String getBookedSeatsByShowing(Long showingId) {
+		Query query = manager.createQuery("Select t From Ticket t Where t.showing.showingId = :showingId").setParameter("showingId", showingId);
+		Collection<Ticket> bookedTicketList = (Collection<Ticket>)query.getResultList();
+		
+		Collection<Seat> bookedSeats = new ArrayList<>();
+		
+		for(Ticket aTicket : bookedTicketList) {
+			bookedSeats.add(aTicket.getSeat());
+		}
+		
+		return util.getJSONForObject(bookedSeats);
+	}
+
+	@Override
+	public String getTicketsByOrderId(String orderId) {
+		Query query = manager.createQuery("SELECT t FROM Ticket t WHERE t.orderId = :orderId").setParameter("orderId", orderId);
+		Collection<Ticket> ticketsInOrder = (Collection<Ticket>) query.getResultList();
+		return util.getJSONForObject(ticketsInOrder);
+	}
+	
+	
 
 }

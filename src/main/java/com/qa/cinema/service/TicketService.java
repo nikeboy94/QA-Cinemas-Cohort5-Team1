@@ -17,5 +17,8 @@ public interface TicketService {
 	String deleteTicket(Long ticketId);
 	
 	String getAvailableTickets(Long showingId);
+	
+	String getBookedSeatsByShowing(Long showingId);
 
+	String getTicketsByOrderId(String orderId);
 }
