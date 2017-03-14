@@ -38,6 +38,39 @@
                     return deferred.promise;
                 },
 
+                POST_IMAGE: function (apiPath, itemToSave) {
+                    var deferred = $q.defer();
+                    $http(
+                        {
+                            method: "post",
+                            url: apiPath,
+                            headers: {
+                                "Accept": "application/json, text/plain, */*",
+                                "Content-Type": "multipart/form-data"
+                            },
+                            data: {
+                                image: itemToSave
+                            },
+                            transformRequest: function (data, headersGetter) {
+                                var formData = new FormData();
+                                angular.forEach(data, function (value, key) {
+                                    formData.append(key, value);
+                                });
+
+                                var headers = headersGetter();
+                                delete headers['Content-Type'];
+
+                                return formData;
+                            }
+                        }
+                    ).then(function (results) {
+                        deferred.resolve(results.data);
+                    }, function (e) {
+                        deferred.reject(e);
+                    });
+                    return deferred.promise;
+                },
+
                 PUT: function (apiPath, itemToSave) {
                     var deferred = $q.defer();
                     $http(
