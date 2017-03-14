@@ -28,6 +28,14 @@ public class DBMovieService implements MovieService {
 		Collection<Movie> movies = (Collection<Movie>) query.getResultList();
 		return util.getJSONForObject(movies);
 	}
+	
+	@Override
+	public String searchMovies(String searchedTitle) {
+		String searchedTitleUpperCase = searchedTitle.toUpperCase(); 
+		Query query = em.createQuery("SELECT m FROM Movie m WHERE UPPER(m.title) LIKE '%" + searchedTitleUpperCase + "%'");
+		Collection<Movie> movies = (Collection<Movie>) query.getResultList();
+		return util.getJSONForObject(movies);
+	}
 
 	@Override
 	public String createNewMovie(String movie) {
@@ -58,6 +66,19 @@ public class DBMovieService implements MovieService {
 			return "{\"message\": \"Updating movie failed\"}";
 		}
 		
+	}
+	
+	@Override
+	public String updateRating(Long movieId, String movie) {
+		Movie updateMovie = util.getObjectForJSON(movie, Movie.class);
+		Movie movieInDB = findMovie(movieId);
+		if (movieInDB != null) {
+			movieInDB.setRating(updateMovie.getRating());
+			return "{\"message\": \"Rating successfully updated\"}";	
+		}
+		else {
+			return "{\"message\": \"Updating Rating failed\"}";
+		}
 	}
 
 
@@ -91,5 +112,6 @@ public class DBMovieService implements MovieService {
 		Collection<Movie> movies = (Collection<Movie>) query.getResultList();
 		return util.getJSONForObject(movies);
 	}
+
 
 }

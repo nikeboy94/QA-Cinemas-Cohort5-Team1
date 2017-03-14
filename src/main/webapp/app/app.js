@@ -25,7 +25,12 @@ var movieApp = angular.module('movieApp', ['ui.router', 'ui.bootstrap', 'ngCooki
       return $injector.get('AuthInterceptor');
     }
   ]);
-})
+}).config(function($sceDelegateProvider) {
+	   $sceDelegateProvider.resourceUrlWhitelist([
+		     'self',
+		     '*://www.youtube.com/**'
+		   ]);
+		 })
     .run(['$rootScope', '$location', '$cookieStore', '$http',
         function ($rootScope, $location, $cookieStore, $http) {
             // keep user logged in after page refresh

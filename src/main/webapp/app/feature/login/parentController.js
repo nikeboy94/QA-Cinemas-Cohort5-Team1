@@ -15,7 +15,7 @@ function($scope, $rootScope, $modal, Auth, AUTH_EVENTS, USER_ROLES){
 			var modalInstance = $modal.open({
 				templateUrl : 'app/feature/login/login.html',
 				controller : "LoginCtrl",
-				backdrop : 'static',
+				backdrop : 'static'
 			});
 
 			modalInstance.result.then(function() {
@@ -26,11 +26,11 @@ function($scope, $rootScope, $modal, Auth, AUTH_EVENTS, USER_ROLES){
 	
 	var setCurrentUser = function(){
 		$scope.currentUser = $rootScope.currentUser;
-	}
+	};
 	
 	var showNotAuthorized = function(){
 		alert("Not Authorized");
-	}
+	};
 	
 	$scope.currentUser = null;
 	$scope.userRoles = USER_ROLES;
@@ -43,5 +43,7 @@ function($scope, $rootScope, $modal, Auth, AUTH_EVENTS, USER_ROLES){
 	//$rootScope.$on(AUTH_EVENTS.sessionTimeout, showLoginDialog);
 	//$rootScope.$on(AUTH_EVENTS.logoutSuccess, showLoginDialog);
 	$rootScope.$on(AUTH_EVENTS.loginSuccess, setCurrentUser);
+
+
 	
 } ]);
