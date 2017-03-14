@@ -15,12 +15,12 @@
 			<a class="navbar-brand" ui-sref="dashboard">QA Cinema</a>
 		</div>
 		<ul class="nav navbar-nav">
-			<li class="active"><a ui-sref="dashboard">Dashboard</a></li>
 			<li class="dropdown">
 				<a class="dropdown-toggle" data-toggle="dropdown">Movie
 					<span class="caret"></span></a>
 				<ul class="dropdown-menu">
 					<li><a ui-sref="addmovie">Add Movie</a></li>
+					<li><a ui-sref="addmovieposter">Add Movie Poster</a></li>
 					<li><a ui-sref="getmovie">Get Movie</a></li>
 					<li><a ui-sref="updatemovie">Update Movie</a></li>
 					<li><a ui-sref="deletemovie">Delete Movie</a></li>
@@ -70,25 +70,61 @@
                     <li><a ui-sref="deleteseat">Delete Seat</a></li>
                 </ul>
             </li>
+
+      <li><a ui-sref="contactus">Contact Us</a></li>
 		</ul>
+		<div ng-if="(globals.currentUser.role == undefined)">
+			<ul class="nav navbar-nav navbar-right">
+				<li><a ui-sref="adduser">Sign up</a></li>
+			</ul>
+		</div>
 		<div ng-if="(globals.currentUser.email == undefined)">
 			<ul class="nav navbar-nav navbar-right">
-				<li><a href="#" ng-click="openLogin()">Log In</a></li>
+				<li><a style="cursor: default; color: inherit;">or</a></li>
 			</ul>
 		</div>
-		<div ng-if="(globals.currentUser.email != undefined)">
-			<ul class="nav navbar-nav navbar-right">
-				<li><a href="#" ng-click="logout()">Log Out</a></li>
-			</ul>
-		</div>
-	</div>
 
+		<div ng-if="(globals.currentUser.email == undefined)">
+			<ul class="nav navbar-nav navbar-right">
+				<li><a href="#" ng-click="openLogin()">Sign in</a></li>
+			</ul>
+		</div>
+		<div ng-if="(globals.currentUser.role == 'admin')">
+			<ul class="nav navbar-nav navbar-right">
+				<li class="dropdown">
+					<a class="dropdown-toggle" data-toggle="dropdown">Admin
+						<span class="caret"></span></a>
+					<ul class="dropdown-menu">
+						<li><a ui-sref="addmovie">Add Movie</a></li>
+						<li><a ui-sref="addshowing">Add Showing</a></li>
+						<li><a ui-sref="adduser">Add User</a></li>
+						<li><a href="#" ng-click="logout()">logout</a></li>
+					</ul>
+				</li>
+			</ul>
+		</div>
+		<div ng-if="(globals.currentUser.role == 'customer')">
+			<ul class="nav navbar-nav navbar-right">
+				<li class="dropdown">
+					<a class="dropdown-toggle" data-toggle="dropdown">{{ globals.currentUser.fName }}
+						<span class="caret"></span></a>
+					<ul class="dropdown-menu">
+						<li><a href="#" ng-click="logout()">logout</a></li>
+					</ul>
+				</li>
+			</ul>
+    </div>
+	</div>
 </nav>
 
-<div class="container">
-    <div ng-if="(globals.currentUser.email != undefined)"><b>Welcome, {{ globals.currentUser.email }}</b></div>
-    <div ui-view></div>
-</div>
+	
+	<div class="container">
+		<div ui-view></div>
+	</div>
+
+
+
+
 
 
 <script src="scripts/jquery-2.1.4.min.js"></script>
@@ -127,21 +163,32 @@
     <script src="app/feature/showing/get-by-movie/get-showing-by-movie-controller.js"></script>
     <script src="app/feature/ticket/get/get-user-tickets-controller.js"></script>
     <!--<script src="app/feature/ticket/update/update-ticket-controller.js"></script>-->
-	<script src="app/feature/ticket/add/add-ticket-controller.js"></script>
-	<script src="app/feature/ticket/get-available-for-showing/get-available-for-showing-controller.js"></script>
+	  <script src="app/feature/ticket/add/add-ticket-controller.js"></script>
+	  <script src="app/feature/ticket/get-available-for-showing/get-available-for-showing-controller.js"></script>
 	  <script src="app/feature/ticket/delete/delete-ticket-controller.js"></script>
+
+    <script src="app/feature/seat/add/add-seat-controller.js"></script>
+    <script src="app/feature/seat/get/get-seat-controller.js"></script>
+    <script src="app/feature/seat/delete/delete-seat-controller.js"></script>
+    <script src="app/feature/contactUs/contact-us-controller.js"></script>
+
+	<script src="app/feature/movie/add-movie-poster/add-movie-poster-controller.js"></script>
   <script src="app/feature/seat/add/add-seat-controller.js"></script>
 <script src="app/feature/seat/get/get-seat-controller.js"></script>
 <script src="app/feature/seat/delete/delete-seat-controller.js"></script>
+
+
   
     <!--CONTROLLERS -->
-	<script src="app/feature/login/parentController.js"></script>
-	<script src="app/feature/login/login.js"></script>
+	  <script src="app/feature/login/parentController.js"></script>
+	  <script src="app/feature/login/login.js"></script>
 
 
-<!--SERVICES -->
-<script src="app/service/auth.js"></script>
-<script src="app/service/session.js"></script>
+    <!--SERVICES -->
+    <script src="app/service/auth.js"></script>
+    <script src="app/service/session.js"></script>
+
+    
 
 </body>
 </html>
