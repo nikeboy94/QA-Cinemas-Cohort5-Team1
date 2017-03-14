@@ -6,6 +6,7 @@
     <title>Cinema Booking App</title>
     <link rel="stylesheet" href="scripts/bootstrap.css">
     <link rel="stylesheet" href="css/globalStyle.css"/>
+    <link rel="stylesheet" href="css/index.css" />
 </head>
 <body ng-controller="ParentController">
 <nav class="navbar navbar-inverse">
@@ -114,6 +115,12 @@
 				</li>
 			</ul>
     </div>
+  		<form class="navbar-form navbar-right">
+			<div class="form-group">
+				<input type="text" class="form-control" placeholder="Search Film" class="search-button" id="searchBox" ng-model="string">
+			</div>
+			<button type="submit" class="btn btn-default" ng-click="goToResults(string)">Submit</button>
+		</form>
 	</div>
 </nav>
 
@@ -153,7 +160,8 @@
     <script src="app/feature/movie/delete/delete-movie-controller.js"></script>
     <script src="app/feature/movie/update/update-movie-controller.js"></script>
     <script src="app/feature/movie/get-by-title/get-movie-by-title-controller.js"></script>
-    <script src="app/feature/movie/get-by-genre/get-movie-by-genre-controller.js"></script>  
+    <script src="app/feature/movie/get-by-genre/get-movie-by-genre-controller.js"></script>
+    <script src="app/feature/movie/search/search-results-controller.js"></script>  
     <script src="app/feature/user/add/add-user-controller.js"></script>
     <script src="app/feature/user/get/get-user-controller.js"></script>
     <script src="app/feature/showing/get/get-showing-controller.js"></script>
@@ -163,6 +171,7 @@
     <script src="app/feature/showing/get-by-movie/get-showing-by-movie-controller.js"></script>
     <script src="app/feature/ticket/get/get-user-tickets-controller.js"></script>
     <!--<script src="app/feature/ticket/update/update-ticket-controller.js"></script>-->
+  
 	  <script src="app/feature/ticket/add/add-ticket-controller.js"></script>
 	  <script src="app/feature/ticket/get-available-for-showing/get-available-for-showing-controller.js"></script>
 	  <script src="app/feature/ticket/delete/delete-ticket-controller.js"></script>
@@ -174,9 +183,8 @@
 
 	<script src="app/feature/movie/add-movie-poster/add-movie-poster-controller.js"></script>
   <script src="app/feature/seat/add/add-seat-controller.js"></script>
-<script src="app/feature/seat/get/get-seat-controller.js"></script>
-<script src="app/feature/seat/delete/delete-seat-controller.js"></script>
-
+  <script src="app/feature/seat/get/get-seat-controller.js"></script>
+  <script src="app/feature/seat/delete/delete-seat-controller.js"></script>
 
   
     <!--CONTROLLERS -->

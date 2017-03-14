@@ -51,6 +51,13 @@ public class MovieEndpoint {
 		return service.searchByTitle(title);
 	}
 	
+	@Path("/json/searchMovies/{title}")
+	@GET
+	@Produces({"application/json"})
+	public String searchMoviesByTitle(@PathParam("title") String title) {
+		return service.searchMovies(title);
+	}
+	
 	@Path("/json/searchByGenre/{genre}")
 	@GET
 	@Produces({"application/json"})
@@ -65,12 +72,20 @@ public class MovieEndpoint {
 	public String addMovie(String movie) {
 		return service.createNewMovie(movie);
 	}
+	
 
 	@Path("/json/{id}")
 	@PUT
 	@Produces({ "application/json" })
 	public String updateMovie(@PathParam("id") Long movieId, String movie) {
 		return service.updateMovie(movieId, movie);
+	}
+	
+	@Path("/json/rating/{id}")
+	@PUT
+	@Produces({ "application/json" })
+	public String updateRating(@PathParam("id") Long movieId, String movie) {
+		return service.updateRating(movieId, movie);
 	}
 
 	@Path("/json/{id}")
