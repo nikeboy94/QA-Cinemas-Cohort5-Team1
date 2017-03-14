@@ -19,6 +19,7 @@ public class Seat {
 	private Screen screen;
 
 	public Seat() {
+		//Empty constructor
 	}
 
 	public Seat(String row, String column) {

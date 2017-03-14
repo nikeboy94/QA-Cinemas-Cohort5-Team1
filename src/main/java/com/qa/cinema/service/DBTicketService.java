@@ -129,7 +129,7 @@ public class DBTicketService implements TicketService {
 		Query query = manager.createQuery("Select t From Ticket t Where t.showing.showingId = :showingId").setParameter("showingId", showingId);
 		Collection<Ticket> bookedTicketList = (Collection<Ticket>)query.getResultList();
 		
-		Collection<Seat> bookedSeats = new ArrayList<Seat>();
+		Collection<Seat> bookedSeats = new ArrayList<>();
 		
 		for(Ticket aTicket : bookedTicketList) {
 			bookedSeats.add(aTicket.getSeat());
