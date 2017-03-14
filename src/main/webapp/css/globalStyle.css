@@ -6,6 +6,10 @@
 	padding: 0;
 }
 
+a {
+	cursor: pointer;
+}
+
 .navbar {
 	background: radial-gradient(#811839, #3F0C1C) !important;
 	font-size: 1.2em;
@@ -68,8 +72,8 @@ body {
 }
 
 .jumbotron{
-	background:#9E9E9E;
-	color:black;
+	background: white;
+	color: #000000;
 }
 
 .nav-link{

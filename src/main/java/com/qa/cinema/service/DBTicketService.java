@@ -1,5 +1,6 @@
 package com.qa.cinema.service;
 
+import java.util.ArrayList;
 import java.util.Collection;
 
 import javax.ejb.Stateless;
@@ -57,21 +58,10 @@ public class DBTicketService implements TicketService {
 		return "{\"message\": \"ticket successfully added\"}";
 	}
 
+	
 	@Override
 	public String updateTicket(Long ticketId, String newTicket) {
-		LOGGER.info("DBTICKETSERVICE: Entered updateTicket method. About to get updatedTicket object");
 		Ticket updatedTicket = util.getObjectForJSON(newTicket, Ticket.class);
-		
-		LOGGER.info("DBTICKETSERVICE: About to get updatedShowing object");
-		Showing updatedShowing = getShowing(updatedTicket.getShowing().getShowingId());
-		LOGGER.info("DBTICKETSERVICE: updatedShowing created");
-		
-		if(updatedShowing == null) {
-			return "{\"message\": \"Showing not found\"}";
-		}
-	
-		LOGGER.info("DBTICKETSERVICE: About to call updatedTicket.setShowing");
-		updatedTicket.setShowing(updatedShowing);
 		
 		Ticket ticketInDB = findTicket(ticketId);
 		if (ticketInDB != null){
@@ -81,7 +71,8 @@ public class DBTicketService implements TicketService {
 		}
 		return "{\"message\": \"ticket not found\"}";
 	}
-
+	
+	
 	@Override
 	public String deleteTicket(Long ticketId) {
 		Ticket ticketInDB = findTicket(ticketId);
@@ -100,7 +91,7 @@ public class DBTicketService implements TicketService {
 		int bookedTickets = availableTicketList.size();
 		
 		Showing s = manager.find(Showing.class, showingId);
-		Long screenId = s.getScreen();
+		Long screenId = s.getScreen().getId();
 		query = manager.createQuery("Select s From Seat s Where screenId = :screenId")
 		.setParameter("screenId", screenId);
 		Collection<Seat> numberOfSeatsInScreen = (Collection<Seat>)query.getResultList();
@@ -132,5 +123,28 @@ public class DBTicketService implements TicketService {
 		LOGGER.info("DBTICKETSERVICE - getShowing. Loop finished, about to return null");
 		return null;
 	}
+
+	@Override
+	public String getBookedSeatsByShowing(Long showingId) {
+		Query query = manager.createQuery("Select t From Ticket t Where t.showing.showingId = :showingId").setParameter("showingId", showingId);
+		Collection<Ticket> bookedTicketList = (Collection<Ticket>)query.getResultList();
+		
+		Collection<Seat> bookedSeats = new ArrayList<>();
+		
+		for(Ticket aTicket : bookedTicketList) {
+			bookedSeats.add(aTicket.getSeat());
+		}
+		
+		return util.getJSONForObject(bookedSeats);
+	}
+
+	@Override
+	public String getTicketsByOrderId(String orderId) {
+		Query query = manager.createQuery("SELECT t FROM Ticket t WHERE t.orderId = :orderId").setParameter("orderId", orderId);
+		Collection<Ticket> ticketsInOrder = (Collection<Ticket>) query.getResultList();
+		return util.getJSONForObject(ticketsInOrder);
+	}
+	
+	
 
 }

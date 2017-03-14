@@ -14,6 +14,9 @@
         }
 
         this.saveUser = function(userToSave){
+            if (userToSave.role==undefined) {
+                userToSave.role = "customer";
+            }
             return dal.http.POST("rest/user/json", userToSave);
         };
 

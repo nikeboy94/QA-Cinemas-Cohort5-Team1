@@ -6,14 +6,14 @@
     <form -->
 
 
-    <div class="container" >
+    <div class="container">
         <div class="jumbotron">
             <div class="row">
                 <div class="poster">
                     <div class="col-md-6">
                         <img src="{{ctrl.movies[0].posterUrl}}" alt="Poster"
                              class="img-responsive center-block img-rounded" width="300px"
-                             height="400px" />
+                             height="400px"/>
 
                     </div>
                 </div>
@@ -40,11 +40,49 @@
                                 <h4>Runtime</h4>
                                 {{ctrl.movies[0].runtime}}
                             </div>
+                        </div>
+                        <div ng-controller="getShowingByMovieController as ctrler">
+                            <div>
+                                <button type="submit" ng-click="ctrler.getByMovie(ctrl.movies[0].movieId); Today = !Today ">Today
+                                </button>
+                                <div ng-show="Today" class="row">
+                                    <div class="film-poster col-xs-6 col-sm-4 col-xl-3"
+                                         ng-repeat="x in ctrler.showings|filter: (ctrler.today | date:'yyyy-MM-dd')">
+                                        <a ng-click="ctrler.replace(x)">
+                                            <button type="submit">{{x.dateTime}}</button>
+                                        </a>
+                                    </div>
+                                </div>
                             </div>
+                            <div>
+                                <button type="submit" ng-click="ctrler.getByMovie(ctrl.movies[0].movieId); Tomorrow = !Tomorrow">Tomorrow
+                                </button>
+                                <div ng-show="Tomorrow" class="row">
+                                    <div class="film-poster col-xs-6 col-sm-4 col-xl-3"
+                                         ng-repeat="y in ctrler.showings|filter: (ctrler.tomorrow | date:'yyyy-MM-dd')">
+                                        <a ng-click="ctrler.replace(y)">
+                                            <button type="submit">{{y.dateTime}}</button>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+
+
                         </div>
                     </div>
                 </div>
             </div>
+
+
+
         </div>
+
+
+        <iframe width="854" height="480" src="{{ctrl.movies[0].trailerUrl}}" frameborder="0" allowfullscreen></iframe>
+
+
+    </div>
+
+
 
 </div>

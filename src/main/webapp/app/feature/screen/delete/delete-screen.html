@@ -1,0 +1,11 @@
+<div ng-controller="deleteScreenController as ctrl">
+    <h1>Delete Screen</h1>
+
+    <form role="form">
+        <input id="id" placeholder="Screen ID..." ng-model="screen.screenId">
+
+        <button type="submit" ng-click="ctrl.deleteScreen(screen)">Delete Screen</button>
+    </form>
+
+
+</div>
