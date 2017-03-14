@@ -7,6 +7,9 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
+
 /**
  * 
  * @author Phil
@@ -18,17 +21,23 @@ import javax.persistence.ManyToOne;
 public class Ticket {
 	
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long ticketId;
 	private String price;
 	private String orderId;
+	
 	@ManyToOne
+	@OnDelete(action=OnDeleteAction.CASCADE)
 	@JoinColumn(name="seatId", nullable=false)
 	private Seat seat;
+	
 	@ManyToOne
+	@OnDelete(action=OnDeleteAction.CASCADE)
 	@JoinColumn(name="showingId", nullable=false)
 	private Showing showing;
+	
 	@ManyToOne
+	@OnDelete(action=OnDeleteAction.CASCADE)
 	@JoinColumn(name="email", nullable=false)
 	private User user;
 	
