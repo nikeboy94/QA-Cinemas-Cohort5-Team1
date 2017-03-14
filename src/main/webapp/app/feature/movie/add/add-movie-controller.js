@@ -1,6 +1,6 @@
 (function() {
 
-    var AddMovieController =  function($state, movieDal) {
+    var AddMovieController =  function($state, $scope, movieDal, dal) {
         var vm = this;
 
         vm.addMovie = function(movieToAdd) {
@@ -26,5 +26,7 @@
         };
     };
 
-    angular.module('movieApp').controller('addMovieController', ['$state','movieDal',AddMovieController]);
+    angular.module('movieApp').controller('addMovieController', ['$state', '$scope', 'movieDal', 'dal', AddMovieController]);
 }());
+
+
