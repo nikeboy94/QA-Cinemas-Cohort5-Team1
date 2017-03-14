@@ -17,4 +17,4 @@ INSERT INTO Showing(showingId, screenId, movieId, dateTime) VALUES(1, 1, 1, '201
 INSERT INTO Showing(showingId, screenId, movieId, dateTime) VALUES(2, 1, 1, '2017-01-13');
 INSERT INTO Seat(seatId, row, col, screenId) VALUES (1,'1', 'A', 1);
 INSERT INTO Seat(seatId, row, col, screenId) VALUES (2,'2', 'A', 1);
-INSERT INTO Ticket(ticketId, price, orderId, seatId, showingId, email) VALUES(1,'1','a', 1, 1, 'a1@email.com');
+INSERT INTO Ticket(ticketId, price, orderId, seatId, showingId, email) VALUES(1,'1','a', 1, 1, 'a@a.com');
