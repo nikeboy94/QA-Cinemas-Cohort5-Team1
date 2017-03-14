@@ -34,10 +34,11 @@ angular.module('movieApp').config(['$stateProvider', '$urlRouterProvider', 'USER
         }).state("deleteuser", {
             url: "/deleteuser",
             templateUrl: "app/feature/user/delete/delete-user.html"
-
+        }).state("contactus", {
+            url: "/contactus",
+            templateUrl: "app/feature/contactUs/contact-us.html"
         }).state("getmoviebytitle", {
             url: "/getmoviebytitle",
-
             templateUrl: "app/feature/movie/get-by-title/get-by-title.html"
         }).state("getmoviebygenre", {
             url: "/getmoviebygenre",

@@ -70,6 +70,8 @@
                     <li><a ui-sref="deleteseat">Delete Seat</a></li>
                 </ul>
             </li>
+
+      <li><a ui-sref="contactus">Contact Us</a></li>
 		</ul>
 		<div ng-if="(globals.currentUser.role == undefined)">
 			<ul class="nav navbar-nav navbar-right">
@@ -81,6 +83,7 @@
 				<li><a style="cursor: default; color: inherit;">or</a></li>
 			</ul>
 		</div>
+
 		<div ng-if="(globals.currentUser.email == undefined)">
 			<ul class="nav navbar-nav navbar-right">
 				<li><a href="#" ng-click="openLogin()">Sign in</a></li>
@@ -110,9 +113,8 @@
 					</ul>
 				</li>
 			</ul>
-		</div>
+    </div>
 	</div>
-
 </nav>
 
 	
@@ -161,23 +163,32 @@
     <script src="app/feature/showing/get-by-movie/get-showing-by-movie-controller.js"></script>
     <script src="app/feature/ticket/get/get-user-tickets-controller.js"></script>
     <!--<script src="app/feature/ticket/update/update-ticket-controller.js"></script>-->
-	<script src="app/feature/ticket/add/add-ticket-controller.js"></script>
-	<script src="app/feature/ticket/get-available-for-showing/get-available-for-showing-controller.js"></script>
+	  <script src="app/feature/ticket/add/add-ticket-controller.js"></script>
+	  <script src="app/feature/ticket/get-available-for-showing/get-available-for-showing-controller.js"></script>
 	  <script src="app/feature/ticket/delete/delete-ticket-controller.js"></script>
+
+    <script src="app/feature/seat/add/add-seat-controller.js"></script>
+    <script src="app/feature/seat/get/get-seat-controller.js"></script>
+    <script src="app/feature/seat/delete/delete-seat-controller.js"></script>
+    <script src="app/feature/contactUs/contact-us-controller.js"></script>
+
 	<script src="app/feature/movie/add-movie-poster/add-movie-poster-controller.js"></script>
   <script src="app/feature/seat/add/add-seat-controller.js"></script>
 <script src="app/feature/seat/get/get-seat-controller.js"></script>
 <script src="app/feature/seat/delete/delete-seat-controller.js"></script>
 
+
   
     <!--CONTROLLERS -->
-	<script src="app/feature/login/parentController.js"></script>
-	<script src="app/feature/login/login.js"></script>
+	  <script src="app/feature/login/parentController.js"></script>
+	  <script src="app/feature/login/login.js"></script>
 
 
-<!--SERVICES -->
-<script src="app/service/auth.js"></script>
-<script src="app/service/session.js"></script>
+    <!--SERVICES -->
+    <script src="app/service/auth.js"></script>
+    <script src="app/service/session.js"></script>
+
+    
 
 </body>
 </html>
