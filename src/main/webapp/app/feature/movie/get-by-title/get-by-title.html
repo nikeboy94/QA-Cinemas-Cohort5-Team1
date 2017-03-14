@@ -6,14 +6,14 @@
     <form -->
 
 
-    <div class="container" >
+    <div class="container">
         <div class="jumbotron">
             <div class="row">
                 <div class="poster">
                     <div class="col-md-6">
                         <img src="{{ctrl.movies[0].posterUrl}}" alt="Poster"
                              class="img-responsive center-block img-rounded" width="300px"
-                             height="400px" />
+                             height="400px"/>
 
                     </div>
                 </div>
@@ -40,11 +40,26 @@
                                 <h4>Runtime</h4>
                                 {{ctrl.movies[0].runtime}}
                             </div>
+                        </div>
+                        <div ng-controller="getShowingByMovieController as ctrler">
+                            <form type="form">
+                                <button type="submit" ng-click="ctrler.getByMovie(ctrl.movies[0].movieId)">Find a showing</button>
+                            </form>
+                            <div class="row">
+                                <div class="film-poster col-xs-6 col-sm-4 col-xl-3" ng-repeat="x in ctrler.showings">
+                                    <a ng-click="ctrler.replace(x)">
+                                        {{x.showingId}} {{x.screenId}}{{x.dateTime}}
+                                    </a>
+                                </div>
                             </div>
+
                         </div>
                     </div>
                 </div>
             </div>
+
         </div>
+
+    </div>
 
 </div>
