@@ -154,14 +154,6 @@ public class DBTicketService implements TicketService {
 		Query query = manager.createQuery("SELECT t FROM Ticket t WHERE t.orderId = :orderId").setParameter("orderId", orderId);
 		Collection<Ticket> ticketsInOrder = (Collection<Ticket>) query.getResultList();
 		return util.getJSONForObject(ticketsInOrder);
-	}
-
-	@Override
-	public String createMultipleTicket(String ticket) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-	
-	
+	}	
 
 }
