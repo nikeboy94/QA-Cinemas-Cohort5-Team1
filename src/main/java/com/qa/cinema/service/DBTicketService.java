@@ -115,6 +115,8 @@ public class DBTicketService implements TicketService {
 		return manager.find(Ticket.class, ticketId);
 	}
 	
+	
+	
 	private Showing getShowing(Long showingId) {
 		LOGGER.info("DBTICKETSERVICE entered getShowing with param " + showingId);
 		LOGGER.info("DBTICKETSERVICE - getShowing. About to create string from showing service");
@@ -131,6 +133,15 @@ public class DBTicketService implements TicketService {
 		}
 		LOGGER.info("DBTICKETSERVICE - getShowing. Loop finished, about to return null");
 		return null;
+	}
+	
+	@Override
+	public String createMultipleTicket(String ticket) {
+		Ticket[] aTicket = util.getObjectForJSON(ticket, Ticket[].class);
+		for(Ticket t:aTicket){
+			manager.persist(t);
+		}
+		return "{\"message\": \"tickets successfully added\"}";
 	}
 
 }
