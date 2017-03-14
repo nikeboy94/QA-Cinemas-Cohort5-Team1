@@ -9,7 +9,7 @@ import javax.persistence.Id;
 public class Screen {
 	
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	
 	private String screenType;
@@ -20,7 +20,6 @@ public class Screen {
 	}
 
 	public Screen(String screenType, String screenDesc) {
-		super();
 		this.screenType = screenType;
 		this.screenDesc = screenDesc;
 	}
