@@ -66,6 +66,13 @@ public class TicketEndpoint {
 		return service.getBookedSeatsByShowing(showingId);
 	}
 	
+	@Path("/json/order/{orderId}")
+	@GET
+	@Produces({"application/json"})
+	public String getTicketsInOrder(@PathParam("orderId") String orderId) {
+		return service.getTicketsByOrderId(orderId);
+	}
+	
 	
 	
 }
