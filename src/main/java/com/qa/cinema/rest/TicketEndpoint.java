@@ -59,4 +59,13 @@ public class TicketEndpoint {
 		return service.getAvailableTickets(showingId);
 	}
 	
+	@Path("/json/seats/{showingID}")
+	@GET
+	@Produces({"application/json"})
+	public String getBookedSeatsForShowing(@PathParam("showingID") Long showingId) {
+		return service.getBookedSeatsByShowing(showingId);
+	}
+	
+	
+	
 }
