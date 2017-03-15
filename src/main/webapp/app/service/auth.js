@@ -57,19 +57,20 @@ function($http, $rootScope, $window, $cookieStore, Session, AUTH_EVENTS, userDAL
 	};
 
     authService.getCard = function() {
-    	return $rootScope.globals.currentUser.card;
+        return $rootScope.globals.currentUser.card;
+    };
 
     authService.setSeats = function(seats) {
     	if($rootScope.globals.currentUser == undefined) {
     		$rootScope.globals.currentUser = {};
 		}
 		$rootScope.globals.currentUser.seats = seats;
-	}
+	};
 
 	authService.getSeats = function() {
     	return $rootScope.globals.currentUser.seats;
 
-	}
+	};
 
 	//check if the user is authenticated
 	authService.isAuthenticated = function() {
@@ -93,7 +94,7 @@ function($http, $rootScope, $window, $cookieStore, Session, AUTH_EVENTS, userDAL
 		$window.sessionStorage.removeItem("userInfo");
 		$rootScope.$broadcast(AUTH_EVENTS.logoutSuccess);
     $rootScope.globals.currentUser.email = undefined;
-  }
+  };
 
 	return authService;
 } ]);
