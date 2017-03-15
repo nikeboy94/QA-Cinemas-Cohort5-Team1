@@ -91,6 +91,24 @@ angular.module('movieApp').config(['$stateProvider', '$urlRouterProvider', 'USER
          }).state("viewer", {
             url: "/viewer",
             templateUrl: "app/feature/seat/viewer/viewer.html"
+        }).state("aboutus", {
+            url: "/aboutus",                //Unimplemented
+            templateUrl: "app/feature/aboutUs/about-us.html"
+        }).state("help", {
+            url: "/help",                   //Unimplemented
+            templateUrl: "app/feature/help/help.html"
+        }).state("cookies", {
+            url: "/cookies",                //Unimplemented
+            templateUrl: "app/feature/cookies/cookies.html"
+        }).state("addscreen", {
+            url: "/addscreen",
+            templateUrl: "app/feature/screen/add/add-screen.html"
+        }).state("getscreen", {
+            url: "/getscreen",
+            templateUrl: "app/feature/screen/get/get-screen.html"
+        }).state("deletescreen", {
+            url: "/deletescreen",
+            templateUrl: "app/feature/screen/delete/delete-screen.html"
         })
 
     }]);

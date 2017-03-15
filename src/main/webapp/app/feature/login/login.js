@@ -26,7 +26,6 @@ function($scope, $state, $modalInstance, $window, Auth ) {
 			$modalInstance.close();
 			$state.go('home');
 		}, function(err) {
-			console.log("error");
 			$scope.error = true;
 		});
 	};
