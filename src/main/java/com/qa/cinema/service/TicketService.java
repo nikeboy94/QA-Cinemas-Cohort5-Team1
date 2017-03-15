@@ -25,4 +25,6 @@ public interface TicketService {
 
 
 	String getTicketsByOrderId(String orderId);
+
+	String getTicketPrice(Long showingId);
 }
