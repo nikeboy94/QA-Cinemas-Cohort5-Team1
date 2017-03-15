@@ -8,8 +8,7 @@ import org.hibernate.annotations.OnDeleteAction;
 @Entity
 public class Seat {
 	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	private Long seatId;
+	private String seatId;
 	private String row;
 	private String col;
 	
@@ -27,8 +26,12 @@ public class Seat {
 		this.col = column;
 	}
 
-	public Long getId() {
+	public String getSeatId() {
 		return seatId;
+	}
+	
+	public void setSeatId(String seatId) {
+		this.seatId = seatId;
 	}
 
 	public String getRow() {
@@ -45,6 +48,14 @@ public class Seat {
 
 	public void setColumn(String column) {
 		this.col = column;
+	}
+	
+	public Screen getScreen() {
+		return screen;
+	}
+	
+	public void setScreen(Screen screen) {
+		this.screen = screen;
 	}
 
 }

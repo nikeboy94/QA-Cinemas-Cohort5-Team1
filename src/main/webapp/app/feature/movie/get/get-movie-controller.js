@@ -5,12 +5,21 @@
 
 
         function init() {
-            movieDal.getMovies().then(function (results) {
-                vm.movies  = results;
+
+            movieDal.getCurrentMovies().then(function (results) {
+                vm.currentMovies  = results;
             }, function (error) {
                 vm.error = true;
                 vm.errorMessage = error;
             });
+
+            movieDal.getComingSoonMovies().then(function (results) {
+                vm.comingSoonMovies  = results;
+            }, function (error) {
+                vm.error = true;
+                vm.errorMessage = error;
+            });
+
         }
         init();
 
