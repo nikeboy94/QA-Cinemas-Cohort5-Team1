@@ -62,6 +62,7 @@ html {
 .fuselage {
   border-right: 5px solid #d8d8d8;
   border-left: 5px solid #d8d8d8;
+  padding-top:50px;
   padding-left: 45px;
   padding-right: 45px;
 }
@@ -204,4 +205,8 @@ ol {
 
 .seat label {
   width: 80%;
+}
+
+.reserved{
+  background-color: transparent;
 }
