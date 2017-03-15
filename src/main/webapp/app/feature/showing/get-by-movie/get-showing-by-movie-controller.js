@@ -15,6 +15,11 @@
 			vm.today = new Date();
 			vm.tomorrow = new Date(new Date().getTime()+ 24*60*60*1000);
 
+            vm.replace = function(showing) {
+                $('#modalShowing').text(showing.showingId);
+                $('#modalTime').text(showing.dateTime);
+            };
+
 
 		}
 	};
