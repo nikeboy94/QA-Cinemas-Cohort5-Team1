@@ -34,6 +34,10 @@
             return dal.http.PUT("rest/movie/json/" + movieToUpdateId, movieToUpdate);
         };
 
+        this.updateRating = function (movieToUpdateId, movieToUpdate) {
+            return dal.http.PUT("rest/movie/json/rating/" + movieToUpdateId, movieToUpdate);
+        };
+
         this.deleteMovie = function (movieToDeleteId) {
             return dal.http.DELETE("rest/movie/json/" + movieToDeleteId);
         };

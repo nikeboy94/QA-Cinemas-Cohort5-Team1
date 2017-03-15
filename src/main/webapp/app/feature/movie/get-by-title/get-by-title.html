@@ -1,10 +1,12 @@
 <div ng-controller="getByTitleController as ctrl">
-    <!--form role="form">
+	<!--form role="form">
         <input id = "title" placeholder="title" ng-model="title">
 
         <button type="submit" ng-click="ctrl.getByTitle(movieTitle)">getMovie</button>
     <form -->
 
+<link rel="stylesheet"
+		href="app/feature/movie/get-by-title/get-movie-by-title.css" />
 
     <div class="container">
         <div class="jumbotron">
@@ -41,6 +43,21 @@
                                 {{ctrl.movies[0].runtime}}
                             </div>
                         </div>
+                      <div class="row">
+							<div class="col-md-6">
+                                <div ng-show="!myRating">
+								<h4>Your Rating</h4>
+								<button ng-click="ctrl.calculate(1); myRating = !myRating">1</button>
+								<button ng-click="ctrl.calculate(2); myRating = !myRating">2</button>
+								<button ng-click="ctrl.calculate(3); myRating = !myRating">3</button>
+								<button ng-click="ctrl.calculate(4); myRating = !myRating">4</button>
+								<button ng-click="ctrl.calculate(5); myRating = !myRating">5</button>
+                                </div>
+                                <div ng-show="myRating">
+                                    Thank you for your opinion!
+                                </div>
+							</div>
+						</div>
                         <div ng-controller="getShowingByMovieController as ctrler">
                             <div>
                                 <button type="submit"
@@ -138,6 +155,23 @@
                 </div>
             </div>
         </div>
+      
     </div>
+<div class="jumbotron-fluid" id="jumbo2">
+		<div class="container">
+
+			<div class="row">
+				<div class="col-md-1"></div>
+				<div class="col-md-10">
+					<div class="videoWrapper">
+						<iframe width="854" height="480"
+							src="{{ctrl.movies[0].trailerUrl}}" frameborder="0"
+							allowfullscreen></iframe>
+					</div>
+				</div>
+				<div class="col-md-1"></div>
+			</div>
+
+		</div>
 
 </div>
