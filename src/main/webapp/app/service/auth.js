@@ -30,6 +30,13 @@ function($http, $rootScope, $window, $cookieStore, Session, AUTH_EVENTS, userDAL
 		
 	};
 
+	authService.setTicketQuantity = function(qty) {
+		if ($rootScope.globals.currentUser == undefined) {
+            $rootScope.globals.currentUser = {};
+		}
+		$rootScope.globals.currentUser.ticketQuantity = qty;
+	};
+
 	authService.setCredentials = function() {
         $http.defaults.headers.common['Authorization'] = 'Basic ' + $rootScope.globals.currentUser.email;
         $cookieStore.put('globals', $rootScope.globals);
