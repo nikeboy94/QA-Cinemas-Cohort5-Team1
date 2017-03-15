@@ -4,6 +4,10 @@ public interface MovieService {
 
 	String listAllMovies();
 	
+	String listCurrentMovies();
+	
+	String listComingSoonMovies();
+	
 	String searchByTitle(String title);
 	
 	String searchMovies(String title);

@@ -10,6 +10,14 @@
             return dal.http.GET("rest/movie/json");
         };
 
+        this.getCurrentMovies = function () {
+            return dal.http.GET("rest/movie/json/current");
+        };
+
+        this.getComingSoonMovies = function () {
+            return dal.http.GET("rest/movie/json/soon");
+        };
+
         this.getMoviesByTitle = function(title){
             return dal.http.GET("rest/movie/json/searchByTitle/"+title);
         };

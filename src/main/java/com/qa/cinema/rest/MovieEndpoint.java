@@ -47,6 +47,20 @@ public class MovieEndpoint {
 	public String getAllMovies() {
 		return service.listAllMovies();
 	}
+	
+	@Path("/json/current")
+	@GET
+	@Produces({ "application/json" })
+	public String getCurrentMovies() {
+		return service.listCurrentMovies();
+	}
+	
+	@Path("/json/soon")
+	@GET
+	@Produces({ "application/json" })
+	public String getComingSoonMovies() {
+		return service.listComingSoonMovies();
+	}
 
 	@Path("/json/searchByTitle/{title}")
 	@GET
