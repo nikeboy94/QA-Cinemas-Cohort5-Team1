@@ -4,46 +4,46 @@
 
         <button type="submit" ng-click="ctrl.getByTitle(movieTitle)">getMovie</button>
     <form -->
-	<link rel="stylesheet"
+
+<link rel="stylesheet"
 		href="app/feature/movie/get-by-title/get-movie-by-title.css" />
 
+    <div class="container">
+        <div class="jumbotron">
+            <div class="row">
+                <div class="poster">
+                    <div class="col-md-6">
+                        <img src="{{ctrl.movies[0].posterUrl}}" alt="Poster"
+                             class="img-responsive center-block img-rounded" width="300px"
+                             height="400px"/>
 
-	<div class="container">
-		<div class="jumbotron">
-			<div class="row">
-				<div class="poster">
-					<div class="col-md-6">
-						<img src="{{ctrl.movies[0].posterUrl}}" alt="Poster"
-							class="img-responsive center-block img-rounded" width="300px"
-							height="400px" />
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="info">
+                        <h2>{{ctrl.movies[0].title}}</h2>
+                        <h4>Genre</h4>
+                        <div class="row">
+                            <div class="col-md-2">{{ctrl.movies[0].genre}}</div>
+                        </div>
+                        <h4>Description</h4>
+                        <div class="row">
+                            <div class="col-md-10">
+                                <p>{{ctrl.movies[0].description}}</p>
+                            </div>
 
-					</div>
-				</div>
-				<div class="col-md-6">
-					<div class="info">
-						<h2>{{ctrl.movies[0].title}}</h2>
-						<h4>Genre</h4>
-						<div class="row">
-							<div class="col-md-2">{{ctrl.movies[0].genre}}</div>
-						</div>
-						<h4>Description</h4>
-						<div class="row">
-							<div class="col-md-10">
-								<p>{{ctrl.movies[0].description}}</p>
-							</div>
-
-						</div>
-						<div class="row">
-							<div class="col-md-6">
-								<h4>Rating</h4>
-								{{ctrl.movies[0].rating}}
-							</div>
-							<div class="col-md-6">
-								<h4>Runtime</h4>
-								{{ctrl.movies[0].runtime}}
-							</div>
-						</div>
-						<div class="row">
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <h4>Rating</h4>
+                                {{ctrl.movies[0].rating}}
+                            </div>
+                            <div class="col-md-6">
+                                <h4>Runtime</h4>
+                                {{ctrl.movies[0].runtime}}
+                            </div>
+                        </div>
+                      <div class="row">
 							<div class="col-md-6">
                                 <div ng-show="!myRating">
 								<h4>Your Rating</h4>
@@ -58,45 +58,106 @@
                                 </div>
 							</div>
 						</div>
-						<div ng-controller="getShowingByMovieController as ctrler">
-							<div>
-								<button type="submit"
-									ng-click="ctrler.getByMovie(ctrl.movies[0].movieId); Today = !Today ">Today
-								</button>
-								<div ng-show="Today" class="row">
-									<div class="film-poster col-xs-6 col-sm-4 col-xl-3"
-										ng-repeat="x in ctrler.showings|filter: (ctrler.today | date:'yyyy-MM-dd')">
-										<a ng-click="ctrler.replace(x)">
-											<button type="submit">{{x.dateTime}}</button>
-										</a>
-									</div>
-								</div>
-							</div>
-							<div>
-								<button type="submit"
-									ng-click="ctrler.getByMovie(ctrl.movies[0].movieId); Tomorrow = !Tomorrow">Tomorrow
-								</button>
-								<div ng-show="Tomorrow" class="row">
-									<div class="film-poster col-xs-6 col-sm-4 col-xl-3"
-										ng-repeat="y in ctrler.showings|filter: (ctrler.tomorrow | date:'yyyy-MM-dd')">
-										<a ng-click="ctrler.replace(y)">
-											<button type="submit">{{y.dateTime}}</button>
-										</a>
-									</div>
-								</div>
-							</div>
+                        <div ng-controller="getShowingByMovieController as ctrler">
+                            <div>
+                                <button type="submit"
+                                        ng-click="ctrler.getByMovie(ctrl.movies[0].movieId); Today = !Today ">Today
+                                </button>
+                                <div ng-show="Today" class="row">
+                                    <div class="film-poster col-xs-6 col-sm-4 col-xl-3"
+                                         ng-repeat="x in ctrler.showings|filter: (ctrler.today | date:'yyyy-MM-dd')">
+                                        <a ng-click="ctrler.replace(x)" ng-href="/getmovie#myModal" data-toggle="modal">
+                                            <button type="submit">{{x.dateTime}}</button>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div>
+                                <button type="submit"
+                                        ng-click="ctrler.getByMovie(ctrl.movies[0].movieId); Tomorrow = !Tomorrow">
+                                    Tomorrow
+                                </button>
+                                <div ng-show="Tomorrow" class="row">
+                                    <div class="film-poster col-xs-6 col-sm-4 col-xl-3"
+                                         ng-repeat="y in ctrler.showings|filter: (ctrler.tomorrow | date:'yyyy-MM-dd')">
+                                        <a ng-click="ctrler.replace(y)">
+                                            <button type="submit">{{y.dateTime}}</button>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
 
 
-						</div>
-					</div>
-				</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
 
-			</div>
-		</div>
 
-	</div>
-	
-	<div class="jumbotron-fluid" id="jumbo2">
+        </div>
+
+
+        <iframe width="854" height="480" src="{{ctrl.movies[0].trailerUrl}}" frameborder="0" allowfullscreen></iframe>
+
+
+    </div>
+
+    <div class="modal" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span
+                            class="sr-only">Close</span></button>
+                    <h1 class="modal-title" id="myModalLabel">Select your tickets</h1>
+                </div>
+
+                <div class="modal-body">
+
+                    <div ng-controller="addTicketController as ctrl" ng-submit="testCtrl.addText(qty)">
+
+                        <form role="form">
+                            <div class="form-group">
+                                <label for="price">Price:</label>
+                                <input class="form-control" id="price" placeholder="price" ng-model="ticket.price">
+                            </div>
+
+                            <div class="form-group">
+                                <label for="orderId">OrderId:</label>
+                                <input class="form-control" id="orderId" placeholder="orderId"
+                                       ng-model="ticket.orderId">
+                            </div>
+
+                            <div class="form-group">
+                                <label for="seat">Seat:</label>
+                                <input class="form-control" id="seat" placeholder="seat" ng-model="ticket.seat.seatId">
+                            </div>
+
+                            <div class="form-group">
+                                <label for="showing">Showing:</label>
+                                <input class="form-control" id="showing" placeholder="showing"
+                                       ng-model="ticket.showing.showingId">
+                            </div>
+
+                            <div class="form-group">
+                                <label for="email">Email:</label>
+                                <input class="form-control" id="email" placeholder="email" ng-model="ticket.user.email">
+                            </div>
+                            <div class="form-group">
+                                <label for="amount">Quantity:</label>
+                                <input class="form-control" type="amount" min="1" max="20" ng-model="qty"
+                                       placeholder="quantity">
+                            </div>
+
+                            <button type="submit" ng-click="ctrl.addText(ticket, qty)">Continue</button>
+
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+      
+    </div>
+<div class="jumbotron-fluid" id="jumbo2">
 		<div class="container">
 
 			<div class="row">
@@ -112,5 +173,5 @@
 			</div>
 
 		</div>
-	</div>
+
 </div>
