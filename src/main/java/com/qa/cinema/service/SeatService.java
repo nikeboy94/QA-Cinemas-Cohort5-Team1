@@ -6,6 +6,4 @@ public interface SeatService {
 	String updateSeat(Long seatId, String seat);
 	String deleteSeat(Long seatId);
 	String findAllSeats();
-	
-
 }
