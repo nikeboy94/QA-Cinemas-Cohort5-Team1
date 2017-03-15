@@ -29,13 +29,12 @@ function($http, $rootScope, $window, $cookieStore, Session, AUTH_EVENTS, userDAL
         });
 		
 	};
-
-	authService.setTicketQuantity = function(qty) {
-		if ($rootScope.globals.currentUser == undefined) {
+    authService.setTicketQuantity = function(qty) {
+        if ($rootScope.globals.currentUser == undefined) {
             $rootScope.globals.currentUser = {};
-		}
-		$rootScope.globals.currentUser.ticketQuantity = qty;
-	};
+        }
+        $rootScope.globals.currentUser.ticketQuantity = qty;
+    };
 
 	authService.setCredentials = function() {
         $http.defaults.headers.common['Authorization'] = 'Basic ' + $rootScope.globals.currentUser.email;
@@ -48,16 +47,20 @@ function($http, $rootScope, $window, $cookieStore, Session, AUTH_EVENTS, userDAL
         $http.defaults.headers.common.Authorization = 'Basic ';
     };
 
+    authService.getTicketQuantity = function() {
+    	return $rootScope.globals.currentUser.ticketQuantity;
+	}
+
     authService.setSeats = function(seats) {
     	if($rootScope.globals.currentUser == undefined) {
     		$rootScope.globals.currentUser = {};
 		}
 		$rootScope.globals.currentUser.seats = seats;
-	}
+	};
 
 	authService.getSeats = function() {
     	return $rootScope.globals.currentUser.seats;
-	}
+	};
 
 	//check if the user is authenticated
 	authService.isAuthenticated = function() {

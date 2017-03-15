@@ -26,7 +26,7 @@
             else{
                 alert("Please select "+vm.new+" more seats!")
             }
-        }
+        };
 
 
         vm.checkboxChanged = function (id) {
