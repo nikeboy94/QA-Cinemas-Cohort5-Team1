@@ -16,10 +16,10 @@ INSERT INTO Movie(movieID, title, genre, releaseDate, classification, posterUrl,
 INSERT INTO Screen(screenId, screenType, screenDesc) VALUES(1, 'Standard', 'A standard screen, for standard people.');
 INSERT INTO Screen(screenId, screenType, screenDesc) VALUES(2, 'Standard', 'Another standard screen.');
 INSERT INTO Screen(screenId, screenType, screenDesc) VALUES(3, 'Deluxe', 'A fancy screen, like a sir.');
-INSERT INTO Showing(showingId, screenId, movieId, dateTime) VALUES(1, 1, 1, '2017-03-14 12:00:00');
-INSERT INTO Showing(showingId, screenId, movieId, dateTime) VALUES(2, 1, 1, '2017-03-14 16:00:00');
-INSERT INTO Showing(showingId, screenId, movieId, dateTime) VALUES(3, 1, 1, '2017-03-15 12:00:00');
-INSERT INTO Showing(showingId, screenId, movieId, dateTime) VALUES(4, 1, 1, '2017-03-16 12:00:00');
+INSERT INTO Showing(showingId, screenId, movieId, dateTime) VALUES(1, 1, 1, '2017-03-15T12:00:00Z');
+INSERT INTO Showing(showingId, screenId, movieId, dateTime) VALUES(2, 1, 1, '2017-03-15T17:00:00Z');
+INSERT INTO Showing(showingId, screenId, movieId, dateTime) VALUES(3, 1, 1, '2017-03-16T12:00:00');
+INSERT INTO Showing(showingId, screenId, movieId, dateTime) VALUES(4, 1, 1, '2017-03-17T12:00:00');
 INSERT INTO Showing(showingId, screenId, movieId, dateTime) VALUES(5, 2, 2, '2017-03-14 16:00:00');
 INSERT INTO Showing(showingId, screenId, movieId, dateTime) VALUES(6, 2, 2, '2017-03-16 12:00:00');
 INSERT INTO Showing(showingId, screenId, movieId, dateTime) VALUES(7, 2, 2, '2017-03-15 12:00:00');

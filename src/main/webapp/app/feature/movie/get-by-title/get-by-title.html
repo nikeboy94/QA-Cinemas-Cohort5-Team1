@@ -66,8 +66,10 @@
                                 <div ng-show="Today" class="row">
                                     <div class="film-poster col-xs-6 col-sm-4 col-xl-3"
                                          ng-repeat="x in ctrler.showings|filter: (ctrler.today | date:'yyyy-MM-dd')">
-                                        <a ng-click="ctrler.replace(x)" ng-href="/getmovie#myModal" data-toggle="modal">
-                                            <button type="submit">{{x.dateTime}}</button>
+                                        <a ng-click="ctrler.replace(x)" ng-href="/getmovie#myModal"
+                                           data-showingId="{{x.showingId}}" data-dateTime="{{x.dateTime | date}}"
+                                           data-toggle="modal">
+                                            <button type="submit">{{x.dateTime | date: 'H:mm'}}</button>
                                         </a>
                                     </div>
                                 </div>
@@ -81,7 +83,7 @@
                                     <div class="film-poster col-xs-6 col-sm-4 col-xl-3"
                                          ng-repeat="y in ctrler.showings|filter: (ctrler.tomorrow | date:'yyyy-MM-dd')">
                                         <a ng-click="ctrler.replace(y)">
-                                            <button type="submit">{{y.dateTime}}</button>
+                                            <button type="submit">{{y.dateTime | date}}</button>
                                         </a>
                                     </div>
                                 </div>
@@ -109,18 +111,70 @@
 
                 <div class="modal-body">
 
-                    <div ng-controller="addTicketController as ctrl" ng-submit="testCtrl.addText(qty)">
+                    <div ng-controller="addTicketController as ctrlerer" ng-submit="testCtrl.addText(qty)">
 
                         <form role="form">
                             <div class="form-group">
-                                <label for="price">Price:</label>
-                                <input class="form-control" id="price" placeholder="price" ng-model="ticket.price">
+                                <label for="showing">Showing:</label>
+                                <h3>{{ctrl.movies[0].title}}</h3>
+                                <h3 id="modalShowing" class='showingId'>Showing</h3>
+                                <h3 id="modalTime" class='dateTime'>DateTime</h3>
                             </div>
 
                             <div class="form-group">
-                                <label for="orderId">OrderId:</label>
-                                <input class="form-control" id="orderId" placeholder="orderId"
-                                       ng-model="ticket.orderId">
+                                <label for="email">Email:</label>
+                                <div ng-if="globals.currentUser.email != undefined">
+                                    <input class="form-control" id="email" placeholder="email"
+                                           ng-model="globals.currentUser.email" disabled>
+                                </div>
+                                <div ng-if="globals.currentUser.email == undefined">
+                                    <input class="form-control" id="email" placeholder="email"
+                                           ng-model="ticket.user.email">
+                                </div>
+                            </div>
+
+                            <!--
+                                <div class="form-group">
+                                    <label for="orderId">OrderId:</label>
+                                    <input class="form-control" id="orderId" placeholder="orderId"
+                                           ng-model="ticket.orderId">
+                                </div>
+                            -->
+
+                            <div class="form-group">
+                                <label for="amount">Quantity:</label>
+                                <form>
+                                    <table style="width:100%">
+                                        <tr>
+                                            <th>Type</th>
+                                            <th>Price</th>
+                                            <th>Quantity</th>
+                                        </tr>
+                                        <tr>
+                                            <th>Adult</th>
+                                            <th>£8</th>
+                                            <th>
+                                                <select name="Qty">
+                                                    <option value="0">0</option>
+                                                    <option value="1">1</option>
+                                                    <option value="2">2</option>
+                                                    <option value="3">3</option>
+                                                </select></th>
+                                        </tr>
+                                        <tr>
+                                            <th>Child</th>
+                                            <th>£6</th>
+                                            <th>
+                                                <select name="Qty">
+                                                    <option value="0">0</option>
+                                                    <option value="1">1</option>
+                                                    <option value="2">2</option>
+                                                    <option value="3">3</option>
+                                                </select></th>
+                                        </tr>
+
+                                    </table>
+                                </form>
                             </div>
 
                             <div class="form-group">
@@ -128,23 +182,13 @@
                                 <input class="form-control" id="seat" placeholder="seat" ng-model="ticket.seat.seatId">
                             </div>
 
+                            <!--
                             <div class="form-group">
-                                <label for="showing">Showing:</label>
-                                <input class="form-control" id="showing" placeholder="showing"
-                                       ng-model="ticket.showing.showingId">
+                                <label for="price">Price:</label>
+                                <input class="form-control" id="price" placeholder="price" ng-model="ticket.price">
                             </div>
-
-                            <div class="form-group">
-                                <label for="email">Email:</label>
-                                <input class="form-control" id="email" placeholder="email" ng-model="ticket.user.email">
-                            </div>
-                            <div class="form-group">
-                                <label for="amount">Quantity:</label>
-                                <input class="form-control" type="amount" min="1" max="20" ng-model="qty"
-                                       placeholder="quantity">
-                            </div>
-
-                            <button type="submit" ng-click="ctrl.addText(ticket, qty)">Continue</button>
+                            -->
+                            <button type="submit" ng-click="ctrlerer.addText(ticket, qty)">Continue</button>
 
                         </form>
                     </div>
@@ -153,6 +197,7 @@
         </div>
 
     </div>
+
     <div class="jumbotron-fluid" id="jumbo2">
         <div class="container">
 
