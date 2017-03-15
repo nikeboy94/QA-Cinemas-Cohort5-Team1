@@ -14,7 +14,10 @@
         vm.bookedSeats = [];
         vm.reserved = function () {
             for (var i = 0; i < vm.reservedSeats.length; i++) {
-                ($('#' + vm.reservedSeats[i].seatId)).addClass('reserved');
+                ($('#' + vm.reservedSeats[i].seatId)).parent().addClass('reserved');
+                ($('#' + vm.reservedSeats[i].seatId)).parent().click(false);
+
+
             }
         };
         vm.reserved();

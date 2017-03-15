@@ -239,6 +239,9 @@ ol {
   
 }
 
+
 .reserved{
-  color:black !important;
+  color:transparent !important;
+  cursor:not-allowed;
+  box-shadow: none;
 }
