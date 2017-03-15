@@ -48,6 +48,17 @@ function($http, $rootScope, $window, $cookieStore, Session, AUTH_EVENTS, userDAL
         $http.defaults.headers.common.Authorization = 'Basic ';
     };
 
+
+    authService.addCard = function(card) {
+    	if ($rootScope.globals.currentUser == undefined) {
+    		$rootScope.globals.currentUser = {};
+		}
+    	$rootScope.globals.currentUser.card = card;
+	};
+
+    authService.getCard = function() {
+    	return $rootScope.globals.currentUser.card;
+
     authService.setSeats = function(seats) {
     	if($rootScope.globals.currentUser == undefined) {
     		$rootScope.globals.currentUser = {};
@@ -57,6 +68,7 @@ function($http, $rootScope, $window, $cookieStore, Session, AUTH_EVENTS, userDAL
 
 	authService.getSeats = function() {
     	return $rootScope.globals.currentUser.seats;
+
 	}
 
 	//check if the user is authenticated

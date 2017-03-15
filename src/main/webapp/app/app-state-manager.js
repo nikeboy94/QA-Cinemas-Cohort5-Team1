@@ -88,6 +88,9 @@ angular.module('movieApp').config(['$stateProvider', '$urlRouterProvider', 'USER
         }).state("deleteseat", {
             url: "/deleteseat",
             templateUrl: "app/feature/seat/delete/delete-seat.html"
+        }).state("payment", {
+            url: "/payment",
+            templateUrl: "app/feature/payment/payment.html"
          }).state("viewer", {
             url: "/viewer",
             templateUrl: "app/feature/seat/viewer/viewer.html"
@@ -109,6 +112,7 @@ angular.module('movieApp').config(['$stateProvider', '$urlRouterProvider', 'USER
         }).state("deletescreen", {
             url: "/deletescreen",
             templateUrl: "app/feature/screen/delete/delete-screen.html"
+
         })
 
     }]);
