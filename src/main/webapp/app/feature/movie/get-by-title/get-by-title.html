@@ -45,12 +45,17 @@
 						</div>
 						<div class="row">
 							<div class="col-md-6">
+                                <div ng-show="!myRating">
 								<h4>Your Rating</h4>
-								<button ng-click="ctrl.calculate(1)">1</button>
-								<button ng-click="ctrl.calculate(2)">2</button>
-								<button ng-click="ctrl.calculate(3)">3</button>
-								<button ng-click="ctrl.calculate(4)">4</button>
-								<button ng-click="ctrl.calculate(5)">5</button>
+								<button ng-click="ctrl.calculate(1); myRating = !myRating">1</button>
+								<button ng-click="ctrl.calculate(2); myRating = !myRating">2</button>
+								<button ng-click="ctrl.calculate(3); myRating = !myRating">3</button>
+								<button ng-click="ctrl.calculate(4); myRating = !myRating">4</button>
+								<button ng-click="ctrl.calculate(5); myRating = !myRating">5</button>
+                                </div>
+                                <div ng-show="myRating">
+                                    Thank you for your opinion!
+                                </div>
 							</div>
 						</div>
 						<div ng-controller="getShowingByMovieController as ctrler">

@@ -43,7 +43,12 @@
            vm.newMovie.count = newCount;
            vm.updateRating(vm.movies[0].movieId, vm.newMovie);
            movieDal.movieTitle = savedTitle;
-           $state.reload();
+           movieDal.getMoviesByTitle(savedTitle).then(function (results) {
+                vm.movies  = results;
+            }, function (error) {
+                vm.error = true;
+                vm.errorMessage = error;
+            });
         };
 
 
