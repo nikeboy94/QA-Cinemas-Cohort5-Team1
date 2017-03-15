@@ -10,7 +10,7 @@ To pull new files from master into your branch:
 
 git checkout QA-XX
 
-git fetch master
+git fetch origin master
 
 git merge origin/master
 
