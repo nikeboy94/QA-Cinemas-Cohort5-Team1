@@ -1,5 +1,9 @@
 package com.qa.cinema.service;
 
+import java.util.Date;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Collection;
 
@@ -154,6 +158,35 @@ public class DBTicketService implements TicketService {
 		Query query = manager.createQuery("SELECT t FROM Ticket t WHERE t.orderId = :orderId").setParameter("orderId", orderId);
 		Collection<Ticket> ticketsInOrder = (Collection<Ticket>) query.getResultList();
 		return util.getJSONForObject(ticketsInOrder);
+	}
+	
+
+	@Override
+	public String getTicketPrice(Long showingId) {
+		Showing showing = manager.find(Showing.class, showingId);
+		double price = 8.0;
+		
+		
+		DateFormat formatter;
+		Date showingDate;
+		formatter = new SimpleDateFormat("YYY-MM-DD HH:MM:SS");
+		
+		try {
+			showingDate = (Date) formatter.parse(showing.getDateTime());
+		} catch (ParseException e) {
+			LOGGER.info(e);
+			return "{\"message\": \"Could not get price\"}";
+		}
+
+		if(showingDate.getDay() == 0 || showingDate.getDay() == 1) {
+			price += 3;
+		}
+		
+		if(showingDate.getHours() > 19) {
+			
+		}
+				
+		return "{\"price\": \" " + price + "\"}";
 	}	
 
 }

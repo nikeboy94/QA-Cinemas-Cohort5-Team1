@@ -49,6 +49,16 @@ function($http, $rootScope, $window, $cookieStore, Session, AUTH_EVENTS, userDAL
     };
 
 
+    authService.addOrder = function(ticketArray) {
+    	$rootScope.globals.currentUser.order = ticketArray;
+	};
+
+    authService.getOrder = function() {
+    	return $rootScope.globals.currentUser.order;
+	};
+
+
+
     authService.addCard = function(card) {
     	if ($rootScope.globals.currentUser == undefined) {
     		$rootScope.globals.currentUser = {};
@@ -59,6 +69,7 @@ function($http, $rootScope, $window, $cookieStore, Session, AUTH_EVENTS, userDAL
     authService.getCard = function() {
         return $rootScope.globals.currentUser.card;
     };
+
 
     authService.setSeats = function(seats) {
     	if($rootScope.globals.currentUser == undefined) {
