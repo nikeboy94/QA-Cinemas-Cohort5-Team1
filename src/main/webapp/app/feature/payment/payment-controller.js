@@ -1,7 +1,16 @@
 (function() {
 
-    var PaymentController =  function($state, $scope, movieDal, dal) {
+    var PaymentController =  function($state, $scope, movieDal, dal, Auth) {
         var vm = this;
+
+        vm.submitNewPayment = function(card) {
+            vm.card = card;
+            vm.card.expiryDate = vm.card.expiryMonth + vm.card.expiryYear;
+            vm.card.cardholderName = "jane doe";
+            Auth.addCard(vm.card);
+            alert(JSON.stringify(Auth.getCard()));
+            vm.createMerchantSessionKey();
+        }
 
         vm.createMerchantSessionKey = function() {
             dal.http.POST_MSK().then(function (results) {
@@ -12,14 +21,9 @@
                 vm.errorMessage = error;
             });
         }
-        vm.createMerchantSessionKey();
+
 
         vm.submitCardDetails = function() {
-            vm.card = {};
-            vm.card.cardholderName = "jane doe";
-            vm.card.cardNumber = "4929000000006";
-            vm.card.expiryDate = "0518";
-            vm.card.securityCode = "123";
             dal.http.POST_CARD(vm.payment.merchantSessionKey, vm.card).then(function (results) {
                 vm.cardIdentifier = results;
                 vm.submitPayment()
@@ -30,7 +34,6 @@
         };
 
         vm.submitPayment = function() {
-            alert(vm.cardIdentifier.cardIdentifier);
             dal.http.POST_PAYMENT(vm.payment.merchantSessionKey, vm.cardIdentifier.cardIdentifier, 100).then(function (results) {
                 alert(JSON.stringify(results));
                 vm.cardIdentifier = results;
@@ -42,5 +45,5 @@
         };
     };
 
-    angular.module('movieApp').controller('paymentController', ['$state', '$scope', 'movieDal', 'dal', PaymentController]);
+    angular.module('movieApp').controller('paymentController', ['$state', '$scope', 'movieDal', 'dal', 'Auth', PaymentController]);
 }());
