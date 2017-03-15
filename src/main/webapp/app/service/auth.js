@@ -48,6 +48,17 @@ function($http, $rootScope, $window, $cookieStore, Session, AUTH_EVENTS, userDAL
         $http.defaults.headers.common.Authorization = 'Basic ';
     };
 
+    authService.setSeats = function(seats) {
+    	if($rootScope.globals.currentUser == undefined) {
+    		$rootScope.globals.currentUser = {};
+		}
+		$rootScope.globals.currentUser.seats = seats;
+	}
+
+	authService.getSeats = function() {
+    	return $rootScope.globals.currentUser.seats;
+	}
+
 	//check if the user is authenticated
 	authService.isAuthenticated = function() {
 		return !!Session.user;
