@@ -1,6 +1,6 @@
 (function () {
 
-    var viewercontroller = function () {
+    var viewercontroller = function ($state, Auth) {
 
 
         var vm = this;
@@ -14,13 +14,21 @@
         }];
 
         vm.bookedSeats = [];
-
-        vm.reserved = function(){
-            for(var i=0; i<reservedSeats.length; i++){
-                ($('#' + seatId)).addClass('reserved');
+        vm.reserved = function () {
+            for (var i = 0; i < vm.reservedSeats.length; i++) {
+                ($('#' + vm.reservedSeats[i].seatId)).addClass('reserved');
             }
         };
         vm.reserved();
+        vm.submitSeats = function () {
+            if (vm.counter == vm.tickets) {
+                Auth.setSeats(vm.bookedSeats);
+                $state.go('dashboard');
+            }
+            else{
+                alert("Please select "+vm.new+" more seats!")
+            }
+        }
 
 
         vm.checkboxChanged = function (id) {
@@ -46,8 +54,11 @@
             if (vm.counter < vm.tickets) {
                 $('#seatmap').find('input[type="checkbox"]').prop("disabled", false);
             }
+            vm.new = +vm.tickets-vm.counter;
 
         };
+
     };
-    angular.module("movieApp").controller("viewercontroller", [viewercontroller]);
+
+    angular.module("movieApp").controller("viewercontroller", ['$state', 'Auth', viewercontroller]);
 }());
