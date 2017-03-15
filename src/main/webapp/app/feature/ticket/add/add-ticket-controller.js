@@ -1,25 +1,53 @@
 (function() {
 
-    var AddTicketController = function(ticketDal, Auth, $state) {
+    var AddTicketController = function(ticketDal, Auth, $state, movieDal, showingDal ) {
         var vm = this;
 
         this.ticketArray = [];
 
-        this.addText = function(ticket, qty) {
+        this.addTicket = function(ticket, qty) {
             Auth.setTicketQuantity(qty);
-            $state.go('dashboard');
+           // $state.go('dashboard');
 
             ticket.orderId=new Date().getTime()
             for (var i = 0; i < qty; i++) {
 
-                var obj = {
-                    text: "something"
-                };
-
                 console.log(i);
                 this.ticketArray.push(ticket);
+                alert(JSON.stringify(vm.ticketArray));
             }
 
+        };
+
+        vm.init = function(){
+
+            movieDal.getMovies().then(function(results){
+                vm.movieList=results;
+            }), function(error){
+                vm.error = true;
+                vm.errorMessage = error;
+            }
+
+
+        };
+        vm.init();
+
+        vm.getShowingsById = function(movieId) {
+            alert(JSON.stringify(movieId));
+            console.log(movieId);
+            showingDal.getShowingByMovie(movieId).then(function(results){
+                vm.movieShowingList=results;
+                alert(JSON.stringify(vm.movieShowingList));
+            }), function(error){
+                alert(error);
+                vm.error = true;
+                vm.errorMessage = error;
+            }
+        };
+
+        vm.getPriceByShowingId = function(){
+            alert(JSON.stringify(vm.ticketArray));
+            alert("text");
         };
 
 
@@ -38,6 +66,6 @@
         };
     };
 
-    angular.module('movieApp').controller('addTicketController', ['ticketDal', 'Auth', '$state', AddTicketController]);
+    angular.module('movieApp').controller('addTicketController', ['ticketDal', 'Auth', '$state', 'movieDal', 'showingDal', AddTicketController]);
 
 }());
