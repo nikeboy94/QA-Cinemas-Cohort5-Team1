@@ -19,7 +19,7 @@ public class DBSeatService implements SeatService {
 	@PersistenceContext(unitName = "primary")
 	private EntityManager em;
 	
-	final static Logger logger = Logger.getLogger(DBSeatService.class);
+	static final Logger logger = Logger.getLogger(DBSeatService.class);
 
 	@Inject
 	private JSONUtil util;
@@ -27,8 +27,11 @@ public class DBSeatService implements SeatService {
 	@Override
 	public String createSeat(String seat) {
 		logger.info("Just entered createSeat method. About to convert JSON to Seat.");
-		logger.info("In createSeat method. JSON string is " + seat);
+		
 		Seat newSeat = util.getObjectForJSON(seat, Seat.class);
+		String seatId = newSeat.getScreen().getId() + "_" + newSeat.getRow() + "" + newSeat.getColumn();
+		newSeat.setSeatId(seatId);
+		
 		logger.info("In createSeat method. About to persist newSeat");
 		em.persist(newSeat);
 		logger.info("In createSeat method. Seat persisted, about to return success message");
@@ -72,7 +75,7 @@ public class DBSeatService implements SeatService {
 		return em.find(Seat.class, id);
 	}
 
-	@Override
+	
 	public String findAllSeats() {
 		Query query = em.createQuery("SELECT s from Seat s");
 		Collection<Seat> seats = (Collection<Seat>) query.getResultList();

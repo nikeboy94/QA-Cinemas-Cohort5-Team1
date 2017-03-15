@@ -72,7 +72,8 @@ body {
 }
 
 .jumbotron{
-	background:none;
+	background: white;
+	color: #000000;
 }
 
 .nav-link{

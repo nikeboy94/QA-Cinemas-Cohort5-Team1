@@ -18,6 +18,10 @@
             return dal.http.GET("rest/movie/json/searchByGenre/" + genre)
         };
 
+        this.searchMovie = function(title){
+            return dal.http.GET("rest/movie/json/searchMovies/"+title);
+        };
+
         this.saveMovie = function (movieToSave) {
             return dal.http.POST("rest/movie/json", movieToSave);
         };
@@ -28,6 +32,10 @@
 
         this.updateMovie = function (movieToUpdateId, movieToUpdate) {
             return dal.http.PUT("rest/movie/json/" + movieToUpdateId, movieToUpdate);
+        };
+
+        this.updateRating = function (movieToUpdateId, movieToUpdate) {
+            return dal.http.PUT("rest/movie/json/rating/" + movieToUpdateId, movieToUpdate);
         };
 
         this.deleteMovie = function (movieToDeleteId) {

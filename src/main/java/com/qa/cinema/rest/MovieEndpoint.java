@@ -4,7 +4,6 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
-import java.io.OutputStream;
 import java.util.List;
 import java.util.Map;
 
@@ -12,6 +11,7 @@ import javax.ws.rs.core.MultivaluedMap;
 import javax.ws.rs.core.Response;
 
 import org.apache.commons.io.IOUtils;
+import org.apache.log4j.Logger;
 import org.jboss.resteasy.plugins.providers.multipart.InputPart;
 import org.jboss.resteasy.plugins.providers.multipart.MultipartFormDataInput;
 
@@ -33,6 +33,10 @@ import com.qa.cinema.service.MovieService;
 @ApplicationPath("/*")
 @Path("/movie")
 public class MovieEndpoint {
+	
+	static final Logger LOGGER = Logger.getLogger(MovieEndpoint.class);
+	public static final String UPLOADED_FILE_PARAMETER_NAME = "image";
+    public static final String UPLOAD_DIR = System.getProperty("user.dir") + "\\images\\";
 
 	@Inject
 	private MovieService service;
@@ -51,6 +55,13 @@ public class MovieEndpoint {
 		return service.searchByTitle(title);
 	}
 	
+	@Path("/json/searchMovies/{title}")
+	@GET
+	@Produces({"application/json"})
+	public String searchMoviesByTitle(@PathParam("title") String title) {
+		return service.searchMovies(title);
+	}
+	
 	@Path("/json/searchByGenre/{genre}")
 	@GET
 	@Produces({"application/json"})
@@ -65,12 +76,20 @@ public class MovieEndpoint {
 	public String addMovie(String movie) {
 		return service.createNewMovie(movie);
 	}
+	
 
 	@Path("/json/{id}")
 	@PUT
 	@Produces({ "application/json" })
 	public String updateMovie(@PathParam("id") Long movieId, String movie) {
 		return service.updateMovie(movieId, movie);
+	}
+	
+	@Path("/json/rating/{id}")
+	@PUT
+	@Produces({ "application/json" })
+	public String updateRating(@PathParam("id") Long movieId, String movie) {
+		return service.updateRating(movieId, movie);
 	}
 
 	@Path("/json/{id}")
@@ -80,9 +99,7 @@ public class MovieEndpoint {
 		return service.deleteMovie(movieId);
 	}
 
-	public static final String UPLOADED_FILE_PARAMETER_NAME = "image";
-    public static final String UPLOAD_DIR = System.getProperty("user.dir") + "\\images\\";
-    private String data;
+
 
     @Path("/upload")
     @POST
@@ -101,22 +118,24 @@ public class MovieEndpoint {
                 byte [] bytes = IOUtils.toByteArray(inputStream);
 
                 writeFile(bytes, UPLOAD_DIR + filename);
-            } catch (IOException e) {
-                    return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity(e.getMessage()).build();
+            } 
+            catch (IOException e) {
+            	LOGGER.info(e);
+                return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity(e.getMessage()).build();
             }
         }
-        
-        
         return Response.status(Response.Status.OK).build();
         
     }
 
     private void writeFile(byte[] content, String filename) throws IOException {
         File file = new File(filename);
+        boolean fileCreate = false;
 
         if (!file.exists()) {
-            file.createNewFile();
+            fileCreate = file.createNewFile();
         }
+        LOGGER.info("File created successfully?: " + fileCreate);
 
         FileOutputStream fop = new FileOutputStream(file);
 
@@ -126,7 +145,7 @@ public class MovieEndpoint {
     }
 
     /**
-     * Extract filename from HTTP heaeders.
+     * Extract filename from HTTP headers.
      * @param headers
      * @return
      */
@@ -134,12 +153,11 @@ public class MovieEndpoint {
         String[] contentDisposition = headers.getFirst("Content-Disposition").split(";");
 
         for (String filename : contentDisposition) {
-            if ((filename.trim().startsWith("filename"))) {
+            if (filename.trim().startsWith("filename")) {
 
                 String[] name = filename.split("=");
 
-                String finalFileName = sanitizeFilename(name[1]);
-                return finalFileName;
+                return sanitizeFilename(name[1]);
             }
         }
         return "unknown";

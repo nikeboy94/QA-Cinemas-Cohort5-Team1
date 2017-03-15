@@ -11,7 +11,7 @@ import javax.persistence.Id;
 public class Movie {
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long movieId;
 	
 	private String title;
@@ -21,6 +21,7 @@ public class Movie {
 	private String posterUrl;
 	private String trailerUrl;
 	private Double rating = 0.0;
+	private Double count = 0.0;
 	private Integer runtime;
 	private String description;
 	
@@ -137,6 +138,13 @@ public class Movie {
 		return movieId;
 	}
 	
+	public Double getCount() {
+		return count;
+	}
+
+	public void setCount(Double count) {
+		this.count = count;
+	}
 	
 
 }

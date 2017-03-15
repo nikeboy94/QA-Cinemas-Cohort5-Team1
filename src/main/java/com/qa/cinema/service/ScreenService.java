@@ -1,7 +1,7 @@
 package com.qa.cinema.service;
 
 public interface ScreenService {
-	String listAllScreens();
+	String getAllScreens();
 	
 	String createNewScreen(String screen);
 	

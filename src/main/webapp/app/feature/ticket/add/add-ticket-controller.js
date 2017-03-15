@@ -1,14 +1,31 @@
 (function() {
 
-    var AddTicketController = function(ticketDal) {
+    var AddTicketController = function(ticketDal, Auth, $state) {
         var vm = this;
-        vm.test = "error here";
+
+        this.ticketArray = [];
+
+        this.addText = function(ticket, qty) {
+            Auth.setTicketQuantity(qty);
+            $state.go('dashboard');
+
+            ticket.orderId=new Date().getTime()
+            for (var i = 0; i < qty; i++) {
+
+                var obj = {
+                    text: "something"
+                };
+
+                console.log(i);
+                this.ticketArray.push(ticket);
+            }
+
+        };
+
+
 
         vm.addTicket = function(ticketToAdd) {
-            console.log("This is the value of ticket to add " + ticketToAdd);
-            console.log(ticketToAdd);
-            var ticketToJson = JSON.stringify(ticketToAdd);
-            console.log(ticketToJson);
+
             ticketDal.addTicket(ticketToAdd).then(function (results) {
                 vm.ticketAddMessage = results;
             }, function (error) {
@@ -21,6 +38,6 @@
         };
     };
 
-    angular.module('movieApp').controller('addTicketController', ['ticketDal', AddTicketController]);
+    angular.module('movieApp').controller('addTicketController', ['ticketDal', 'Auth', '$state', AddTicketController]);
 
 }());

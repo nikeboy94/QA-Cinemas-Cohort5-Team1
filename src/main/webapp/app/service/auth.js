@@ -30,6 +30,13 @@ function($http, $rootScope, $window, $cookieStore, Session, AUTH_EVENTS, userDAL
 		
 	};
 
+	authService.setTicketQuantity = function(qty) {
+		if ($rootScope.globals.currentUser == undefined) {
+            $rootScope.globals.currentUser = {};
+		}
+		$rootScope.globals.currentUser.ticketQuantity = qty;
+	};
+
 	authService.setCredentials = function() {
         $http.defaults.headers.common['Authorization'] = 'Basic ' + $rootScope.globals.currentUser.email;
         $cookieStore.put('globals', $rootScope.globals);
@@ -41,6 +48,7 @@ function($http, $rootScope, $window, $cookieStore, Session, AUTH_EVENTS, userDAL
         $http.defaults.headers.common.Authorization = 'Basic ';
     };
 
+
     authService.addCard = function(card) {
     	if ($rootScope.globals.currentUser == undefined) {
     		$rootScope.globals.currentUser = {};
@@ -50,6 +58,17 @@ function($http, $rootScope, $window, $cookieStore, Session, AUTH_EVENTS, userDAL
 
     authService.getCard = function() {
     	return $rootScope.globals.currentUser.card;
+
+    authService.setSeats = function(seats) {
+    	if($rootScope.globals.currentUser == undefined) {
+    		$rootScope.globals.currentUser = {};
+		}
+		$rootScope.globals.currentUser.seats = seats;
+	}
+
+	authService.getSeats = function() {
+    	return $rootScope.globals.currentUser.seats;
+
 	}
 
 	//check if the user is authenticated
