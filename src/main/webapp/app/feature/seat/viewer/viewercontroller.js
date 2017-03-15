@@ -6,9 +6,7 @@
         var vm = this;
         vm.test = "LOL";
         vm.counter = 0;
-
-        vm.tickets = 5;
-        vm.screen = 1;
+        vm.tickets = Auth.getTicketQuantity();
         vm.reservedSeats = [{
             seatId: '1A'
         }];
