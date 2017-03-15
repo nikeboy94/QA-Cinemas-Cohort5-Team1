@@ -1,5 +1,4 @@
 (function(){
-
     var GetScreenController = function(screenDal){
         var vm = this;
 

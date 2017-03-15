@@ -1,5 +1,6 @@
 "use strict";
 
+
 (function(){
     angular.module("movieApp").service("screenDal", ["dal", ScreenDal]);
 
