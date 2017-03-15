@@ -19,7 +19,7 @@ public class DBSeatService implements SeatService {
 	@PersistenceContext(unitName = "primary")
 	private EntityManager em;
 	
-	final static Logger logger = Logger.getLogger(DBSeatService.class);
+	static final Logger logger = Logger.getLogger(DBSeatService.class);
 
 	@Inject
 	private JSONUtil util;

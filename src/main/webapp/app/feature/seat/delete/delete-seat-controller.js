@@ -4,10 +4,6 @@
         var vm = this;
 
         vm.deleteSeat = function(seatToDelete) {
-            console.log("This is the value of seat to delete " + seatToDelete);
-            console.log(seatToDelete);
-            var movieToJson = JSON.stringify(seatToDelete);
-            console.log(seatToJson);
             seatDal.deleteSeat(seatToDelete).then(function (results) {
                 vm.seatAddMessage  = results;
                 $state.go('getseat');
