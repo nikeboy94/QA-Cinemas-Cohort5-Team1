@@ -20,7 +20,6 @@ public class Screen {
 	}
 
 	public Screen(String screenType, String screenDesc) {
-		super();
 		this.screenType = screenType;
 		this.screenDesc = screenDesc;
 	}

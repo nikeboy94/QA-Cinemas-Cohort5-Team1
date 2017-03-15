@@ -59,6 +59,7 @@ public class DBMovieService implements MovieService {
 			movieInDB.setRating(updateMovie.getRating());
 			movieInDB.setRuntime(updateMovie.getRuntime());
 			movieInDB.setDescription(updateMovie.getDescription());
+			movieInDB.setCount(updateMovie.getCount());
 			em.merge(movieInDB);
 			return "{\"message\": \"Movie successfully updated\"}";
 		}
@@ -74,6 +75,8 @@ public class DBMovieService implements MovieService {
 		Movie movieInDB = findMovie(movieId);
 		if (movieInDB != null) {
 			movieInDB.setRating(updateMovie.getRating());
+			movieInDB.setCount(updateMovie.getCount());
+			em.merge(movieInDB);
 			return "{\"message\": \"Rating successfully updated\"}";	
 		}
 		else {
