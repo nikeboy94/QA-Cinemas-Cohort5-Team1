@@ -59,6 +59,7 @@
 					<li><a ui-sref="updateticket">Update Tickets</a></li>
 					<li><a ui-sref="addticket">Add Ticket</a></li>
 					<li><a ui-sref="getavailableticket">Get Available Tickets For Showing</a></li>
+					<li><a ui-sref="addticketstandalone">Quick book ticket</a></li>
 					<li><a ui-sref="deleteticket">Delete Ticket</a></li>
 				</ul>
 			</li>
@@ -137,7 +138,7 @@
 	
 
 		<div ui-view></div>
-
+{{ globals.currentUser.ticketQuantity }}
 
 
 

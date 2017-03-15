@@ -6,9 +6,11 @@
         </div>
         <!--<div class="modal-body">-->
 
-            {{ctrl.movieList}}
+
 
             <div ng-controller="addTicketController as ctrl" ng-submit="testCtrl.addText(qty)">
+                {{ctrl.error}}
+                {{ctrl.errorMessage}}
 
                 <form role="form">
 

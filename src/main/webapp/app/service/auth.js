@@ -48,6 +48,14 @@ function($http, $rootScope, $window, $cookieStore, Session, AUTH_EVENTS, userDAL
         $http.defaults.headers.common.Authorization = 'Basic ';
     };
 
+    authService.addOrder = function(ticketArray) {
+    	$rootScope.globals.currentUser.order = ticketArray;
+	};
+
+    authService.getOrder = function() {
+    	return $rootScope.globals.currentUser.order;
+	};
+
     authService.setSeats = function(seats) {
     	if($rootScope.globals.currentUser == undefined) {
     		$rootScope.globals.currentUser = {};

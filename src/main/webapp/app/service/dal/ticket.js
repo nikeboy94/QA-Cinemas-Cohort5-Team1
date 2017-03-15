@@ -26,5 +26,13 @@
             return dal.http.DELETE("rest/ticket/json/" + ticketIdToDelete);
         };
 
+        this.getPrice = function(showingId) {
+            return dal.http.GET("rest/ticket/json/price/" + showingId );
+        };
+
+        this.addOrder = function(orderToAdd) {
+            return dal.http.POST("rest/ticket/json/");
+        }
+
     }
 }());
