@@ -1,12 +1,12 @@
 (function () {
 
-    var viewercontroller = function ($state, Auth) {
+    var viewercontroller = function ($state, Auth,$modalStack) {
 
 
         var vm = this;
         vm.test = "LOL";
         vm.counter = 0;
-        vm.tickets = Auth.getTicketQuantity();
+        vm.tickets =2; // Auth.getTicketQuantity();
         vm.reservedSeats = [{
             seatId: '1A'
         }];
@@ -24,7 +24,7 @@
         vm.submitSeats = function () {
             if (vm.counter == vm.tickets) {
                 Auth.setSeats(vm.bookedSeats);
-                $state.go('dashboard');
+                $modalStack.dismissAll();
             }
             else{
                 alert("Please select "+vm.new+" more seats!")
@@ -61,5 +61,5 @@
 
     };
 
-    angular.module("movieApp").controller("viewercontroller", ['$state', 'Auth', viewercontroller]);
+    angular.module("movieApp").controller("viewercontroller", ['$state', 'Auth', '$modalStack', viewercontroller]);
 }());
