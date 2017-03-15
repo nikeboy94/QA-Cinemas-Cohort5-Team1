@@ -1,31 +1,64 @@
 (function () {
 
-    var viewercontroller = function () {
+    var viewercontroller = function ($state, Auth) {
 
 
         var vm = this;
-        vm.test="LOL";
-vm.counter=0;
-        vm.checkboxChanged = function(id) {
-             if ($('#'+id).attr('checked')){
+        vm.test = "LOL";
+        vm.counter = 0;
+
+        vm.tickets = 5;
+        vm.screen = 1;
+        vm.reservedSeats = [{
+            seatId: '1A'
+        }];
+
+        vm.bookedSeats = [];
+        vm.reserved = function () {
+            for (var i = 0; i < vm.reservedSeats.length; i++) {
+                ($('#' + vm.reservedSeats[i].seatId)).addClass('reserved');
+            }
+        };
+        vm.reserved();
+        vm.submitSeats = function () {
+            if (vm.counter == vm.tickets) {
+                Auth.setSeats(vm.bookedSeats);
+                $state.go('dashboard');
+            }
+            else{
+                alert("Please select "+vm.new+" more seats!")
+            }
+        }
+
+
+        vm.checkboxChanged = function (id) {
+
+
+            if ($('#' + id).attr('checked')) {
+                var index = vm.bookedSeats.indexOf(id);
+                vm.bookedSeats.splice(index, 1);
+                ($('#' + id).attr('checked', false));
                 vm.counter--;
-                ($('#'+id).attr('checked',false));
-            }else {
-                ($('#'+id).attr('checked',true));
+            } else {
+                ($('#' + id).attr('checked', true));
+                vm.bookedSeats.push(id);
                 vm.counter++;
             }
-            if (vm.counter==2){
+            if (vm.counter == vm.tickets) {
                 var checkboxes = $('#seatmap').find('input[type="checkbox"]');
                 var checkedboxes = checkboxes.filter(":checked");
-               var uncheckedboxes = checkboxes.not(checkedboxes);
-               uncheckedboxes.prop('disabled', true);
-               //$('#seatmap').find('input[type="checkbox"]').prop("disabled",true);
+                var uncheckedboxes = checkboxes.not(checkedboxes);
+                uncheckedboxes.prop('disabled', true);
+
             }
-            if (vm.counter<2){
-                $('#seatmap').find('input[type="checkbox"]').prop("disabled",false);
+            if (vm.counter < vm.tickets) {
+                $('#seatmap').find('input[type="checkbox"]').prop("disabled", false);
             }
+            vm.new = +vm.tickets-vm.counter;
 
         };
+
     };
-    angular.module("movieApp").controller("viewercontroller", [viewercontroller]);
+
+    angular.module("movieApp").controller("viewercontroller", ['$state', 'Auth', viewercontroller]);
 }());
