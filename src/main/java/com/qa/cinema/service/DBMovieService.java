@@ -32,8 +32,7 @@ public class DBMovieService implements MovieService {
 	
 	@Override
 	public String listCurrentMovies() {
-		Date currentDate = new Date();
-		Query query = em.createQuery("SELECT m FROM Movie m WHERE m.releaseDate <= :todayDate").setParameter("todayDate", currentDate);
+		Query query = em.createQuery("SELECT DISTINCT s.movie FROM Showing s");
 		Collection<Movie> movies = (Collection<Movie>) query.getResultList();
 		return util.getJSONForObject(movies);
 	}
