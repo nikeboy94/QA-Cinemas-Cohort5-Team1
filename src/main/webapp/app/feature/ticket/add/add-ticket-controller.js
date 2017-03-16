@@ -28,16 +28,18 @@
                 ticketDal.getPrice(ticket.showing.showingId, 'CHILD').then(function(result) {
                     ticketDalSuccess(result, childQty, 'CHILD');
                     Auth.addOrder(vm.ticketArray);
+                    alert(JSON.stringify(Auth.getOrder()));
+                    $state.go("payment");
                 }), function(error) {
                     ticketDalFailure(error);
                 };
             };
 
             var ticketDalSuccess = function (result, qty, ticketType) {
-                var thisTicket = initNewTicket();
-                thisTicket.ticketType = ticketType;
-                thisTicket.price = result.price;
                 for (var i = 0; i < qty; i++) {
+                    var thisTicket = initNewTicket();
+                    thisTicket.ticketType = ticketType;
+                    thisTicket.price = result.price;
                     vm.ticketArray.push(thisTicket);
                 }
             };
@@ -57,10 +59,12 @@
             };
 
             ticket.orderId = new Date().getTime();
+
             var childTicket = initNewTicket();
             var adultTicket = initNewTicket();
             adultTicket.ticketType = 'ADULT';
             childTicket.ticketType = 'CHILD';
+
 
 
             ticketDal.getPrice(ticket.showing.showingId, 'ADULT').then(function(result) {
