@@ -1,6 +1,8 @@
 package com.qa.cinema.persistence;
 
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -9,6 +11,8 @@ import javax.persistence.ManyToOne;
 
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
+
+import com.qa.cinema.enums.TicketType;
 
 /**
  * 
@@ -40,6 +44,9 @@ public class Ticket {
 	@OnDelete(action=OnDeleteAction.CASCADE)
 	@JoinColumn(name="email", nullable=false)
 	private User user;
+	
+	@Enumerated(EnumType.STRING)
+	private TicketType ticketType;
 	
 	public Ticket() {
 		//Empty constructor
@@ -104,6 +111,14 @@ public class Ticket {
 		this.price = updatedTicket.getPrice();
 		this.seat = updatedTicket.getSeat();
 		this.showing = updatedTicket.getShowing();
+	}
+	
+	public TicketType getTicketType() {
+		return ticketType;
+	}
+	
+	public void setTicketType(TicketType ticketType) {
+		this.ticketType = ticketType;
 	}
 	
 

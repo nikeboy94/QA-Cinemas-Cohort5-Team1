@@ -1,5 +1,9 @@
 package com.qa.cinema.service;
 
+import java.util.Date;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Collection;
 
@@ -13,6 +17,7 @@ import javax.persistence.Query;
 import org.apache.log4j.Logger;
 
 import com.qa.cinema.persistence.Ticket;
+import com.qa.cinema.enums.TicketType;
 import com.qa.cinema.persistence.Seat;
 import com.qa.cinema.persistence.Showing;
 import com.qa.cinema.util.JSONUtil;
@@ -154,6 +159,49 @@ public class DBTicketService implements TicketService {
 		Query query = manager.createQuery("SELECT t FROM Ticket t WHERE t.orderId = :orderId").setParameter("orderId", orderId);
 		Collection<Ticket> ticketsInOrder = (Collection<Ticket>) query.getResultList();
 		return util.getJSONForObject(ticketsInOrder);
+	}
+	
+
+	@Override
+	public String getTicketPrice(Long showingId, String stringTicketType) {
+		
+		TicketType ticketType = null;
+		try {
+			ticketType = TicketType.valueOf(stringTicketType.toUpperCase());
+		} catch (IllegalArgumentException e) {
+			LOGGER.info("In getTicketPrice. IllegalArgumentException: " + e);
+			return "{\"message\": \"No such ticket type " + stringTicketType + "\"}";
+		}
+		
+		Showing showing = manager.find(Showing.class, showingId);
+		double price = 9.0;
+		
+		
+		DateFormat formatter;
+		Date showingDate;
+		formatter = new SimpleDateFormat("YYY-MM-DD HH:MM:SS");
+		
+		try {
+			showingDate = (Date) formatter.parse(showing.getDateTime());
+		} catch (ParseException e) {
+			LOGGER.info(e);
+			return "{\"message\": \"Could not get price\"}";
+		}
+
+		if(showingDate.getDay() == 0 || showingDate.getDay() == 1) {
+			price *= 1.3;
+		}
+		
+		if(showingDate.getHours() > 19) {
+			price *= 1.3;
+		}
+		
+		if(ticketType == TicketType.CHILD) {
+			LOGGER.info("In getTicketPrice: Child ticket");
+			price *= 0.7;
+		}
+				
+		return "{\"price\": \" " + price + "\"}";
 	}	
 
 }

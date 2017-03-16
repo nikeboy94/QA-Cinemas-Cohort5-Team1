@@ -9,19 +9,15 @@
 <div ng-controller="addTicketController as ctrl" ng-submit="testCtrl.addText(qty)">
 
 <form role="form">
-    <div class="form-group">
-        <label for="price">Price:</label>
-    <input class="form-control" id="price" placeholder="price" ng-model="ticket.price">
-    </div>
-
-    <div class="form-group">
-        <label for="orderId">OrderId:</label>
-    <input class="form-control" id="orderId" placeholder="orderId" ng-model="ticket.orderId">
-    </div>
 
     <div class="form-group">
         <label for="seat">Seat:</label>
     <input class="form-control" id="seat" placeholder="seat" ng-model="ticket.seat.seatId">
+    </div>
+
+    <div class="form-group">
+        <label for="showing">Movie:</label>
+        <input class="form-control" id="movie" placeholder="movie" ng-model="movieId">
     </div>
 
     <div class="form-group">
@@ -31,7 +27,12 @@
 
     <div class="form-group">
         <label for="email">Email:</label>
-    <input class="form-control" id="email" placeholder="email" ng-model="ticket.user.email">
+        <div ng-if="globals.currentUser.email != undefined">
+            <input class="form-control" id="email" ng-model="globals.currentUser.email" disabled>
+        </div>
+        <div ng-if="globals.currentUser.email == undefined">
+            <input class="form-control" id="email" placeholder="email" ng-model="ticket.user.email">
+        </div>
     </div>
     <div class="form-group">
         <label for="amount">Quantity:</label>
@@ -39,7 +40,7 @@
     </div>
 
         <button type="submit" ng-click="ctrl.addText(ticket, qty)">Continue</button>
-
+        <button type="submit" ng-click="ctrl.showSeatViewer()">seats</button>
     </form>
 </div>
 </div>
