@@ -58,31 +58,58 @@
                             </div>
                         </div>
                         <div ng-controller="getShowingByMovieController as ctrler">
-                            <div>
-                                <button type="submit"
-                                        ng-click="ctrler.getByMovie(ctrl.movies[0].movieId); Today = !Today ">Today
-                                </button>
-                                <div ng-show="Today" class="row">
-                                    <div class="film-poster col-xs-6 col-sm-4 col-xl-3"
-                                         ng-repeat="x in ctrler.showings|filter: (ctrler.today | date:'yyyy-MM-dd')">
-                                        <a ng-click="ctrler.replace(x)" ng-href="/getmovie#myModal"
-                                           data-showingId="{{x.showingId}}" data-dateTime="{{x.dateTime | date}}"
-                                           data-toggle="modal">
-                                            <button type="submit">{{x.dateTime | date: 'H:mm'}}</button>
-                                        </a>
+                            <button type="submit"
+                                    ng-click="ctrler.getByMovie(ctrl.movies[0].movieId); Book = !Book ">Find Times
+                            </button>
+                            <div ng-show="Book">
+                                <div>
+                                    <div ng-show="(ctrler.showings|filter: (ctrler.today | date:'yyyy-MM-dd')).length > 0">
+                                        <button type="submit"
+                                                ng-click="Today = !Today">Today
+                                        </button>
+                                    </div>
+                                    <div ng-show="Today" class="row">
+                                        <div class="film-poster col-xs-6 col-sm-4 col-xl-3"
+                                             ng-repeat="x in ctrler.showings|filter: (ctrler.today | date:'yyyy-MM-dd')">
+                                            <a ng-click="ctrler.replace(x)" ng-href="/getmovie#myModal"
+                                               data-showingId="{{x.showingId}}" data-dateTime="{{x.dateTime | date}}"
+                                               data-toggle="modal">
+                                                <button type="submit">{{x.dateTime | date: 'H:mm'}}</button>
+                                            </a>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                            <div>
-                                <button type="submit"
-                                        ng-click="ctrler.getByMovie(ctrl.movies[0].movieId); Tomorrow = !Tomorrow">
-                                    Tomorrow
-                                </button>
-                                <div ng-show="Tomorrow" class="row">
+                                <div>
+                                    <div ng-show="(ctrler.showings|filter: (ctrler.tomorrow | date:'yyyy-MM-dd')).length > 0">
+                                        <button type="submit"
+                                                ng-click="Tomorrow = !Tomorrow">
+                                            Tomorrow
+                                        </button>
+                                    </div>
+                                    <div ng-show="Tomorrow" class="row">
+                                        <div class="film-poster col-xs-6 col-sm-4 col-xl-3"
+                                             ng-repeat="y in ctrler.showings|filter: (ctrler.tomorrow | date:'yyyy-MM-dd')">
+                                            <a ng-click="ctrler.replace(y)" ng-href="/getmovie#myModal"
+                                               data-showingId="{{y.showingId}}" data-dateTime="{{y.dateTime | date}}"
+                                               data-toggle="modal">
+                                                <button type="submit">{{y.dateTime | date: 'H:mm'}}</button>
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div ng-show="(ctrler.showings|filter: (ctrler.future | date:'yyyy-MM-dd')).length > 0">
+                                    <button type="submit"
+                                            ng-click="Future = !Future">
+                                        Future Showings
+                                    </button>
+                                </div>
+                                <div ng-show="Future" class="row">
                                     <div class="film-poster col-xs-6 col-sm-4 col-xl-3"
-                                         ng-repeat="y in ctrler.showings|filter: (ctrler.tomorrow | date:'yyyy-MM-dd')">
-                                        <a ng-click="ctrler.replace(y)">
-                                            <button type="submit">{{y.dateTime | date}}</button>
+                                         ng-repeat="y in ctrler.showings|myFilter:ctrler.showings">
+                                        <a ng-click="ctrler.replace(y)" ng-href="/getmovie#myModal"
+                                           data-showingId="{{y.showingId}}" data-dateTime="{{y.dateTime | date}}"
+                                           data-toggle="modal">
+                                            <button type="submit">{{y.dateTime}}</button>
                                         </a>
                                     </div>
                                 </div>
@@ -175,7 +202,6 @@
                                     </table>
                                 </form>
                             </div>
-
                             <div class="form-group">
                                 <label for="seat">Seat:</label>
                                 <input class="form-control" id="seat" placeholder="seat" ng-model="ticket.seat.seatId">

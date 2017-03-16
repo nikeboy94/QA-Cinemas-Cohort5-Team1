@@ -50,6 +50,7 @@
             return dal.http.DELETE("rest/movie/json/" + movieToDeleteId);
         };
 
+        this.movieId = "Default"
         this.movieTitle = "Default";
 
     }
