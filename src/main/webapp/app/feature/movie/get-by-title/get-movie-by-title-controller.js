@@ -1,12 +1,12 @@
 (function() {
 
-    var GetByTitleController =  function($scope, $state, movieDal) {
+    var GetByTitleController =  function($rootScope, $state, movieDal) {
         var vm = this;
         
-        var savedTitle = movieDal.movieTitle;
+        var savedTitle = $rootScope.globals.movieTitle;
 
         function getByTitle() {
-            movieDal.getMoviesByTitle(movieDal.movieTitle).then(function (results) {
+            movieDal.getMoviesByTitle($rootScope.globals.movieTitle).then(function (results) {
                 vm.movies  = results;
             }, function (error) {
                 vm.error = true;
@@ -43,7 +43,7 @@
            vm.newMovie.count = newCount;
            vm.updateRating(vm.movies[0].movieId, vm.newMovie);
            movieDal.movieTitle = savedTitle;
-           movieDal.getMoviesByTitle(savedTitle).then(function (results) {
+           movieDal.getMoviesByTitle($rootScope.globals.movieTitle).then(function (results) {
                 vm.movies  = results;
             }, function (error) {
                 vm.error = true;
@@ -54,6 +54,6 @@
 
     };
 
-    angular.module('movieApp').controller('getByTitleController', ['$scope', '$state', 'movieDal', GetByTitleController]);
+    angular.module('movieApp').controller('getByTitleController', ['$rootScope', '$state', 'movieDal', GetByTitleController]);
 
 }());
