@@ -208,5 +208,19 @@ ol {
 }
 
 .reserved{
-  color:black !important;
+
+  box-shadow: none;
+}
+
+.reserved label{
+  background-color: #3F0C1C;
+  opacity:0.2;
+  cursor:not-allowed;
+  box-shadow: none;
+}
+.reserved label:hover {
+  background-color: #3F0C1C;
+  opacity:0.2;
+  cursor:not-allowed;
+  box-shadow: none;
 }
