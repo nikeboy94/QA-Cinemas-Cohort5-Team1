@@ -64,9 +64,9 @@
                 templateUrl : 'app/feature/seat/viewer/viewer.html',
                 controller : "viewercontroller",
                 backdrop:'static'
-
+            
             });
-
+        }
         vm.init = function(){
 
             movieDal.getMovies().then(function (result) {
