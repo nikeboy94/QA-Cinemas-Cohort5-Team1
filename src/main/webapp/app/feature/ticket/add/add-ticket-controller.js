@@ -1,26 +1,31 @@
 (function() {
 
-    var AddTicketController = function(ticketDal, Auth, $state, $scope, $modal) {
+
+    var AddTicketController = function(ticketDal, Auth, $state, $scope, movieDal, showingDal, $modal ) {
         var vm = this;
 
-        this.ticketArray = [];
+        vm.ticketArray = [];
 
-        this.addText = function(ticket, qty) {
+        this.addTicket = function(ticket, qty) {
             Auth.setTicketQuantity(qty);
-            $state.go('dashboard');
+           // $state.go('dashboard');
+            var myId = '1';
+            ticketDal.getPrice(myId).then(function(results) {
+                ticket.price = results.price;
+            }), function(error) {
+                vm.error = true;
+                vm.errorMessage = error;
+            };
 
             ticket.orderId=new Date().getTime()
             for (var i = 0; i < qty; i++) {
-
-                var obj = {
-                    text: "something"
-                };
-
-                console.log(i);
-                this.ticketArray.push(ticket);
+                vm.ticketArray.push(ticket);
             }
+            console.log(vm.ticketArray);
+            Auth.addOrder(vm.ticketArray);
 
         };
+
 
         vm.showSeatViewer = function() {
               vm.modalInstance = $modal.open({
@@ -29,8 +34,30 @@
                 backdrop:'static'
 
             });
+
+        vm.init = function(){
+
+            movieDal.getMovies().then(function(results){
+                vm.movieList=results;
+            }), function(error) {
+                vm.error = true;
+                vm.errorMessage = error;
+            }
+        };
+        vm.init();
+
+        vm.getShowingsById = function(movieId) {
+            showingDal.getShowingByMovie(movieId).then(function(results){
+                vm.movieShowingList=results;
+            }), function(error){
+                alert(error);
+                vm.error = true;
+                vm.errorMessage = error;
+            }
+
         };
 
+        /*
         vm.addTicket = function(ticketToAdd) {
 
             ticketDal.addTicket(ticketToAdd).then(function (results) {
@@ -42,9 +69,9 @@
             });
 
 
-        };
+        }; */
     };
-
-    angular.module('movieApp').controller('addTicketController', ['ticketDal', 'Auth', '$state', '$scope', '$modal', AddTicketController]);
+      
+    angular.module('movieApp').controller('addTicketController', ['ticketDal', 'Auth', '$state', '$scope', 'movieDal', 'showingDal', '$modal', AddTicketController]);
 
 }());

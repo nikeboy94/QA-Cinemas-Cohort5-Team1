@@ -47,9 +47,34 @@ function($http, $rootScope, $window, $cookieStore, Session, AUTH_EVENTS, userDAL
         $http.defaults.headers.common.Authorization = 'Basic ';
     };
 
+
     authService.getTicketQuantity = function() {
     	return $rootScope.globals.currentUser.ticketQuantity;
 	}
+
+
+    authService.addOrder = function(ticketArray) {
+    	$rootScope.globals.currentUser.order = ticketArray;
+	};
+
+    authService.getOrder = function() {
+    	return $rootScope.globals.currentUser.order;
+	};
+
+
+
+    authService.addCard = function(card) {
+    	if ($rootScope.globals.currentUser == undefined) {
+    		$rootScope.globals.currentUser = {};
+		}
+    	$rootScope.globals.currentUser.card = card;
+	};
+
+    authService.getCard = function() {
+        return $rootScope.globals.currentUser.card;
+    };
+
+
 
     authService.setSeats = function(seats) {
     	if($rootScope.globals.currentUser == undefined) {
@@ -60,6 +85,7 @@ function($http, $rootScope, $window, $cookieStore, Session, AUTH_EVENTS, userDAL
 
 	authService.getSeats = function() {
     	return $rootScope.globals.currentUser.seats;
+
 	};
 
 	//check if the user is authenticated
@@ -84,7 +110,7 @@ function($http, $rootScope, $window, $cookieStore, Session, AUTH_EVENTS, userDAL
 		$window.sessionStorage.removeItem("userInfo");
 		$rootScope.$broadcast(AUTH_EVENTS.logoutSuccess);
     $rootScope.globals.currentUser.email = undefined;
-  }
+  };
 
 	return authService;
 } ]);

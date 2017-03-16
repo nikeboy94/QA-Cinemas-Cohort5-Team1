@@ -1,11 +1,11 @@
 (function(){
 
-    var GetTicketController = function(ticketDal)
+    var GetTicketController = function($rootScope, ticketDal)
     {
         var vm = this;
 
-        vm.getTickets = function(email) {
-            ticketDal.getTickets(email).then(function (results) { //function if successful
+        vm.getTickets = function() {
+            ticketDal.getTickets( $rootScope.globals.currentUser.email).then(function (results) { //function if successful
                 vm.tickets = results;
             }, function (error){  //function if fail
                 vm.error = true;
@@ -13,6 +13,8 @@
             });
         }
 
+        vm.getTickets();
+
     };
-    angular.module("movieApp").controller("getTicketsController", ["ticketDal", GetTicketController]);
+    angular.module("movieApp").controller("getTicketsController", ["$rootScope", "ticketDal", GetTicketController]);
 }());

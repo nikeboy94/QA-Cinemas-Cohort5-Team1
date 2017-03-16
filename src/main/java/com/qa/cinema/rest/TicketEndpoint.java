@@ -79,5 +79,13 @@ public class TicketEndpoint {
 	public String getTicketsInOrder(@PathParam("orderId") String orderId) {
 		return service.getTicketsByOrderId(orderId);
 	}
+	
+	@Path("/json/price/{showingId}")
+	@GET
+	@Produces({"application/json"})
+	public String getTicketPrice(@PathParam("showingId") Long showingId) {
+		return service.getTicketPrice(showingId);
+	}
+	
 
 }

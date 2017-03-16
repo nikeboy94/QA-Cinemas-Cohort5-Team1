@@ -1,6 +1,7 @@
 package com.qa.cinema.service;
 
 import java.util.Collection;
+import java.util.Date;
 
 import javax.ejb.Stateless;
 import javax.enterprise.inject.Default;
@@ -25,6 +26,22 @@ public class DBMovieService implements MovieService {
 	@Override
 	public String listAllMovies() {
 		Query query = em.createQuery("SELECT m FROM Movie m");
+		Collection<Movie> movies = (Collection<Movie>) query.getResultList();
+		return util.getJSONForObject(movies);
+	}
+	
+	@Override
+	public String listCurrentMovies() {
+		Date currentDate = new Date();
+		Query query = em.createQuery("SELECT m FROM Movie m WHERE m.releaseDate <= :todayDate").setParameter("todayDate", currentDate);
+		Collection<Movie> movies = (Collection<Movie>) query.getResultList();
+		return util.getJSONForObject(movies);
+	}
+	
+	@Override
+	public String listComingSoonMovies() {
+		Date currentDate = new Date();
+		Query query = em.createQuery("SELECT m FROM Movie m WHERE m.releaseDate > :todayDate").setParameter("todayDate", currentDate);
 		Collection<Movie> movies = (Collection<Movie>) query.getResultList();
 		return util.getJSONForObject(movies);
 	}
