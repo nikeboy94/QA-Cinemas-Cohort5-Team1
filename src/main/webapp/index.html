@@ -61,12 +61,15 @@
 			<li class="dropdown">
 				<a class="dropdown-toggle" data-toggle="dropdown">Tickets
 					<span class="caret"></span></a>
+
 				<ul class="dropdown-menu" id="ticket">
 					<li><a ui-sref="gettickets" id="get-user-tickets" onclick="styleChange(this)">Get Tickets</a></li>
 					<li><a ui-sref="updateticket" id="update-ticket" onclick="styleChange(this)">Update Tickets</a></li>
 					<li><a ui-sref="addticket" id="add-ticket" onclick="styleChange(this)">Add Ticket</a></li>
 					<li><a ui-sref="getavailableticket" id="get-available-ticket" onclick="styleChange(this)">Get Available Tickets For Showing</a></li>
 					<li><a ui-sref="deleteticket" id="delete-ticket" onclick="styleChange(this)">Delete Ticket</a></li>
+          <li><a ui-sref="addticketstandalone" onclick="stylechange(this)">Quick book ticket</a></li>
+
 				</ul>
 			</li>
      		 <li class="dropdown">
@@ -144,7 +147,7 @@
 	
 
 		<div ui-view></div>
-
+{{ globals.currentUser.ticketQuantity }}
 
 
 

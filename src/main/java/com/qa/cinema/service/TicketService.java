@@ -1,5 +1,7 @@
 package com.qa.cinema.service;
 
+import com.qa.cinema.enums.TicketType;
+
 /**
  * 
  * @author Omar
@@ -25,4 +27,6 @@ public interface TicketService {
 
 
 	String getTicketsByOrderId(String orderId);
+
+	String getTicketPrice(Long showingId, String ticketType);
 }

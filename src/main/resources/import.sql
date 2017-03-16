@@ -19,6 +19,7 @@ INSERT INTO Movie(movieID, title, genre, releaseDate, classification, posterUrl,
 INSERT INTO Screen(screenId, screenType, screenDesc) VALUES(1, 'Standard', 'A standard screen, for standard people.');
 INSERT INTO Screen(screenId, screenType, screenDesc) VALUES(2, 'Standard', 'Another standard screen.');
 INSERT INTO Screen(screenId, screenType, screenDesc) VALUES(3, 'Deluxe', 'A fancy screen, like a sir.');
+
 INSERT INTO Showing(showingId, screenId, movieId, dateTime) VALUES(1, 1, 1, '2017-03-16T12:00:00');
 INSERT INTO Showing(showingId, screenId, movieId, dateTime) VALUES(2, 1, 1, '2017-03-20T17:00:00');
 INSERT INTO Showing(showingId, screenId, movieId, dateTime) VALUES(3, 1, 1, '2017-03-16T12:00:00');
@@ -33,6 +34,7 @@ INSERT INTO Showing(showingId, screenId, movieId, dateTime) VALUES(11, 3, 10, '2
 INSERT INTO Showing(showingId, screenId, movieId, dateTime) VALUES(12, 3, 11, '2017-03-23T16:00:00');
 INSERT INTO Showing(showingId, screenId, movieId, dateTime) VALUES(13, 3, 12, '2017-03-16T12:00:00');
 INSERT INTO Showing(showingId, screenId, movieId, dateTime) VALUES(14, 3, 15, '2017-03-26T12:00:00');
+
 INSERT INTO SEAT(seatId, row, col, screenId) VALUES ( '1_1A', 1, 'A', 1);
 INSERT INTO SEAT(seatId, row, col, screenId) VALUES ( '1_1B', 1, 'B', 1);
 INSERT INTO SEAT(seatId, row, col, screenId) VALUES ( '1_1C', 1, 'C', 1);
@@ -173,6 +175,6 @@ INSERT INTO SEAT(seatId, row, col, screenId) VALUES ( '2_10D', 10, 'D', 2);
 INSERT INTO SEAT(seatId, row, col, screenId) VALUES ( '2_10E', 10, 'E', 2);
 INSERT INTO SEAT(seatId, row, col, screenId) VALUES ( '2_10F', 10, 'F', 2);
 INSERT INTO SEAT(seatId, row, col, screenId) VALUES ( '2_10G', 10, 'G', 2);
-INSERT INTO Ticket(ticketId, price, orderId, seatId, showingId, email) VALUES(1,'1','a', '1_1A', 1, 'a@a.com');
-INSERT INTO Ticket(ticketId, price, orderId, seatId, showingId, email) VALUES(2, 3,'a1', '1_1B', 1, 'o.fahmy@outlook.com');
-INSERT INTO Ticket(ticketId, price, orderId, seatId, showingId, email) VALUES(3, 12,'a1', '1_1C', 1, 'o.fahmy@outlook.com');
+INSERT INTO Ticket(ticketId, price, orderId, seatId, showingId, email, ticketType) VALUES(1,'1','a', '1_1A', 1, 'a@a.com', 'adult');
+INSERT INTO Ticket(ticketId, price, orderId, seatId, showingId, email, ticketType) VALUES(2, 3,'a1', '1_1B', 1, 'o.fahmy@outlook.com', 'adult');
+INSERT INTO Ticket(ticketId, price, orderId, seatId, showingId, email, ticketType) VALUES(3, 12,'a1', '1_1C', 1, 'o.fahmy@outlook.com', 'child');
