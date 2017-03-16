@@ -17,6 +17,7 @@ import javax.persistence.Query;
 import org.apache.log4j.Logger;
 
 import com.qa.cinema.persistence.Ticket;
+import com.qa.cinema.enums.TicketType;
 import com.qa.cinema.persistence.Seat;
 import com.qa.cinema.persistence.Showing;
 import com.qa.cinema.util.JSONUtil;
@@ -162,9 +163,18 @@ public class DBTicketService implements TicketService {
 	
 
 	@Override
-	public String getTicketPrice(Long showingId) {
+	public String getTicketPrice(Long showingId, String stringTicketType) {
+		
+		TicketType ticketType = null;
+		try {
+			ticketType = TicketType.valueOf(stringTicketType.toUpperCase());
+		} catch (IllegalArgumentException e) {
+			LOGGER.info("In getTicketPrice. IllegalArgumentException: " + e);
+			return "{\"message\": \"No such ticket type " + stringTicketType + "\"}";
+		}
+		
 		Showing showing = manager.find(Showing.class, showingId);
-		double price = 8.0;
+		double price = 9.0;
 		
 		
 		DateFormat formatter;
@@ -179,11 +189,16 @@ public class DBTicketService implements TicketService {
 		}
 
 		if(showingDate.getDay() == 0 || showingDate.getDay() == 1) {
-			price += 3;
+			price *= 1.3;
 		}
 		
 		if(showingDate.getHours() > 19) {
-			
+			price *= 1.3;
+		}
+		
+		if(ticketType == TicketType.CHILD) {
+			LOGGER.info("In getTicketPrice: Child ticket");
+			price *= 0.7;
 		}
 				
 		return "{\"price\": \" " + price + "\"}";

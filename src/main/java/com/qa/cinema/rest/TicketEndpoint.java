@@ -9,6 +9,7 @@ import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 
+import com.qa.cinema.enums.TicketType;
 import com.qa.cinema.service.TicketService;
 
 /**
@@ -80,11 +81,11 @@ public class TicketEndpoint {
 		return service.getTicketsByOrderId(orderId);
 	}
 	
-	@Path("/json/price/{showingId}")
+	@Path("/json/price/{showingId}/{ticketType}")
 	@GET
 	@Produces({"application/json"})
-	public String getTicketPrice(@PathParam("showingId") Long showingId) {
-		return service.getTicketPrice(showingId);
+	public String getTicketPrice(@PathParam("showingId") Long showingId, @PathParam("ticketType") String ticketType) {
+		return service.getTicketPrice(showingId, ticketType);
 	}
 	
 
