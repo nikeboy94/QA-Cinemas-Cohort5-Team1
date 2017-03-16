@@ -98,7 +98,7 @@ angular.module('movieApp').config(['$stateProvider', '$urlRouterProvider', 'USER
             url: "/viewer",
             templateUrl: "app/feature/seat/viewer/viewer.html"
         }).state("aboutus", {
-            url: "/aboutus",                //Unimplemented
+            url: "/aboutus",
             templateUrl: "app/feature/aboutUs/about-us.html"
         }).state("help", {
             url: "/help",                   //Unimplemented
