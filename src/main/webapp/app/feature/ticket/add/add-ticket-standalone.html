@@ -20,8 +20,8 @@
 
                 <div class="form-group">
                     <label for="showing">Showing:</label>
-                    <select ng-options="showing.showingId as showing.dateTime for showing in ctrl.movieShowingList"
-                            ng-model="ticket.showing.showingId"
+                    <select ng-options="showing as showing.dateTime for showing in ctrl.movieShowingList"
+                            ng-model="ticket.showing"
                             ng-change="ctrl.getPriceByShowingId()"></select>
                 </div>
 

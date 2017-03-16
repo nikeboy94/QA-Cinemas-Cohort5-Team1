@@ -176,7 +176,7 @@ public class DBTicketService implements TicketService {
 		Showing showing = manager.find(Showing.class, showingId);
 		double price = 9.0;
 		
-		
+		/*
 		DateFormat formatter;
 		Date showingDate;
 		formatter = new SimpleDateFormat("YYY-MM-DD HH:MM:SS");
@@ -202,7 +202,7 @@ public class DBTicketService implements TicketService {
 		if(showingDate.getHours() > 19) {
 			price *= 1.3;
 		}
-		
+		*/
 		if(ticketType == TicketType.CHILD) {
 			LOGGER.info("In getTicketPrice: Child ticket");
 			price *= 0.7;
