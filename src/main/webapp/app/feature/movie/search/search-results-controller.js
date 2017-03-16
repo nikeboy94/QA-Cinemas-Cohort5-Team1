@@ -1,11 +1,11 @@
 (function() {
 
-    var SearchResultsController =  function($state, movieDal) {
+    var SearchResultsController =  function($rootScope,$state, movieDal) {
         var vm = this;
 
         function searchMovies() {
 
-            movieDal.searchMovie(movieDal.movieTitle).then(function (results) {
+            movieDal.searchMovie($rootScope.globals.searchedTitle).then(function (results) {
                 vm.movies  = results;
             }, function (error) {
                 vm.error = true;
@@ -15,12 +15,12 @@
         searchMovies();
 
         vm.goToMovie = function(theTitle) {
-            movieDal.movieTitle = theTitle;
+            $rootScope.globals.movieTitle = theTitle;
             $state.go('getmoviebytitle');
         };
 
     };
 
-    angular.module('movieApp').controller('searchResultsController', ['$state', 'movieDal', SearchResultsController]);
+    angular.module('movieApp').controller('searchResultsController', ['$rootScope','$state', 'movieDal', SearchResultsController]);
 
 }());
