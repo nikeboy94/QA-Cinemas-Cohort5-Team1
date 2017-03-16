@@ -55,7 +55,8 @@ angular.module('movieApp')
 
             authService.addOrder = function (ticketArray) {
             	for (var i = 0; i < ticketArray.length; i++) {
-            		ticketArray[i].seatId = $rootScope.globals.currentUser.seats[i];
+                    ticketArray[i].seat = {};
+            		ticketArray[i].seat.seatId = $rootScope.globals.currentUser.seats[i];
 				}
                 $rootScope.globals.currentUser.order = ticketArray;
             };

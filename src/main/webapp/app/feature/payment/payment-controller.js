@@ -1,6 +1,6 @@
 (function() {
 
-    var PaymentController =  function($state, $scope, movieDal, dal, Auth) {
+    var PaymentController =  function($state, $scope, movieDal, dal, ticketDal, Auth) {
         var vm = this;
 
         vm.price = 0;
@@ -48,13 +48,22 @@
             dal.http.POST_PAYMENT(vm.payment.merchantSessionKey, vm.cardIdentifier.cardIdentifier, vm.price, vm.tXCode).then(function (results) {
                 alert(JSON.stringify(results));
                 vm.cardIdentifier = results;
+                ticketDal.addOrder(vm.formatOrder());
+                $state.go("dashboard");
             }, function (error) {
                 alert(JSON.stringify(error));
                 vm.error = true;
                 vm.errorMessage = error;
             });
         };
+
+        vm.formatOrder = function() {
+            for(var i = 0; i < vm.order.length; i++) {
+                vm.order[i].seat.seatId = vm.order[i].showing.showingId + "_" + vm.order[i].seat.seatId;
+            }
+            return vm.order;
+        }
     };
 
-    angular.module('movieApp').controller('paymentController', ['$state', '$scope', 'movieDal', 'dal', 'Auth', PaymentController]);
+    angular.module('movieApp').controller('paymentController', ['$state', '$scope', 'movieDal', 'dal', 'ticketDal', 'Auth', PaymentController]);
 }());

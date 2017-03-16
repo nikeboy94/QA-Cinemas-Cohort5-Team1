@@ -25,7 +25,6 @@
                 for (var i = 0; i < qty; i++) {
                     var thisTicket = initNewTicket();
                     thisTicket.ticketType = ticketType;
-                    alert(JSON.stringify("1!!!!!" + result.price));
                     thisTicket.price = result.price;
                     vm.ticketArray.push(thisTicket);
                 }
