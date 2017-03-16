@@ -38,7 +38,7 @@ angular.module('movieApp').run(function($rootScope, $state, Auth, AUTH_EVENTS, m
 	};
 
 	$rootScope.goToResults = function(title) {
-		$rootScope.globals.searchedTitle = title;
+		movieDal.movieTitle = title;
 		if($state.includes('searchresults')) {
 			$state.reload();
 		} else {

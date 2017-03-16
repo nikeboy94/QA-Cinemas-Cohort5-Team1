@@ -5,7 +5,7 @@
 
         function searchMovies() {
 
-            movieDal.searchMovie($rootScope.globals.searchedTitle).then(function (results) {
+            movieDal.searchMovie(movieDal.movieTitle).then(function (results) {
                 vm.movies  = results;
             }, function (error) {
                 vm.error = true;
