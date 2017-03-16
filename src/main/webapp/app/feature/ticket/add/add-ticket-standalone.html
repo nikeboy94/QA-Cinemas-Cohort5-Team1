@@ -13,11 +13,6 @@
             <form role="form">
 
                 <div class="form-group">
-                    <label for="seat">Seat:</label>
-                    <input class="form-control" id="seat" placeholder="seat" ng-model="ticket.seat.seatId">
-                </div>
-
-                <div class="form-group">
                     <label for="showing">Movie:</label>
                     <select ng-options="movie.movieId as movie.title for movie in ctrl.movieList" ng-model="selected"
                             ng-change="ctrl.getShowingsById(selected)"></select>
@@ -32,7 +27,14 @@
 
                 <div class="form-group">
                     <label for="email">Email:</label>
-                    <input class="form-control" id="email" placeholder="email" ng-model="ticket.user.email">
+                    <div ng-if="globals.currentUser.email != undefined">
+                        <input class="form-control" id="email" placeholder="email"
+                               ng-model="globals.currentUser.email" disabled>
+                    </div>
+                    <div ng-if="globals.currentUser.email == undefined">
+                        <input class="form-control" id="email" placeholder="email"
+                               ng-model="ticket.user.email">
+                    </div>
                 </div>
 
                 <div class="form-group">
