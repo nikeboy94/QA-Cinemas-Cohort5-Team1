@@ -5,22 +5,26 @@
         var vm = this;
 
         vm.ticketArray = [];
+        vm.tempChildTickets;
+        vm.tempAdultTickets;
 
         this.addTicket = function (ticket, adultQty, childQty) {
 
             var addChildTickets = function () {
                 ticketDal.getPrice(ticket.showing.showingId, 'CHILD').then(function(result) {
-                    ticketDalSuccess(result, childQty, childTicket);
+                    ticketDalSuccess(result, childQty, 'CHILD');
                     Auth.addOrder(vm.ticketArray);
                 }), function(error) {
                     ticketDalFailure(error);
                 }
             }
 
-            var ticketDalSuccess = function (result, qty, specificTicket) {
-                specificTicket.price = result.price;
+            var ticketDalSuccess = function (result, qty, ticketType) {
+                var thisTicket = initNewTicket();
+                thisTicket.ticketType = ticketType;
+                thisTicket.price = result.price;
                 for (var i = 0; i < qty; i++) {
-                    vm.ticketArray.push(specificTicket);
+                    vm.ticketArray.push(thisTicket);
                 }
             }
 
@@ -32,7 +36,6 @@
             var initNewTicket = function() {
                 var newTicket = {};
                 newTicket.orderId = ticket.orderId;
-                newTicket.seat = ticket.seat;
                 newTicket.showing = ticket.showing;
                 newTicket.user = ticket.user;
 
@@ -41,6 +44,7 @@
 
             ticket.orderId = new Date().getTime();
             Auth.setTicketQuantity(adultQty + childQty);
+            //Auth.setShowingId(ticket.showing.showindId);
 
             var childTicket = initNewTicket();
             var adultTicket = initNewTicket();
@@ -48,14 +52,13 @@
             childTicket.ticketType = 'CHILD';
 
             ticketDal.getPrice(ticket.showing.showingId, 'ADULT').then(function(result) {
-                ticketDalSuccess(result, adultQty, adultTicket);
+                ticketDalSuccess(result, adultQty, 'ADULT');
                 addChildTickets();
             }), function(error) {
                 ticketDalFailure(error);
             }
 
             // $state.go('dashboard');
-
 
         };
 
@@ -89,6 +92,12 @@
                 }
 
             };
+
+            vm.updatePrice = function() {
+                console.log("entered update price");
+                console.log("adult ticket: " + JSON.stringify(adultQty));
+            }
+
         };
 
         angular.module('movieApp').controller('addTicketController', ['ticketDal', 'Auth', '$state', 'movieDal', 'showingDal', '$modal', AddTicketController]);

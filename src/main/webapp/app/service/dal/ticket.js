@@ -35,7 +35,7 @@
         }
 
         this.getBookedSeatsForShowing = function(showingId) {
-            return dal.http.GET("rest/ticket/json/seats" + showingId);
+            return dal.http.GET("rest/ticket/json/seats/" + showingId);
         }
 
     }
