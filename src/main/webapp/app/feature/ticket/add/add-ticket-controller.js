@@ -1,6 +1,7 @@
 (function() {
 
-    var AddTicketController = function(ticketDal, Auth, $state, movieDal, showingDal ) {
+
+    var AddTicketController = function(ticketDal, Auth, $state, $scope, movieDal, showingDal, $modal ) {
         var vm = this;
 
         vm.ticketArray = [];
@@ -25,6 +26,15 @@
 
         };
 
+
+        vm.showSeatViewer = function() {
+              vm.modalInstance = $modal.open({
+                templateUrl : 'app/feature/seat/viewer/viewer.html',
+                controller : "viewercontroller",
+                backdrop:'static'
+
+            });
+
         vm.init = function(){
 
             movieDal.getMovies().then(function(results){
@@ -44,6 +54,7 @@
                 vm.error = true;
                 vm.errorMessage = error;
             }
+
         };
 
         /*
@@ -60,7 +71,7 @@
 
         }; */
     };
-
-    angular.module('movieApp').controller('addTicketController', ['ticketDal', 'Auth', '$state', 'movieDal', 'showingDal', AddTicketController]);
+      
+    angular.module('movieApp').controller('addTicketController', ['ticketDal', 'Auth', '$state', '$scope', 'movieDal', 'showingDal', '$modal', AddTicketController]);
 
 }());
