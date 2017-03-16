@@ -16,7 +16,7 @@
                     ticketDalFailure(error);
                 }
             }
-            
+
             var ticketDalSuccess = function (result, qty, specificTicket) {
                 specificTicket.price = result.price;
                 for (var i = 0; i < qty; i++) {
@@ -56,40 +56,41 @@
 
             // $state.go('dashboard');
 
-        
+
         };
 
         vm.showSeatViewer = function() {
-              vm.modalInstance = $modal.open({
-                templateUrl : 'app/feature/seat/viewer/viewer.html',
-                controller : "viewercontroller",
-                backdrop:'static'
+            vm.modalInstance = $modal.open({
+                templateUrl: 'app/feature/seat/viewer/viewer.html',
+                controller: "viewercontroller",
+                backdrop: 'static'
 
             });
-
-        vm.init = function(){
-
-            movieDal.getMovies().then(function (result) {
-                vm.movieList = result;
-            }), function (error) {
-                vm.error = true;
-                vm.errorMessage = error;
-            }
         };
-        vm.init();
 
-        vm.getShowingsById = function (movieId) {
-            showingDal.getShowingByMovie(movieId).then(function (result) {
-                vm.movieShowingList = result;
-            }), function (error) {
-                alert(error);
-                vm.error = true;
-                vm.errorMessage = error;
-            }
+            vm.init = function(){
 
+                movieDal.getMovies().then(function (result) {
+                    vm.movieList = result;
+                }), function (error) {
+                    vm.error = true;
+                    vm.errorMessage = error;
+                }
+            };
+            vm.init();
+
+            vm.getShowingsById = function (movieId) {
+                showingDal.getShowingByMovie(movieId).then(function (result) {
+                    vm.movieShowingList = result;
+                }), function (error) {
+                    alert(error);
+                    vm.error = true;
+                    vm.errorMessage = error;
+                }
+
+            };
         };
-    };
-      
-    angular.module('movieApp').controller('addTicketController', ['ticketDal', 'Auth', '$state', 'movieDal', 'showingDal', '$modal', AddTicketController]);
 
-}());
+        angular.module('movieApp').controller('addTicketController', ['ticketDal', 'Auth', '$state', 'movieDal', 'showingDal', '$modal', AddTicketController]);
+
+    }());
