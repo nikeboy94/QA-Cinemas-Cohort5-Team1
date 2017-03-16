@@ -20,6 +20,7 @@ INSERT INTO Screen(screenId, screenType, screenDesc) VALUES(1, 'Standard', 'A st
 INSERT INTO Screen(screenId, screenType, screenDesc) VALUES(2, 'Standard', 'Another standard screen.');
 INSERT INTO Screen(screenId, screenType, screenDesc) VALUES(3, 'Deluxe', 'A fancy screen, like a sir.');
 
+
 INSERT INTO Showing(showingId, screenId, movieId, dateTime) VALUES(1, 1, 1, '2017-03-16T12:00:00');
 INSERT INTO Showing(showingId, screenId, movieId, dateTime) VALUES(2, 1, 1, '2017-03-20T17:00:00');
 INSERT INTO Showing(showingId, screenId, movieId, dateTime) VALUES(3, 1, 1, '2017-03-16T12:00:00');
