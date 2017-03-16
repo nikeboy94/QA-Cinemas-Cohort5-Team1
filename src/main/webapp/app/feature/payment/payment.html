@@ -13,7 +13,7 @@
                 <div class='form-row'>
                     <div class='col-xs-12 form-group required'>
                         <label class='control-label'>Name on Card</label>
-                        <input class='form-control' size='4' type='text' value="{{ globals.currentUser.fName }}">
+                        <input class='form-control' size='4' type='text' ng-value="globals.currentUser.fName">
                     </div>
                 </div>
                 <div class='form-row'>
@@ -40,7 +40,7 @@
                     <div class='col-md-12'>
                         <div class='form-control total btn btn-info'>
                             Total:
-                            <span class='amount'>$300</span>
+                            <span class='amount'>{{ctrl.price}}</span>
                         </div>
                     </div>
                 </div>

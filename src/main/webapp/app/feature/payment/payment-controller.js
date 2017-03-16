@@ -3,12 +3,23 @@
     var PaymentController =  function($state, $scope, movieDal, dal, Auth) {
         var vm = this;
 
+        vm.price = 0;
+        vm.tXCode = "";
+
+        vm.init = function() {
+            vm.order = Auth.getOrder();
+            vm.tXCode = "qacinemas-" + vm.order[0].orderId;
+            alert(JSON.stringify(vm.order));
+            for(var i = 0; i < vm.order.length; i++)
+                vm.price += parseInt(vm.order[i].price);
+        };
+        vm.init();
+
         vm.submitNewPayment = function(card) {
             vm.card = card;
             vm.card.expiryDate = vm.card.expiryMonth + vm.card.expiryYear;
             vm.card.cardholderName = "jane doe";
             Auth.addCard(vm.card);
-            alert(JSON.stringify(Auth.getCard()));
             vm.createMerchantSessionKey();
         }
 
@@ -34,7 +45,7 @@
         };
 
         vm.submitPayment = function() {
-            dal.http.POST_PAYMENT(vm.payment.merchantSessionKey, vm.cardIdentifier.cardIdentifier, 100).then(function (results) {
+            dal.http.POST_PAYMENT(vm.payment.merchantSessionKey, vm.cardIdentifier.cardIdentifier, vm.price, vm.tXCode).then(function (results) {
                 alert(JSON.stringify(results));
                 vm.cardIdentifier = results;
             }, function (error) {
