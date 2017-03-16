@@ -43,8 +43,6 @@
             };
 
             ticket.orderId = new Date().getTime();
-            Auth.setTicketQuantity(adultQty + childQty);
-            //Auth.setShowingId(ticket.showing.showindId);
 
             var childTicket = initNewTicket();
             var adultTicket = initNewTicket();
@@ -62,14 +60,16 @@
 
         };
 
-        vm.showSeatViewer = function() {
-            vm.modalInstance = $modal.open({
-                templateUrl: 'app/feature/seat/viewer/viewer.html',
-                controller: "viewercontroller",
-                backdrop: 'static'
 
-            });
-        };
+        vm.showSeatViewer = function(adultQty, childQty, ticket) {
+            Auth.setShowingId(ticket.showing.showingId);
+            Auth.setTicketQuantity(parseInt(adultQty) + parseInt(childQty));
+              vm.modalInstance = $modal.open({
+                templateUrl : 'app/feature/seat/viewer/viewer.html',
+                controller : "viewercontroller",
+                backdrop:'static'
+
+            });}
 
             vm.init = function(){
 

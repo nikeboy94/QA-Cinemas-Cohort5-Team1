@@ -1,7 +1,10 @@
 package com.qa.cinema.service;
 
+import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Date;
+import java.util.List;
 
 import javax.ejb.Stateless;
 import javax.enterprise.inject.Default;
@@ -11,6 +14,7 @@ import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 
 import com.qa.cinema.persistence.Movie;
+import com.qa.cinema.persistence.Showing;
 import com.qa.cinema.util.JSONUtil;
 
 @Stateless
@@ -32,9 +36,17 @@ public class DBMovieService implements MovieService {
 	
 	@Override
 	public String listCurrentMovies() {
-		Date currentDate = new Date();
-		Query query = em.createQuery("SELECT m FROM Movie m WHERE m.releaseDate <= :todayDate").setParameter("todayDate", currentDate);
-		Collection<Movie> movies = (Collection<Movie>) query.getResultList();
+		//Query query = em.createQuery("SELECT DISTINCT s.movie FROM Showing s");
+		Query query = em.createQuery("SELECT s FROM Showing s");
+		Collection<Movie> movies = (Collection<Movie>) new ArrayList<Movie>();
+		Collection<Showing> showings = (Collection<Showing>) query.getResultList();
+		for (Showing sh : showings) {
+			if(LocalDateTime.now().isBefore(LocalDateTime.parse(sh.getDateTime()))) {
+				if(!(movies.contains(sh.getMovie()))) {
+					movies.add(sh.getMovie());
+				}
+			}	
+		}
 		return util.getJSONForObject(movies);
 	}
 	
