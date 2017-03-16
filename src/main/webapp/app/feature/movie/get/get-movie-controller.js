@@ -28,6 +28,7 @@
             $('#modalTitle').text(movie.title);
             $('#modalDescription').text(movie.description);
             movieDal.movieTitle = movie.title;
+            movieDal.movieId = movie.movieId;
         };
 
 
