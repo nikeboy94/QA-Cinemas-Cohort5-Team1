@@ -69,9 +69,10 @@
                 controller : "viewercontroller",
                 backdrop:'static'
 
-            });}
+            });
+        }
+        vm.init = function(){
 
-            vm.init = function(){
 
                 movieDal.getMovies().then(function (result) {
                     vm.movieList = result;
