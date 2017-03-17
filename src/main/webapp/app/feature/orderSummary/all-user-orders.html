@@ -1,26 +1,17 @@
 <div class="container">
-<div  ng-controller="orderSummaryController as ctrl" onload="getUserOrders()">
+<div  ng-controller="orderSummaryController as ctrl">
 	<h1>Order Summary</h1>
-	
-	<!-- form role="form" accept-charset="UTF-8">
-		<input id="orderId" placeholder="Order Id" ng-model="orderId">
-		<button type="submit" ng-click="ctrl.getByOrderId(orderId)">Get Tickets</button>
-	</form>
-	
-	<form role="form">
-		<input id="email" placeholder="User Email" ng-model="email">
-		<button type="submit" ng-click="ctrl.getByUser(email)">Get Tickets</button>
-	</form-->
 	
 	<div ng-repeat="order in ctrl.orderInfo">
 	<table>
 		<tr><th>Film</th></tr>
 		<tr><td>{{order.title}}</td></tr>
 		<tr><th>Date</th><th>Time</th></tr>
-		<tr><td style="padding-right: 15px;">{{order.dateTime | date}}</td><td>{{order.dateTime | date: "hh:mm"}}</td></tr>
+		<tr><td style="padding-right: 15px;">{{order.dateTime | date}}</td><td>{{order.dateTime | date: "hh:mma"}}</td></tr>
 		<tr><th>Seat</th><th>Price</th></tr>
-		<tr ng-repeat="ticket in ctrl.tickets" ng-if="ticket.orderId==order.orderId"><td style="padding-right: 15px;">Row {{ticket.seat.row}} Column {{ticket.seat.col}} </td>
-			<td>&pound{{ticket.price}}</td></tr>
+		<tr ng-repeat="ticket in ctrl.tickets" ng-if="ticket.orderId==order.orderId">
+			<td style="padding-right: 15px;">Row {{ticket.seat.row}} Column {{ticket.seat.col}} </td>
+			<td>&pound{{ticket.price | number:2}} - {{ticket.ticketType}}</td></tr>
 		<tr><td></td></tr>
 	</table>
 	<h4>Total: &pound{{order.price}}</h4>

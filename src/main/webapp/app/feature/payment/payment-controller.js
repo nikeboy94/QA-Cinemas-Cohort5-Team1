@@ -49,7 +49,7 @@
                 alert(JSON.stringify(results));
                 vm.cardIdentifier = results;
                 ticketDal.addOrder(vm.formatOrder());
-                $state.go("dashboard");
+                $state.go("ordersummary");
             }, function (error) {
                 alert(JSON.stringify(error));
                 vm.error = true;
