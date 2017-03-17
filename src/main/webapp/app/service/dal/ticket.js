@@ -31,7 +31,11 @@
         };
 
         this.addOrder = function(orderToAdd) {
-            return dal.http.POST("rest/ticket/json/");
+            return dal.http.POST("rest/ticket/json/order", orderToAdd);
+        }
+
+        this.getBookedSeatsForShowing = function(showingId) {
+            return dal.http.GET("rest/ticket/json/seats/" + showingId);
         }
 
     }

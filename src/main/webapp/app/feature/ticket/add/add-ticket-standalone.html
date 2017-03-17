@@ -1,11 +1,11 @@
 <div id="login-overlay" class="modal-dialog">
     <div class="modal-content">
         <div class="modal-header">
-            <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
+            <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span
+                    class="sr-only">Close</span></button>
             <h1 class="modal-title" id="myModalLabel">Select your tickets</h1>
         </div>
         <!--<div class="modal-body">-->
-
 
 
         <div ng-controller="addTicketController as ctrl" ng-submit="testCtrl.addText(qty)">
@@ -13,38 +13,50 @@
             <form role="form">
 
                 <div class="form-group">
-                    <label for="seat">Seat:</label>
-                    <input class="form-control" id="seat" placeholder="seat" ng-model="ticket.seat.seatId">
-                </div>
-
-                <div class="form-group">
                     <label for="showing">Movie:</label>
-                    <select ng-options="movie.movieId as movie.title for movie in ctrl.movieList" ng-model="selected" ng-change="ctrl.getShowingsById(selected)"></select>
+                    <select ng-options="movie.movieId as movie.title for movie in ctrl.movieList" ng-model="selected"
+                            ng-change="ctrl.getShowingsById(selected)"></select>
                 </div>
 
                 <div class="form-group">
                     <label for="showing">Showing:</label>
-                    <select ng-options="showing.showingId as showing.dateTime for showing in ctrl.movieShowingList" ng-model="ticket.showing.showingId"
-                        ng-change="ctrl.getPriceByShowingId()"></select>
+                    <select ng-options="showing as showing.dateTime for showing in ctrl.movieShowingList"
+                            ng-model="ticket.showing"
+                            ng-change="ctrl.getPriceByShowingId()"></select>
                 </div>
 
                 <div class="form-group">
                     <label for="email">Email:</label>
-                    <input class="form-control" id="email" placeholder="email" ng-model="ticket.user.email">
+                    <div ng-if="globals.currentUser.email != undefined">
+                        <input class="form-control" id="email" placeholder="email"
+                               ng-model="globals.currentUser.email" disabled>
+                    </div>
+                    <div ng-if="globals.currentUser.email == undefined">
+                        <input class="form-control" id="email" placeholder="email"
+                               ng-model="ticket.user.email">
+                    </div>
                 </div>
 
                 <div class="form-group">
                     <label for="adultQty">Adult:</label>
-                    <input id="adultQty" class="form-control" type="amount" min="0" max="20" ng-model="adultQty" placeholder="Adult tickets">
+                    <input id="adultQty" class="form-control" type="amount" min="0" max="20" ng-model="adultQty"
+                           placeholder="Adult tickets">
                 </div>
 
                 <div class="form-group">
                     <label for="childQty">Child:</label>
-                    <input id="childQty" class="form-control" type="amount" min="0" max="20" ng-model="childQty" placeholder="Child tickets">
+                    <input id="childQty" class="form-control" type="amount" min="0" max="20" ng-model="childQty"
+                           placeholder="Child tickets">
                 </div>
 
-                <button type="submit" ng-click="ctrl.addTicket(ticket, adultQty, childQty)">Continue</button>
-
+                <div class="form-group">
+                    <button class="btn btn-block" type="submit" ng-click="ctrl.showSeatViewer(adultQty, childQty, ticket)" id="viewer" onclick="styleChange(this)">
+                        Choose Seats
+                    </button>
+                </div>
+                <ul id="temp">
+                    <button type="submit" ng-click="ctrl.addTicket(ticket, adultQty, childQty)">Continue</button>
+                </ul>
             </form>
         </div>
         <!--</div>-->

@@ -1,6 +1,6 @@
 (function() {
 	
-	var GetShowingByMovieController = function(showingDal) {
+	var GetShowingByMovieController = function(Auth, showingDal) {
 		
 		var vm = this;
 		
@@ -18,10 +18,11 @@
             vm.replace = function(showing) {
                 $('#modalShowing').text(showing.showingId);
                 $('#modalTime').text(showing.dateTime);
+                Auth.setShowingId(showing.showingId);
             };
 
 
 		}
 	};
-	angular.module("movieApp").controller("getShowingByMovieController", ["showingDal", GetShowingByMovieController]);
+	angular.module("movieApp").controller("getShowingByMovieController", ["Auth", "showingDal", GetShowingByMovieController]);
 }());

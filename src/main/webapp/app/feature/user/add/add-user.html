@@ -1,6 +1,11 @@
 <div ng-controller="addUserController as ctrl">
-    <h1>Add a new User</h1>
-
+    <div ng-controller="paymentController as ctrl">
+        <div class="jumbotron jumbotron-fluid" style="border: 1px black solid";>
+            <div class="container">
+                <h1 >Register</h1>
+            </div>
+        </div>
+<!--
     <form role="form">
         <input id="email" placeholder="Email Address" ng-model="user.email">
 
@@ -16,4 +21,66 @@
 
         <button type="submit" ng-click="ctrl.addUser(user)">Add User</button>
     </form>
+-->
+    <div class="container">
+        <div class="row main">
+            <div class="col-lg-3"></div>
+                <form class="form-horizontal col-lg-6"  role="form">
+
+                    <div class="form-group">
+                        <label for="fName" class="cols-sm-2 control-label">First Name</label>
+                        <div class="cols-sm-10">
+                            <div class="input-group">
+                                <span class="input-group-addon"><i class="glyphicon glyphicon-user" aria-hidden="true"></i></span>
+                                <input type="text" class="form-control" name="name" id="fName"  placeholder="Enter your First Name" ng-model="user.fName"/>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="lName" class="cols-sm-2 control-label">Last Name</label>
+                        <div class="cols-sm-10">
+                            <div class="input-group">
+                                <span class="input-group-addon"><i class="glyphicon glyphicon-user" aria-hidden="true"></i></span>
+                                <input type="text" class="form-control" name="name" id="lName"  placeholder="Enter your Last Name" ng-model="user.lName"/>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="email" class="cols-sm-2 control-label">Your Email</label>
+                        <div class="cols-sm-10">
+                            <div class="input-group">
+                                <span class="input-group-addon"><i class="glyphicon glyphicon-envelope" aria-hidden="true"></i></span>
+                                <input type="text" class="form-control" name="email" id="email"  placeholder="Enter your Email" ng-model="user.email"/>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="password" class="cols-sm-2 control-label">Password</label>
+                        <div class="cols-sm-10">
+                            <div class="input-group">
+                                <span class="input-group-addon"><i class="glyphicon glyphicon-lock" aria-hidden="true"></i></span>
+                                <input type="password" class="form-control" name="password" id="password"  placeholder="Enter your Password" ng-model="user.password"/>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="confirm" class="cols-sm-2 control-label">Confirm Password</label>
+                        <div class="cols-sm-10">
+                            <div class="input-group">
+                                <span class="input-group-addon"><i class="glyphicon glyphicon-lock" aria-hidden="true"></i></span>
+                                <input type="password" class="form-control" name="confirm" id="confirm"  placeholder="Confirm your Password"/>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group ">
+                        <button type="button" class="btn btn-primary btn-lg btn-block login-button" ng-click="ctrl.addUser(user)">Register</button>
+                    </div>
+                </form>
+            </div>
+    </div>
 </div>

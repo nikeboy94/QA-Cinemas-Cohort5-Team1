@@ -1,6 +1,6 @@
 (function() {
 
-    var GetMovieController =  function($state, movieDal) {
+    var GetMovieController =  function($rootScope, $state, movieDal, Auth) {
         var vm = this;
 
 
@@ -27,7 +27,10 @@
             $('#modalImg').attr('src', movie.posterUrl);
             $('#modalTitle').text(movie.title);
             $('#modalDescription').text(movie.description);
+            $rootScope.globals.movieTitle = movie.title;
+            Auth.setCredentials();
             movieDal.movieTitle = movie.title;
+            movieDal.movieId = movie.movieId;
         };
 
 
@@ -38,5 +41,5 @@
 
     };
 
-    angular.module('movieApp').controller('getMovieController', ['$state','movieDal', GetMovieController]);
+    angular.module('movieApp').controller('getMovieController', ['$rootScope','$state','movieDal', 'Auth', GetMovieController]);
 }());
