@@ -4,10 +4,13 @@
     <script type="text/javascript"
             src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.0-rc.4/angular.min.js"></script>
     <title>Cinema Booking App</title>
+
+	<link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css" rel="stylesheet">
     <link rel="stylesheet" href="scripts/bootstrap.css"/>
     <link rel="stylesheet" href="css/globalStyle.css"/>
     <link rel="stylesheet" href="css/index.css"/>
 	<link rel="stylesheet" href="css/viewStyleSheets/home/dashboard.css" id="viewStyle"/>
+	<link rel="stylesheet" href="css/viewStyleSheets/seat/viewer-style.css"/>
 
 </head>
 <body ng-controller="ParentController">
@@ -129,6 +132,7 @@
 					<a class="dropdown-toggle" data-toggle="dropdown">{{ globals.currentUser.fName }}
 						<span class="caret"></span></a>
 					<ul class="dropdown-menu">
+						<li><a ui-sref="allorderssummary">All Orders</a></li>
 						<li><a href="#" ng-click="logout()">logout</a></li>
 					</ul>
 				</li>
@@ -149,7 +153,6 @@
 	
 
 		<div ui-view></div>
-{{ globals.currentUser.ticketQuantity }}
 
 
 
@@ -200,7 +203,9 @@
 	  <script src="app/feature/ticket/add/add-ticket-controller.js"></script>
 	  <script src="app/feature/ticket/get-available-for-showing/get-available-for-showing-controller.js"></script>
 	  <script src="app/feature/ticket/delete/delete-ticket-controller.js"></script>
+	<script src="app/feature/aboutUs/about-us-controller.js"></script>
 
+	<script src="app/feature/help/help-controller.js"></script>
 
 
     <script src="app/feature/seat/add/add-seat-controller.js"></script>
@@ -219,7 +224,7 @@
   <script src="app/feature/seat/get/get-seat-controller.js"></script>
   <script src="app/feature/seat/delete/delete-seat-controller.js"></script>
 <script src="app/feature/seat/viewer/viewercontroller.js"></script>
-
+<script src="app/feature/orderSummary/order-summary-controller.js"></script>
 
   
     <!--CONTROLLERS -->
@@ -233,12 +238,16 @@
     <script src="app/service/auth.js"></script>
     <script src="app/service/session.js"></script>
 
-	<div id="footer">
+	<!--GOOGLE-->
+	<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDPJy9fj2xGCCTryjBcE73r69gS5-4cMlo&callback=createMap"></script>
+
+	<div >
 		<footer class="footer">
 		<div class="container">
-			<ul class="footer-links text-center" id="footerlinks">
+			<ul class="footer-links text-center", id="footerlinks">
 				<li><a ui-sref="aboutus">About us</a></li>
 				<li><a ui-sref="contactus" id="contactus" onclick="styleChange(this)">Contact Us</a></li>
+				<li><a ui-sref="help" id="help" onclick="styleChange(this)">Help</a></li>
 				<li><a ui-sref="discussion">Discussion page</a></li>
 				<li><a ui-sref="cookies">Cookies</a></li>
 			</ul>

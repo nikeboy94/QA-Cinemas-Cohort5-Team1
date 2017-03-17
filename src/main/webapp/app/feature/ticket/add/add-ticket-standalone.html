@@ -1,45 +1,64 @@
 <div id="login-overlay" class="modal-dialog">
     <div class="modal-content">
         <div class="modal-header">
-            <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
+            <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span
+                    class="sr-only">Close</span></button>
             <h1 class="modal-title" id="myModalLabel">Select your tickets</h1>
         </div>
         <!--<div class="modal-body">-->
 
 
+        <div ng-controller="addTicketController as ctrl" ng-submit="testCtrl.addText(qty)">
 
-            <div ng-controller="addTicketController as ctrl" ng-submit="testCtrl.addText(qty)">
-                {{ctrl.error}}
-                {{ctrl.errorMessage}}
+            <form role="form">
 
-                <form role="form">
+                <div class="form-group">
+                    <label for="showing">Movie:</label>
+                    <select ng-options="movie.movieId as movie.title for movie in ctrl.movieList" ng-model="selected"
+                            ng-change="ctrl.getShowingsById(selected)"></select>
+                </div>
 
-                    <div class="form-group">
-                        <label for="seat">Seat:</label>
-                        <input class="form-control" id="seat" placeholder="seat" ng-model="ticket.seat.seatId">
+                <div class="form-group">
+                    <label for="showing">Showing:</label>
+                    <select id="showing" ng-options="showing.showingId as showing.dateTime for showing in ctrl.movieShowingList"
+                            ng-model="ticket.showing.showingId"
+                            ng-change="ctrl.updateGlobalPrices(ticket.showing.showingId)"></select>
+                </div>
+
+                <div class="form-group">
+                    <label for="email">Email:</label>
+                    <div ng-if="globals.currentUser.email != undefined">
+                        <input class="form-control" id="email" placeholder="email"
+                               ng-model="globals.currentUser.email" disabled>
                     </div>
-
-                    <div class="form-group">
-                        <label for="showing">Movie:</label>
-                        <select ng-options="movie.movieId as movie.title for movie in ctrl.movieList" ng-model="selected" ng-change="ctrl.getShowingsById(selected)"></select>
+                    <div ng-if="globals.currentUser.email == undefined">
+                        <input class="form-control" id="email" placeholder="email"
+                               ng-model="ticket.user.email">
                     </div>
+                </div>
 
-                    <div class="form-group">
-                        <label for="showing">Showing:</label>
-                        <select ng-options="showing.showingId as showing.dateTime for showing in ctrl.movieShowingList" ng-model="ticket.showing.showingId" ng-change="ctrl.getPriceByShowingId()"></select>
-                    </div>
+                <div class="form-group">
+                    <label for="adultQty">Adult tickets {{ctrl.globalAdultPrice | currency:"£":2}}</label>
+                    <input id="adultQty" class="form-control" type="number" min="0" ng-model="adultQty"
+                           placeholder="Adult tickets" ng-change="ctrl.updateAdultQty(adultQty)">
+                </div>
 
-                    <div class="form-group">
-                        <label for="email">Email:</label>
-                        <input class="form-control" id="email" placeholder="email" ng-model="ticket.user.email">
-                    </div>
-                    <div class="form-group">
-                        <label for="amount">Quantity:</label>
-                        <input class="form-control" type="amount" min="1" max="20" ng-model="qty" placeholder="quantity">
-                    </div>
+                <div class="form-group">
+                    <label for="childQty">Child tickets {{ctrl.globalChildPrice | currency:"£":2}}</label>
+                    <input id="childQty" class="form-control" type="number" min="0" ng-model="childQty"
+                           placeholder="Child tickets" ng-change="ctrl.updateChildQty(childQty)">
+                </div>
 
-                    <button type="submit" ng-click="ctrl.addTicket(ticket, qty)">Continue</button>
-
-                </form>
-            </div>
-        <!--</div>-->
+                <div class="form-group">
+                    <button class="btn btn-block" type="submit" ng-click="ctrl.showSeatViewer(adultQty, childQty, ticket)" id="viewer" onclick="styleChange(this)">
+                        Choose Seats
+                    </button>
+                </div>
+                <ul id="temp">
+                    <button type="submit" ng-click="ctrl.addTicket(ticket, adultQty, childQty)">Continue</button>
+                </ul>
+            </form>
+            <h2>Total price: {{ctrl.totalPrice | currency:"£":2}} </h2>
+        </div>
+    </div>
+</div>

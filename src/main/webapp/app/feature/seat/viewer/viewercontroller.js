@@ -1,34 +1,42 @@
 (function () {
 
-    var viewercontroller = function ($state, Auth) {
+    var viewercontroller = function ($state, Auth, $modalStack, ticketDal) {
 
 
         var vm = this;
         vm.test = "LOL";
         vm.counter = 0;
-
-        vm.tickets = 5;
-        vm.screen = 1;
+        vm.tickets = Auth.getTicketQuantity();
+        vm.showingId = Auth.getShowingId();
         vm.reservedSeats = [{
             seatId: '1A'
         }];
 
+
         vm.bookedSeats = [];
         vm.reserved = function () {
-            for (var i = 0; i < vm.reservedSeats.length; i++) {
-                ($('#' + vm.reservedSeats[i].seatId)).addClass('reserved');
-            }
+            ticketDal.getBookedSeatsForShowing(vm.showingId).then(function (results) {
+                  for (var i = 0; i < results.length; i++) {
+                      var seatId = results[i].seatId;
+                      seatId=seatId.substring(seatId.indexOf("_")+1);
+                    ($('#' + seatId)).parent().addClass('reserved');
+                    ($('#' + seatId)).parent().click(false);
+                }
+            }, function (Error) {
+                alert(JSON.stringify(Error));
+            });
+
         };
         vm.reserved();
         vm.submitSeats = function () {
             if (vm.counter == vm.tickets) {
                 Auth.setSeats(vm.bookedSeats);
-                $state.go('dashboard');
+                $modalStack.dismissAll();
             }
-            else{
-                alert("Please select "+vm.new+" more seats!")
+            else {
+                alert("Please select " + vm.new + " more seats!")
             }
-        }
+        };
 
 
         vm.checkboxChanged = function (id) {
@@ -54,11 +62,11 @@
             if (vm.counter < vm.tickets) {
                 $('#seatmap').find('input[type="checkbox"]').prop("disabled", false);
             }
-            vm.new = +vm.tickets-vm.counter;
+            vm.new = +vm.tickets - vm.counter;
 
         };
 
     };
 
-    angular.module("movieApp").controller("viewercontroller", ['$state', 'Auth', viewercontroller]);
+    angular.module("movieApp").controller("viewercontroller", ['$state', 'Auth', '$modalStack', 'ticketDal', viewercontroller]);
 }());

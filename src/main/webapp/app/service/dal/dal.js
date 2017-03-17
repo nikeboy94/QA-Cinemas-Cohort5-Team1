@@ -70,7 +70,7 @@
                     return deferred.promise;
                 },
 
-                POST_PAYMENT: function (merchantSessionKey, cardIdentifier, amount) {
+                POST_PAYMENT: function (merchantSessionKey, cardIdentifier, amount, tXCode) {
                     var authorisation = "Bearer " + merchantSessionKey;
                     var deferred = $q.defer();
                     $http(
@@ -91,7 +91,7 @@
                                         save: "false"
                                     }
                                 },
-                                vendorTxCode: "4563456345634564562327289929dfg",
+                                vendorTxCode: tXCode,
                                 amount: amount,
                                 currency: "GBP",
                                 description: "demo transaction",

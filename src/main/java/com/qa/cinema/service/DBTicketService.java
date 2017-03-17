@@ -5,6 +5,7 @@ import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Collection;
 
 import javax.ejb.Stateless;
@@ -17,6 +18,7 @@ import javax.persistence.Query;
 import org.apache.log4j.Logger;
 
 import com.qa.cinema.persistence.Ticket;
+import com.qa.cinema.enums.TicketType;
 import com.qa.cinema.persistence.Seat;
 import com.qa.cinema.persistence.Showing;
 import com.qa.cinema.util.JSONUtil;
@@ -80,11 +82,26 @@ public class DBTicketService implements TicketService {
 	@Override
 	public String deleteTicket(Long ticketId) {
 		Ticket ticketInDB = findTicket(ticketId);
-		if(ticketInDB != null)	{
+		DateFormat formatter;
+		Date showingDate;
+		formatter = new SimpleDateFormat("YYY-MM-DD HH:MM:SS");
+		
+		try {
+			showingDate = (Date) formatter.parse(ticketInDB.getShowing().getDateTime());
+		} catch (ParseException e) {
+			return "{\"message\": \"Could not get showing\"}";
+		}
+		Date date = new Date();
+		Calendar cal = Calendar.getInstance();
+		cal.setTime ( date );
+		int daysToIncrement = 1;
+		cal.add(Calendar.DATE, daysToIncrement);
+		date = cal.getTime();
+		if(ticketInDB != null & showingDate.before(date))	{
 			manager.remove(ticketInDB);
 			return "{\"message\": \"ticket successfully deleted\"}";
 		}
-		return "{\"message\": \"ticket not found\"}";
+		return "{\"message\": \"ticket not available for deletion\"}";
 	}
 
 	@Override
@@ -132,7 +149,7 @@ public class DBTicketService implements TicketService {
 	
 	@Override
 	public String createMultipleTicket(String ticket) {
-		Ticket[] aTicket = util.getObjectForJSON(ticket, Ticket[].class);
+		Ticket[] aTicket = (Ticket[]) util.getObjectForJSON(ticket, Ticket[].class);
 		for(Ticket t:aTicket){
 			manager.persist(t);
 		}
@@ -162,28 +179,48 @@ public class DBTicketService implements TicketService {
 	
 
 	@Override
-	public String getTicketPrice(Long showingId) {
+	public String getTicketPrice(Long showingId, String stringTicketType) {
+		
+		TicketType ticketType = null;
+		try {
+			ticketType = TicketType.valueOf(stringTicketType.toUpperCase());
+		} catch (IllegalArgumentException e) {
+			LOGGER.info("In getTicketPrice. IllegalArgumentException: " + e);
+			return "{\"message\": \"No such ticket type " + stringTicketType + "\"}";
+		}
+		
 		Showing showing = manager.find(Showing.class, showingId);
-		double price = 8.0;
+		double price = 9.0;
 		
 		
 		DateFormat formatter;
 		Date showingDate;
 		formatter = new SimpleDateFormat("YYY-MM-DD HH:MM:SS");
 		
+		StringBuilder strShowingDate = new StringBuilder(showing.getDateTime());
+	
+		int tIndex = strShowingDate.indexOf("T");
+		strShowingDate.replace(tIndex, tIndex+1, " ");
+		
+		
 		try {
-			showingDate = (Date) formatter.parse(showing.getDateTime());
+			showingDate = (Date) formatter.parse(strShowingDate.toString());
 		} catch (ParseException e) {
 			LOGGER.info(e);
 			return "{\"message\": \"Could not get price\"}";
 		}
 
 		if(showingDate.getDay() == 0 || showingDate.getDay() == 1) {
-			price += 3;
+			price *= 1.3;
 		}
 		
 		if(showingDate.getHours() > 19) {
-			
+			price *= 1.3;
+		}
+		
+		if(ticketType == TicketType.CHILD) {
+			LOGGER.info("In getTicketPrice: Child ticket");
+			price *= 0.7;
 		}
 				
 		return "{\"price\": \" " + price + "\"}";
