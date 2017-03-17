@@ -38,13 +38,13 @@
                 </div>
 
                 <div class="form-group">
-                    <label for="adultQty">Adult tickets:</label>
+                    <label for="adultQty">Adult tickets {{ctrl.globalAdultPrice | currency:"£":2}}</label>
                     <input id="adultQty" class="form-control" type="number" min="0" ng-model="adultQty"
                            placeholder="Adult tickets" ng-change="ctrl.updateAdultQty(adultQty)">
                 </div>
 
                 <div class="form-group">
-                    <label for="childQty">Child tickets:</label>
+                    <label for="childQty">Child tickets {{ctrl.globalChildPrice | currency:"£":2}}</label>
                     <input id="childQty" class="form-control" type="number" min="0" ng-model="childQty"
                            placeholder="Child tickets" ng-change="ctrl.updateChildQty(childQty)">
                 </div>

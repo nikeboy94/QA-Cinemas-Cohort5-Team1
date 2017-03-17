@@ -86,15 +86,6 @@
 
 
         vm.showSeatViewer = function (adultQty, childQty, ticket) {
-            if (adultQty < 0 && childQty < 0) {
-                console.log("about to return");
-                return;
-            } else if (adultQty < 0) {
-                adultQty = 0;
-            } else if (childQty < 0) {
-                childQty = 0;
-            }
-
             Auth.setShowingId(ticket.showing.showingId);
             Auth.setTicketQuantity(parseInt(adultQty) + parseInt(childQty));
             vm.modalInstance = $modal.open({
