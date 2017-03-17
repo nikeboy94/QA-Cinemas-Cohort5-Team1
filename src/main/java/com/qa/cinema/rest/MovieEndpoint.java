@@ -36,7 +36,7 @@ public class MovieEndpoint {
 	
 	static final Logger LOGGER = Logger.getLogger(MovieEndpoint.class);
 	public static final String UPLOADED_FILE_PARAMETER_NAME = "image";
-    public static final String UPLOAD_DIR = System.getProperty("user.dir") + "\\images\\";
+    public static final String UPLOAD_DIR = "C:\\Users\\Administrator\\Desktop\\img\\";
 
 	@Inject
 	private MovieService service;
