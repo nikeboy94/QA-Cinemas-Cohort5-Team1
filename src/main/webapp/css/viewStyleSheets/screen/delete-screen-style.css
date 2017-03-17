@@ -1,3 +1,12 @@
 h1{
-    color: #ac2925!important;
+    color: black!important;
+}
+
+.jumbotron{
+    background: radial-gradient(#e0e0e0,#909090)!important;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.5), 0 6px 25px 0 rgba(0,0,0,0.4);
+}
+
+button:hover{
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.4), 0 6px 15px 0 rgba(0,0,0,0.3);
 }
