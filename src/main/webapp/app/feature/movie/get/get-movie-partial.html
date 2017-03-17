@@ -38,7 +38,7 @@
                     <div class="row">
 
                         <div class="film-poster col-xs-6 col-sm-4 col-xl-3" ng-repeat="film in ctrl.comingSoonMovies">
-                            <a href="/getmovie#myModal" role="button" data-img="{{film.posterUrl}}" data-title="{{film.title}}" data-desc="{{film.description}}" data-toggle="modal">
+                            <a ng-click="ctrl.replace(film)" href="/getmovie#myModal" role="button" data-img="{{film.posterUrl}}" data-title="{{film.title}}" data-desc="{{film.description}}" data-toggle="modal">
                                 <img alt="{{film.title}} poster" src="{{film.posterUrl}}" height="550" width="390" class="img-responsive">
                             </a>
                         </div>
