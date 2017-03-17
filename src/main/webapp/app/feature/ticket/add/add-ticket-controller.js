@@ -29,7 +29,7 @@
                     ticketDalSuccess(result, childQty, 'CHILD');
                     Auth.addOrder(vm.ticketArray);
                     alert(JSON.stringify(Auth.getOrder()));
-                    $('#myModal').modal('toggle');
+                    $('#myBookingModal').modal('toggle');
                     $state.go("payment");
                 }), function(error) {
                     ticketDalFailure(error);
