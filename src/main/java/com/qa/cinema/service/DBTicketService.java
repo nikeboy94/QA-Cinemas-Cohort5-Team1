@@ -5,6 +5,7 @@ import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Collection;
 
 import javax.ejb.Stateless;
@@ -81,11 +82,26 @@ public class DBTicketService implements TicketService {
 	@Override
 	public String deleteTicket(Long ticketId) {
 		Ticket ticketInDB = findTicket(ticketId);
-		if(ticketInDB != null)	{
+		DateFormat formatter;
+		Date showingDate;
+		formatter = new SimpleDateFormat("YYY-MM-DD HH:MM:SS");
+		
+		try {
+			showingDate = (Date) formatter.parse(ticketInDB.getShowing().getDateTime());
+		} catch (ParseException e) {
+			return "{\"message\": \"Could not get showing\"}";
+		}
+		Date date = new Date();
+		Calendar cal = Calendar.getInstance();
+		cal.setTime ( date );
+		int daysToIncrement = 1;
+		cal.add(Calendar.DATE, daysToIncrement);
+		date = cal.getTime();
+		if(ticketInDB != null & showingDate.before(date))	{
 			manager.remove(ticketInDB);
 			return "{\"message\": \"ticket successfully deleted\"}";
 		}
-		return "{\"message\": \"ticket not found\"}";
+		return "{\"message\": \"ticket not available for deletion\"}";
 	}
 
 	@Override

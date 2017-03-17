@@ -7,6 +7,11 @@
                         Order ID: {{ ticket.orderId }} <br/>
                         Film Title: {{ ticket.showing.movie.title }} <br/>
                         Showing Date: {{ ticket.showing.dateTime }}
+
+			<button type="button" ng-click="ctrl.deleteTicket(t.ticketId)">
+			<span class="glyphicon glyphicon-remove"></span>
+			</button>
+
                     </div>
                 </li>
             </div>
