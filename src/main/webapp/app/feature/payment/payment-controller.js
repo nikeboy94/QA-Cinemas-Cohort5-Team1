@@ -59,7 +59,6 @@
 
         vm.formatOrder = function() {
             for(var i = 0; i < vm.order.length; i++) {
-                alert("!!!!!"+JSON.stringify(vm.order[i].showing));
                 vm.order[i].seat.seatId = vm.order[i].showing.screen.screenId + "_" + vm.order[i].seat.seatId;
             }
             return vm.order;

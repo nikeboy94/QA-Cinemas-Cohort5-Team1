@@ -1,0 +1,45 @@
+<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+<div class="container" ng-controller="helpController as ctrl">
+    <div class="jumbotron">
+        <h1>Help Page </h1>
+        <p></p>
+    </div>
+    <div class="row">
+        <div class="col-md-12 accordion-container">
+            <ul class="nav nav-stacked" id="accordion1">
+                <li class="panel"><a data-toggle="collapse" data-parent="#accordion1" href="/help#firstLink">FAQ's<span
+                        class="glyphicon glyphicon-triangle-right"></span></a>
+
+                    <ul id="firstLink" class="collapse">
+                        <ol>
+                            <li><u>Can I eat in the cinema?</u></li>
+                            Of-course you can! <br><br>
+                            <li><u> Can I use a wheelchair in the cinema?</u></li>
+                            Yes! All our seats are extra wide and can fit a wheel-c <br><br>
+                            <li><u>What is the nearest station?</u></li>
+                            Anchorage Tram Station or Manchester Picadilly Train Station
+                        </ol>
+                    </ul>
+
+                </li>
+                <li class="panel"><a data-toggle="collapse" data-parent="#accordion1" href="/help#secondLink">Classification<span
+                        class="glyphicon glyphicon-triangle-right"></span></a>
+
+                    <ul id="secondLink" class="collapse">
+                        <li>Classification Link</li>
+
+                    </ul>
+                </li>
+                <li class="panel"><a data-toggle="collapse" data-parent="#accordion1" href="/help#thirdLink">Contact
+                    Us<span class="glyphicon glyphicon-triangle-right"></span></a>
+
+                    <ul id="thirdLink" class="collapse">
+                        <li><a ng-click=ctrl.contactus()>Contact Us</a></li>
+                    </ul>
+
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
+

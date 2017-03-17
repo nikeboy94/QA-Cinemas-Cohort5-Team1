@@ -76,7 +76,7 @@ angular.module('movieApp').config(['$stateProvider', '$urlRouterProvider', 'USER
         }).state("deleteticket", {
             url: "/deleteticket",
             templateUrl: "app/feature/ticket/delete/delete-ticket.html"
-        }).state("searchresults",{
+        }).state("searchresults", {
             url: "/searchresults",
             templateUrl: "app/feature/movie/search/search-results.html"
         }).state("addmovieposter", {
@@ -94,16 +94,16 @@ angular.module('movieApp').config(['$stateProvider', '$urlRouterProvider', 'USER
         }).state("payment", {
             url: "/payment",
             templateUrl: "app/feature/payment/payment.html"
-         }).state("viewer", {
+        }).state("viewer", {
             url: "/viewer",
             templateUrl: "app/feature/seat/viewer/viewer.html"
         }).state("aboutus", {
             url: "/aboutus",
             templateUrl: "app/feature/aboutUs/about-us.html"
         }).state("help", {
-            url: "/help",                   //Unimplemented
+            url: "/help",
             templateUrl: "app/feature/help/help.html"
-        }).state("cookies", {
+         }).state("cookies", {
             url: "/cookies",                //Unimplemented
             templateUrl: "app/feature/cookies/cookies.html"
         }).state("addscreen", {
@@ -120,5 +120,4 @@ angular.module('movieApp').config(['$stateProvider', '$urlRouterProvider', 'USER
         	url: "/allorderssummary",
         	templateUrl: "app/feature/orderSummary/all-user-orders.html"
         })
-
     }]);

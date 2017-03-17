@@ -114,10 +114,10 @@ public class Movie {
 	}
 
 
-	public int getRuntime() {
+	public Integer getRuntime() {
 		return runtime;
 	}
-
+	
 
 	public void setRuntime(Integer runtime) {
 		this.runtime = runtime;

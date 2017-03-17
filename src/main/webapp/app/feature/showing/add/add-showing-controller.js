@@ -5,13 +5,15 @@
 		
 		vm.addShowing = function(screen, movie, dateTime) {
 			var showingToAdd = {};
-			showingToAdd.screenId = screen.id;
-			showingToAdd.movieId = movie.movieId;
+			showingToAdd.screen = screen;
+			showingToAdd.movie = movie;
 			showingToAdd.dateTime = dateTime;
+			alert(JSON.stringify(showingToAdd));
 			showingDal.saveShowing(showingToAdd).then(function(results) {
 				vm.showingAddMessage = results;
 				$state.go("getshowings");
 			}, function(error) {
+				alert(JSON.stringify(error));
 				vm.error = true;
 				vm.errorMessage = error;
 			});
