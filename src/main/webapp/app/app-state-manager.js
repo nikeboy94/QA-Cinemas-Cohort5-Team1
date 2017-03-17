@@ -116,6 +116,9 @@ angular.module('movieApp').config(['$stateProvider', '$urlRouterProvider', 'USER
             url: "/deletescreen",
             templateUrl: "app/feature/screen/delete/delete-screen.html"
 
+        }).state("ordersummary", {
+        	url: "/ordersummary",
+        	templateUrl: "app/feature/orderSummary/order-summary.html"
         })
 
     }]);
