@@ -10,7 +10,7 @@
 			<div class="form-group"style="width:100%">
 				<div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 col-xl-5" style="width:100%">
 					<label for="screen" class="control-label">Screen: </label>
-					<select id="screen" ng-model="selectedScreen" ng-options="screen.id for screen in screens" style="width:100%;height:30px;">
+					<select id="screen" ng-model="selectedScreen" ng-options="screen as screen.screenId for screen in screens" style="width:100%;height:30px;">
 						<option value="" disabled selected>Select Screen</option>
 					</select>
 				</div>
