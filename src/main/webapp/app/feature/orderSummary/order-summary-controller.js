@@ -46,7 +46,6 @@
 			angular.forEach(vm.tickets, function(value, key) {
 				if (containsObject(value.orderId, orderIds) == false) {
 					var price = sumTotal(value.orderId);
-					console.log(price);
 					vm.orderInfo.push({"orderId": value.orderId, "title": value.showing.movie.title, 
 						"dateTime": value.showing.dateTime, "price": price});
 					orderIds.push(value.orderId);
