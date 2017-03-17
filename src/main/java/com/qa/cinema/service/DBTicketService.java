@@ -149,7 +149,7 @@ public class DBTicketService implements TicketService {
 	
 	@Override
 	public String createMultipleTicket(String ticket) {
-		Ticket[] aTicket = util.getObjectForJSON(ticket, Ticket[].class);
+		Ticket[] aTicket = (Ticket[]) util.getObjectForJSON(ticket, Ticket[].class);
 		for(Ticket t:aTicket){
 			manager.persist(t);
 		}
