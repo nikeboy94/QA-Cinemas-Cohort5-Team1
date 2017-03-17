@@ -29,6 +29,7 @@
                     ticketDalSuccess(result, childQty, 'CHILD');
                     Auth.addOrder(vm.ticketArray);
                     alert(JSON.stringify(Auth.getOrder()));
+                    $('#myModal').modal('toggle');
                     $state.go("payment");
                 }), function(error) {
                     ticketDalFailure(error);
@@ -81,6 +82,21 @@
 
 
         vm.showSeatViewer = function(adultQty, childQty, ticket) {
+            if (ticket == undefined){
+                ticket = {};
+                ticket.user = {};
+                ticket.showing = {};
+
+                ticket.user.email= $rootScope.globals.currentUser.email;
+                ticket.showing.showingId = $rootScope.globals.currentUser.showingId;
+            } else if (ticket.user == undefined)
+            {
+                ticket.user = {};
+                ticket.user.email= $rootScope.globals.currentUser.email;
+            } else if (ticket.showing == undefined){
+                ticket.showing = {};
+                ticket.showing.showingId = $rootScope.globals.currentUser.showingId;
+            }
             Auth.setShowingId(ticket.showing.showingId);
             Auth.setTicketQuantity(parseInt(adultQty) + parseInt(childQty));
               vm.modalInstance = $modal.open({
