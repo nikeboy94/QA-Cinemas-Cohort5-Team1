@@ -1,3 +1,15 @@
 <div ng-controller="getTicketsController as ctrl">
-    {{ctrl.tickets}}
+    <div class="container">
+        <ul class="list-group" style="background:none">
+            <div ng-repeat="ticket in ctrl.tickets">
+                <li class="list-group-item" style="background:none;">
+                    <div>
+                        Order ID: {{ ticket.orderId }} <br/>
+                        Film Title: {{ ticket.showing.movie.title }} <br/>
+                        Showing Date: {{ ticket.showing.dateTime }}
+                    </div>
+                </li>
+            </div>
+        </ul>
+    </div>
 </div>
