@@ -73,7 +73,7 @@
                                     <div ng-show="Today" class="row">
                                         <div class="film-poster col-xs-6 col-sm-4 col-xl-3"
                                              ng-repeat="x in ctrler.showings|filter: (ctrler.today | date:'yyyy-MM-dd')">
-                                            <a ng-click="ctrler.replace(x)" data-target="myBookingModal"
+                                            <a ng-click="ctrler.replace(x)" data-target="#myBookingModal"
                                                data-showingId="{{x.showingId}}" data-dateTime="{{x.dateTime | date}}"
                                                data-toggle="modal">
                                                 <button type="submit">{{x.dateTime | date: 'H:mm'}}</button>
