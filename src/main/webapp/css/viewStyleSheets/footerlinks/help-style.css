@@ -1,0 +1,24 @@
+#accordion1 li.panel{
+  margin-bottom: 0px;
+}
+a:link {
+    color: black;
+}
+
+.myborder {
+	border: 1px solid black;
+}
+
+.accordion-container {
+	width:100%;
+}
+
+.jumbotron{
+	background:none;
+}
+
+.glyphicon {
+  float: right;
+}
+
+
