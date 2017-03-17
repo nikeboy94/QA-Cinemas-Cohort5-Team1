@@ -18,8 +18,10 @@ import static org.mockito.Mockito.when;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.List;
 
 import javax.persistence.EntityManager;
+import javax.persistence.Query;
 
 @RunWith(MockitoJUnitRunner.class)
 public class DBScreenServiceTest {
@@ -32,19 +34,23 @@ public class DBScreenServiceTest {
 	
 	@InjectMocks
 	DBScreenService ss = new DBScreenService();
+	
+	Query query;
 
 	@Test
-	public void faketest() {
+	public void fakeTest() {
 		assertNull(null);
 	}
-	/*
+
+/*
 	@Test
 	public void testGetAllScreens() {
 		Collection<Screen> screens = new ArrayList<Screen>();
 		screens.add(new Screen("Standard", "looks ok"));
-		when(ss.em.query.getResults()).thenReturn(screens);
+		//when(query.getResultList()).thenReturn((List) screens);
 		assertEquals("lol", ss.getAllScreens());
 	}
-	*/
+*/
+	
 
 }
