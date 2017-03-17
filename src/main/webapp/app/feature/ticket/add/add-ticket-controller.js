@@ -24,19 +24,15 @@
                 ticket.showing.showingId = $rootScope.globals.currentUser.showingId;
             }
 
-            if (adultQty == undefined) {
+            if (adultQty == undefined || adultQty < 0) {
                 adultQty = 0;
             }
-            if (childQty == undefined) {
+            if (childQty == undefined || childQty < 0) {
                 childQty = 0;
             }
 
-            if (adultQty < 0 && childQty < 0) {
+            if(adultQty + childQty == 0) {
                 return;
-            } else if (adultQty < 0) {
-                adultQty = 0;
-            } else if (childQty < 0) {
-                childQty = 0;
             }
 
             var addChildTickets = function () {

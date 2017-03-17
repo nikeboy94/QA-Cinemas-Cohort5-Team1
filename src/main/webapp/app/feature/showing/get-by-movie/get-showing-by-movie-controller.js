@@ -18,11 +18,15 @@
             vm.replace = function(showing) {
                 $('#modalShowing').text(showing.showingId);
                 $('#modalTime').text(showing.dateTime);
+                $('#hiddenShowingId').val(showing.showingId);
+                $('#hiddenShowingId').trigger('input');
                 Auth.setShowingId(showing.showingId);
             };
 
 
 		}
+
+
 	};
 	angular.module("movieApp").controller("getShowingByMovieController", ["Auth", "showingDal", GetShowingByMovieController]);
 }());
