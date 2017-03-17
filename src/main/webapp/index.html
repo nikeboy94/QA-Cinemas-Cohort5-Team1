@@ -20,7 +20,7 @@
 	<div class="container-fluid">
 		<div class="navbar-header">
 			<ul id="home">
-			<a class="navbar-brand" ui-sref="dashboard" id="dashboard" onclick="styleChange(this)">QA Cinema</a>
+				<a class="navbar-brand" ui-sref="dashboard" id="dashboard" onclick="styleChange(this)">QA Cinema</a>
 			</ul>
 		</div>
 		<ul class="nav navbar-nav">
@@ -95,7 +95,6 @@
 					<li><a ui-sref="deletescreen" id="delete-screen" onclick="styleChange(this)">Delete Screen</a></li>
 				</ul>
 			</li>
-      		<li><a ui-sref="contactus">Contact Us</a></li>
 		</ul>
 		<div ng-if="(globals.currentUser.role == undefined)">
 			<ul class="nav navbar-nav navbar-right">
@@ -141,7 +140,10 @@
     </div>
   		<form class="navbar-form navbar-right">
 			<div class="form-group">
-				<input type="text" class="form-control search-button" placeholder="Search Film" id="searchBox" ng-model="string">
+				<div class="input-group">
+					<input type="text" class="form-control search-button" placeholder="Search Film" id="searchBox" ng-model="string">
+					<span class="input-group-addon"><i class="glyphicon glyphicon-search"></i></span>
+				</div>
 			</div>
 			<button type="submit" class="btn btn-default" ng-click="goToResults(string)">Submit</button>
 		</form>
@@ -244,7 +246,7 @@
 		<div class="container">
 			<ul class="footer-links text-center", id="footerlinks">
 				<li><a ui-sref="aboutus">About us</a></li>
-				<li><a ui-sref="contactus">Contact Us</a></li>
+				<li><a ui-sref="contactus" id="contactus" onclick="styleChange(this)">Contact Us</a></li>
 				<li><a ui-sref="help" id="help" onclick="styleChange(this)">Help</a></li>
 				<li><a ui-sref="discussion">Discussion page</a></li>
 				<li><a ui-sref="cookies">Cookies</a></li>

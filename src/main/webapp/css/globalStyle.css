@@ -54,13 +54,8 @@ body {
 
 #searchBox{
 	width:150px;
-	box-sizing:border-box;
-	border-radius:5px;
 	background-color:white;
-	background-image:url("../img/searchIcon.png");
-	background-position:10px 10px;
-	background-repeat:no-repeat;
-	padding:10px 10px 10px 40px;
+	padding:10px;
 	transition:width 0.3s ease-in-out 0s;
 }
 
