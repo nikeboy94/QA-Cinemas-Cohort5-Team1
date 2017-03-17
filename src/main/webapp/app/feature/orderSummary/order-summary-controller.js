@@ -1,20 +1,25 @@
 (function() {
 	
-	var OrderSummaryController = function($rootScope, ticketDal) {
+	var OrderSummaryController = function($rootScope, Auth, $state, ticketDal) {
 		
 		var vm = this;
 		
-		vm.getByOrderId = function(ticketOrderId) {
-			ticketDal.getTicketByOrderId(ticketOrderId).then(function(results) {
+		var getByOrder = function() {
+			var order = $rootScope.globals.currentUser.order[0];
+			var orderId = (order.orderId).toString();
+			console.log(orderId);
+			
+			ticketDal.getTicketByOrderId(orderId).then(function(results) {
 				vm.tickets = results;
 				sumTotal();
+				getOrders();
 			}, function(error) {
 				vm.error = true;
 				vm.errorMessage = error;
 			});
 		};
 		
-		vm.getByUser = function(email) {
+		var getByUser = function(email) {
 			ticketDal.getTickets(email).then(function(results) {
 				vm.tickets = results;
 				sumTotal();
@@ -27,7 +32,7 @@
 		
 		var getUserOrders = function() {
 			var email = $rootScope.globals.currentUser.email;
-			vm.getByUser(email);
+			getByUser(email);
 		};
 		
 		var sumTotal = function(orderId) {
@@ -63,8 +68,17 @@
 		    return false;
 		}
 		
-		getUserOrders();
+		var init = function() {
+			if ($state.includes('ordersummary')) {
+				console.log("order summary");
+				getByOrder();
+			} else if ($state.includes('allorderssummary')) {
+				console.log("user orders summary");
+				getUserOrders();
+			};
+		}
+		init();
 	};
 	
-	angular.module("movieApp").controller("orderSummaryController", ["$rootScope", "ticketDal", OrderSummaryController])
+	angular.module("movieApp").controller("orderSummaryController", ["$rootScope", "Auth", "$state", "ticketDal", OrderSummaryController])
 }());

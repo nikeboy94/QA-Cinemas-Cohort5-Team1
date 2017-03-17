@@ -119,5 +119,8 @@ angular.module('movieApp').config(['$stateProvider', '$urlRouterProvider', 'USER
         }).state("allorderssummary", {
         	url: "/allorderssummary",
         	templateUrl: "app/feature/orderSummary/all-user-orders.html"
+        }).state("ordersummary", {
+        	url: "/ordersummary",
+        	templateUrl: "app/feature/orderSummary/order-summary.html"
         })
     }]);
