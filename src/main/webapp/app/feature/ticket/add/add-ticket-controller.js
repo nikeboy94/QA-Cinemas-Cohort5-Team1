@@ -1,36 +1,50 @@
 (function () {
 
 
-    var AddTicketController = function($rootScope, ticketDal, Auth, $state, movieDal, showingDal, $modal) {
+    var AddTicketController = function ($rootScope, ticketDal, Auth, $state, movieDal, showingDal, $modal) {
         var vm = this;
 
         vm.ticketArray = [];
-        vm.tempChildTickets;
-        vm.tempAdultTickets;
+        vm.tempChildTickets = 0;
+        vm.tempAdultTickets = 0;
 
         this.addTicket = function (ticket, adultQty, childQty) {
-            if (ticket == undefined){
+            if (ticket == undefined) {
                 ticket = {};
                 ticket.user = {};
                 ticket.showing = {};
 
-                ticket.user.email= $rootScope.globals.currentUser.email;
+                ticket.user.email = $rootScope.globals.currentUser.email;
                 ticket.showing.showingId = $rootScope.globals.currentUser.showingId;
-            } else if (ticket.user == undefined)
-            {
+            } else if (ticket.user == undefined) {
                 ticket.user = {};
-                ticket.user.email= $rootScope.globals.currentUser.email;
-            } else if (ticket.showing == undefined){
+                ticket.user.email = $rootScope.globals.currentUser.email;
+            } else if (ticket.showing == undefined) {
                 ticket.showing = {};
                 ticket.showing.showingId = $rootScope.globals.currentUser.showingId;
             }
+
+            if (adultQty == undefined) {
+                adultQty = 0;
+            }
+            if (childQty == undefined) {
+                childQty = 0;
+            }
+
+            if (adultQty < 0 && childQty < 0) {
+                return;
+            } else if (adultQty < 0) {
+                adultQty = 0;
+            } else if (childQty < 0) {
+                childQty = 0;
+            }
+
             var addChildTickets = function () {
-                ticketDal.getPrice(ticket.showing.showingId, 'CHILD').then(function(result) {
+                ticketDal.getPrice(ticket.showing.showingId, 'CHILD').then(function (result) {
                     ticketDalSuccess(result, childQty, 'CHILD');
                     Auth.addOrder(vm.ticketArray);
-                    alert(JSON.stringify(Auth.getOrder()));
                     $state.go("payment");
-                }), function(error) {
+                }), function (error) {
                     ticketDalFailure(error);
                 };
             };
@@ -44,12 +58,12 @@
                 }
             };
 
-            var ticketDalFailure = function(error) {
+            var ticketDalFailure = function (error) {
                 vm.error = true;
                 vm.errorMessage = errorMessage;
             };
 
-            var initNewTicket = function() {
+            var initNewTicket = function () {
                 var newTicket = {};
                 newTicket.orderId = ticket.orderId;
                 newTicket.showing = ticket.showing;
@@ -60,66 +74,101 @@
 
             ticket.orderId = new Date().getTime();
 
-            var childTicket = initNewTicket();
-            var adultTicket = initNewTicket();
-            adultTicket.ticketType = 'ADULT';
-            childTicket.ticketType = 'CHILD';
-
-
-
-            ticketDal.getPrice(ticket.showing.showingId, 'ADULT').then(function(result) {
-                alert("entering getprice");
+            ticketDal.getPrice(ticket.showing.showingId, 'ADULT').then(function (result) {
                 ticketDalSuccess(result, adultQty, 'ADULT');
                 addChildTickets();
-            }), function(error) {
+            }), function (error) {
                 ticketDalFailure(error);
             };
 
             // $state.go('dashboard');
-
         };
 
 
-        vm.showSeatViewer = function(adultQty, childQty, ticket) {
+        vm.showSeatViewer = function (adultQty, childQty, ticket) {
+            if (adultQty < 0 && childQty < 0) {
+                console.log("about to return");
+                return;
+            } else if (adultQty < 0) {
+                adultQty = 0;
+            } else if (childQty < 0) {
+                childQty = 0;
+            }
+
             Auth.setShowingId(ticket.showing.showingId);
             Auth.setTicketQuantity(parseInt(adultQty) + parseInt(childQty));
-              vm.modalInstance = $modal.open({
-                templateUrl : 'app/feature/seat/viewer/viewer.html',
-                controller : "viewercontroller",
-                backdrop:'static'
+            vm.modalInstance = $modal.open({
+                templateUrl: 'app/feature/seat/viewer/viewer.html',
+                controller: "viewercontroller",
+                backdrop: 'static'
 
             });
         };
-        vm.init = function(){
 
+        vm.init = function () {
+            movieDal.getMovies().then(function (result) {
+                vm.movieList = result;
+            }), function (error) {
+                vm.error = true;
+                vm.errorMessage = error;
+            }
+        };
 
-                movieDal.getMovies().then(function (result) {
-                    vm.movieList = result;
-                }), function (error) {
-                    vm.error = true;
-                    vm.errorMessage = error;
-                }
-            };
-            vm.init();
+        vm.init();
 
-            vm.getShowingsById = function (movieId) {
-                showingDal.getShowingByMovie(movieId).then(function (result) {
-                    vm.movieShowingList = result;
-                }), function (error) {
-                    alert(error);
-                    vm.error = true;
-                    vm.errorMessage = error;
-                }
-
-            };
-
-            vm.updatePrice = function() {
-                console.log("entered update price");
-                console.log("adult ticket: " + JSON.stringify(adultQty));
+        vm.getShowingsById = function (movieId) {
+            showingDal.getShowingByMovie(movieId).then(function (result) {
+                vm.movieShowingList = result;
+            }), function (error) {
+                vm.error = true;
+                vm.errorMessage = error;
             }
 
         };
 
-        angular.module('movieApp').controller('addTicketController', ['$rootScope', 'ticketDal', 'Auth', '$state', 'movieDal', 'showingDal', '$modal', AddTicketController]);
+        vm.updateAdultQty = function (qty) {
+            if (qty < 0) {
+                return;
+            }
 
-    }());
+            vm.tempAdultTickets = qty;
+            vm.updatePrice();
+        }
+
+        vm.updateChildQty = function (qty) {
+            if (qty < 0) {
+                return;
+            }
+
+            vm.tempChildTickets = qty;
+            vm.updatePrice();
+        }
+
+        vm.updatePrice = function () {
+            vm.totalPrice = parseFloat(vm.tempAdultTickets * vm.globalAdultPrice) + parseFloat(vm.tempChildTickets * vm.globalChildPrice);
+        }
+
+
+        vm.updateGlobalPrices = function (showingId) {
+            ticketDal.getPrice(showingId, 'ADULT').then(function (result) {
+                vm.globalAdultPrice = result.price;
+                vm.updatePrice();
+            }, function (error) {
+                vm.error = true;
+                vm.errorMessage = error;
+            })
+
+            ticketDal.getPrice(showingId, 'CHILD').then(function (result) {
+                vm.globalChildPrice = result.price;
+                vm.updatePrice();
+            }, function (error) {
+                vm.error = true;
+                vm.errorMessage = error;
+            })
+        }
+
+    };
+
+    angular.module('movieApp').controller('addTicketController', ['$rootScope', 'ticketDal', 'Auth', '$state', 'movieDal', 'showingDal', '$modal', AddTicketController]);
+
+}());
