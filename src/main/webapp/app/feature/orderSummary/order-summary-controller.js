@@ -7,8 +7,8 @@
 		var getByOrder = function() {
 			var order = $rootScope.globals.currentUser.order[0];
 			var orderId = (order.orderId).toString();
-			//var orderId = $rootScope.globals.currentUser.order[0].orderId;
 			console.log(orderId);
+			
 			ticketDal.getTicketByOrderId(orderId).then(function(results) {
 				vm.tickets = results;
 				sumTotal();
@@ -17,13 +17,6 @@
 				vm.error = true;
 				vm.errorMessage = error;
 			});
-			/*console.log("in function");
-			//vm.tickets = Auth.authService.getOrder();
-			//vm.tickets = order;
-			console.log(JSON.stringify(vm.tickets));
-			sumTotal();
-			getOrders();*/
-			
 		};
 		
 		var getByUser = function(email) {
@@ -84,7 +77,6 @@
 				getUserOrders();
 			};
 		}
-		
 		init();
 	};
 	
