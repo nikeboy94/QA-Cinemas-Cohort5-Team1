@@ -181,8 +181,14 @@ public class DBTicketService implements TicketService {
 		Date showingDate;
 		formatter = new SimpleDateFormat("YYY-MM-DD HH:MM:SS");
 		
+		StringBuilder strShowingDate = new StringBuilder(showing.getDateTime());
+	
+		int tIndex = strShowingDate.indexOf("T");
+		strShowingDate.replace(tIndex, tIndex+1, " ");
+		
+		
 		try {
-			showingDate = (Date) formatter.parse(showing.getDateTime());
+			showingDate = (Date) formatter.parse(strShowingDate.toString());
 		} catch (ParseException e) {
 			LOGGER.info(e);
 			return "{\"message\": \"Could not get price\"}";

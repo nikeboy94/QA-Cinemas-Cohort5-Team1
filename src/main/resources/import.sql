@@ -20,6 +20,7 @@ INSERT INTO Screen(screenId, screenType, screenDesc) VALUES(1, 'Standard', 'A st
 INSERT INTO Screen(screenId, screenType, screenDesc) VALUES(2, 'Standard', 'Another standard screen.');
 INSERT INTO Screen(screenId, screenType, screenDesc) VALUES(3, 'Deluxe', 'A fancy screen, like a sir.');
 
+
 INSERT INTO Showing(showingId, screenId, movieId, dateTime) VALUES(1, 1, 1, '2017-03-16T12:00:00');
 INSERT INTO Showing(showingId, screenId, movieId, dateTime) VALUES(2, 1, 1, '2017-03-20T17:00:00');
 INSERT INTO Showing(showingId, screenId, movieId, dateTime) VALUES(3, 1, 1, '2017-03-16T12:00:00');
@@ -34,6 +35,13 @@ INSERT INTO Showing(showingId, screenId, movieId, dateTime) VALUES(11, 3, 10, '2
 INSERT INTO Showing(showingId, screenId, movieId, dateTime) VALUES(12, 3, 11, '2017-03-23T16:00:00');
 INSERT INTO Showing(showingId, screenId, movieId, dateTime) VALUES(13, 3, 12, '2017-03-16T12:00:00');
 INSERT INTO Showing(showingId, screenId, movieId, dateTime) VALUES(14, 3, 15, '2017-03-26T12:00:00');
+INSERT INTO Showing(showingId, screenId, movieId, dateTime) VALUES(15, 1, 1, '2017-04-15T12:00:00');
+INSERT INTO Showing(showingId, screenId, movieId, dateTime) VALUES(16, 1, 1, '2017-04-15T17:00:00');
+INSERT INTO Showing(showingId, screenId, movieId, dateTime) VALUES(17, 1, 1, '2017-04-16T12:00:00');
+INSERT INTO Showing(showingId, screenId, movieId, dateTime) VALUES(18, 1, 1, '2017-04-17T12:00:00');
+INSERT INTO Showing(showingId, screenId, movieId, dateTime) VALUES(19, 2, 2, '2017-04-14T16:00:00');
+INSERT INTO Showing(showingId, screenId, movieId, dateTime) VALUES(20, 2, 2, '2017-04-16T12:00:00');
+INSERT INTO Showing(showingId, screenId, movieId, dateTime) VALUES(21, 2, 2, '2017-04-15T12:00:00');
 
 INSERT INTO SEAT(seatId, row, col, screenId) VALUES ( '1_1A', 1, 'A', 1);
 INSERT INTO SEAT(seatId, row, col, screenId) VALUES ( '1_1B', 1, 'B', 1);
