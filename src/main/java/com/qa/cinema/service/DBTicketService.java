@@ -186,7 +186,6 @@ public class DBTicketService implements TicketService {
 		int tIndex = strShowingDate.indexOf("T");
 		strShowingDate.replace(tIndex, tIndex+1, " ");
 		
-		strShowingDate.deleteCharAt(strShowingDate.indexOf("Z"));
 		
 		try {
 			showingDate = (Date) formatter.parse(strShowingDate.toString());

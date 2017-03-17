@@ -36,6 +36,13 @@ angular.module('movieApp')
                 $rootScope.globals.currentUser.ticketQuantity = qty;
             };
 
+            authService.setShowingId = function (id){
+                if ($rootScope.globals.currentUser == undefined){
+                    $rootScope.globals.currentUser = {};
+                }
+                $rootScope.globals.currentUser.showingId = id;
+            };
+
             authService.setCredentials = function () {
                 $http.defaults.headers.common['Authorization'] = 'Basic ' + $rootScope.globals.currentUser.email;
                 $cookieStore.put('globals', $rootScope.globals);
@@ -50,7 +57,7 @@ angular.module('movieApp')
 
             authService.getTicketQuantity = function () {
                 return $rootScope.globals.currentUser.ticketQuantity;
-            }
+            };
 
 
             authService.addOrder = function (ticketArray) {

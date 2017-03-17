@@ -4,16 +4,11 @@
 var movieApp = angular.module('movieApp', ['ui.router', 'ui.bootstrap', 'ngCookies'])
     .filter('myFilter', function () {
         return function (items) {
-            console.log("entered function");
             var dateFrom = new Date(new Date().getTime() + (24 * 60 * 60 * 1000) * 2);
-            console.log(dateFrom);
             var arrayToReturn = [];
-
             for (var i = 0; i < items.length; i++) {
                 var showingDate = new Date(items[i].dateTime);
-                console.log(showingDate);
                 if (showingDate >= dateFrom) {
-                    console.log("something happened");
                     arrayToReturn.push(items[i]);
                 }
             }
