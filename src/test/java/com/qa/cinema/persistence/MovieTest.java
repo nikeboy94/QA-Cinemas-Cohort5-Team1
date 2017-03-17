@@ -10,6 +10,8 @@ import org.junit.Test;
 public class MovieTest {
 	Movie movie;
 	Date date;
+	Double d = 0.0;
+	Integer i = 1;
 	
 	@Before public void setUp() throws Exception{
 		movie = new Movie();
@@ -83,30 +85,30 @@ public class MovieTest {
 		movie.setTrailerUrl("trailerUrl");
 		assertEquals("trailerUrl", movie.getTrailerUrl());
 	}
-/*
-	@SuppressWarnings("deprecation")
+
+
 	@Test
 	public void testGetRating() {
-		assertEquals(0.0, movie.getRating());
+		assertEquals(0, movie.getRating(), 0);
 	}
 
-	@SuppressWarnings("deprecation")
+
 	@Test
 	public void testSetRating() {
-		movie.setRating(5.0);
-		assertEquals(5.0, movie.getRating());
+		movie.setRating(0.0);
+		assertEquals(0, movie.getRating(), 0);
 	}
 
 	@Test
 	public void testGetRuntime() {
-		assertEquals(0, movie.getRuntime());
+		assertNull(movie.getRuntime());
 	}
 
-*/
+
 	@Test
 	public void testSetRuntime() {
-		movie.setRuntime(1);
-		assertEquals(1, movie.getRuntime());
+		movie.setRuntime(i);
+		assertEquals(i, movie.getRuntime());
 	}
 
 	@Test
@@ -124,12 +126,12 @@ public class MovieTest {
 	public void testGetMovieId() {
 		assertNull(movie.getMovieId());
 	}
-/*
+
 	@Test
 	public void testGetCount() {
-		assertNull(movie.getCount());
+		assertEquals(d, movie.getCount());
 	}
-*/
+
 	@Test
 	public void testSetCount() {
 		Double d = 5.0;
