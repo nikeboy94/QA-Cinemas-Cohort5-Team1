@@ -1,5 +1,11 @@
 package com.qa.cinema.service;
 
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
+
 import javax.ejb.Stateless;
 import javax.enterprise.inject.Default;
 import javax.inject.Inject;
@@ -28,7 +34,18 @@ public class MimeEmailService implements EmailService{
 	
 	JSONUtil util = new JSONUtil();
 	
-	public String sendOrderConfirmation(Ticket ticket) {
+	public String sendOrderConfirmation(String orderId) {
+		
+		String ticketsInOrderJSON = ticketService.getTicketsByOrderId(orderId);
+		Ticket[] ticketsInOrder = (Ticket[]) util.getObjectForJSON(ticketsInOrderJSON, Ticket[].class);
+		
+		if (ticketsInOrder == null || ticketsInOrder.length == 0) {
+			return "{\"message\": \" No tickets with this order ID was found\"}"; 
+		}
+		
+		Ticket firstTicket = ticketsInOrder[0];
+		
+		
 		try {
 			LOGGER.info("Entered try block. About to setup initial context");
 			InitialContext ic = new InitialContext();
@@ -36,9 +53,9 @@ public class MimeEmailService implements EmailService{
 			
 			LOGGER.info("About to setup msg");
 			Message msg = new MimeMessage(session);
-			msg.setRecipients(Message.RecipientType.TO, InternetAddress.parse(ticket.getUser().getEmail()));
-			msg.setSubject("QA Cinemas Order Confirmation: " + ticket.getOrderId());
-			msg.setText(createOrderMessage(ticket));
+			msg.setRecipients(Message.RecipientType.TO, InternetAddress.parse(firstTicket.getUser().getEmail()));
+			msg.setSubject("QA Cinemas Order Confirmation: " + orderId);
+			msg.setText(createOrderMessage(ticketsInOrder));
 		
 			Transport.send(msg);
 			LOGGER.info("Message sent without error. About to exit method");
@@ -49,26 +66,28 @@ public class MimeEmailService implements EmailService{
 		}
 	}
 	
-	private String createOrderMessage(Ticket ticket ) {
-		String ticketsInOrderJSON = ticketService.getTicketsByOrderId(ticket.getOrderId());
-		Ticket[] ticketsInOrder = util.getObjectForJSON(ticketsInOrderJSON, Ticket[].class);
-		
+	private String createOrderMessage(Ticket[] ticketsInOrder ) {
+
 		double totalPrice = 0.0;
 		int numTickets = ticketsInOrder.length;
 		for(Ticket eachTicket : ticketsInOrder) {
 			totalPrice += eachTicket.getPrice();
 		}
 		
-		String msg = "Hello " + ticket.getUser().getFName().substring(0,1).toUpperCase() + ticket.getUser().getFName().substring(1) + ",";
+		Ticket firstTicket = ticketsInOrder[0];
+		
+		String msg = "Hello " + firstTicket.getUser().getFName().substring(0,1).toUpperCase() + firstTicket.getUser().getFName().substring(1) + ",";
 		msg += "\n\n";
 		msg += "You have booked " + numTickets + " ticket";
 		if(numTickets > 1) {
 			msg+= "s";
 		}
 		
-		msg += " to see " + ticket.getShowing().getMovie().getTitle() + " on " + ticket.getShowing().getDateTime() + ". \n";
+
+		
+		msg += " to see " + firstTicket.getShowing().getMovie().getTitle() + " on " + firstTicket.getShowing().getDateTime() + ". \n";
 		msg += "£" + totalPrice + " has been taken from your account. \n";
-		msg += "You can cancel or change your ticket by visiting your account at least 2 days before the showing. Your order ID is " + ticket.getOrderId() + ". \n\n";
+		msg += "You can cancel your ticket by visiting your account at least 24 hours before the showing. Your order ID is " + firstTicket.getOrderId() + ". \n\n";
 		msg += "Have a great day, \n \n";
 		msg += "QA Cinemas";
 		return msg;

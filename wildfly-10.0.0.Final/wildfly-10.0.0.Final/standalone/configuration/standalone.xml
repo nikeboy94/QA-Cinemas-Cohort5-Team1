@@ -405,10 +405,4 @@
             <remote-destination host="smtp.gmail.com" port="465"/>
         </outbound-socket-binding>
     </socket-binding-group>
-
-    <deployments>
-        <deployment name="qacinema.war" runtime-name="qacinema.war">
-            <content sha1="33ba989526a7f7ee41fe40c01c473bf1a10e2af6"/>
-        </deployment>
-    </deployments>
 </server>
