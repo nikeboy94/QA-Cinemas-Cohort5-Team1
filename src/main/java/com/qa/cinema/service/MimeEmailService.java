@@ -83,9 +83,20 @@ public class MimeEmailService implements EmailService{
 			msg+= "s";
 		}
 		
+		SimpleDateFormat parseFormat = new SimpleDateFormat("y-MM-dd'T'HH:mm");
+		SimpleDateFormat printFormat = new SimpleDateFormat("EEEE F MMMM 'at' h:mm a");
+		String msgDate = null;
+		
+		try {
+			Date showingDate = (Date) parseFormat.parse(firstTicket.getShowing().getDateTime());
+			msgDate = printFormat.format(showingDate);
+		} catch (ParseException e) {
+			LOGGER.info(e);
+			msgDate = firstTicket.getShowing().getDateTime();
+		}
 
 		
-		msg += " to see " + firstTicket.getShowing().getMovie().getTitle() + " on " + firstTicket.getShowing().getDateTime() + ". \n";
+		msg += " to see " + firstTicket.getShowing().getMovie().getTitle() + " on " + msgDate + ". \n";
 		msg += "£" + totalPrice + " has been taken from your account. \n";
 		msg += "You can cancel your ticket by visiting your account at least 24 hours before the showing. Your order ID is " + firstTicket.getOrderId() + ". \n\n";
 		msg += "Have a great day, \n \n";
