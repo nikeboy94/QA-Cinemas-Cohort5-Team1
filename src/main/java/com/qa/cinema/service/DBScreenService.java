@@ -1,6 +1,7 @@
 package com.qa.cinema.service;
 
 import java.util.Collection;
+import java.util.List;
 
 import javax.ejb.Stateless;
 import javax.enterprise.inject.Default;
