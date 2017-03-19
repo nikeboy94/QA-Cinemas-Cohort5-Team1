@@ -73,7 +73,7 @@ body {
 	background: -moz-linear-gradient(bottom right, rgb(255, 255, 255), rgb(152, 152, 152)); /* For Firefox 3.6 to 15 */
 	background: linear-gradient(to bottom right, rgb(255, 255, 255), rgb(152, 152, 152)); /* Standard syntax (must be last) */
 	color: black;
-	box-shadow: 0 4px 8px 0 rgba(0,0,0,0.9), 0 6px 20px 0 rgba(0,0,0,0.0.75);
+	box-shadow: 0 4px 8px 0 rgba(0,0,0,0.9), 0 6px 20px 0 rgba(0,0,0,0.75);
 }
 
 .nav-link{
