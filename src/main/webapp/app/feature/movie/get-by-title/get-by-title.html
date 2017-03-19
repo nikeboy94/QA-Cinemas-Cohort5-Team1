@@ -51,11 +51,11 @@
 							<div class="col-md-6">
 								<div ng-show="!myRating">
 									<h4>Your Rating</h4>
-									<button ng-click="ctrl.calculate(1); myRating = !myRating">1</button>
-									<button ng-click="ctrl.calculate(2); myRating = !myRating">2</button>
-									<button ng-click="ctrl.calculate(3); myRating = !myRating">3</button>
-									<button ng-click="ctrl.calculate(4); myRating = !myRating">4</button>
-									<button ng-click="ctrl.calculate(5); myRating = !myRating">5</button>
+									<button class="ratingButton" ng-click="ctrl.calculate(1); myRating = !myRating">1</button>
+									<button class="ratingButton" ng-click="ctrl.calculate(2); myRating = !myRating">2</button>
+									<button class="ratingButton" ng-click="ctrl.calculate(3); myRating = !myRating">3</button>
+									<button class="ratingButton" ng-click="ctrl.calculate(4); myRating = !myRating">4</button>
+									<button class="ratingButton" ng-click="ctrl.calculate(5); myRating = !myRating">5</button>
 								</div>
 								<div ng-show="myRating">Thank you for your opinion!</div>
 							</div>
@@ -65,19 +65,19 @@
 				</div>
 			</div>
 			<div ng-controller="getShowingByMovieController as ctrler">
-			<div class="row">
+			<div class="row row1">
 				<button class="center-block" id="findtimes" type="submit"
 					ng-click="ctrler.getByMovie(ctrl.movies[0].movieId); Book = !Book ">Find Times</button>
 			</div>		
 				<div ng-show="Book">
 					<div class="row" id="buttonsRow">
 					<div class="text-center" >
-						<div class="btn-group" id="dateButtons">
-						<button ng-show="(ctrler.showings|filter: (ctrler.today | date:'yyyy-MM-dd')).length>0" type="submit" ng-click="Today = !Today; Tomorrow = false; Future = false">Today</button>
+						<div class="btn-group" >
+						<button id="todayButton" ng-show="(ctrler.showings|filter: (ctrler.today | date:'yyyy-MM-dd')).length>0" type="submit" ng-click="Today = !Today; Tomorrow = false; Future = false">Today</button>
 
-						<button ng-show="(ctrler.showings|filter: (ctrler.tomorrow | date:'yyyy-MM-dd')).length>0" type="submit" ng-click="Tomorrow = !Tomorrow; Future = false; Today = false ">Tomorrow</button>
+						<button id="tomorrowButton" ng-show="(ctrler.showings|filter: (ctrler.tomorrow | date:'yyyy-MM-dd')).length>0" type="submit" ng-click="Tomorrow = !Tomorrow; Future = false; Today = false ">Tomorrow</button>
 
-						<button ng-show="(ctrler.showings|filter: (ctrler.future | date:'yyyy-MM-dd')).length >0" type="submit" ng-click="Future = !Future; Today = false; Tomorrow = false">Future Showings</button>
+						<button id="futureButton" ng-show="(ctrler.showings|filter: (ctrler.future | date:'yyyy-MM-dd')).length >0" type="submit" ng-click="Future = !Future; Today = false; Tomorrow = false">Future Showings</button>
 					</div>
 					</div>
 					</div>
