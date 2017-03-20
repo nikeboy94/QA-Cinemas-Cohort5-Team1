@@ -14,7 +14,7 @@
 
                 <div class="form-group">
                     <label for="showing">Movie:</label>
-                    <select class="form-control" ng-options="movie as movie.title for movie in ctrl.movieList" ng-model="selected"
+                    <select id="selectedMovie" class="form-control" ng-options="movie as movie.title for movie in ctrl.movieList track by selected.movieId" ng-model="selected"
                             ng-change="ctrl.getShowingsById(selected.movieId)"></select>
                 </div>
 

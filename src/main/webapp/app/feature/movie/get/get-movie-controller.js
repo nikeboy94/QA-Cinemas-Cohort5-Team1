@@ -28,9 +28,11 @@
             $('#modalTitle').text(movie.title);
             $('#modalDescription').text(movie.description);
             $rootScope.globals.movieTitle = movie.title;
+            $rootScope.globals.movieId = movie.movieId;
             Auth.setCredentials();
             movieDal.movieTitle = movie.title;
             movieDal.movieId = movie.movieId;
+            alert(movie.movieId);
         };
 
 
@@ -38,6 +40,12 @@
             $('#myModal').modal('toggle');
             $state.go('getmoviebytitle');
         };
+
+        vm.goToBookingPage = function() {
+            $('#myModal').modal('toggle');
+            $rootScope.globals.goToQuickBook = true;
+            $state.go('addticketstandalone');
+        }
 
     };
 
