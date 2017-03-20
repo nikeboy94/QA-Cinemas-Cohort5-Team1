@@ -82,12 +82,11 @@ public class DBTicketService implements TicketService {
 	@Override
 	public String deleteTicket(Long ticketId) {
 		Ticket ticketInDB = findTicket(ticketId);
-		DateFormat formatter;
+		SimpleDateFormat parseFormat = new SimpleDateFormat("y-MM-dd'T'HH:mm");
 		Date showingDate;
-		formatter = new SimpleDateFormat("YYY-MM-DD HH:MM:SS");
 		
 		try {
-			showingDate = (Date) formatter.parse(ticketInDB.getShowing().getDateTime());
+			showingDate = (Date) parseFormat.parse(ticketInDB.getShowing().getDateTime());
 		} catch (ParseException e) {
 			return "{\"message\": \"Could not get showing\"}";
 		}
