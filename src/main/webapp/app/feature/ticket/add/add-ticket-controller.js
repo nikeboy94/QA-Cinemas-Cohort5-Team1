@@ -8,7 +8,7 @@
         vm.tempChildTickets = 0;
         vm.tempAdultTickets = 0;
 
-        this.addTicket = function (ticket, adultQty, childQty) {
+        vm.addTicket = function (ticket, adultQty, childQty) {
             if($rootScope.globals.currentUser == undefined) {
                 alert("Please pick a seat");
                 return;
@@ -132,12 +132,16 @@
         vm.init = function () {
             movieDal.getMovies().then(function (result) {
                 vm.movieList = result;
+                if($rootScope.globals.goToQuickBook != undefined && $rootScope.globals.goToQuickBook == true) {
+                    $rootScope.globals.goToQuickBook = false;
+                    vm.selected =  {"title": $rootScope.globals.movieTitle, "movieId":$rootScope.globals.movieId };
+                    vm.getShowingsById($rootScope.globals.movieId);
+                }
             }), function (error) {
                 vm.error = true;
                 vm.errorMessage = error;
             }
         };
-
         vm.init();
 
         vm.getShowingsById = function (movieId) {
