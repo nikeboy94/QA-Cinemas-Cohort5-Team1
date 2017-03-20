@@ -82,12 +82,11 @@ public class DBTicketService implements TicketService {
 	@Override
 	public String deleteTicket(Long ticketId) {
 		Ticket ticketInDB = findTicket(ticketId);
-		DateFormat formatter;
+		SimpleDateFormat parseFormat = new SimpleDateFormat("y-MM-dd'T'HH:mm");
 		Date showingDate;
-		formatter = new SimpleDateFormat("YYY-MM-DD HH:MM:SS");
 		
 		try {
-			showingDate = (Date) formatter.parse(ticketInDB.getShowing().getDateTime());
+			showingDate = (Date) parseFormat.parse(ticketInDB.getShowing().getDateTime());
 		} catch (ParseException e) {
 			return "{\"message\": \"Could not get showing\"}";
 		}
@@ -192,25 +191,17 @@ public class DBTicketService implements TicketService {
 		Showing showing = manager.find(Showing.class, showingId);
 		double price = 9.0;
 		
-		
-		DateFormat formatter;
-		Date showingDate;
-		formatter = new SimpleDateFormat("YYY-MM-DD HH:MM:SS");
-		
-		StringBuilder strShowingDate = new StringBuilder(showing.getDateTime());
 	
-		int tIndex = strShowingDate.indexOf("T");
-		strShowingDate.replace(tIndex, tIndex+1, " ");
-		
-		
+		SimpleDateFormat parseFormat = new SimpleDateFormat("y-MM-dd'T'HH:mm");
+		Date showingDate;
 		try {
-			showingDate = (Date) formatter.parse(strShowingDate.toString());
+			showingDate = (Date) parseFormat.parse(showing.getDateTime());
 		} catch (ParseException e) {
 			LOGGER.info(e);
 			return "{\"message\": \"Could not get price\"}";
 		}
 
-		if(showingDate.getDay() == 0 || showingDate.getDay() == 1) {
+		if(showingDate.getDay() == 0 || showingDate.getDay() == 6) {
 			price *= 1.3;
 		}
 		
