@@ -5,13 +5,16 @@
 
         vm.price = 0;
         vm.tXCode = "";
-
+        vm.displayPrice = 0;
+        
         vm.init = function() {
             vm.order = Auth.getOrder();
             vm.tXCode = "qacinemas-" + vm.order[0].orderId;
             alert(JSON.stringify(vm.order));
-            for(var i = 0; i < vm.order.length; i++)
-                vm.price += parseInt(vm.order[i].price);
+            for(var i = 0; i < vm.order.length; i++) {
+            	vm.price += parseInt(vm.order[i].price);
+            	vm.displayPrice += parseFloat(vm.order[i].price);
+            };
         };
         vm.init();
 
