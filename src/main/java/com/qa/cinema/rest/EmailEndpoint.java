@@ -14,10 +14,6 @@ import com.qa.cinema.util.JSONUtil;
 
 @Path("/email")
 public class EmailEndpoint {
-
-	
-	@PersistenceContext(unitName = "primary")
-	private EntityManager manager;
 	
 	@Inject
 	private EmailService emailSender;
@@ -25,12 +21,8 @@ public class EmailEndpoint {
 	@Path("/json/{id}/")
 	@GET
 	@Produces({ "application/json" })
-	public String sendEmail(@PathParam("id") Long ticketId) {
-		Ticket ticketInDB = manager.find(Ticket.class, ticketId);
-		
-		if(ticketInDB != null) {
-			return emailSender.sendOrderConfirmation(ticketInDB);
-		}
-		return "Ticket not found";
+	public String sendEmail(@PathParam("id") String orderId) {
+		//Ticket ticketInDB = manager.find(Ticket.class, ticketId);
+		return emailSender.sendOrderConfirmation(orderId);
 	}
 }
