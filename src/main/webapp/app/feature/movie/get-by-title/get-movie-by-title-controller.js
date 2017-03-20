@@ -51,6 +51,10 @@
             });
         };
 
+        vm.createYoutubeUrl = function(urlKey) {
+          return "https://www.youtube.com/embed/" + urlKey;
+        };
+
 
     };
 
