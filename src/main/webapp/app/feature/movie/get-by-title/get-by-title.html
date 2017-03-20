@@ -59,6 +59,10 @@
 								</div>
 								<div ng-show="myRating">Thank you for your opinion!</div>
 							</div>
+							<div class="col-md-6">
+								<h4>Classification</h4>
+								<img class="img responsive" src="app/misc/classificationImages/{{ctrl.movies[0].classification}}.png" width="50px" >
+							</div>
 						</div>
 
 					</div>
@@ -250,7 +254,7 @@
 				<div class="modal-body">
 					<div class="videoWrapper">
 						<iframe width="854" height="480"
-							src="{{ctrl.movies[0].trailerUrl}}" frameborder="0"
+							src="{{ctrl.createYoutubeUrl(ctrl.movies[0].trailerUrl)}}" frameborder="0"
 							allowfullscreen></iframe>
 					</div>
 				</div>
