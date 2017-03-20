@@ -32,7 +32,6 @@
             Auth.setCredentials();
             movieDal.movieTitle = movie.title;
             movieDal.movieId = movie.movieId;
-            alert(movie.movieId);
         };
 
 
