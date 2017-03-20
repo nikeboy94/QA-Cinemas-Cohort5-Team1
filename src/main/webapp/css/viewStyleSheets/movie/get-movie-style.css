@@ -1,4 +1,4 @@
-@CHARSET "ISO -8859 -1";
+@CHARSET "ISO-8859-1";
 
 .filter-row {
 	padding-top:10px;
@@ -6,7 +6,7 @@
 }
 
 .main-row {
-	backgorud-color:white;
+	background-color:white;
 }
 
 .film-poster {

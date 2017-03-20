@@ -34,10 +34,11 @@ angular.module('movieApp').config(['$stateProvider', '$urlRouterProvider', 'USER
         }).state("deleteuser", {
             url: "/deleteuser",
             templateUrl: "app/feature/user/delete/delete-user.html"
-
+        }).state("contactus", {
+            url: "/contactus",
+            templateUrl: "app/feature/contactUs/contact-us.html"
         }).state("getmoviebytitle", {
             url: "/getmoviebytitle",
-
             templateUrl: "app/feature/movie/get-by-title/get-by-title.html"
         }).state("getmoviebygenre", {
             url: "/getmoviebygenre",
@@ -66,12 +67,21 @@ angular.module('movieApp').config(['$stateProvider', '$urlRouterProvider', 'USER
         }).state("addticket", {
             url: "/addticket",
             templateUrl: "app/feature/ticket/add/add-ticket.html"
+        }).state("addticketstandalone", {
+            url: "/addticketstandalone",
+            templateUrl: "app/feature/ticket/add/add-ticket-standalone.html"
         }).state("getavailableticket", {
             url: "/getavailableticket",
             templateUrl: "app/feature/ticket/get-available-for-showing/get-available-for-showing.html"
         }).state("deleteticket", {
             url: "/deleteticket",
             templateUrl: "app/feature/ticket/delete/delete-ticket.html"
+        }).state("searchresults", {
+            url: "/searchresults",
+            templateUrl: "app/feature/movie/search/search-results.html"
+        }).state("addmovieposter", {
+            url: "/addmovieposter",
+            templateUrl: "app/feature/movie/add-movie-poster/add-movie-poster-partial.html"
         }).state("addseat", {
             url: "/addseat",
             templateUrl: "app/feature/seat/add/add-seat.html"
@@ -81,6 +91,36 @@ angular.module('movieApp').config(['$stateProvider', '$urlRouterProvider', 'USER
         }).state("deleteseat", {
             url: "/deleteseat",
             templateUrl: "app/feature/seat/delete/delete-seat.html"
-        })
+        }).state("payment", {
+            url: "/payment",
+            templateUrl: "app/feature/payment/payment.html"
+        }).state("viewer", {
+            url: "/viewer",
+            templateUrl: "app/feature/seat/viewer/viewer.html"
+        }).state("aboutus", {
+            url: "/aboutus",
+            templateUrl: "app/feature/aboutUs/about-us.html"
+        }).state("help", {
+            url: "/help",
+            templateUrl: "app/feature/help/help.html"
+         }).state("cookies", {
+            url: "/cookies",                //Unimplemented
+            templateUrl: "app/feature/cookies/cookies.html"
+        }).state("addscreen", {
+            url: "/addscreen",
+            templateUrl: "app/feature/screen/add/add-screen.html"
+        }).state("getscreen", {
+            url: "/getscreen",
+            templateUrl: "app/feature/screen/get/get-screen.html"
+        }).state("deletescreen", {
+            url: "/deletescreen",
+            templateUrl: "app/feature/screen/delete/delete-screen.html"
 
+        }).state("allorderssummary", {
+        	url: "/allorderssummary",
+        	templateUrl: "app/feature/orderSummary/all-user-orders.html"
+        }).state("ordersummary", {
+        	url: "/ordersummary",
+        	templateUrl: "app/feature/orderSummary/order-summary.html"
+        })
     }]);

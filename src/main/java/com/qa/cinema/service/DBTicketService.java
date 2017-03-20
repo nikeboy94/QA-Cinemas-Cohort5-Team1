@@ -1,5 +1,11 @@
 package com.qa.cinema.service;
 
+import java.util.Date;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Collection;
 
 import javax.ejb.Stateless;
@@ -12,6 +18,7 @@ import javax.persistence.Query;
 import org.apache.log4j.Logger;
 
 import com.qa.cinema.persistence.Ticket;
+import com.qa.cinema.enums.TicketType;
 import com.qa.cinema.persistence.Seat;
 import com.qa.cinema.persistence.Showing;
 import com.qa.cinema.util.JSONUtil;
@@ -57,21 +64,10 @@ public class DBTicketService implements TicketService {
 		return "{\"message\": \"ticket successfully added\"}";
 	}
 
+	
 	@Override
 	public String updateTicket(Long ticketId, String newTicket) {
-		LOGGER.info("DBTICKETSERVICE: Entered updateTicket method. About to get updatedTicket object");
 		Ticket updatedTicket = util.getObjectForJSON(newTicket, Ticket.class);
-		
-		LOGGER.info("DBTICKETSERVICE: About to get updatedShowing object");
-		Showing updatedShowing = getShowing(updatedTicket.getShowing().getShowingId());
-		LOGGER.info("DBTICKETSERVICE: updatedShowing created");
-		
-		if(updatedShowing == null) {
-			return "{\"message\": \"Showing not found\"}";
-		}
-	
-		LOGGER.info("DBTICKETSERVICE: About to call updatedTicket.setShowing");
-		updatedTicket.setShowing(updatedShowing);
 		
 		Ticket ticketInDB = findTicket(ticketId);
 		if (ticketInDB != null){
@@ -81,15 +77,31 @@ public class DBTicketService implements TicketService {
 		}
 		return "{\"message\": \"ticket not found\"}";
 	}
-
+	
+	
 	@Override
 	public String deleteTicket(Long ticketId) {
 		Ticket ticketInDB = findTicket(ticketId);
-		if(ticketInDB != null)	{
+		DateFormat formatter;
+		Date showingDate;
+		formatter = new SimpleDateFormat("YYY-MM-DD HH:MM:SS");
+		
+		try {
+			showingDate = (Date) formatter.parse(ticketInDB.getShowing().getDateTime());
+		} catch (ParseException e) {
+			return "{\"message\": \"Could not get showing\"}";
+		}
+		Date date = new Date();
+		Calendar cal = Calendar.getInstance();
+		cal.setTime ( date );
+		int daysToIncrement = 1;
+		cal.add(Calendar.DATE, daysToIncrement);
+		date = cal.getTime();
+		if(ticketInDB != null & showingDate.before(date))	{
 			manager.remove(ticketInDB);
 			return "{\"message\": \"ticket successfully deleted\"}";
 		}
-		return "{\"message\": \"ticket not found\"}";
+		return "{\"message\": \"ticket not available for deletion\"}";
 	}
 
 	@Override
@@ -100,7 +112,7 @@ public class DBTicketService implements TicketService {
 		int bookedTickets = availableTicketList.size();
 		
 		Showing s = manager.find(Showing.class, showingId);
-		Long screenId = s.getScreen();
+		Long screenId = s.getScreen().getId();
 		query = manager.createQuery("Select s From Seat s Where screenId = :screenId")
 		.setParameter("screenId", screenId);
 		Collection<Seat> numberOfSeatsInScreen = (Collection<Seat>)query.getResultList();
@@ -114,6 +126,8 @@ public class DBTicketService implements TicketService {
 	private Ticket findTicket(Long ticketId) {
 		return manager.find(Ticket.class, ticketId);
 	}
+	
+	
 	
 	private Showing getShowing(Long showingId) {
 		LOGGER.info("DBTICKETSERVICE entered getShowing with param " + showingId);
@@ -132,5 +146,84 @@ public class DBTicketService implements TicketService {
 		LOGGER.info("DBTICKETSERVICE - getShowing. Loop finished, about to return null");
 		return null;
 	}
+	
+	@Override
+	public String createMultipleTicket(String ticket) {
+		Ticket[] aTicket = (Ticket[]) util.getObjectForJSON(ticket, Ticket[].class);
+		for(Ticket t:aTicket){
+			manager.persist(t);
+		}
+		return "{\"message\": \"tickets successfully added\"}";
+	}
+
+	@Override
+	public String getBookedSeatsByShowing(Long showingId) {
+		Query query = manager.createQuery("Select t From Ticket t Where t.showing.showingId = :showingId").setParameter("showingId", showingId);
+		Collection<Ticket> bookedTicketList = (Collection<Ticket>)query.getResultList();
+		
+		Collection<Seat> bookedSeats = new ArrayList<>();
+		
+		for(Ticket aTicket : bookedTicketList) {
+			bookedSeats.add(aTicket.getSeat());
+		}
+		
+		return util.getJSONForObject(bookedSeats);
+	}
+
+	@Override
+	public String getTicketsByOrderId(String orderId) {
+		Query query = manager.createQuery("SELECT t FROM Ticket t WHERE t.orderId = :orderId").setParameter("orderId", orderId);
+		Collection<Ticket> ticketsInOrder = (Collection<Ticket>) query.getResultList();
+		return util.getJSONForObject(ticketsInOrder);
+	}
+	
+
+	@Override
+	public String getTicketPrice(Long showingId, String stringTicketType) {
+		
+		TicketType ticketType = null;
+		try {
+			ticketType = TicketType.valueOf(stringTicketType.toUpperCase());
+		} catch (IllegalArgumentException e) {
+			LOGGER.info("In getTicketPrice. IllegalArgumentException: " + e);
+			return "{\"message\": \"No such ticket type " + stringTicketType + "\"}";
+		}
+		
+		Showing showing = manager.find(Showing.class, showingId);
+		double price = 9.0;
+		
+		
+		DateFormat formatter;
+		Date showingDate;
+		formatter = new SimpleDateFormat("YYY-MM-DD HH:MM:SS");
+		
+		StringBuilder strShowingDate = new StringBuilder(showing.getDateTime());
+	
+		int tIndex = strShowingDate.indexOf("T");
+		strShowingDate.replace(tIndex, tIndex+1, " ");
+		
+		
+		try {
+			showingDate = (Date) formatter.parse(strShowingDate.toString());
+		} catch (ParseException e) {
+			LOGGER.info(e);
+			return "{\"message\": \"Could not get price\"}";
+		}
+
+		if(showingDate.getDay() == 0 || showingDate.getDay() == 1) {
+			price *= 1.3;
+		}
+		
+		if(showingDate.getHours() > 19) {
+			price *= 1.3;
+		}
+		
+		if(ticketType == TicketType.CHILD) {
+			LOGGER.info("In getTicketPrice: Child ticket");
+			price *= 0.7;
+		}
+				
+		return "{\"price\": \" " + price + "\"}";
+	}	
 
 }

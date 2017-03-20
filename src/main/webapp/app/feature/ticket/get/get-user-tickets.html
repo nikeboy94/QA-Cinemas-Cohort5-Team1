@@ -1,9 +1,20 @@
 <div ng-controller="getTicketsController as ctrl">
+    <div class="container">
+        <ul class="list-group" style="background:none">
+            <div ng-repeat="ticket in ctrl.tickets">
+                <li class="list-group-item" style="background:none;">
+                    <div>
+                        Order ID: {{ ticket.orderId }} <br/>
+                        Film Title: {{ ticket.showing.movie.title }} <br/>
+                        Showing Date: {{ ticket.showing.dateTime }}
 
-    <form role="form">
-        <input id="email" placeholder="Email Address" ng-model="email">
-        <button type="submit" ng-click="ctrl.getTickets(email)">Get Tickets</button>
-    </form>
+			<button type="button" ng-click="ctrl.deleteTicket(t.ticketId)">
+			<span class="glyphicon glyphicon-remove"></span>
+			</button>
 
-    {{ctrl.tickets}}
+                    </div>
+                </li>
+            </div>
+        </ul>
+    </div>
 </div>

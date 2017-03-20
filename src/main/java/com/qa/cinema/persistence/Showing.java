@@ -1,27 +1,43 @@
 package com.qa.cinema.persistence;
 
+import java.util.Date;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
 
 @Entity
 public class Showing {
 	
 	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Long showingId;
-	private Long screenId;
-	private Long movieId;
+	
+	@ManyToOne
+	@OnDelete(action=OnDeleteAction.CASCADE)
+	@JoinColumn(name="screenId", nullable=false)
+	private Screen screen;
+	
+	@ManyToOne
+	@OnDelete(action=OnDeleteAction.CASCADE)
+	@JoinColumn(name="movieId", nullable=false)
+	private Movie movie;
+	
 	private String dateTime;
 	
 	public Showing() {
 		//Empty constructor
 	}
 	
-	public Showing(Long screenId, Long movieId, String dateTime) {
-		this.screenId = screenId;
-		this.movieId = movieId;
+	public Showing(Screen screen, Movie movie, String dateTime) {
+		this.screen = screen;
+		this.movie = movie;
 		this.dateTime = dateTime;
 	}
 	
@@ -29,20 +45,20 @@ public class Showing {
 		return showingId;
 	}
 	
-	public Long getScreen() {
-		return screenId;
+	public Screen getScreen() {
+		return screen;
 	}
 	
-	public void setScreen(Long newScreenId) {
-		this.screenId = newScreenId;
+	public void setScreen(Screen newScreen) {
+		this.screen = newScreen;
 	}
 	
-	public Long getMovie() {
-		return movieId;
+	public Movie getMovie() {
+		return movie;
 	}
 	
-	public void setMovie(Long newMovieId) {
-		this.movieId = newMovieId;
+	public void setMovie(Movie newMovie) {
+		this.movie = newMovie;
 	}
 	
 	public String getDateTime() {

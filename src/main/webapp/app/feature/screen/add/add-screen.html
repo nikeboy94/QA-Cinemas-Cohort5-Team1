@@ -1,0 +1,35 @@
+<div ng-controller="addScreenController as ctrl">
+    <div class="jumbotron jumbotron-fluid">
+        <div class="container">
+            <h1>Add a new Screen</h1>
+        </div>
+    </div>
+    <div class="container">
+        <form class="form-horizontal" role="form">
+            <div class="form-group">
+                <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 col-xl-5">
+                    <label for="screenType" class="control-label">Screen Type:</label>
+                    <div class="input-group">
+                        <span class="input-group-addon"><i class="glyphicon glyphicon-film"></i></span>
+                        <input class="form-control" id="screenType" placeholder="Screen Type" ng-model="screen.screenType">
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
+                    <label for="screenDesc" class="control-label">Screen Description:</label>
+                    <div class="input-group">
+                        <span class="input-group-addon"><i class="glyphicon glyphicon-pencil"></i></span>
+                        <textarea class="form-control" id="screenDesc" placeholder="Screen Description" rows="5" ng-model="screen.screenDesc"></textarea>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-lg-12">
+                    <button class="btn btn-primary col-xs-12 col-sm-12 col-md-2 col-lg-2 col-xl-2" type="submit" ng-click="ctrl.addScreen(screen)">Add Screen</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+

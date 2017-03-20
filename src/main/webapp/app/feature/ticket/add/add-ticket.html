@@ -1,24 +1,46 @@
-<div ng-controller="addTicketController as ctrl">
-<h1>Create a ticket</h1>
-{{ctrl.test}}
-    {{ctrl.ticketAddMessage}}
-    <br>
-    {{ctrl.error}}
-    <br>
-    {{ctrl.errorMessage}}
+<div id="login-overlay" class="modal-dialog">
+    <div class="modal-content">
+        <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
+            <h1 class="modal-title" id="myModalLabel">Select your tickets</h1>
+        </div>
+        <div class="modal-body">
+
+<div ng-controller="addTicketController as ctrl" ng-submit="testCtrl.addText(qty)">
+
 <form role="form">
 
-    <input id="price" placeholder="price" ng-model="ticket.price">
+    <div class="form-group">
+        <label for="seat">Seat:</label>
+    <input class="form-control" id="seat" placeholder="seat" ng-model="ticket.seat.seatId">
+    </div>
 
-    <input id="orderId" placeholder="orderId" ng-model="ticket.orderId">
+    <div class="form-group">
+        <label for="showing">Movie:</label>
+        <input class="form-control" id="movie" placeholder="movie" ng-model="movieId">
+    </div>
 
-    <input id="seat" placeholder="seat" ng-model="ticket.seat.seatId">
+    <div class="form-group">
+        <label for="showing">Showing:</label>
+    <input class="form-control" id="showing" placeholder="showing" ng-model="ticket.showing.showingId">
+    </div>
 
-    <input id="showing" placeholder="showing" ng-model="ticket.showing.showingId">
+    <div class="form-group">
+        <label for="email">Email:</label>
+        <div ng-if="globals.currentUser.email != undefined">
+            <input class="form-control" id="email" ng-model="globals.currentUser.email" disabled>
+        </div>
+        <div ng-if="globals.currentUser.email == undefined">
+            <input class="form-control" id="email" placeholder="email" ng-model="ticket.user.email">
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="amount">Quantity:</label>
+        <input class="form-control" type="amount" min="1" max="20" ng-model="qty" placeholder="quantity">
+    </div>
 
-    <input id="email" placeholder="email" ng-model="ticket.user.email">
-
-    <button type="submit" ng-click="ctrl.addTicket(ticket)">addTicket</button>
-
-</form>
+        <button type="submit" ng-click="ctrl.addText(ticket, qty)">Continue</button>
+        <button type="submit" ng-click="ctrl.showSeatViewer()">seats</button>
+    </form>
+</div>
 </div>

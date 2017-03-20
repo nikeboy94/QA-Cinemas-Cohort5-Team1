@@ -1,11 +1,18 @@
 package com.qa.cinema.persistence;
 
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
+
+import com.qa.cinema.enums.TicketType;
 
 /**
  * 
@@ -18,26 +25,35 @@ import javax.persistence.ManyToOne;
 public class Ticket {
 	
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long ticketId;
-	private String price;
+	private double price;
 	private String orderId;
+	
 	@ManyToOne
+	@OnDelete(action=OnDeleteAction.CASCADE)
 	@JoinColumn(name="seatId", nullable=false)
 	private Seat seat;
+	
 	@ManyToOne
+	@OnDelete(action=OnDeleteAction.CASCADE)
 	@JoinColumn(name="showingId", nullable=false)
 	private Showing showing;
+	
 	@ManyToOne
+	@OnDelete(action=OnDeleteAction.CASCADE)
 	@JoinColumn(name="email", nullable=false)
 	private User user;
+	
+	@Enumerated(EnumType.STRING)
+	private TicketType ticketType;
 	
 	public Ticket() {
 		//Empty constructor
 	}
 		
 
-	public Ticket(String price, String orderId, Seat seat, Showing showing, User user) {
+	public Ticket(double price, String orderId, Seat seat, Showing showing, User user) {
 		super();
 		this.price = price;
 		this.orderId = orderId;
@@ -46,11 +62,11 @@ public class Ticket {
 		this.user = user;
 	}
 
-	public String getPrice() {
+	public double getPrice() {
 		return price;
 	}
 
-	public void setPrice(String price) {
+	public void setPrice(double price) {
 		this.price = price;
 	}
 
@@ -95,6 +111,14 @@ public class Ticket {
 		this.price = updatedTicket.getPrice();
 		this.seat = updatedTicket.getSeat();
 		this.showing = updatedTicket.getShowing();
+	}
+	
+	public TicketType getTicketType() {
+		return ticketType;
+	}
+	
+	public void setTicketType(TicketType ticketType) {
+		this.ticketType = ticketType;
 	}
 	
 

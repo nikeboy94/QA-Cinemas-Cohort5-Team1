@@ -1,6 +1,7 @@
 package com.qa.cinema.service;
 
 import java.util.Collection;
+import java.util.List;
 
 import javax.ejb.Stateless;
 import javax.enterprise.inject.Default;
@@ -23,7 +24,7 @@ public class DBScreenService implements ScreenService{
 	private JSONUtil util;
 
 	@Override
-	public String listAllScreens() {
+	public String getAllScreens() {
 		Query query = em.createQuery("SELECT s FROM Screen s");
 		Collection<Screen> screens = (Collection<Screen>) query.getResultList();
 		return util.getJSONForObject(screens);

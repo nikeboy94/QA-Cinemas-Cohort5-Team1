@@ -6,6 +6,10 @@
 	padding: 0;
 }
 
+a {
+	cursor: pointer;
+}
+
 .navbar {
 	background: radial-gradient(#811839, #3F0C1C) !important;
 	font-size: 1.2em;
@@ -50,13 +54,8 @@ body {
 
 #searchBox{
 	width:150px;
-	box-sizing:border-box;
-	border-radius:5px;
 	background-color:white;
-	background-image:url("../img/searchIcon.png");
-	background-position:10px 10px;
-	background-repeat:no-repeat;
-	padding:10px 10px 10px 40px;
+	padding:10px;
 	transition:width 0.3s ease-in-out 0s;
 }
 
@@ -68,8 +67,13 @@ body {
 }
 
 .jumbotron{
-	background:#9E9E9E;
-	color:black;
+	background: rgb(255, 255, 255); /* For browsers that do not support gradients */
+	background: -webkit-linear-gradient(left top, rgb(255, 255, 255), rgb(152, 152, 152)); /* For Safari 5.1 to 6.0 */
+	background: -o-linear-gradient(bottom right, rgb(255, 255, 255), rgb(152, 152, 152)); /* For Opera 11.1 to 12.0 */
+	background: -moz-linear-gradient(bottom right, rgb(255, 255, 255), rgb(152, 152, 152)); /* For Firefox 3.6 to 15 */
+	background: linear-gradient(to bottom right, rgb(255, 255, 255), rgb(152, 152, 152)); /* Standard syntax (must be last) */
+	color: black;
+	box-shadow: 0 4px 8px 0 rgba(0,0,0,0.9), 0 6px 20px 0 rgba(0,0,0,0.75);
 }
 
 .nav-link{

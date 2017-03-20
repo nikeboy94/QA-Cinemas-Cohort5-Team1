@@ -1,7 +1,6 @@
 <!-- div ng-controller="getMovieController as ctrl"> <h1>This is the value of movies</h1><div ng-repeat="x in ctrl.movies"><img src={{x.posterUrl}}></div></div>
 
 <!-- Content goes here -->
-<link rel="stylesheet" href="app/feature/movie/get/get-movie.css" />
 
 <div class="container" ng-controller="getMovieController as ctrl">
     <section class="row search-row">
@@ -25,9 +24,9 @@
                 <!-- NOW SHOWING -->
                 <div class="tab-pane active" id="NowShowing" role="tabpanel">
                     <div class="row">
-                        <div class="film-poster col-xs-6 col-sm-4 col-xl-3" ng-repeat="x in ctrl.movies">
-                            <a ng-click="ctrl.replace(x)" ng-href="/getmovie#myModal" role="button" data-img="{{x.posterUrl}}" data-title="{{x.title}}" data-desc="{{x.description}}" data-toggle="modal">
-                                <img alt="{{x.title}} poster" src="{{x.posterUrl}}" height="545" width="397" class="img-responsive"\>
+                        <div class="film-poster col-xs-6 col-sm-4 col-xl-3" ng-repeat="film in ctrl.currentMovies">
+                            <a ng-click="ctrl.replace(film)" ng-href="/getmovie#myModal" role="button" data-img="{{film.posterUrl}}" data-title="{{film.title}}" data-desc="{{film.description}}" data-toggle="modal">
+                                <img alt="{{film.title}} poster" src="{{film.posterUrl}}" height="550" width="390" class="img-responsive">
                             </a>
                         </div>
                     </div>
@@ -35,28 +34,12 @@
 
                 <!-- COMING SOON -->
                 <div class="tab-pane" id="ComingSoon" role="tabpanel">
+
                     <div class="row">
-                        <div class="film-poster col-xs-6 col-sm-4 col-xl-3">
-                            <a href="/getmovie#myModal" role="button" data-img="img/cars3.jpg" data-title="Cars 3" data-desc="Summary of cars 3" data-toggle="modal">
-                                <img alt="Cars 3 film poster" src="https://pbs.twimg.com/profile_images/506886122396336128/E6Zq19wf_400x400.png" class="img-responsive"\>
-                            </a>
-                        </div>
 
-                        <div class="film-poster col-xs-6 col-sm-4 col-xl-3">
-                            <a href="/getmovie#myModal" role="button" data-img="img/cars3.jpg" data-title="Cars 3" data-desc="Summary of cars 3" data-toggle="modal">
-                                <img alt="Cars 3 film poster" src="https://pbs.twimg.com/profile_images/506886122396336128/E6Zq19wf_400x400.png" class="img-responsive"\>
-                            </a>
-                        </div>
-
-                        <div class="film-poster col-xs-6 col-sm-4 col-xl-3">
-                            <a href="/getmovie#myModal" role="button" data-img="img/cars3.jpg" data-title="Cars 3" data-desc="Summary of cars 3" data-toggle="modal">
-                                <img alt="Cars 3 film poster" src="https://pbs.twimg.com/profile_images/506886122396336128/E6Zq19wf_400x400.png" class="img-responsive"\>
-                            </a>
-                        </div>
-
-                        <div class="film-poster col-xs-6 col-sm-4 col-xl-3">
-                            <a href="/getmovie#myModal" role="button" data-img="img/cars3.jpg" data-title="Cars 3" data-desc="Summary of cars 3" data-toggle="modal">
-                                <img alt="Cars 3 film poster" src="https://pbs.twimg.com/profile_images/506886122396336128/E6Zq19wf_400x400.png" class="img-responsive"\>
+                        <div class="film-poster col-xs-6 col-sm-4 col-xl-3" ng-repeat="film in ctrl.comingSoonMovies">
+                            <a ng-click="ctrl.replace(film)" href="/getmovie#myModal" role="button" data-img="{{film.posterUrl}}" data-title="{{film.title}}" data-desc="{{film.description}}" data-toggle="modal">
+                                <img alt="{{film.title}} poster" src="{{film.posterUrl}}" height="550" width="390" class="img-responsive">
                             </a>
                         </div>
 
