@@ -20,6 +20,7 @@
 
         vm.submitNewPayment = function(card) {
             vm.card = card;
+            vm.formatCardNumber();
             vm.card.expiryDate = vm.card.expiryMonth + vm.card.expiryYear;
             vm.card.cardholderName = "jane doe";
             Auth.addCard(vm.card);
@@ -66,6 +67,17 @@
                 vm.order[i].seat.seatId = vm.order[i].showing.screen.screenId + "_" + vm.order[i].seat.seatId;
             }
             return vm.order;
+        }
+        
+        vm.formatCardNumber = function() {
+        	var oldNumber = vm.card.cardNumber;
+        	var array = oldNumber.split(" ");
+        	var newNumber = "";
+        	for (var i = 0; i < array.length; i++) {
+        		newNumber += array[i];
+        	}
+        	console.log(JSON.stringify(newNumber));
+        	vm.card.cardNumber = newNumber;
         }
     };
 
