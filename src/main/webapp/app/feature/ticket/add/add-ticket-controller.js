@@ -14,6 +14,33 @@
                 return;
             }
 
+            if (ticket == undefined) {
+                ticket = {};
+                ticket.user = {};
+                ticket.showing = {};
+
+                ticket.user.email = $rootScope.globals.currentUser.email;
+                ticket.showing.showingId = $rootScope.globals.currentUser.showingId;
+            } else if (ticket.user == undefined) {
+                ticket.user = {};
+                ticket.user.email = $rootScope.globals.currentUser.email;
+            } else if (ticket.showing == undefined) {
+                ticket.showing = {};
+                ticket.showing.showingId = $rootScope.globals.currentUser.showingId;
+            }
+
+            if (adultQty == undefined || adultQty < 0) {
+                adultQty = 0;
+            }
+            if (childQty == undefined || childQty < 0) {
+                childQty = 0;
+            }
+
+            if(adultQty + childQty == 0) {
+                return;
+            }
+
+
             var addChildTickets = function () {
                 ticketDal.getPrice(ticket.showing.showingId, 'CHILD').then(function (result) {
                     ticketDalSuccess(result, childQty, 'CHILD');
