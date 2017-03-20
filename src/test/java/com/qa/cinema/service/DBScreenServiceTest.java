@@ -15,11 +15,15 @@ import com.qa.cinema.util.JSONUtil;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import static org.mockito.Mockito.when;
+import static org.mockito.Mockito.mock;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.List;
 
 import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 
 @RunWith(MockitoJUnitRunner.class)
 public class DBScreenServiceTest {
@@ -32,19 +36,25 @@ public class DBScreenServiceTest {
 	
 	@InjectMocks
 	DBScreenService ss = new DBScreenService();
-
+	
+	
 	@Test
-	public void faketest() {
+	public void fakeTest() {
 		assertNull(null);
 	}
-	/*
+	
+	
 	@Test
 	public void testGetAllScreens() {
 		Collection<Screen> screens = new ArrayList<Screen>();
 		screens.add(new Screen("Standard", "looks ok"));
-		when(ss.em.query.getResults()).thenReturn(screens);
-		assertEquals("lol", ss.getAllScreens());
+		Query mockedQuery = mock(Query.class);
+		when(em.createQuery("SELECT s FROM Screen s")).thenReturn(mockedQuery);
+		when(mockedQuery.getResultList()).thenReturn((List<Screen>) screens);
+		when(util.getJSONForObject(screens)).thenReturn("{ \"screenId\": \"null\", \"screenType\": \"Standard\", \"screenDesc\":\"looks ok\" }");
+		assertEquals("{ \"screenId\": \"null\", \"screenType\": \"Standard\", \"screenDesc\":\"looks ok\" }" , ss.getAllScreens());
 	}
-	*/
+
+	
 
 }
