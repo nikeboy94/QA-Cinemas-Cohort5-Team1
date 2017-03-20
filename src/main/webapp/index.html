@@ -71,11 +71,10 @@
 					<li><a ui-sref="addticket" id="add-ticket" onclick="styleChange(this)">Add Ticket</a></li>
 					<li><a ui-sref="getavailableticket" id="get-available-ticket" onclick="styleChange(this)">Get Available Tickets For Showing</a></li>
 					<li><a ui-sref="deleteticket" id="delete-ticket" onclick="styleChange(this)">Delete Ticket</a></li>
-          <li><a ui-sref="addticketstandalone" onclick="stylechange(this)">Quick book ticket</a></li>
-
+          			<li><a ui-sref="addticketstandalone" onclick="stylechange(this)">Quick book ticket</a></li>
 				</ul>
 			</li>
-     		 <li class="dropdown">
+			<li class="dropdown">
                 <a class="dropdown-toggle" data-toggle="dropdown">Seat
                     <span class="caret"></span></a>
                 <ul class="dropdown-menu" id="seat">
@@ -85,7 +84,7 @@
                     <li><a ui-sref="deleteseat" id="delete-seat" onclick="styleChange(this)">Delete Seat</a></li>
 					<li><a ui-sref="viewer" id="viewer" onclick="styleChange(this)">View Seats</a></li>
 				</ul>
-			 </li>
+			</li>
 			<li class="dropdown">
 				<a class="dropdown-toggle" data-toggle="dropdown">Screen
 					<span class="caret"></span></a>
@@ -142,10 +141,14 @@
 			<div class="form-group">
 				<div class="input-group">
 					<input type="text" class="form-control search-button" placeholder="Search Film" id="searchBox" ng-model="string">
-					<span class="input-group-addon"><i class="glyphicon glyphicon-search"></i></span>
+					<div class="input-group-btn">
+						<button type="submit" class="btn btn-default" ng-click="goToResults(string)">
+							<i class="glyphicon glyphicon-search"></i>
+						</button>
+					</div>
 				</div>
 			</div>
-			<button type="submit" class="btn btn-default" ng-click="goToResults(string)">Submit</button>
+
 		</form>
 	</div>
 </nav>
