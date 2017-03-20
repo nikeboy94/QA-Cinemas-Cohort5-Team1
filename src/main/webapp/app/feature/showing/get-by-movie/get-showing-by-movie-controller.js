@@ -22,7 +22,7 @@
 
             vm.replace = function(showing) {
                 $('#modalShowing').text(showing.showingId);
-                $('#modalTime').text(showing.dateTime);
+                $('#modalTime').text(vm.convertDate(showing.dateTime));
                 $('#hiddenShowingId').val(showing.showingId);
                 $('#hiddenShowingId').trigger('input');
                 Auth.setShowingId(showing.showingId);
@@ -30,6 +30,24 @@
             };
 
 
+		};
+
+		vm.convertDate = function(dateString) {
+            var d = new Date(dateString);
+
+            var daysOfWeek = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+            var monthsOfYear = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+
+            var printDate = "";
+            printDate += daysOfWeek[d.getDay()] + " ";
+            printDate += d.getDate() + " ";
+            printDate += monthsOfYear[d.getMonth()] + " ";
+            printDate += d.getHours() + ":";
+
+            printDate += d.getMinutes()<10 ? '0' : '';
+            printDate += d.getMinutes() + " ";
+
+            return printDate;
 		}
 
 
