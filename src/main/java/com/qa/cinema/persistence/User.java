@@ -27,7 +27,17 @@ public class User {
 		this.password = password;
 		this.salt = salt;
 	}
-
+	/*
+	public User(User u) {
+		super();
+		this.email = u.email;
+		this.fName = u.fName;
+		this.lName = u.lName;
+		this.role = u.role;
+		this.password = u.password;
+		this.salt = u.salt;
+	}
+*/
 	public String getEmail() {
 		return email;
 	}
