@@ -2,7 +2,6 @@ package com.qa.cinema.util;
 
 import java.util.ArrayList;
 import java.util.List;
-
 import com.qa.cinema.persistence.Movie;
 import com.qa.cinema.persistence.Screen;
 import com.qa.cinema.persistence.Showing;
