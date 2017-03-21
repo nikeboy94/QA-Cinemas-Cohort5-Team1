@@ -32,7 +32,7 @@
                     <div class="form-group">
                         <label for="showing">Showing:</label>
                         <select id="showing" class="form-control"
-                                ng-options="showing as (showing.dateTime | date:'EEEE dd MMMM hh:mma') for showing in (ctrl.movieShowingList | orderBy: 'dateTime')"
+                                ng-options="showing as (showing.dateTime | date:'EEEE dd MMMM hh:mma') for showing in (ctrl.movieShowingList |dateFilter:ctrl.showings | orderBy: 'dateTime')"
                                 ng-model="ticket.showing"
                                 ng-change="ctrl.updateGlobalPrices(ticket.showing)"></select>
                     </div>
