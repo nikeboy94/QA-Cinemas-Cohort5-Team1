@@ -57,6 +57,13 @@ angular.module('movieApp')
                 return $rootScope.globals.currentUser.ticketQuantity;
             };
 
+            authService.setShowing = function(showing) {
+                if ($rootScope.globals.currentUser == undefined){
+                    $rootScope.globals.currentUser = {};
+                }
+                $rootScope.globals.currentUser.showing = showing;
+            };
+
 
             authService.addOrder = function (ticketArray) {
             	for (var i = 0; i < ticketArray.length; i++) {

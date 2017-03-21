@@ -184,7 +184,7 @@
                                     </div>
                                     <div ng-if="globals.currentUser.email == undefined">
                                         <input class="form-control" id="email" placeholder="email"
-                                               ng-model="ticket.user.email">
+                                               ng-model="email" ng-change="ctrlerer.updateEmail(email)">
                                     </div>
                                 </div>
 

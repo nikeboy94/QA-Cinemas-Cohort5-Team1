@@ -42,5 +42,9 @@
         	return dal.http.GET("rest/ticket/json/order/" + orderId);
         };
 
+        this.sendConfirmation = function(orderId) {
+            return dal.http.GET("rest/email/json/" + orderId);
+        }
+
     }
 }());
