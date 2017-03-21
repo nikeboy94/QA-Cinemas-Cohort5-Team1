@@ -134,7 +134,7 @@
                 vm.movieList = result;
                 if($rootScope.globals.goToQuickBook != undefined && $rootScope.globals.goToQuickBook == true) {
                     $rootScope.globals.goToQuickBook = false;
-                    vm.selected =  {"title": $rootScope.globals.movieTitle, "movieId":$rootScope.globals.movieId };
+                    vm.autoFillMovie = $rootScope.globals.movieTitle;
                     vm.getShowingsById($rootScope.globals.movieId);
                 }
             }), function (error) {
