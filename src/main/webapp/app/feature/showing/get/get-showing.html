@@ -1,3 +1,28 @@
+
 <div ng-controller="getShowingController as ctrl">
-	{{ctrl.showings}}
+    <div class row></div>
+    <div class="col-xs-12 col-md-6">
+        <button class="center-block" id="addnew" type="submit"
+                ui-sref="addshowing">Add New Movie
+        </button>
+    </div>
+    <div class="col-xs-12 col-md-6">
+        <button class="center-block" id="update" type="submit"
+                ui-sref="updateshowing">Update Movie
+        </button>
+    </div>
+
+<table class="table table-hover">
+    <td>Showing ID</td>
+    <td>Film</td>
+    <td>Showing time</td>
+    <td>Screen</td>
+    <tr ng-repeat="showing in ctrl.showings | orderBy: '-showingId'">
+        <td>{{showing.showingId}}</td>
+        <td>{{showing.movie.title }}</td>
+        <td>{{showing.dateTime | date:'yyyy-MM-dd H:mm'}}</td>
+        <td>{{showing.screen.screenId}}</td>
+    </tr>
+</table>
+
 </div>
