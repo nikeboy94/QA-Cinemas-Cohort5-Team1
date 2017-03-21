@@ -8,7 +8,12 @@
         vm.tempChildTickets = 0;
         vm.tempAdultTickets = 0;
 
-        this.addTicket = function (ticket, adultQty, childQty) {
+        vm.addTicket = function (ticket, adultQty, childQty) {
+            if($rootScope.globals.currentUser == undefined) {
+                alert("Please pick a seat");
+                return;
+            }
+
             if (ticket == undefined) {
                 ticket = {};
                 ticket.user = {};
@@ -34,6 +39,7 @@
             if(adultQty + childQty == 0) {
                 return;
             }
+
 
             var addChildTickets = function () {
                 ticketDal.getPrice(ticket.showing.showingId, 'CHILD').then(function (result) {
@@ -80,12 +86,24 @@
                 ticketDalFailure(error);
             };
 
-            // $state.go('dashboard');
         };
 
 
 
         vm.showSeatViewer = function(adultQty, childQty, ticket) {
+            if(adultQty == undefined || adultQty < 0 ) {
+                adultQty = 0;
+            }
+
+            if(childQty == undefined || childQty < 0) {
+                childQty = 0;
+            }
+
+            if(adultQty + childQty == 0) {
+                alert("Please select at least 1 seat");
+                return;
+            }
+
             if (ticket == undefined){
                 ticket = {};
                 ticket.user = {};
@@ -93,8 +111,7 @@
 
                 ticket.user.email= $rootScope.globals.currentUser.email;
                 ticket.showing.showingId = $rootScope.globals.currentUser.showingId;
-            } else if (ticket.user == undefined)
-            {
+            } else if (ticket.user == undefined) {
                 ticket.user = {};
                 ticket.user.email= $rootScope.globals.currentUser.email;
             } else if (ticket.showing == undefined){
@@ -115,12 +132,16 @@
         vm.init = function () {
             movieDal.getMovies().then(function (result) {
                 vm.movieList = result;
+                if($rootScope.globals.goToQuickBook != undefined && $rootScope.globals.goToQuickBook == true) {
+                    $rootScope.globals.goToQuickBook = false;
+                    vm.autoFillMovie = $rootScope.globals.movieTitle;
+                    vm.getShowingsById($rootScope.globals.movieId);
+                }
             }), function (error) {
                 vm.error = true;
                 vm.errorMessage = error;
             }
         };
-
         vm.init();
 
         vm.getShowingsById = function (movieId) {
@@ -156,8 +177,8 @@
         }
 
 
-        vm.updateGlobalPrices = function (showingId) {
-            ticketDal.getPrice(showingId, 'ADULT').then(function (result) {
+        vm.updateGlobalPrices = function (showing) {
+            ticketDal.getPrice(showing.showingId, 'ADULT').then(function (result) {
                 vm.globalAdultPrice = result.price;
                 vm.updatePrice();
             }, function (error) {
@@ -165,7 +186,7 @@
                 vm.errorMessage = error;
             })
 
-            ticketDal.getPrice(showingId, 'CHILD').then(function (result) {
+            ticketDal.getPrice(showing.showingId, 'CHILD').then(function (result) {
                 vm.globalChildPrice = result.price;
                 vm.updatePrice();
             }, function (error) {
