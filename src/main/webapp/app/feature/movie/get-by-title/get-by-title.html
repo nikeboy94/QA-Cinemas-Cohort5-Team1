@@ -49,7 +49,7 @@
                                 </div>
                             </div>
                             <div class="row">
-                                <div class="col-md-6">
+                                <div class="col-md-6" ng-if="globals.currentUser.role == 'customer' && (ctrl.ratedFilm() == false)">
                                     <div ng-show="!myRating">
                                         <h4>Your Rating</h4>
                                         <button class="ratingButton" ng-click="ctrl.calculate(1); myRating = !myRating">
@@ -68,8 +68,8 @@
                                             5
                                         </button>
                                     </div>
-                                    <div ng-show="myRating">Thank you for your opinion!</div>
                                 </div>
+                                <div class="col-md-6" ng-show="globals.currentUser.role != undefined && ctrl.ratedFilm() == true"><h4>Thank you for your opinion!</h4></div>
                                 <div class="col-md-6">
                                     <h4>Classification</h4>
                                     <img class="img responsive"
