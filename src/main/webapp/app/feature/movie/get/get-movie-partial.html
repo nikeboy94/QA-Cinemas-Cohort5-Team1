@@ -24,9 +24,11 @@
                 <!-- NOW SHOWING -->
                 <div class="tab-pane active" id="NowShowing" role="tabpanel">
                     <div class="row">
-                        <div class="film-poster col-xs-6 col-sm-4 col-xl-3" ng-repeat="film in ctrl.currentMovies | filter:filmFilter">
+
+                        <div class="film-poster col-xs-12 col-sm-12 col-md-4 col-xl-3" ng-repeat="film in ctrl.currentMovies">
+
                             <a ng-click="ctrl.replace(film)" ng-href="/getmovie#myModal" role="button" data-img="{{film.posterUrl}}" data-title="{{film.title}}" data-desc="{{film.description}}" data-toggle="modal">
-                                <img alt="{{film.title}} poster" src="{{film.posterUrl}}" height="550" width="390" class="img-responsive">
+                                <img alt="{{film.title}} poster" src="{{film.posterUrl}}" class="img-responsive">
                             </a>
                         </div>
                     </div>
@@ -56,10 +58,10 @@
             <div class="modal-content">
                 <div class="modal-body">
                     <div class="row">
-                        <div class="col-xs-6">
+                        <div class="col-xs-12 col-sm-12 col-md-6">
                             <img id="modalImg" src="lolscott.jpg" class="modal-img img-responsive"/>
                         </div>
-                        <div class="col-xs-6">
+                        <div class="col-xs-12 col-sm-12 col-md-6">
                             <h2 id="modalTitle" class='film-title'>Title</h2>
                             <p id="modalDescription" class='film-description'>Summary</p>
                         </div>
