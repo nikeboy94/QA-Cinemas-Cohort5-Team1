@@ -26,11 +26,13 @@
                 $('#hiddenShowingId').val(showing.showingId);
                 $('#hiddenShowingId').trigger('input');
                 Auth.setShowingId(showing.showingId);
+                Auth.setShowing(showing);
                 vm.updateGlobalPrices(showing.showingId);
             };
 
 
 		};
+
 
 		vm.convertDate = function(dateString) {
             var d = new Date(dateString);
