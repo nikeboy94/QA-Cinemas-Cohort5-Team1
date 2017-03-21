@@ -16,7 +16,11 @@
     top: 15%;
 }
 
-
+.center-block {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
 
 #img1 {
 	position: relative;
@@ -35,6 +39,7 @@
 }
 
 #findtimes {
+    margin: 0 auto;
 	background-color: #63122d;
     border: none;
     color: white;
@@ -50,12 +55,13 @@
 }
 
 #todayButton, #tomorrowButton, #futureButton {
+    margin-left: auto;
+    margin-right: auto;
 	background-color: #811839;
     border: none;
     color: white;
     text-align: center;
     padding: 15px 32px;
-    float: left;
     font-size: 20px;
     width: 250px;
 }
