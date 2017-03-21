@@ -18,7 +18,7 @@
                             <a data-target="#myTrailerModal" role="button" data-toggle="modal">
                                 <img src="{{ctrl.movies[0].posterUrl}}" alt="Poster"
                                      class="img-responsive img-rounded" id="img1" width="300px"
-                                     height="400px"/> <img src="app/misc/otherImages/playbutton.png"
+                                     height="400px"/> <img src="app/misc/otherImages/playbutton2.png"
                                                            alt="Poster" class="img-responsive img-rounded" id="img2"
                                                            width="300px" height="400px"/>
                             </a>
@@ -258,7 +258,7 @@
                 <div class="modal-content" id="trailerModalContent">
                     <div class="modal-body">
                         <div class="videoWrapper">
-                            <iframe width="854" height="480"
+                            <iframe width="854" height="480" id="ytplayer"
                                     src="{{ctrl.createYoutubeUrl(ctrl.movies[0].trailerUrl)}}" frameborder="0"
                                     allowfullscreen></iframe>
                         </div>

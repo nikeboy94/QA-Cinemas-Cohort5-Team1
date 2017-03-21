@@ -51,10 +51,27 @@
             });
         };
 
+        /************YOUTUBE*******************/
+
         vm.createYoutubeUrl = function(urlKey) {
-          return "https://www.youtube.com/embed/" + urlKey;
+          return "https://www.youtube.com/embed/" + urlKey + "?enablejsapi=1"
         };
 
+        var player;
+        function onYouTubeIframeAPIReady() {
+            player = new YT.Player('ytplayer', {
+
+            });
+        }
+        onYouTubeIframeAPIReady();
+
+        vm.stop = function() {
+            player.stopVideo();
+        };
+
+        $('#myTrailerModal').on('hidden.bs.modal', function() {
+            vm.stop();
+        });
 
     };
 
