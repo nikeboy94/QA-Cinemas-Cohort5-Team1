@@ -6,10 +6,12 @@
             <h1 class="modal-title" id="myModalLabel">Select your tickets</h1>
         </div>
         <!--<div class="modal-body">-->
+        
+        <link rel="stylesheet" href="css/viewStyleSheets/ticket/add-ticket-style.css"/>
 
 
         <div ng-controller="addTicketController as ctrl" ng-submit="testCtrl.addText(qty)">
-
+		<div class="contents" style="padding: 20px;">
             <form role="form">
 
                 <div class="form-group">
@@ -86,6 +88,7 @@
                 </ul>
             </form>
             <h2>Total price: {{ctrl.totalPrice | currency:"£":2}} </h2>
+        </div>
         </div>
     </div>
 </div>
