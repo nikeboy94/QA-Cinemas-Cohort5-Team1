@@ -57,11 +57,16 @@
 }
 
 #myModal {
-	opacity: 0.9;
+	opacity: 1;
 
 }
 
 .modal-body {
 	color: black;
 	font-size: 1.3em;
+}
+
+img {
+	width: 90%;
+	height: auto;
 }

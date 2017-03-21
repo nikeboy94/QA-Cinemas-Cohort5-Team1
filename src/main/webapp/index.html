@@ -5,257 +5,275 @@
             src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.0-rc.4/angular.min.js"></script>
     <title>Cinema Booking App</title>
 
-	<link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css" rel="stylesheet">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css" rel="stylesheet">
+
     <link rel="stylesheet" href="scripts/bootstrap.css"/>
     <link rel="stylesheet" href="css/globalStyle.css"/>
     <link rel="stylesheet" href="css/index.css"/>
-	<link rel="stylesheet" href="css/viewStyleSheets/home/dashboard.css" id="viewStyle"/>
-	<link rel="stylesheet" href="css/viewStyleSheets/seat/viewer-style.css"/>
+    <link rel="stylesheet" href="css/viewStyleSheets/seat/viewer-style.css"/>
+
 
 </head>
 <body ng-controller="ParentController">
 
 <nav class="navbar navbar-inverse">
 
-	<div class="container-fluid">
-		<div class="navbar-header">
-			<ul id="home">
-				<a class="navbar-brand" ui-sref="dashboard" id="dashboard">QA Cinema</a>
-			</ul>
-		</div>
-		<ul class="nav navbar-nav">
-			<li class="dropdown">
-				<a class="dropdown-toggle">Movie
-					<span class="caret"></span></a>
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <ul id="home">
+                <a class="navbar-brand" ui-sref="dashboard" id="dashboard">QA Cinema</a>
+            </ul>
+        </div>
+        <div class="nav navbar-nav navbar-right">
+            <button data-toggle="collapse" class="navbar-toggle collapsed" data-target="#navbar" type="button"
+                    aria-expanded="false" aria-controls="navbar">
+                <span class="sr-only"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+        </div>
+        <div id="navbar" class="collapse navbar-collapse">
+            <ul class="nav navbar-nav">
+                <li class="dropdown">
+                    <a class="dropdown-toggle">Movie
+                        <span class="caret"></span></a>
 
-				<ul class="dropdown-menu" id="movie">
-					<li><a ui-sref="addmovie" id="add-movie">Add Movie</a></li>
-					<li><a ui-sref="addmovieposter" id="add-movie-poster">Add Movie Poster</a></li>
-					<li><a ui-sref="getmovie" id="get-movie">Get Movie</a></li>
-					<li><a ui-sref="updatemovie" id="update-movie">Update Movie</a></li>
-					<li><a ui-sref="deletemovie" id="delete-movie">Delete Movie</a></li>
-         			<li><a ui-sref="getmoviebytitle" id="get-movie-by-title">Get movie by title</a></li>
-          			<li><a ui-sref="getmoviebygenre" id="get-movie-by-genre">Search Movies By Genre</a></li>
-          			<li><a ui-sref="payment">Payment</a></li>
+                    <ul class="dropdown-menu" id="movie">
+                        <li><a ui-sref="addmovie" id="add-movie">Add Movie</a></li>
+                        <li><a ui-sref="addmovieposter" id="add-movie-poster">Add Movie Poster</a></li>
+                        <li><a ui-sref="getmovie" id="get-movie">Get Movie</a></li>
+                        <li><a ui-sref="updatemovie" id="update-movie">Update Movie</a></li>
+                        <li><a ui-sref="deletemovie" id="delete-movie">Delete Movie</a></li>
+                        <li><a ui-sref="getmoviebytitle" id="get-movie-by-title">Get movie by title</a></li>
+                        <li><a ui-sref="getmoviebygenre" id="get-movie-by-genre">Search Movies By Genre</a></li>
+                        <li><a ui-sref="payment">Payment</a></li>
 
-				</ul>
-			</li>
-			<li class="dropdown">
-				<a class="dropdown-toggle">User
-					<span class="caret"></span></a>
-				<ul class="dropdown-menu" id="user">
-					<li><a ui-sref="adduser" id="add-user">Add User</a></li>
-					<li><a ui-sref="getuser" id="get-user">Get User</a></li>
-					<li><a ui-sref="updateuser" id="update-user">Update User</a></li>
-					<li><a ui-sref="deleteuser" id="delete-user">Delete User</a></li>
-				</ul>
-			</li>
-      		<li class="dropdown">
-          		<a class="dropdown-toggle">Showings
-              		<span class="caret"></span></a>
-          		<ul class="dropdown-menu" id="showing">
-              		<li><a ui-sref="getshowings" id="get-showings">Get Showings</a></li>
-              		<li><a ui-sref="getshowingsbymovie" id="get-showings-by-movie">Get Showings By Movie</a></li>
-              		<li><a ui-sref="addshowing" id="add-showing">Add Showing</a></li>
-              		<li><a ui-sref="deleteshowing" id="delete-showing">Delete Showing</a></li>
-              		<li><a ui-sref="updateshowing" id="update-showing">Update Showing</a></li>
-          		</ul>
-      		</li>
-			<li class="dropdown">
-				<a class="dropdown-toggle">Tickets
-					<span class="caret"></span></a>
+                    </ul>
+                </li>
+                <li class="dropdown">
+                    <a class="dropdown-toggle">User
+                        <span class="caret"></span></a>
+                    <ul class="dropdown-menu" id="user">
+                        <li><a ui-sref="adduser" id="add-user">Add User</a></li>
+                        <li><a ui-sref="getuser" id="get-user">Get User</a></li>
+                        <li><a ui-sref="updateuser" id="update-user">Update User</a></li>
+                        <li><a ui-sref="deleteuser" id="delete-user">Delete User</a></li>
+                    </ul>
+                </li>
+                <li class="dropdown">
+                    <a class="dropdown-toggle">Showings
+                        <span class="caret"></span></a>
+                    <ul class="dropdown-menu" id="showing">
+                        <li><a ui-sref="getshowings" id="get-showings">Get Showings</a></li>
+                        <li><a ui-sref="getshowingsbymovie" id="get-showings-by-movie">Get Showings By Movie</a></li>
+                        <li><a ui-sref="addshowing" id="add-showing">Add Showing</a></li>
+                        <li><a ui-sref="deleteshowing" id="delete-showing">Delete Showing</a></li>
+                        <li><a ui-sref="updateshowing" id="update-showing">Update Showing</a></li>
+                    </ul>
+                </li>
+                <li class="dropdown">
+                    <a class="dropdown-toggle">Tickets
+                        <span class="caret"></span></a>
 
-				<ul class="dropdown-menu" id="ticket">
+                    <ul class="dropdown-menu" id="ticket">
 
-					<li><a ui-sref="gettickets" id="get-user-tickets">Get Tickets</a></li>
-					<li><a ui-sref="updateticket" id="update-ticket">Update Tickets</a></li>
-					<li><a ui-sref="addticket" id="add-ticket">Add Ticket</a></li>
-					<li><a ui-sref="getavailableticket" id="get-available-ticket">Get Available Tickets For Showing</a></li>
-					<li><a ui-sref="deleteticket" id="delete-ticket">Delete Ticket</a></li>
-          <li><a ui-sref="addticketstandalone" onclick="stylechange(this)">Quick book ticket</a></li>
-				</ul>
-			</li>
-			<li class="dropdown">
-                <a class="dropdown-toggle">Seat
-                    <span class="caret"></span></a>
-                <ul class="dropdown-menu" id="seat">
-                    <li><a ui-sref="addseat" id="add-seat">Add Seat</a></li>
-                    <li><a ui-sref="getseat" id="get-seat">Get Seat</a></li>
-                    <li><a ui-sref="updateseat" id="update-seat">Update Seat</a></li>
-                    <li><a ui-sref="deleteseat" id="delete-seat">Delete Seat</a></li>
-					<li><a ui-sref="viewer" id="viewer">View Seats</a></li>
-				</ul>
-			</li>
-			<li class="dropdown">
-				<a class="dropdown-toggle">Screen
-					<span class="caret"></span></a>
-				<ul class="dropdown-menu" id="screen">
-					<li><a ui-sref="addscreen" id="add-screen">Add Screen</a></li>
-					<li><a ui-sref="getscreen" id="get-screen">Get Screen</a></li>
-					<li><a ui-sref="deletescreen" id="delete-screen">Delete Screen</a></li>
-				</ul>
-			</li>
-		</ul>
-		<div ng-if="(globals.currentUser.role == undefined)">
-			<ul class="nav navbar-nav navbar-right">
-				<li><a ui-sref="adduser" id="signUp">Sign up</a></li>
-			</ul>
-		</div>
-		<div ng-if="(globals.currentUser.email == undefined)">
-			<ul class="nav navbar-nav navbar-right">
-				<li><a style="cursor: default; color: inherit;">or</a></li>
-			</ul>
-		</div>
-		<div ng-if="(globals.currentUser.email == undefined)">
-			<ul class="nav navbar-nav navbar-right">
-				<li><a href="#" ng-click="openLogin()" id="signIn">Sign in</a></li>
-			</ul>
-		</div>
-		<div ng-if="(globals.currentUser.role == 'admin')">
-			<ul class="nav navbar-nav navbar-right">
-				<li class="dropdown">
-					<a class="dropdown-toggle" data-toggle="dropdown">Admin
-						<span class="caret"></span></a>
-					<ul class="dropdown-menu">
-						<li><a ui-sref="addmovie">Add Movie</a></li>
-						<li><a ui-sref="addshowing">Add Showing</a></li>
-						<li><a ui-sref="adduser">Add User</a></li>
-						<li><a href="#" ng-click="logout()">logout</a></li>
-					</ul>
-				</li>
-			</ul>
-		</div>
-		<div ng-if="(globals.currentUser.role == 'customer')">
-			<ul class="nav navbar-nav navbar-right">
-				<li class="dropdown">
-					<a class="dropdown-toggle" data-toggle="dropdown">{{ globals.currentUser.fName }}
-						<span class="caret"></span></a>
-					<ul class="dropdown-menu">
-						<li><a ui-sref="allorderssummary">All Orders</a></li>
-						<li><a href="#" ng-click="logout()">logout</a></li>
-					</ul>
-				</li>
-			</ul>
+                        <li><a ui-sref="gettickets" id="get-user-tickets">Get Tickets</a></li>
+                        <li><a ui-sref="updateticket" id="update-ticket">Update Tickets</a></li>
+                        <li><a ui-sref="addticket" id="add-ticket">Add Ticket</a></li>
+                        <li><a ui-sref="getavailableticket" id="get-available-ticket">Get Available Tickets For
+                            Showing</a></li>
+                        <li><a ui-sref="deleteticket" id="delete-ticket">Delete Ticket</a></li>
+                        <li><a ui-sref="addticketstandalone" onclick="stylechange(this)">Quick book ticket</a></li>
+                    </ul>
+                </li>
+                <li class="dropdown">
+                    <a class="dropdown-toggle">Seat
+                        <span class="caret"></span></a>
+                    <ul class="dropdown-menu" id="seat">
+                        <li><a ui-sref="addseat" id="add-seat">Add Seat</a></li>
+                        <li><a ui-sref="getseat" id="get-seat">Get Seat</a></li>
+                        <li><a ui-sref="updateseat" id="update-seat">Update Seat</a></li>
+                        <li><a ui-sref="deleteseat" id="delete-seat">Delete Seat</a></li>
+                        <li><a ui-sref="viewer" id="viewer">View Seats</a></li>
+                    </ul>
+                </li>
+                <li class="dropdown">
+                    <a class="dropdown-toggle">Screen
+                        <span class="caret"></span></a>
+                    <ul class="dropdown-menu" id="screen">
+                        <li><a ui-sref="addscreen" id="add-screen">Add Screen</a></li>
+                        <li><a ui-sref="getscreen" id="get-screen">Get Screen</a></li>
+                        <li><a ui-sref="deletescreen" id="delete-screen">Delete Screen</a></li>
+                    </ul>
+                </li>
+            </ul>
+            <div ng-if="(globals.currentUser.role == undefined)">
+                <ul class="nav navbar-nav navbar-right">
+                    <li><a ui-sref="adduser" id="signUp">Sign up</a></li>
+                </ul>
+            </div>
+            <div ng-if="(globals.currentUser.email == undefined)">
+                <ul class="nav navbar-nav navbar-right">
+                    <li><a style="cursor: default; color: inherit;">or</a></li>
+                </ul>
+            </div>
+            <div ng-if="(globals.currentUser.email == undefined)">
+                <ul class="nav navbar-nav navbar-right">
+                    <li><a href="#" ng-click="openLogin()" id="signIn">Sign in</a></li>
+                </ul>
+            </div>
+            <div ng-if="(globals.currentUser.role == 'admin')">
+                <ul class="nav navbar-nav navbar-right">
+                    <li class="dropdown">
+                        <a class="dropdown-toggle" data-toggle="dropdown">Admin
+                            <span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li><a ui-sref="addmovie">Add Movie</a></li>
+                            <li><a ui-sref="addshowing">Add Showing</a></li>
+                            <li><a ui-sref="adduser">Add User</a></li>
+                            <li><a href="#" ng-click="logout()">logout</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+            <div ng-if="(globals.currentUser.role == 'customer')">
+                <ul class="nav navbar-nav navbar-right">
+                    <li class="dropdown">
+                        <a class="dropdown-toggle" data-toggle="dropdown">{{ globals.currentUser.fName }}
+                            <span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li><a ui-sref="allorderssummary">All Orders</a></li>
+                            <li><a href="#" ng-click="logout()">logout</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+            <form class="navbar-form navbar-right">
+                <div class="form-group">
+                    <div class="input-group">
+                        <input type="text" class="form-control search-button" placeholder="Search Film" id="searchBox"
+                               ng-model="string">
+                        <div class="input-group-btn">
+                            <button type="submit" class="btn btn-default" ng-click="goToResults(string)">
+                                <i class="glyphicon glyphicon-search"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+            </form>
+        </div>
+
     </div>
-  		<form class="navbar-form navbar-right">
-			<div class="form-group">
-				<div class="input-group">
-					<input type="text" class="form-control search-button" placeholder="Search Film" id="searchBox" ng-model="string">
-					<div class="input-group-btn">
-						<button type="submit" class="btn btn-default" ng-click="goToResults(string)">
-							<i class="glyphicon glyphicon-search"></i>
-						</button>
-					</div>
-				</div>
-			</div>
-
-		</form>
-	</div>
 </nav>
 
-	
-
-		<div ui-view></div>
 
 
+<div ui-view></div>
 
 
+<script src="scripts/jquery-2.1.4.min.js"></script>
+<script src="scripts/bootstrap.min.js"></script>
+<script src="scripts/ui-router.min.js"></script>
+<script src="scripts/ui-bootstrap-tpls-0.11.2.min.js"></script>
+<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.3.0-beta.1/angular-cookies.min.js"></script>
+<script src="app/app.js"></script>
+<script src="app/app-state-manager.js"></script>
+<script src="app/global-functions.js"></script>
 
 
+<!-- Services-->
+<script src="app/service/dal/dal.js"></script>
+<script src="app/service/dal/movie.js"></script>
+<script src="app/service/dal/user.js"></script>
+<script src="app/service/dal/showing.js"></script>
+<script src="app/service/dal/ticket.js"></script>
+<script src="app/service/dal/seat.js"></script>
+<script src="app/service/dal/screen.js"></script>
 
-	<script src="scripts/jquery-2.1.4.min.js"></script>
-	<script src="scripts/bootstrap.min.js"></script>
-	<script src="scripts/ui-router.min.js"></script>
-	<script src="scripts/ui-bootstrap-tpls-0.11.2.min.js"></script>
-	<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.3.0-beta.1/angular-cookies.min.js"></script>
-	<script src="app/app.js"></script>
-	<script src="app/app-state-manager.js"></script>
-	<script src="app/global-functions.js"></script>
-
-
-	<!-- Services-->
-	<script src="app/service/dal/dal.js"></script>
-	<script src="app/service/dal/movie.js"></script>
-	<script src="app/service/dal/user.js"></script>
-	<script src="app/service/dal/showing.js"></script>
-	<script src="app/service/dal/ticket.js"></script>
-	<script src="app/service/dal/seat.js"></script>
-	<script src="app/service/dal/screen.js"></script>
-
-	<!--FACTORY -->
-	<script src="app/service/authInterceptor.js"></script>
+<!--FACTORY -->
+<script src="app/service/authInterceptor.js"></script>
 
 
-    <script src="app/feature/dashboard/dashboard-controller.js"></script>
-    <script src="app/feature/movie/add/add-movie-controller.js"></script>
-    <script src="app/feature/movie/get/get-movie-controller.js"></script>
-    <script src="app/feature/movie/delete/delete-movie-controller.js"></script>
-    <script src="app/feature/movie/update/update-movie-controller.js"></script>
-    <script src="app/feature/movie/get-by-title/get-movie-by-title-controller.js"></script>
-    <script src="app/feature/movie/get-by-genre/get-movie-by-genre-controller.js"></script>
-    <script src="app/feature/movie/search/search-results-controller.js"></script>  
-    <script src="app/feature/user/add/add-user-controller.js"></script>
-    <script src="app/feature/user/get/get-user-controller.js"></script>
-    <script src="app/feature/showing/get/get-showing-controller.js"></script>
-    <script src="app/feature/showing/add/add-showing-controller.js"></script>
-    <script src="app/feature/showing/delete/delete-showing-controller.js"></script>
-    <script src="app/feature/showing/update/update-showing-controller.js"></script>
-    <script src="app/feature/showing/get-by-movie/get-showing-by-movie-controller.js"></script>
-    <script src="app/feature/ticket/get/get-user-tickets-controller.js"></script>
-    <!--<script src="app/feature/ticket/update/update-ticket-controller.js"></script>-->
-	<script src="app/feature/ticket/add/add-ticket-controller.js"></script>
-	<script src="app/feature/ticket/get-available-for-showing/get-available-for-showing-controller.js"></script>
-	<script src="app/feature/ticket/delete/delete-ticket-controller.js"></script>
-	<script src="app/feature/aboutUs/about-us-controller.js"></script>
+<script src="app/feature/dashboard/dashboard-controller.js"></script>
+<script src="app/feature/movie/add/add-movie-controller.js"></script>
+<script src="app/feature/movie/get/get-movie-controller.js"></script>
+<script src="app/feature/movie/delete/delete-movie-controller.js"></script>
+<script src="app/feature/movie/update/update-movie-controller.js"></script>
+<script src="app/feature/movie/get-by-title/get-movie-by-title-controller.js"></script>
+<script src="app/feature/movie/get-by-genre/get-movie-by-genre-controller.js"></script>
+<script src="app/feature/movie/search/search-results-controller.js"></script>
+<script src="app/feature/user/add/add-user-controller.js"></script>
+<script src="app/feature/user/get/get-user-controller.js"></script>
+<script src="app/feature/showing/get/get-showing-controller.js"></script>
+<script src="app/feature/showing/add/add-showing-controller.js"></script>
+<script src="app/feature/showing/delete/delete-showing-controller.js"></script>
+<script src="app/feature/showing/update/update-showing-controller.js"></script>
+<script src="app/feature/showing/get-by-movie/get-showing-by-movie-controller.js"></script>
+<script src="app/feature/ticket/get/get-user-tickets-controller.js"></script>
+<!--<script src="app/feature/ticket/update/update-ticket-controller.js"></script>-->
+<script src="app/feature/ticket/add/add-ticket-controller.js"></script>
+<script src="app/feature/ticket/get-available-for-showing/get-available-for-showing-controller.js"></script>
+<script src="app/feature/ticket/delete/delete-ticket-controller.js"></script>
+<script src="app/feature/aboutUs/about-us-controller.js"></script>
 
-	<script src="app/feature/help/help-controller.js"></script>
-
-
-    <script src="app/feature/seat/add/add-seat-controller.js"></script>
-    <script src="app/feature/seat/get/get-seat-controller.js"></script>
-    <script src="app/feature/seat/delete/delete-seat-controller.js"></script>
-  	<script src="app/feature/payment/payment-controller.js"></script>
+<script src="app/feature/help/help-controller.js"></script>
 
 
-	<script src="app/feature/movie/add-movie-poster/add-movie-poster-controller.js"></script>
+<script src="app/feature/seat/add/add-seat-controller.js"></script>
+<script src="app/feature/seat/get/get-seat-controller.js"></script>
+<script src="app/feature/seat/delete/delete-seat-controller.js"></script>
+<script src="app/feature/payment/payment-controller.js"></script>
 
-	<script src="app/feature/screen/add/add-screen-controller.js"></script>
-	<script src="app/feature/screen/get/get-screen-controller.js"></script>
-	<script src="app/feature/screen/delete/delete-screen-controller.js"></script>
 
-  	<script src="app/feature/seat/add/add-seat-controller.js"></script>
-  	<script src="app/feature/seat/get/get-seat-controller.js"></script>
-  	<script src="app/feature/seat/delete/delete-seat-controller.js"></script>
-	<script src="app/feature/seat/viewer/viewercontroller.js"></script>
-	<script src="app/feature/orderSummary/order-summary-controller.js"></script>
+<script src="app/feature/movie/add-movie-poster/add-movie-poster-controller.js"></script>
 
+<script src="app/feature/screen/add/add-screen-controller.js"></script>
+<script src="app/feature/screen/get/get-screen-controller.js"></script>
+<script src="app/feature/screen/delete/delete-screen-controller.js"></script>
+
+<script src="app/feature/seat/add/add-seat-controller.js"></script>
+<script src="app/feature/seat/get/get-seat-controller.js"></script>
+<script src="app/feature/seat/delete/delete-seat-controller.js"></script>
+<script src="app/feature/seat/viewer/viewercontroller.js"></script>
+<script src="app/feature/orderSummary/order-summary-controller.js"></script>
+
+
+<!--CONTROLLERS -->
+<script src="app/feature/login/parentController.js"></script>
+<script src="app/feature/login/login.js"></script>
+<script src="app/feature/contactUs/contact-us-controller.js"></script>
+<script src="css/styleChanger.js"></script>
+
+
+<!--SERVICES -->
+<script src="app/service/auth.js"></script>
+<script src="app/service/session.js"></script>
+
+<!--GOOGLE-->
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDPJy9fj2xGCCTryjBcE73r69gS5-4cMlo&callback=createMap"></script>
+
+<!-- COOKIES -->
+<script type="text/javascript" charset="UTF-8" src="http://chs03.cookie-script.com/s/4eba218f4c29973d02d8aa5683bcc0d6.js"></script>
+
+<!--YOUTUBE-->
+<script src="https://www.youtube.com/iframe_api"></script>
   
-    <!--CONTROLLERS -->
-	<script src="app/feature/login/parentController.js"></script>
-	<script src="app/feature/login/login.js"></script>
-	<script src="app/feature/contactUs/contact-us-controller.js"></script>
-	<script src="css/styleChanger.js"></script>
+<div>
+    <footer class="footer">
+        <div class="container">
+            <ul class="footer-links text-center" id="footerlinks">
+                <li><a ui-sref="aboutus">About us</a></li>
+                <li><a ui-sref="contactus" id="contact-us">Contact Us</a></li>
+                <li><a ui-sref="help" id="help">Help</a></li>
+                <li><a ui-sref="discussion">Discussion page</a></li>
+                <li><a ui-sref="cookies">Cookies</a></li>
+            </ul>
+        </div>
+    </footer>
+</div>
 
-
-    <!--SERVICES -->
-    <script src="app/service/auth.js"></script>
-    <script src="app/service/session.js"></script>
-
-	<!--GOOGLE-->
-	<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDPJy9fj2xGCCTryjBcE73r69gS5-4cMlo&callback=createMap"></script>
-
-	<div >
-		<footer class="footer">
-		<div class="container">
-			<ul class="footer-links text-center" id="footerlinks">
-				<li><a ui-sref="aboutus">About us</a></li>
-				<li><a ui-sref="contactus" id="contact-us">Contact Us</a></li>
-				<li><a ui-sref="help" id="help">Help</a></li>
-				<li><a ui-sref="discussion">Discussion page</a></li>
-				<li><a ui-sref="cookies">Cookies</a></li>
-			</ul>
-		</div>
-	</footer>
-	</div>
 </body>
 </html>

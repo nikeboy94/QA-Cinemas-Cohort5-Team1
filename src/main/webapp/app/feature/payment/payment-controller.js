@@ -52,7 +52,9 @@
             dal.http.POST_PAYMENT(vm.payment.merchantSessionKey, vm.cardIdentifier.cardIdentifier, vm.price, vm.tXCode).then(function (results) {
                 alert(JSON.stringify(results));
                 vm.cardIdentifier = results;
-                ticketDal.addOrder(vm.formatOrder());
+                ticketDal.addOrder(vm.formatOrder()).then(function(result) {
+                    ticketDal.sendConfirmation(vm.order[0].orderId);
+                });
                 $state.go("ordersummary");
             }, function (error) {
                 alert(JSON.stringify(error));

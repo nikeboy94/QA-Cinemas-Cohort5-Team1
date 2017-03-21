@@ -19,14 +19,25 @@
                 ticket.user = {};
                 ticket.showing = {};
 
-                ticket.user.email = $rootScope.globals.currentUser.email;
-                ticket.showing.showingId = $rootScope.globals.currentUser.showingId;
+                ticket.showing = $rootScope.globals.currentUser.showing;
+
+                if(vm.overrideEmail != undefined) {
+                    ticket.user.email = vm.overrideEmail;
+                } else {
+                    ticket.user.email = $rootScope.globals.currentUser.email;
+                }
+
             } else if (ticket.user == undefined) {
                 ticket.user = {};
-                ticket.user.email = $rootScope.globals.currentUser.email;
+
+                if(vm.overrideEmail != undefined) {
+                    ticket.user.email = vm.overrideEmail;
+                } else {
+                    ticket.user.email = $rootScope.globals.currentUser.email;
+                }
             } else if (ticket.showing == undefined) {
                 ticket.showing = {};
-                ticket.showing.showingId = $rootScope.globals.currentUser.showingId;
+                ticket.showing = $rootScope.globals.currentUser.showing;
             }
 
             if (adultQty == undefined || adultQty < 0) {
@@ -88,6 +99,10 @@
 
         };
 
+        vm.updateEmail = function(email) {
+            vm.overrideEmail = email;
+        }
+
 
 
         vm.showSeatViewer = function(adultQty, childQty, ticket) {
@@ -134,7 +149,7 @@
                 vm.movieList = result;
                 if($rootScope.globals.goToQuickBook != undefined && $rootScope.globals.goToQuickBook == true) {
                     $rootScope.globals.goToQuickBook = false;
-                    vm.selected =  {"title": $rootScope.globals.movieTitle, "movieId":$rootScope.globals.movieId };
+                    vm.autoFillMovie = $rootScope.globals.movieTitle;
                     vm.getShowingsById($rootScope.globals.movieId);
                 }
             }), function (error) {

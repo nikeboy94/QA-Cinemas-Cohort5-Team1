@@ -8,9 +8,10 @@
 			showingToAdd.screen = screen;
 			showingToAdd.movie = movie;
 			showingToAdd.dateTime = dateTime;
-			alert(JSON.stringify(showingToAdd));
+
 			showingDal.saveShowing(showingToAdd).then(function(results) {
 				vm.showingAddMessage = results;
+				alert("Your showing has been successfully added.");
 				$state.go("getshowings");
 			}, function(error) {
 				alert(JSON.stringify(error));

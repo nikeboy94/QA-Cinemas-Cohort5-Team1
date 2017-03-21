@@ -14,6 +14,7 @@ angular.module('movieApp')
                         $window.sessionStorage["userInfo"] = JSON.stringify(loginData);
                         Session.create(loginData);
                         $rootScope.globals.currentUser = loginData;
+                        authService.setRatings();
                         authService.setCredentials();
                         $rootScope.$broadcast(AUTH_EVENTS.loginSuccess);
                         success(loginData);
@@ -54,6 +55,13 @@ angular.module('movieApp')
 
             authService.getTicketQuantity = function () {
                 return $rootScope.globals.currentUser.ticketQuantity;
+            };
+
+            authService.setShowing = function(showing) {
+                if ($rootScope.globals.currentUser == undefined){
+                    $rootScope.globals.currentUser = {};
+                }
+                $rootScope.globals.currentUser.showing = showing;
             };
 
 
@@ -127,6 +135,10 @@ angular.module('movieApp')
                 $rootScope.$broadcast(AUTH_EVENTS.logoutSuccess);
                 $rootScope.globals.currentUser.email = undefined;
             };
+            
+            authService.setRatings = function () {
+            	$rootScope.globals.currentUser.ratings = [];
+            }
 
             return authService;
         }]);
