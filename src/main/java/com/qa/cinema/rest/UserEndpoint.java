@@ -1,5 +1,8 @@
 package com.qa.cinema.rest;
 
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
+
 import javax.inject.Inject;
 import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
@@ -28,7 +31,10 @@ public class UserEndpoint {
 	@GET
 	@Produces({"application/json"})
 	public String userAuthAttempt(@PathParam("email") String email, @PathParam("password") String password) {
-		return service.findUser(email, password);
+		if (service.loginAttempt(email, password)) {
+			return service.findUser(email); 
+		}
+		return "{\"message\":\"login fail\"}"; 
 	}
 
 	@Path("/json")
@@ -51,4 +57,6 @@ public class UserEndpoint {
 	public String deleteUser(@PathParam("email") String email) {
 		return service.deleteUser(email);
 	}
+	
+	
 }

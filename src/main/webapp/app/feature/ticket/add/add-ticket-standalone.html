@@ -6,21 +6,23 @@
             <h1 class="modal-title" id="myModalLabel">Select your tickets</h1>
         </div>
         <!--<div class="modal-body">-->
+        
+        <link rel="stylesheet" href="css/viewStyleSheets/ticket/add-ticket-style.css"/>
 
 
         <div ng-controller="addTicketController as ctrl" ng-submit="testCtrl.addText(qty)">
-
+		<div class="contents" style="padding: 20px;">
             <form role="form">
 
                 <div class="form-group">
                     <label for="showing">Movie:</label>
-                    <select ng-options="movie as movie.title for movie in ctrl.movieList" ng-model="selected"
+                    <select id="selectedMovie" class="form-control" ng-options="movie as movie.title for movie in ctrl.movieList track by selected.movieId" ng-model="selected"
                             ng-change="ctrl.getShowingsById(selected.movieId)"></select>
                 </div>
 
                 <div class="form-group">
                     <label for="showing">Showing:</label>
-                    <select id="showing" ng-options="showing as showing.dateTime for showing in ctrl.movieShowingList"
+                    <select id="showing" class="form-control" ng-options="showing as (showing.dateTime | date:'EEEE dd MMMM hh:mma') for showing in (ctrl.movieShowingList | orderBy: 'dateTime')"
                             ng-model="ticket.showing"
                             ng-change="ctrl.updateGlobalPrices(ticket.showing)"></select>
                 </div>
@@ -37,20 +39,47 @@
                     </div>
                 </div>
 
-                <div class="form-group">
-                    <label for="adultQty">Adult tickets {{ctrl.globalAdultPrice | currency:"£":2}}</label>
-                    <input id="adultQty" class="form-control" type="number" min="0" ng-model="adultQty"
-                           placeholder="Adult tickets" ng-change="ctrl.updateAdultQty(adultQty)">
+                <div class="col-xs-6">
+                    <div class="form-group">
+                        <label for="adultQty">Adult tickets {{ctrl.globalAdultPrice | currency:"£":2}}</label>
+                        <select id="adultQty" class="form-control" ng-model="adultQty"
+                                ng-change="ctrl.updateAdultQty(adultQty)">
+                            <option value="0" selected="selected">0</option>
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                            <option value="5">5</option>
+                            <option value="6">6</option>
+                            <option value="7">7</option>
+                            <option value="8">8</option>
+                            <option value="9">9</option>
+                        </select>
+                    </div>
                 </div>
 
-                <div class="form-group">
-                    <label for="childQty">Child tickets {{ctrl.globalChildPrice | currency:"£":2}}</label>
-                    <input id="childQty" class="form-control" type="number" min="0" ng-model="childQty"
-                           placeholder="Child tickets" ng-change="ctrl.updateChildQty(childQty)">
+                <div class="col-xs-6">
+                    <div class="form-group">
+                        <label for="childQty">Child tickets {{ctrl.globalChildPrice | currency:"£":2}}</label>
+                        <select id="childQty" class="form-control" ng-model="childQty"
+                                ng-change="ctrl.updateChildQty(childQty)">
+                            <option value="0" selected="selected">0</option>
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                            <option value="5">5</option>
+                            <option value="6">6</option>
+                            <option value="7">7</option>
+                            <option value="8">8</option>
+                            <option value="9">9</option>
+                        </select>
+                    </div>
                 </div>
-
                 <div class="form-group">
-                    <button class="btn btn-block" type="submit" ng-click="ctrl.showSeatViewer(adultQty, childQty, ticket)" id="viewer" onclick="styleChange(this)">
+                    <button class="btn btn-block" type="submit"
+                            ng-click="ctrlerer.showSeatViewer(adultQty, childQty, ticket)" id="viewer"
+                            onclick="styleChange(this)">
                         Choose Seats
                     </button>
                 </div>
@@ -59,6 +88,7 @@
                 </ul>
             </form>
             <h2>Total price: {{ctrl.totalPrice | currency:"£":2}} </h2>
+        </div>
         </div>
     </div>
 </div>

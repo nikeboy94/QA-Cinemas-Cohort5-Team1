@@ -1,5 +1,7 @@
 package com.qa.cinema.rest;
 
+import java.awt.image.BufferedImage;
+import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -15,6 +17,7 @@ import org.apache.log4j.Logger;
 import org.jboss.resteasy.plugins.providers.multipart.InputPart;
 import org.jboss.resteasy.plugins.providers.multipart.MultipartFormDataInput;
 
+import javax.imageio.ImageIO;
 import javax.inject.Inject;
 import javax.ws.rs.ApplicationPath;
 import javax.ws.rs.Consumes;
@@ -36,7 +39,7 @@ public class MovieEndpoint {
 	
 	static final Logger LOGGER = Logger.getLogger(MovieEndpoint.class);
 	public static final String UPLOADED_FILE_PARAMETER_NAME = "image";
-    public static final String UPLOAD_DIR = "C:\\Users\\Administrator\\Desktop\\img\\";
+    public static final String UPLOAD_DIR = System.getProperty("user.dir") + "\\images\\";
 
 	@Inject
 	private MovieService service;
@@ -112,8 +115,32 @@ public class MovieEndpoint {
 	public String deleteMovie(@PathParam("id") Long movieId) {
 		return service.deleteMovie(movieId);
 	}
+	
+	@Path("/img/{filename}")
+	@GET
+	@Produces("image/png")
+	public Response getFullImage(@PathParam("filename") String fileName) {
+		try {
+			File img = new File(System.getProperty("user.dir") + "\\images\\" + fileName);
+			BufferedImage image = ImageIO.read(img);
+			ByteArrayOutputStream baos = new ByteArrayOutputStream();
+		    ImageIO.write(image, "png", baos);
+		    byte[] imageData = baos.toByteArray();
+		    return Response.ok(imageData).build();
+		} catch (IOException e) {
+			return Response.serverError().build();
+		}
 
+	    
 
+	    
+
+	    // uncomment line below to send non-streamed
+	    
+
+	    // uncomment line below to send streamed
+	    // return Response.ok(new ByteArrayInputStream(imageData)).build();
+	}
 
     @Path("/upload")
     @POST

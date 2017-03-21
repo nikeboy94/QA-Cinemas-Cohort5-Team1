@@ -7,7 +7,6 @@
 		var getByOrder = function() {
 			var order = $rootScope.globals.currentUser.order[0];
 			var orderId = (order.orderId).toString();
-			console.log(orderId);
 			
 			ticketDal.getTicketByOrderId(orderId).then(function(results) {
 				vm.tickets = results;
@@ -70,10 +69,8 @@
 		
 		var init = function() {
 			if ($state.includes('ordersummary')) {
-				console.log("order summary");
 				getByOrder();
 			} else if ($state.includes('allorderssummary')) {
-				console.log("user orders summary");
 				getUserOrders();
 			};
 		}
