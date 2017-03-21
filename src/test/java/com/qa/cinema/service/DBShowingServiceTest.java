@@ -57,6 +57,7 @@ public class DBShowingServiceTest {
 	
 	@Test
 	public void testGetAllShowings() {
+		checkShowings();
 		when(manager.createQuery("SELECT s FROM Showing s")).thenReturn(mockedQuery);
 		when(mockedQuery.getResultList()).thenReturn((List<Showing>) showings);
 		when(util.getJSONForObject(showings)).thenReturn(JSONForShowing((List<Showing>) showings));
@@ -66,6 +67,7 @@ public class DBShowingServiceTest {
 	
 	@Test
 	public void testFindShowingByScreenId() {
+		checkShowings();
 		Long screenId = null;
 		when(manager.createQuery("SELECT s FROM Showing s WHERE s.screen.screenId = " + screenId))
 			.thenReturn(mockedQuery);
@@ -77,6 +79,7 @@ public class DBShowingServiceTest {
 	
 	@Test
 	public void testFindShowingByMovieId() {
+		checkShowings();
 		Long movieId = null;
 		when(manager.createQuery("SELECT s FROM Showing s WHERE s.movie.movieId = " + movieId))
 			.thenReturn(mockedQuery);
@@ -89,36 +92,73 @@ public class DBShowingServiceTest {
 	@Test
 	public void testCreateShowing() {
 		Showing aShowing = new Showing();
-		when(util.getObjectForJSON(new String(), Showing.class)).thenReturn(aShowing);
-		doAnswer(new PersistShowing(showings)).when(manager).persist(aShowing);
-		manager.persist(aShowing);
+		String json = "aShowing json";
+		checkShowings();
 		
-		assertEquals(aShowing, ((List<Showing>) showings).get(1));
+		when(util.getObjectForJSON(json, Showing.class)).thenReturn(aShowing);
+		doAnswer(new PersistShowing(showings)).when(manager).persist(aShowing);
+		
+		service.createShowing(json);
+		
+		assertTrue(showings.contains(aShowing));
 	}
 	
 	@Test
 	public void testUpdateShowing() {
+		checkShowings();
 		Long id = null;
-		Showing updatedShowing = new Showing();
-		when(util.getObjectForJSON("showingJson", Showing.class)).thenReturn(updatedShowing);
+		String json = "updatedShowing json";
+		Showing updatedShowing = new Showing(new Screen(), new Movie(), "date time");
+		
+		when(util.getObjectForJSON(json, Showing.class)).thenReturn(updatedShowing);
 		when(manager.find(Showing.class, id)).thenReturn(findShowing(id));
 		doAnswer(new MergeShowing(showings)).when(manager).merge(updatedShowing);
-		manager.merge(updatedShowing);
+
+		service.updateShowing(id, json);
 		
-		assertEquals(updatedShowing, ((List<Showing>) showings).get(0));
+		assertTrue(findShowing(null).getDateTime().equals("date time") && (findShowing(null) != updatedShowing));
+	}
+	
+	@Test
+	public void testUpdateShowingFail() {
+		checkShowings();
+		Long id = 1L;
+		String json = "updatedShowing json";
+		Showing updatedShowing = new Showing();
+		
+		when(util.getObjectForJSON(json, Showing.class)).thenReturn(updatedShowing);
+		when(manager.find(Showing.class, id)).thenReturn(findShowing(id));
+		doAnswer(new MergeShowing(showings)).when(manager).merge(updatedShowing);
+
+		service.updateShowing(id, json);
+		
+		assertFalse(showings.contains(updatedShowing));
 	}
 	
 	@Test
 	public void testDeleteShowing() {
-		showings.clear();
-		showings.add(showing);
+		checkShowings();
 		Long id = null;
 		
-		when(findShowing(id)).thenReturn(findShowing(id));
+		when(manager.find(Showing.class, id)).thenReturn(findShowing(id));
 		doAnswer(new RemoveShowing(showings)).when(manager).remove(showing);
-		manager.remove(showing);
+		
+		service.deleteShowing(id);
 		
 		assertEquals(0, showings.size());
+	}
+	
+	@Test
+	public void testDeleteShowingFail() {
+		checkShowings();
+		Long id = 1L;
+		
+		when(manager.find(Showing.class, id)).thenReturn(findShowing(id));
+		doAnswer(new RemoveShowing(showings)).when(manager).remove(showing);
+		
+		service.deleteShowing(id);
+		
+		assertNull(findShowing(id));
 	}
 	
 	public List<Showing> findByScreenId(List<Showing> showings, Long screenId) {
@@ -138,6 +178,11 @@ public class DBShowingServiceTest {
 			}
 		}
 		return null;
+	}
+	
+	public void checkShowings() {
+		showings.clear();
+		showings.add(showing);
 	}
 
 }
