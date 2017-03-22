@@ -12,7 +12,6 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
-import org.mockito.Mockito;
 import org.mockito.runners.MockitoJUnitRunner;
 import static org.mockito.Mockito.when;
 import static org.mockito.Mockito.mock;
@@ -21,9 +20,9 @@ import com.qa.cinema.persistence.Movie;
 import com.qa.cinema.persistence.Screen;
 import com.qa.cinema.persistence.Showing;
 import com.qa.cinema.util.JSONUtil;
-import com.qa.cinema.util.answer.MergeShowing;
-import com.qa.cinema.util.answer.PersistShowing;
-import com.qa.cinema.util.answer.RemoveShowing;
+import com.qa.cinema.util.showing.MergeShowing;
+import com.qa.cinema.util.showing.PersistShowing;
+import com.qa.cinema.util.showing.RemoveShowing;
 import static com.qa.cinema.util.MockJSONUtil.*;
 
 @RunWith(MockitoJUnitRunner.class)
