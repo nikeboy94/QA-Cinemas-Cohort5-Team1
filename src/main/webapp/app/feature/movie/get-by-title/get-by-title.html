@@ -176,6 +176,10 @@
                                            ng-change="ctrlerer.updateGlobalPrices(ctrlShowing.showingId)">
                                 </div>
 
+                                <h4 ng-show="ctrler.availableTickets">
+                                   There are {{ctrler.availableTickets}} seats left for this showing
+                                </h4>
+
                                 <div class="form-group">
                                     <label for="email">Email:</label>
                                     <div ng-if="globals.currentUser.email != undefined">

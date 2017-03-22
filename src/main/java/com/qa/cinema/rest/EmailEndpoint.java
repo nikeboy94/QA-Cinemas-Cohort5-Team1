@@ -22,7 +22,13 @@ public class EmailEndpoint {
 	@GET
 	@Produces({ "application/json" })
 	public String sendEmail(@PathParam("id") String orderId) {
-		//Ticket ticketInDB = manager.find(Ticket.class, ticketId);
 		return emailSender.sendOrderConfirmation(orderId);
+	}
+	
+	@Path("/json/guest/{id}/{email}")
+	@GET
+	@Produces({ "application/json" })
+	public String sendGuestEmail(@PathParam("id") String orderId, @PathParam("email") String email) {
+		return emailSender.sendGuestOrderConfirmation(orderId, email);
 	}
 }

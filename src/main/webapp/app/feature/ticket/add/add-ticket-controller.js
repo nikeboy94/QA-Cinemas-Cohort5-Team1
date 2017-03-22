@@ -196,6 +196,9 @@
             ticketDal.getPrice(showing.showingId, 'ADULT').then(function (result) {
                 vm.globalAdultPrice = result.price;
                 vm.updatePrice();
+                ticketDal.getAvailableTickets(showing.showingId).then(function(result) {
+                    vm.availableTickets = result.availableTickets;
+                })
             }, function (error) {
                 vm.error = true;
                 vm.errorMessage = error;
