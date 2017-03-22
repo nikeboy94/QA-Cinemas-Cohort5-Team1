@@ -1,0 +1,14 @@
+#price{
+
+    width: 100%;
+    margin-bottom:75px;
+}
+
+#price th, td {
+    text-align: left;
+    padding: 8px;
+}
+
+#price tr:nth-child(5){background-color: whitesmoke}
+#price tr:nth-child(6){background-color: whitesmoke}
+#price tr:nth-child(7){background-color: whitesmoke}

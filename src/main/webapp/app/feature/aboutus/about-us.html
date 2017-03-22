@@ -1,18 +1,67 @@
+<link rel="stylesheet" href="css/viewStyleSheets/footerlinks/about-us-style.css"/>
 <div class="jumbotron jumbotron-fluid">
 	<div class="container">
 		<h1>About us</h1>
 	</div>
 </div>
 <div class = "container" ng-controller="aboutUsController as ctrl">
-	<p>Some info about the cinema ...</p>
 	<div>
 		<h4>What's nearby</h4>
 		<p>Info about the nearby area ...</p>
 	</div>
+	<br>
 	<div id="location">
 		<h4>Where to find us</h4>
 		<p>QA Cinemas can be found at this address ...</p>
 		<div id="cinemaMap" style="width: 100%; height: 400px;"></div>
+	</div>
+	<br>
+	<div id="prices">
+		<h4>Ticket Prices</h4>
+		<p>
+		<table id="price">
+			<tr>
+				<th></th>
+				<th>Standard Screen</th>
+				<th>Deluxe Screen</th>
+
+
+			</tr>
+			<tr>
+				<td>Adult (Off-Peak)</td>
+				<td>&pound9.00</td>
+				<td>&pound14.00</td>
+			</tr>
+			<tr>
+				<td>Adult (Peak)</td>
+				<td>&pound11.70</td>
+				<td>&pound16.70</td>
+			</tr>
+			<tr>
+				<td>Adult (Super-Peak)</td>
+				<td>&pound15.21</td>
+				<td>&pound21.21</td>
+			</tr>
+
+			<tr>
+				<td>Child (Off-Peak)</td>
+				<td>&pound6.30</td>
+				<td>&pound11.30</td>
+			</tr>
+			<tr>
+				<td>Child (Peak)</td>
+				<td>&pound8.19</td>
+				<td>&pound13.19</td>
+			</tr>
+			<tr>
+				<td>Child (Super-Peak)</td>
+				<td>&pound10.65</td>
+				<td>&pound15.65</td>
+			</tr>
+		</table>
+		</p>
+
+
 	</div>
 </div>
 
