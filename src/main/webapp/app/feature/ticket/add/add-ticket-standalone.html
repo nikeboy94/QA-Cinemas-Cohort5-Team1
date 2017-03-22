@@ -92,15 +92,14 @@
                         </div>
                     </div>
                     <div class="form-group">
-                        <button class="btn btn-block" type="submit"
+                        <button class="btn btn-info" type="submit"
                                 ng-click="ctrl.showSeatViewer(adultQty, childQty, ticket)" id="viewer"
                                 onclick="styleChange(this)">
                             Choose Seats
                         </button>
                     </div>
-                    <ul id="temp">
-                        <button type="submit" ng-click="ctrl.addTicket(ticket, adultQty, childQty)">Continue</button>
-                    </ul>
+
+                        <button class='btn btn-primary' type="submit" ng-click="ctrl.addTicket(ticket, adultQty, childQty)">Continue</button>
                 </form>
                 <h2>Total price: {{ctrl.totalPrice | currency:"£":2}} </h2>
             </div>
