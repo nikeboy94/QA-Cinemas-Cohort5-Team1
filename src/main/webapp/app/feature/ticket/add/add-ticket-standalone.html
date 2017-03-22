@@ -36,6 +36,10 @@
                                 ng-change="ctrl.updateGlobalPrices(ticket.showing)"></select>
                     </div>
 
+                    <h4 ng-show="ctrl.availableTickets">
+                        There are {{ctrl.availableTickets}} seats left for this showing
+                    </h4>
+
                     <div class="form-group">
                         <label for="email">Email:</label>
                         <div ng-if="globals.currentUser.email != undefined">
@@ -47,6 +51,8 @@
                                    ng-model="ticket.user.email">
                         </div>
                     </div>
+
+
 
                     <div class="col-xs-6">
                         <div class="form-group">
