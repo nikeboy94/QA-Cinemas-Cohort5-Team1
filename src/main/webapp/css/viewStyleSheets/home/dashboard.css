@@ -1,4 +1,19 @@
 .nav-pills > li.active > a, .nav-pills > li.active > a:hover, .nav-pills > li.active > a:focus {
-    font-color: #9d9d9d !important;
+    color: white !important;
     background: radial-gradient(#811839, #3F0C1C) !important;
+}
+
+.nav-pills > li > a:focus {
+	color: black !important;
+    background-color: whitesmoke !important;
+}
+
+.nav-pills > li > a {
+    border-radius: 0px;
+    color: black !important;
+    background-color: #808080!important;
+}
+
+.nav-pills > li > a:hover {
+	background-color: #cccccc !important;
 }
