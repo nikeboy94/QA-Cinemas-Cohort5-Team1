@@ -93,20 +93,50 @@
                             <div class="btn-group">
                                 <button id="todayButton"
                                         ng-show="(ctrler.showings|filter: (ctrler.today | date:'yyyy-MM-dd')).length>0"
-                                        type="submit" ng-click="Today = !Today; Tomorrow = false; Future = false">Today
+                                        type="submit" ng-click="Today = !Today; Tomorrow = false; Day3 = false; Day4 = false; Day5 = false; Day6 = false; Day7 = false">Today
                                 </button>
 
                                 <button id="tomorrowButton"
                                         ng-show="(ctrler.showings|filter: (ctrler.tomorrow | date:'yyyy-MM-dd')).length>0"
-                                        type="submit" ng-click="Tomorrow = !Tomorrow; Future = false; Today = false ">
+                                        type="submit" ng-click="Tomorrow = !Tomorrow; Today = false; Day3 = false; Day4 = false; Day5 = false; Day6 = false; Day7 = false">
                                     Tomorrow
                                 </button>
 
-                                <button id="futureButton"
-                                        ng-show="(ctrler.showings|filter: (ctrler.future | date:'yyyy-MM-dd')).length >0"
+                                <button id="day3Button"
+                                        ng-show="(ctrler.showings|filter: (ctrler.day3 | date:'yyyy-MM-dd')).length>0"
+                                        type="submit" ng-click="Day3 = !Day3; Today = false; Tomorrow = false; Day4 = false; Day5 = false; Day6 = false; Day7 = false">
+                                    {{ctrler.day3 | date: 'EEEE, d MMMM'}}
+                                </button>
+
+                                <button id="day4Button"
+                                        ng-show="(ctrler.showings|filter: (ctrler.day4 | date:'yyyy-MM-dd')).length>0"
+                                        type="submit" ng-click="Day4 = !Day4; Tomorrow = false; Today = false; Day3 = false; Day5 = false; Day6 = false; Day7 = false">
+                                    {{ctrler.day4 | date: 'EEEE, d MMMM'}}
+                                </button>
+
+                                <button id="day5Button"
+                                        ng-show="(ctrler.showings|filter: (ctrler.day5 | date:'yyyy-MM-dd')).length>0"
+                                        type="submit" ng-click="Day5 = !Day5; Tomorrow = false; Today = false; Day3 = false; Day4 = fa;se; Day6 = false; Day7 = false">
+                                    {{ctrler.day5 | date: 'EEEE, d MMMM'}}
+                                </button>
+
+                                <button id="day6Button"
+                                        ng-show="(ctrler.showings|filter: (ctrler.day6 | date:'yyyy-MM-dd')).length>0"
+                                        type="submit" ng-click="Day 6 = !Day6; Tomorrow = false; Today = false; Day3 = false; Day4 = false; Day5 = false; Day7 = false">
+                                    {{ctrler.day6 | date: 'EEEE, d MMMM'}}
+                                </button>
+
+                                <button id="day7Button"
+                                        ng-show="(ctrler.showings|filter: (ctrler.day7 | date:'yyyy-MM-dd')).length>0"
+                                        type="submit" ng-click="Day 7 = !Day7; Tomorrow = false; Today = false; Day3 = false; Day4 = false; Day5 = false; Day6 = false">
+                                    {{ctrler.day7 | date: 'EEEE, d MMMM'}}
+                                </button>
+
+                                <!--button id="futureButton"
+                                        ng-show="(ctrler.showings|filter: (ctrler.future | date:'yyyy-MM-dd')).length>0"
                                         type="submit" ng-click="Future = !Future; Today = false; Tomorrow = false">
                                     Future Showings
-                                </button>
+                                </button-->
                             </div>
                         </div>
                     </div>
@@ -132,7 +162,62 @@
                         </div>
                     </div>
 
-                    <div ng-show="Future" class="row">
+                    <div ng-show="Day3" class="row">
+                        <div class="col-xs-6 col-sm-4 col-xl-3"
+                             ng-repeat="y in ctrler.showings|filter: (ctrler.day3 | date:'yyyy-MM-dd')">
+                            <a ng-click="ctrler.replace(y)" data-target="#myBookingModal"
+                               data-showingId="{{y.showingId}}"
+                               data-dateTime="{{y.dateTime | date}}" data-toggle="modal">
+                                <button type="submit">{{y.dateTime | date: 'H:mm'}}</button>
+                            </a>
+                        </div>
+                    </div>
+
+                    <div ng-show="Day4" class="row">
+                        <div class="col-xs-6 col-sm-4 col-xl-3"
+                             ng-repeat="y in ctrler.showings|filter: (ctrler.day4 | date:'yyyy-MM-dd')">
+                            <a ng-click="ctrler.replace(y)" data-target="#myBookingModal"
+                               data-showingId="{{y.showingId}}"
+                               data-dateTime="{{y.dateTime | date}}" data-toggle="modal">
+                                <button type="submit">{{y.dateTime | date: 'H:mm'}}</button>
+                            </a>
+                        </div>
+                    </div>
+
+                    <div ng-show="Day5" class="row">
+                        <div class="col-xs-6 col-sm-4 col-xl-3"
+                             ng-repeat="y in ctrler.showings|filter: (ctrler.day5 | date:'yyyy-MM-dd')">
+                            <a ng-click="ctrler.replace(y)" data-target="#myBookingModal"
+                               data-showingId="{{y.showingId}}"
+                               data-dateTime="{{y.dateTime | date}}" data-toggle="modal">
+                                <button type="submit">{{y.dateTime | date: 'H:mm'}}</button>
+                            </a>
+                        </div>
+                    </div>
+
+                    <div ng-show="Day6" class="row">
+                        <div class="col-xs-6 col-sm-4 col-xl-3"
+                             ng-repeat="y in ctrler.showings|filter: (ctrler.day6 | date:'yyyy-MM-dd')">
+                            <a ng-click="ctrler.replace(y)" data-target="#myBookingModal"
+                               data-showingId="{{y.showingId}}"
+                               data-dateTime="{{y.dateTime | date}}" data-toggle="modal">
+                                <button type="submit">{{y.dateTime | date: 'H:mm'}}</button>
+                            </a>
+                        </div>
+                    </div>
+
+                    <div ng-show="Day7" class="row">
+                        <div class="col-xs-6 col-sm-4 col-xl-3"
+                             ng-repeat="y in ctrler.showings|filter: (ctrler.day7 | date:'yyyy-MM-dd')">
+                            <a ng-click="ctrler.replace(y)" data-target="#myBookingModal"
+                               data-showingId="{{y.showingId}}"
+                               data-dateTime="{{y.dateTime | date}}" data-toggle="modal">
+                                <button type="submit">{{y.dateTime | date: 'H:mm'}}</button>
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- div ng-show="Future" class="row">
                         <div class="col-xs-6 col-sm-4 col-xl-3"
                              ng-repeat="y in ctrler.showings|myFilter:ctrler.showings">
                             <a ng-click="ctrler.replace(y)" data-target="#myBookingModal"
@@ -140,7 +225,7 @@
                                data-dateTime="{{y.dateTime | date}}" data-toggle="modal">
                                 <button type="submit">{{y.dateTime}}</button>
                             </a>
-                        </div>
+                        </div -->
                     </div>
                 </div>
 
