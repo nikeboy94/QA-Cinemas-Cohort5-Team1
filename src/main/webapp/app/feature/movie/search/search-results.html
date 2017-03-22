@@ -1,21 +1,27 @@
+<link rel="stylesheet" href="css/viewStyleSheets/movie/search-results-style.css"/>
 <div ng-controller="searchResultsController as ctrl">
-<div class="container">
-    <div class="row">
-        <h1>Search Results</h1>
-    </div>
-
-    <div class="row" ng-repeat="x in ctrl.movies">
-        <div class="col-md-6">
-            <a ng-click="ctrl.goToMovie(x.title)">
-                <img src="{{x.posterUrl}}" width="200px" height="300px"/>
-            </a>
-        </div>
-        <div class="col-md-6">
-            <a ng-click="ctrl.goToMovie(x.title)">
-                <h2>{{x.title}}</h2>
-            </a>
-        </div>
-    </div>
-
-</div>
+	<div class="container">
+		<div class="row">
+			<h1>Search Results</h1>
+		</div>
+		<div class="jumbotron" ng-repeat="x in ctrl.movies">
+			<div class="row">
+				<div class="col-md-3">
+					<a ng-click="ctrl.goToMovie(x.title)"> <img
+						src="{{x.posterUrl}}" width="200px" height="300px" />
+					</a>
+				</div>
+				<div class="col-md-9">
+					<div class="row">
+						<a ng-click="ctrl.goToMovie(x.title)">
+							<h2>{{x.title}}</h2>
+						</a>
+					</div>
+					<div class="row">
+						<h3>{{x.description}}</h3>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
 </div>

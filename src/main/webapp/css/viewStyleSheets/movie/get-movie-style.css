@@ -57,6 +57,7 @@
 }
 
 #myModal {
+	color: black;
 	opacity: 1;
 
 }
@@ -67,6 +68,10 @@
 }
 
 img {
-	width: 90%;
+	width: 390px;
 	height: auto;
+}
+
+#getMovieContainer {
+	padding-top: 15px;
 }

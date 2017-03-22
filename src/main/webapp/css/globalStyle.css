@@ -28,6 +28,7 @@ body {
   line-height: 60px; /* Vertically center the text there */
   background-color: #9E9E9E;
   color: #0D1515;
+  overflow: hidden;
 }
 
 .footer-links > li{
