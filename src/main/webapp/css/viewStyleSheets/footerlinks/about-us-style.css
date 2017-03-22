@@ -1,14 +1,24 @@
 #price{
 
     width: 100%;
-    margin-bottom:75px;
+
 }
 
 #price th, td {
     text-align: left;
     padding: 8px;
 }
-
-#price tr:nth-child(5){background-color: whitesmoke}
-#price tr:nth-child(6){background-color: whitesmoke}
-#price tr:nth-child(7){background-color: whitesmoke}
+#price tr:nth-child(1){background-color: #3f0c1c
+}
+#price tr:nth-child(2){background-color: rgba(63, 12, 28, 0.85)
+}
+#price tr:nth-child(3){background-color: rgba(63, 12, 28, 0.7)
+}
+#price tr:nth-child(4){background-color: rgba(63, 12, 28, 0.56)
+}
+#price tr:nth-child(5){background-color: rgba(63, 12, 28, 0.4)
+}
+#price tr:nth-child(6){background-color: rgba(63, 12, 28, 0.25)
+}
+#price tr:nth-child(7){background-color: rgba(63, 12, 28, 0.1)
+}
