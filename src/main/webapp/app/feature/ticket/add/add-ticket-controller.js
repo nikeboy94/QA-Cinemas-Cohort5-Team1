@@ -9,7 +9,7 @@
         vm.tempAdultTickets = 0;
 
         vm.addTicket = function (ticket, adultQty, childQty) {
-            if($rootScope.globals.currentUser == undefined) {
+            if($rootScope.globals.currentUser == undefined || $rootScope.globals.currentUser.seats == undefined) {
                 alert("Please pick a seat");
                 return;
             }
