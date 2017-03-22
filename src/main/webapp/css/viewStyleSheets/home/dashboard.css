@@ -1,3 +1,5 @@
+@CHARSET "ISO-8859-1";
+
 .nav-pills > li.active > a, .nav-pills > li.active > a:hover, .nav-pills > li.active > a:focus {
     font-color: #9d9d9d !important;
     background: radial-gradient(#811839, #3F0C1C) !important;
