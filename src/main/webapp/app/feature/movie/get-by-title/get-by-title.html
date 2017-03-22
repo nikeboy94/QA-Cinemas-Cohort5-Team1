@@ -140,14 +140,15 @@
                             </div>
                         </div>
                     </div>
-                    <div ng-show="Today" class="row">
+
+                    <div ng-show="Today" class="jumbotron inception">
                         <h2 class="showingsForTitle">Showings for {{ctrler.today | date}}</h2>
-                        <div class="col-md-1" ng-repeat="x in ctrler.showings | todayFilter:ctrler.showings | orderBy: 'dateTime'">
-                            <a ng-click="ctrler.replace(x)" data-target="#myBookingModal"
-                               data-showingId="{{x.showingId}}"
-                               data-dateTime="{{x.dateTime | date}}" data-toggle="modal">
-                                <button type="submit">{{x.dateTime | date: 'H:mm'}}</button>
-                            </a>
+                        <div class="text-center">
+                        <div class="btn-group">
+                                <button ng-repeat="x in ctrler.showings | todayFilter:ctrler.showings | orderBy: 'dateTime'" ng-click="ctrler.replace(x)" data-target="#myBookingModal"
+                                        data-showingId="{{x.showingId}}"
+                                        data-dateTime="{{x.dateTime | date}}" data-toggle="modal" type="submit">{{x.dateTime | date: 'H:mm'}}</button>
+                        </div>
                         </div>
                     </div>
 

@@ -91,3 +91,13 @@
     text-align: center;
 }
 
+.jumbotron.inception {
+    background: rgb(255, 255, 255); /* For browsers that do not support gradients */
+    background: -webkit-linear-gradient(left top, rgb(174, 174, 174), rgb(68, 68, 68)); /* For Safari 5.1 to 6.0 */
+    background: -o-linear-gradient(bottom right, rgb(174, 174, 174), rgb(68, 68, 68)); /* For Opera 11.1 to 12.0 */
+    background: -moz-linear-gradient(bottom right, rgb(174, 174, 174), rgb(68, 68, 68)); /* For Firefox 3.6 to 15 */
+    background: linear-gradient(to bottom right, rgb(174, 174, 174), rgb(68, 68, 68)); /* Standard syntax (must be last) */
+    color: white;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.9), 0 6px 20px 0 rgba(0,0,0,0.75);
+}
+
