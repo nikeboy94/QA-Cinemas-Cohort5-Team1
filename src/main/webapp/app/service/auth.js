@@ -64,6 +64,12 @@ angular.module('movieApp')
                 $rootScope.globals.currentUser.showing = showing;
             };
 
+            authService.clearOrder = function() {
+                $rootScope.globals.currentUser.seats = undefined;
+                $rootScope.globals.currentUser.showing = undefined;
+                $rootScope.globals.currentUser.showingId = undefined;
+            }
+
 
             authService.addOrder = function (ticketArray) {
             	for (var i = 0; i < ticketArray.length; i++) {
