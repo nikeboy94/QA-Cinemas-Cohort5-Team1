@@ -3,8 +3,9 @@
     var AddMovieController =  function($state, $scope, movieDal, dal) {
         var vm = this;
 
-        vm.addMovie = function(movieToAdd, day, month, year) {
+        vm.addMovie = function(movieToAdd, day, month, year, classification) {
             movieToAdd.releaseDate=year+"-"+month+"-"+day;
+            movieToAdd.classification=classification;
             movieToAdd.posterUrl = document.getElementById('posterUrl').value;
             movieDal.saveMovie(movieToAdd).then(function (results) {
                 vm.movieAddMessage  = results;
@@ -21,7 +22,7 @@
             document.getElementById('posterUrl').setAttribute("disabled","disabled");
             movieDal.saveMoviePoster(movieToAdd).then(function (results) {
                 vm.movieAddMessage  = results;
-                alert(JSON.stringify(results));
+
             }, function (error) {
                 vm.error = true;
                 vm.errorMessage = error;
