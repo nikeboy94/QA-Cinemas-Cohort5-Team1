@@ -21,6 +21,11 @@
 	width: 100%;
 }
 
+.nav-pills > li.active > a, .nav-pills > li.active > a:hover, .nav-pills > li.active > a:focus {
+	font-color: #9d9d9d !important;
+	background: radial-gradient(#811839, #3F0C1C) !important;
+}
+/*
 .nav-tabs {
 	border-bottom-color: #f2f2f2;
 	font-size: 1.2em;
@@ -51,13 +56,14 @@
 	opacity: 1;
 	color: black;
 }
-
+*/
 #film-search {
 	height: 45px;
 }
 
 #myModal {
-	opacity: 0.9;
+	color: black;
+	opacity: 1;
 
 }
 
@@ -65,3 +71,15 @@
 	color: black;
 	font-size: 1.3em;
 }
+
+img {
+	width: 390px;
+	height: auto;
+
+
+}
+
+#getMovieContainer {
+	padding-top: 15px;
+}
+

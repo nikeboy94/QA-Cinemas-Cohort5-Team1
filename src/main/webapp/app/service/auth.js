@@ -9,20 +9,18 @@ angular.module('movieApp')
             //the login function
             authService.login = function (user, success, error) {
                 var userData = userDAL.authAttempt(user.email, user.password).then(function (results) {
-                    if ((Object.keys(results).length) == 1) {
-                        if ((results[0].email == user.email) && (results[0].password == user.password)) {
-                            var loginData = results[0];
-                            $window.sessionStorage["userInfo"] = JSON.stringify(loginData);
-                            delete loginData.password;
-                            Session.create(loginData);
-                            $rootScope.globals.currentUser = loginData;
-                            authService.setCredentials();
-                            $rootScope.$broadcast(AUTH_EVENTS.loginSuccess);
-                            success(loginData);
-                        } else {
-                            $rootScope.$broadcast(AUTH_EVENTS.loginFailed);
-                            error();
-                        }
+                    if ((results.email == user.email)) {
+                        var loginData = results;
+                        $window.sessionStorage["userInfo"] = JSON.stringify(loginData);
+                        Session.create(loginData);
+                        $rootScope.globals.currentUser = loginData;
+                        authService.setRatings();
+                        authService.setCredentials();
+                        $rootScope.$broadcast(AUTH_EVENTS.loginSuccess);
+                        success(loginData);
+                    } else {
+                        $rootScope.$broadcast(AUTH_EVENTS.loginFailed);
+                        error();
                     }
                 }, function (error) {
                     return error;
@@ -57,6 +55,13 @@ angular.module('movieApp')
 
             authService.getTicketQuantity = function () {
                 return $rootScope.globals.currentUser.ticketQuantity;
+            };
+
+            authService.setShowing = function(showing) {
+                if ($rootScope.globals.currentUser == undefined){
+                    $rootScope.globals.currentUser = {};
+                }
+                $rootScope.globals.currentUser.showing = showing;
             };
 
 
@@ -130,6 +135,10 @@ angular.module('movieApp')
                 $rootScope.$broadcast(AUTH_EVENTS.logoutSuccess);
                 $rootScope.globals.currentUser.email = undefined;
             };
+            
+            authService.setRatings = function () {
+            	$rootScope.globals.currentUser.ratings = [];
+            }
 
             return authService;
         }]);

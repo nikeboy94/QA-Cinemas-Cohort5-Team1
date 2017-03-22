@@ -49,7 +49,47 @@
                 vm.error = true;
                 vm.errorMessage = error;
             });
+           $rootScope.globals.currentUser.ratings.push(savedTitle);
         };
+
+        /************YOUTUBE***************/
+
+        vm.createYoutubeUrl = function(urlKey) {
+          return "https://www.youtube.com/embed/" + urlKey + "?enablejsapi=1"
+        };
+
+        var player;
+        function onYouTubeIframeAPIReady() {
+            player = new YT.Player('ytplayer', {
+
+            });
+        }
+        onYouTubeIframeAPIReady();
+
+        vm.stop = function() {
+            player.stopVideo();
+        };
+
+
+        $('#myTrailerModal').on('hidden.bs.modal', function() {
+            vm.stop();
+        });
+      
+        /*******END OF YOUTUBE******/
+      
+        var containsObject = function(obj, list) {
+		    var i;
+		    for (i = 0; i < list.length; i++) {
+		        if (list[i] === obj) {
+		            return true;
+		        }
+		    }
+		    return false;
+		}
+        
+        vm.ratedFilm = function() {
+        	return containsObject(savedTitle, $rootScope.globals.currentUser.ratings);
+        }
 
 
     };
