@@ -61,9 +61,12 @@
     border: none;
     color: white;
     text-align: center;
-    padding: 15px 32px;
-    font-size: 20px;
-    width: 250px;
+    padding: 15px 15px;
+    font-size: 15px;
+}
+
+.btn-group {
+    padding: 10px;
 }
 
 #todayButton:hover, #tomorrowButton:hover, #futureButton:hover {
@@ -84,4 +87,7 @@
 	padding-top: 15px;
 }
 
+.showingsForTitle {
+    text-align: center;
+}
 

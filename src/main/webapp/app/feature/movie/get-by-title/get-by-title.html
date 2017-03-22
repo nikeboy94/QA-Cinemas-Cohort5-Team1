@@ -141,8 +141,8 @@
                         </div>
                     </div>
                     <div ng-show="Today" class="row">
-                        <div class="col-xs-6 col-sm-4 col-xl-3"
-                             ng-repeat="x in ctrler.showings | todayFilter:ctrler.showings | orderBy: 'dateTime'">
+                        <h2 class="showingsForTitle">Showings for {{ctrler.today | date}}</h2>
+                        <div class="col-md-1" ng-repeat="x in ctrler.showings | todayFilter:ctrler.showings | orderBy: 'dateTime'">
                             <a ng-click="ctrler.replace(x)" data-target="#myBookingModal"
                                data-showingId="{{x.showingId}}"
                                data-dateTime="{{x.dateTime | date}}" data-toggle="modal">
@@ -152,8 +152,8 @@
                     </div>
 
                     <div ng-show="Tomorrow" class="row">
-                        <div class="col-xs-6 col-sm-4 col-xl-3"
-                             ng-repeat="y in ctrler.showings |filter: (ctrler.tomorrow | date:'yyyy-MM-dd')">
+                        <h2 class="showingsForTitle">Showings for {{ctrler.tomorrow | date}}:</h2>
+                        <div class="col-md-1" ng-repeat="y in ctrler.showings |filter: (ctrler.tomorrow | date:'yyyy-MM-dd')">
                             <a ng-click="ctrler.replace(y)" data-target="#myBookingModal"
                                data-showingId="{{y.showingId}}"
                                data-dateTime="{{y.dateTime | date}}" data-toggle="modal">
@@ -163,8 +163,8 @@
                     </div>
 
                     <div ng-show="Day3" class="row">
-                        <div class="col-xs-6 col-sm-4 col-xl-3"
-                             ng-repeat="y in ctrler.showings|filter: (ctrler.day3 | date:'yyyy-MM-dd')">
+                        <h2 class="showingsForTitle">Showings for {{ctrler.day3 | date}}:</h2>
+                        <div class="col-md-1" ng-repeat="y in ctrler.showings|filter: (ctrler.day3 | date:'yyyy-MM-dd')">
                             <a ng-click="ctrler.replace(y)" data-target="#myBookingModal"
                                data-showingId="{{y.showingId}}"
                                data-dateTime="{{y.dateTime | date}}" data-toggle="modal">
@@ -174,8 +174,8 @@
                     </div>
 
                     <div ng-show="Day4" class="row">
-                        <div class="col-xs-6 col-sm-4 col-xl-3"
-                             ng-repeat="y in ctrler.showings|filter: (ctrler.day4 | date:'yyyy-MM-dd')">
+                        <h2 class="showingsForTitle">Showings for {{ctrler.day4 | date}}:</h2>
+                        <div class="col-md-1" ng-repeat="y in ctrler.showings|filter: (ctrler.day4 | date:'yyyy-MM-dd')">
                             <a ng-click="ctrler.replace(y)" data-target="#myBookingModal"
                                data-showingId="{{y.showingId}}"
                                data-dateTime="{{y.dateTime | date}}" data-toggle="modal">
@@ -185,8 +185,8 @@
                     </div>
 
                     <div ng-show="Day5" class="row">
-                        <div class="col-xs-6 col-sm-4 col-xl-3"
-                             ng-repeat="y in ctrler.showings|filter: (ctrler.day5 | date:'yyyy-MM-dd')">
+                        <h2 class="showingsForTitle">Showings for {{ctrler.day5 | date}}:</h2>
+                        <div class="col-md-1" ng-repeat="y in ctrler.showings|filter: (ctrler.day5 | date:'yyyy-MM-dd')">
                             <a ng-click="ctrler.replace(y)" data-target="#myBookingModal"
                                data-showingId="{{y.showingId}}"
                                data-dateTime="{{y.dateTime | date}}" data-toggle="modal">
@@ -196,8 +196,8 @@
                     </div>
 
                     <div ng-show="Day6" class="row">
-                        <div class="col-xs-6 col-sm-4 col-xl-3"
-                             ng-repeat="y in ctrler.showings|filter: (ctrler.day6 | date:'yyyy-MM-dd')">
+                        <h2 class="showingsForTitle">Showings for {{ctrler.day6 | date}}:</h2>
+                        <div class="col-md-1" ng-repeat="y in ctrler.showings|filter: (ctrler.day6 | date:'yyyy-MM-dd')">
                             <a ng-click="ctrler.replace(y)" data-target="#myBookingModal"
                                data-showingId="{{y.showingId}}"
                                data-dateTime="{{y.dateTime | date}}" data-toggle="modal">
@@ -207,8 +207,8 @@
                     </div>
 
                     <div ng-show="Day7" class="row">
-                        <div class="col-xs-6 col-sm-4 col-xl-3"
-                             ng-repeat="y in ctrler.showings|filter: (ctrler.day7 | date:'yyyy-MM-dd')">
+                        <h2 class="showingsForTitle">Showings for {{ctrler.day7 | date}}</h2>
+                        <div class="col-md-1" ng-repeat="y in ctrler.showings|filter: (ctrler.day7 | date:'yyyy-MM-dd')">
                             <a ng-click="ctrler.replace(y)" data-target="#myBookingModal"
                                data-showingId="{{y.showingId}}"
                                data-dateTime="{{y.dateTime | date}}" data-toggle="modal">
