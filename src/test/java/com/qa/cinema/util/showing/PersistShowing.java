@@ -1,4 +1,4 @@
-package com.qa.cinema.util.answer;
+package com.qa.cinema.util.showing;
 
 import org.mockito.stubbing.Answer;
 import com.qa.cinema.persistence.Showing;

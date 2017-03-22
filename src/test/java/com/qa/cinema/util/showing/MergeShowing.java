@@ -1,4 +1,4 @@
-package com.qa.cinema.util.answer;
+package com.qa.cinema.util.showing;
 
 import java.util.Collection;
 import java.util.List;
