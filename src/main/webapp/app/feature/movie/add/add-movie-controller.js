@@ -22,7 +22,7 @@
             document.getElementById('posterUrl').setAttribute("disabled","disabled");
             movieDal.saveMoviePoster(movieToAdd).then(function (results) {
                 vm.movieAddMessage  = results;
-                alert(JSON.stringify(results));
+
             }, function (error) {
                 vm.error = true;
                 vm.errorMessage = error;
