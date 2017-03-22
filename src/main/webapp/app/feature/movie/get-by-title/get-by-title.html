@@ -112,7 +112,7 @@
                     </div>
                     <div ng-show="Today" class="row">
                         <div class="col-xs-6 col-sm-4 col-xl-3"
-                             ng-repeat="x in ctrler.showings|filter: (ctrler.today | date:'yyyy-MM-dd')">
+                             ng-repeat="x in ctrler.showings | todayFilter:ctrler.showings | orderBy: 'dateTime'">
                             <a ng-click="ctrler.replace(x)" data-target="#myBookingModal"
                                data-showingId="{{x.showingId}}"
                                data-dateTime="{{x.dateTime | date}}" data-toggle="modal">
@@ -123,7 +123,7 @@
 
                     <div ng-show="Tomorrow" class="row">
                         <div class="col-xs-6 col-sm-4 col-xl-3"
-                             ng-repeat="y in ctrler.showings|filter: (ctrler.tomorrow | date:'yyyy-MM-dd')">
+                             ng-repeat="y in ctrler.showings |filter: (ctrler.tomorrow | date:'yyyy-MM-dd')">
                             <a ng-click="ctrler.replace(y)" data-target="#myBookingModal"
                                data-showingId="{{y.showingId}}"
                                data-dateTime="{{y.dateTime | date}}" data-toggle="modal">
