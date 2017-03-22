@@ -18,6 +18,7 @@ import javax.persistence.Query;
 import org.apache.log4j.Logger;
 
 import com.qa.cinema.persistence.Ticket;
+import com.qa.cinema.persistence.User;
 import com.qa.cinema.enums.TicketType;
 import com.qa.cinema.persistence.Seat;
 import com.qa.cinema.persistence.Showing;
@@ -48,6 +49,9 @@ public class DBTicketService implements TicketService {
 	
 	@Inject
 	private ShowingService showingService;
+	
+	@Inject
+	private UserService userService;
 	
 	@Override
 	public String getUserTickets(String email) {
@@ -148,11 +152,36 @@ public class DBTicketService implements TicketService {
 	
 	@Override
 	public String createMultipleTicket(String ticket) {
-		Ticket[] aTicket = (Ticket[]) util.getObjectForJSON(ticket, Ticket[].class);
-		for(Ticket t:aTicket){
+		LOGGER.info("create multiple ticket: about to convert JSON to ticket array");
+		Ticket[] allTickets = (Ticket[]) util.getObjectForJSON(ticket, Ticket[].class);
+		LOGGER.info("create multiple ticket: about to call checkIfUserExists");
+		
+		if(! userExistsInDB(allTickets[0].getUser().getEmail())) {
+			assignGuestAccount(allTickets);
+		}
+				
+		for(Ticket t:allTickets){
 			manager.persist(t);
 		}
 		return "{\"message\": \"tickets successfully added\"}";
+	}
+	
+	private void assignGuestAccount(Ticket[] ticketArray) {
+		String guestEmail = "guestAccount";
+		for(Ticket aTicket : ticketArray) {
+			aTicket.getUser().setEmail(guestEmail);
+		}
+	}
+	
+	private boolean userExistsInDB(String email) {
+		String allUsersJSON = userService.listAllUsers();
+		User[] allUsers = (User[]) util.getObjectForJSON(allUsersJSON, User[].class);
+		for(User aUser : allUsers) {
+			if(aUser.getEmail().equals(email)) {
+				return true;
+			}
+		}
+		return false;
 	}
 
 	@Override
