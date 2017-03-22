@@ -1,3 +1,15 @@
+html {
+	position: relative;
+	min-height: 100%;
+}
+
+body {
+	/* Margin bottom by footer height */
+	margin-bottom: 60px;
+	background: radial-gradient(#3A3A3A, #0D1515) no-repeat center fixed;
+	color: #9E9E9E;
+}
+
 a {
 	cursor: pointer;
 }
@@ -7,43 +19,8 @@ a {
 	font-size: 1.2em;
 }
 
-html {
-  position: relative;
-  min-height: 100%;
-}
-
-body {
-  /* Margin bottom by footer height */
-  margin-bottom: 60px;
-  background: radial-gradient(#3A3A3A, #0D1515) no-repeat center fixed;
-  color: #9E9E9E;
-}
-
-.footer {
-  position: absolute;
-  bottom: 0;
-  width: 100%;
-  /* Set the fixed height of the footer here */
-  height: 60px;
-  line-height: 60px; /* Vertically center the text there */
-  background-color: #9E9E9E;
-  color: #0D1515;
-  overflow: hidden;
-}
-
-.footer-links > li{
-	display: inline-block;
-	/*margin-left: 15px;*/
-	padding-right: 5px;
-	padding-left: 5px;
-}
-
-.footer-links > li > a {
-	color: #F0F0F0;
-}
-
-.footer-links > li > a:hover, .footer-links > li > a:focus {
-	color: #3F0C1C;
+button:hover{
+	box-shadow: 0 4px 8px 0 rgba(0,0,0,0.4), 0 6px 15px 0 rgba(0,0,0,0.3);
 }
 
 #searchBox{
@@ -70,20 +47,16 @@ body {
 	box-shadow: 0 4px 8px 0 rgba(0,0,0,0.9), 0 6px 20px 0 rgba(0,0,0,0.75);
 }
 
-.dropdown-toggle, .navbar-brand, .navbar-right > li > a{
-	margin:0px 5px;
+.dropdown-toggle, .navbar-brand, .navbar-right > li > a, .customer-nav > li > a{
+	margin:0 5px;
 	text-align:center;
 	font-size:24px;
 	border-radius:8px;
 }
 
-.dropdown-toggle:hover, .navbar-brand:hover, #signUp:hover, #signIn:hover{
+.dropdown-toggle:hover, .navbar-brand:hover, .customer-nav > li > a:hover, #signUp:hover, #signIn:hover{
 	box-shadow: 0 4px 8px 0 rgba(0,0,0,0.25), 0 6px 20px 0 rgba(0,0,0,0.18);
 	transition:0.05s;
-}
-
-button:hover{
-	box-shadow: 0 4px 8px 0 rgba(0,0,0,0.4), 0 6px 15px 0 rgba(0,0,0,0.3);
 }
 
 .dropdown-menu > li > a{
@@ -95,10 +68,35 @@ button:hover{
 	box-shadow: 0 2px 4px 0 rgba(0,0,0,0.25), 0 4px 10px 0 rgba(0,0,0,0.15);
 }
 
-.footer-links > li > a{
+.footer {
+	position: absolute;
+	bottom: 0;
+	width: 100%;
+	/* Set the fixed height of the footer here */
+	height: 60px;
+	line-height: 60px; /* Vertically center the text there */
+	background-color: #9E9E9E;
+	color: #0D1515;
+	overflow: hidden;
+}
+
+.footer-links > li{
+	display: inline-block;
+	/*margin-left: 15px;*/
+	padding-right: 5px;
+	padding-left: 5px;
+}
+
+.footer-links > li > a {
+	color: #F0F0F0;
 	text-decoration:none;
 	padding:10px 15px;
 	text-align:center;
 	font-size:18px;
 	border-radius:5px;
 }
+
+.footer-links > li > a:hover, .footer-links > li > a:focus {
+	color: #3F0C1C;
+}
+
