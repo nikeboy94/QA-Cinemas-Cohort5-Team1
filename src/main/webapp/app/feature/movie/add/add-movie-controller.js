@@ -4,7 +4,7 @@
         var vm = this;
 
         vm.addMovie = function(movieToAdd, day, month, year) {
-            movie.releaseDate=(year+"-"+month+"-"+day);
+            movieToAdd.releaseDate=year+"-"+month+"-"+day;
             movieToAdd.posterUrl = document.getElementById('posterUrl').value;
             movieDal.saveMovie(movieToAdd).then(function (results) {
                 vm.movieAddMessage  = results;
