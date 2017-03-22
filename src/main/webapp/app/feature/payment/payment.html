@@ -43,15 +43,17 @@
 
                     <div class='form-row'>
                         <div class='col-xs-12 col-md-12'>
-                            <div class='form-group total btn btn-info'>
+                           <h3>
                                 Total:
                                 <span class='amount'>&#163;{{ctrl.displayPrice | number: 2}}</span>
-                            </div>
+                           </h3>
+
 
                         </div>
                     </div>
                     <div class='form-row'>
                         <div class='col-xs-12 col-md-12 form-group'>
+                        </br>
                             <button class='btn btn-primary' type='submit' ng-click="ctrl.submitNewPayment(card)">Pay »
                             </button>
                         </div>

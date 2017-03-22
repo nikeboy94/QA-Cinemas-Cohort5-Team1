@@ -31,7 +31,7 @@
                 <!-- NOW SHOWING -->
                 <div class="tab-pane active" id="NowShowing" role="tabpanel">
                     <!--<div class="row">-->
-                    <div class="film-poster col-xs-6 col-sm-4 col-xl-3" ng-repeat="film in ctrl.currentMovies">
+                    <div class="film-poster col-xs-6 col-sm-4 col-xl-3" ng-repeat="film in ctrl.currentMovies | filter:filmFilter">
                         <a ng-click="ctrl.replace(film)" ng-href="/getmovie#myModal" role="button"
                            data-img="{{film.posterUrl}}" data-title="{{film.title}}" data-desc="{{film.description}}"
                            data-toggle="modal">
@@ -45,7 +45,7 @@
                 <!-- COMING SOON -->
                 <div class="tab-pane" id="ComingSoon" role="tabpanel">
                     <!--<div class="row">-->
-                    <div class="film-poster col-xs-6 col-sm-4 col-xl-3" ng-repeat="film in ctrl.comingSoonMovies">
+                    <div class="film-poster col-xs-6 col-sm-4 col-xl-3" ng-repeat="film in ctrl.comingSoonMovies | filter:filmFilter">
                         <a ng-click="ctrl.replace(film)" href="/getmovie#myModal" role="button"
                            data-img="{{film.posterUrl}}" data-title="{{film.title}}" data-desc="{{film.description}}"
                            data-toggle="modal">
