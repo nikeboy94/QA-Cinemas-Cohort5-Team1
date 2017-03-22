@@ -9,118 +9,225 @@ angular.module('movieApp').config(['$stateProvider', '$urlRouterProvider', 'USER
             templateUrl: "app/feature/dashboard/dashboard-partial.html"
         }).state("addmovie", {
             url: "/addmovie",
-            templateUrl: "app/feature/movie/add/add-movie-partial.html"
-            /**data: {
-                authorizedRoles: [USER_ROLES.admin, USER_ROLES.editor, USER_ROLES.guest]
-            }*/
+            templateUrl: "app/feature/movie/add/add-movie-partial.html",
+            data: {
+                authorizedRoles: [USER_ROLES.admin, USER_ROLES.editor]
+            }
         }).state("getmovie", {
             url: "/getmovie",
-            templateUrl: "app/feature/movie/get/get-movie-partial.html"
+            templateUrl: "app/feature/movie/get/get-movie-partial.html",
+            data: {
+                authorizedRoles: [USER_ROLES.admin, USER_ROLES.editor, USER_ROLES.customer, USER_ROLES.guest]
+            }
         }).state("updatemovie", {
             url: "/updatemovie",
-            templateUrl: "app/feature/movie/update/update-movie-partial.html"
+            templateUrl: "app/feature/movie/update/update-movie-partial.html",
+            data: {
+                authorizedRoles: [USER_ROLES.admin, USER_ROLES.editor]
+            }
         }).state("deletemovie", {
             url: "/deletemovie",
-            templateUrl: "app/feature/movie/delete/delete-movie-partial.html"
+            templateUrl: "app/feature/movie/delete/delete-movie-partial.html",
+            data: {
+                authorizedRoles: [USER_ROLES.admin, USER_ROLES.editor]
+            }
         }).state("adduser", {
             url: "/adduser",
-            templateUrl: "app/feature/user/add/add-user.html"
+            templateUrl: "app/feature/user/add/add-user.html",
+            data: {
+                authorizedRoles: [USER_ROLES.admin, USER_ROLES.editor, USER_ROLES.customer, USER_ROLES.guest]
+            }
         }).state("getuser", {
             url: "/getuser",
-            templateUrl: "app/feature/user/get/get-user.html"
+            templateUrl: "app/feature/user/get/get-user.html",
+            data: {
+                authorizedRoles: [USER_ROLES.admin]
+            }
         }).state("updateuser", {
             url: "/updateuser",
-            templateUrl: "app/feature/user/update/update-user.html"
+            templateUrl: "app/feature/user/update/update-user.html",
+            data: {
+                authorizedRoles: [USER_ROLES.admin]
+            }
         }).state("deleteuser", {
             url: "/deleteuser",
-            templateUrl: "app/feature/user/delete/delete-user.html"
+            templateUrl: "app/feature/user/delete/delete-user.html",
+            data: {
+                authorizedRoles: [USER_ROLES.admin]
+            }
         }).state("contactus", {
             url: "/contactus",
-            templateUrl: "app/feature/contactUs/contact-us.html"
+            templateUrl: "app/feature/contactUs/contact-us.html",
+            data: {
+                authorizedRoles: [USER_ROLES.admin, USER_ROLES.editor, USER_ROLES.customer, USER_ROLES.guest]
+            }
         }).state("getmoviebytitle", {
             url: "/getmoviebytitle",
-            templateUrl: "app/feature/movie/get-by-title/get-by-title.html"
+            templateUrl: "app/feature/movie/get-by-title/get-by-title.html",
+            data: {
+                authorizedRoles: [USER_ROLES.admin, USER_ROLES.editor, USER_ROLES.customer, USER_ROLES.guest]
+            }
         }).state("getmoviebygenre", {
             url: "/getmoviebygenre",
-            templateUrl: "app/feature/movie/get-by-genre/get-movie-by-genre-partial.html"
+            templateUrl: "app/feature/movie/get-by-genre/get-movie-by-genre-partial.html",
+            data: {
+                authorizedRoles: [USER_ROLES.admin, USER_ROLES.editor, USER_ROLES.customer, USER_ROLES.guest]
+            }
         }).state("getshowings", {
             url: "/getshowings",
-            templateUrl: "app/feature/showing/get/get-showing.html"
+            templateUrl: "app/feature/showing/get/get-showing.html",
+            data: {
+                authorizedRoles: [USER_ROLES.admin, USER_ROLES.editor]
+            }
         }).state("addshowing", {
             url: "/addshowing",
-            templateUrl: "app/feature/showing/add/add-showing.html"
+            templateUrl: "app/feature/showing/add/add-showing.html",
+            data: {
+                authorizedRoles: [USER_ROLES.admin, USER_ROLES.editor]
+            }
         }).state("deleteshowing", {
             url: "/deleteshowing",
-            templateUrl: "app/feature/showing/delete/delete-showing.html"
+            templateUrl: "app/feature/showing/delete/delete-showing.html",
+            data: {
+                authorizedRoles: [USER_ROLES.admin, USER_ROLES.editor]
+            }
         }).state("updateshowing", {
             url: "/updateshowing",
-            templateUrl: "app/feature/showing/update/update-showing.html"
+            templateUrl: "app/feature/showing/update/update-showing.html",
+            data: {
+                authorizedRoles: [USER_ROLES.admin, USER_ROLES.editor]
+            }
         }).state("getshowingsbymovie", {
             url: "/getshowingbymovie",
-            templateUrl: "app/feature/showing/get-by-movie/get-showing-by-movie.html"
+            templateUrl: "app/feature/showing/get-by-movie/get-showing-by-movie.html",
+            data: {
+                authorizedRoles: [USER_ROLES.admin, USER_ROLES.editor]
+            }
         }).state("gettickets", {
             url: "/gettickets",
-            templateUrl: "app/feature/ticket/get/get-user-tickets.html"
+            templateUrl: "app/feature/ticket/get/get-user-tickets.html",
+            data: {
+                authorizedRoles: [USER_ROLES.admin, USER_ROLES.editor]
+            }
         }).state("updateticket", {
             url: "/updateticket",
-            templateUrl: "app/feature/ticket/update/update-ticket.html"
+            templateUrl: "app/feature/ticket/update/update-ticket.html",
+            data: {
+                authorizedRoles: [USER_ROLES.admin, USER_ROLES.editor]
+            }
         }).state("addticket", {
             url: "/addticket",
-            templateUrl: "app/feature/ticket/add/add-ticket.html"
+            templateUrl: "app/feature/ticket/add/add-ticket.html",
+            data: {
+                authorizedRoles: [USER_ROLES.admin, USER_ROLES.editor, USER_ROLES.customer, USER_ROLES.guest]
+            }
         }).state("addticketstandalone", {
             url: "/addticketstandalone",
-            templateUrl: "app/feature/ticket/add/add-ticket-standalone.html"
+            templateUrl: "app/feature/ticket/add/add-ticket-standalone.html",
+            data: {
+                authorizedRoles: [USER_ROLES.admin, USER_ROLES.editor, USER_ROLES.customer, USER_ROLES.guest]
+            }
         }).state("getavailableticket", {
             url: "/getavailableticket",
-            templateUrl: "app/feature/ticket/get-available-for-showing/get-available-for-showing.html"
+            templateUrl: "app/feature/ticket/get-available-for-showing/get-available-for-showing.html",
+            data: {
+                authorizedRoles: [USER_ROLES.admin, USER_ROLES.editor]
+            }
         }).state("deleteticket", {
             url: "/deleteticket",
-            templateUrl: "app/feature/ticket/delete/delete-ticket.html"
+            templateUrl: "app/feature/ticket/delete/delete-ticket.html",
+            data: {
+                authorizedRoles: [USER_ROLES.admin, USER_ROLES.editor]
+            }
         }).state("searchresults", {
             url: "/searchresults",
-            templateUrl: "app/feature/movie/search/search-results.html"
+            templateUrl: "app/feature/movie/search/search-results.html",
+            data: {
+                authorizedRoles: [USER_ROLES.admin, USER_ROLES.editor, USER_ROLES.customer, USER_ROLES.guest]
+            }
         }).state("addmovieposter", {
             url: "/addmovieposter",
-            templateUrl: "app/feature/movie/add-movie-poster/add-movie-poster-partial.html"
+            templateUrl: "app/feature/movie/add-movie-poster/add-movie-poster-partial.html",
+            data: {
+                authorizedRoles: [USER_ROLES.admin, USER_ROLES.editor]
+            }
         }).state("addseat", {
             url: "/addseat",
-            templateUrl: "app/feature/seat/add/add-seat.html"
+            templateUrl: "app/feature/seat/add/add-seat.html",
+            data: {
+                authorizedRoles: [USER_ROLES.admin, USER_ROLES.editor]
+            }
         }).state("getseat", {
             url: "/getseat",
-            templateUrl: "app/feature/seat/get/get-seat.html"
+            templateUrl: "app/feature/seat/get/get-seat.html",
+            data: {
+                authorizedRoles: [USER_ROLES.admin, USER_ROLES.editor]
+            }
         }).state("deleteseat", {
             url: "/deleteseat",
-            templateUrl: "app/feature/seat/delete/delete-seat.html"
+            templateUrl: "app/feature/seat/delete/delete-seat.html",
+            data: {
+                authorizedRoles: [USER_ROLES.admin, USER_ROLES.editor]
+            }
         }).state("payment", {
             url: "/payment",
-            templateUrl: "app/feature/payment/payment.html"
+            templateUrl: "app/feature/payment/payment.html",
+            data: {
+                authorizedRoles: [USER_ROLES.admin, USER_ROLES.editor, USER_ROLES.customer, USER_ROLES.guest]
+            }
         }).state("viewer", {
             url: "/viewer",
-            templateUrl: "app/feature/seat/viewer/viewer.html"
+            templateUrl: "app/feature/seat/viewer/viewer.html",
+            data: {
+                authorizedRoles: [USER_ROLES.admin, USER_ROLES.editor, USER_ROLES.customer, USER_ROLES.guest]
+            }
         }).state("aboutus", {
             url: "/aboutus",
-            templateUrl: "app/feature/aboutUs/about-us.html"
+            templateUrl: "app/feature/aboutUs/about-us.html",
+            data: {
+                authorizedRoles: [USER_ROLES.admin, USER_ROLES.editor, USER_ROLES.customer, USER_ROLES.guest]
+            }
         }).state("help", {
             url: "/help",
-            templateUrl: "app/feature/help/help.html"
+            templateUrl: "app/feature/help/help.html",
+            data: {
+                authorizedRoles: [USER_ROLES.admin, USER_ROLES.editor, USER_ROLES.customer, USER_ROLES.guest]
+            }
          }).state("cookies", {
-            url: "/cookies",                //Unimplemented
-            templateUrl: "app/feature/cookies/cookies.html"
+            url: "/cookies",
+            templateUrl: "app/feature/cookies/cookies.html",
+            data: {
+                authorizedRoles: [USER_ROLES.admin, USER_ROLES.editor, USER_ROLES.customer, USER_ROLES.guest]
+            }
         }).state("addscreen", {
             url: "/addscreen",
-            templateUrl: "app/feature/screen/add/add-screen.html"
+            templateUrl: "app/feature/screen/add/add-screen.html",
+            data: {
+                authorizedRoles: [USER_ROLES.admin, USER_ROLES.editor]
+            }
         }).state("getscreen", {
             url: "/getscreen",
-            templateUrl: "app/feature/screen/get/get-screen.html"
+            templateUrl: "app/feature/screen/get/get-screen.html",
+            data: {
+                authorizedRoles: [USER_ROLES.admin, USER_ROLES.editor]
+            }
         }).state("deletescreen", {
             url: "/deletescreen",
-            templateUrl: "app/feature/screen/delete/delete-screen.html"
-
+            templateUrl: "app/feature/screen/delete/delete-screen.html",
+            data: {
+                authorizedRoles: [USER_ROLES.admin, USER_ROLES.editor]
+            }
         }).state("allorderssummary", {
         	url: "/allorderssummary",
-        	templateUrl: "app/feature/orderSummary/all-user-orders.html"
+        	templateUrl: "app/feature/orderSummary/all-user-orders.html",
+            data: {
+                authorizedRoles: [USER_ROLES.admin, USER_ROLES.editor, USER_ROLES.customer, USER_ROLES.guest]
+            }
         }).state("ordersummary", {
         	url: "/ordersummary",
-        	templateUrl: "app/feature/orderSummary/order-summary.html"
+        	templateUrl: "app/feature/orderSummary/order-summary.html",
+            data: {
+                authorizedRoles: [USER_ROLES.admin, USER_ROLES.editor, USER_ROLES.customer, USER_ROLES.guest]
+            }
         })
     }]);
