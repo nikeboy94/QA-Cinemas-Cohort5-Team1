@@ -11,11 +11,14 @@ import org.mockito.runners.MockitoJUnitRunner;
 
 import com.qa.cinema.persistence.Screen;
 import com.qa.cinema.util.JSONUtil;
+import com.qa.cinema.util.screen.PersistScreen;
+import com.qa.cinema.util.screen.RemoveScreen;
 
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import static org.mockito.Mockito.when;
 import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.doAnswer;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -37,6 +40,15 @@ public class DBScreenServiceTest {
 	@InjectMocks
 	DBScreenService ss = new DBScreenService();
 	
+	Collection<Screen> screens;
+	Screen screen;
+	
+	@Before
+	public void setup() {
+		screens = new ArrayList<Screen>();
+		screen = new Screen("type", "description");
+		resetScreens();
+	}
 	
 	@Test
 	public void fakeTest() {
@@ -55,6 +67,45 @@ public class DBScreenServiceTest {
 		assertEquals("{ \"screenId\": \"null\", \"screenType\": \"Standard\", \"screenDesc\":\"looks ok\" }" , ss.getAllScreens());
 	}
 
+	@Test
+	public void testCreateNewScreen() {
+		resetScreens();
+		String json = "newScreen json";
+		Screen newScreen = new Screen();
+		
+		when(util.getObjectForJSON(json, Screen.class)).thenReturn(newScreen);
+		doAnswer(new PersistScreen(screens)).when(em).persist(newScreen);
+		
+		ss.createNewScreen(json);
+		
+		assertTrue(screens.contains(newScreen));
+	}
 	
+	@Test
+	public void testDeleteScreen() {
+		resetScreens();
+		Long id = null;
+		
+		when(em.find(Screen.class, id)).thenReturn(findScreen(id));
+		doAnswer(new RemoveScreen(screens)).when(em).remove(screen);
+		
+		ss.deleteScreen(id);
+		
+		assertEquals(0, screens.size());
+	}
+	
+	public void resetScreens() {
+		screens.clear();
+		screens.add(screen);
+	}
+	
+	public Screen findScreen(Long id) {
+		for (Screen screen : screens) {
+			if (screen.getId() == id) {
+				return screen;
+			}
+		}
+		return null;
+	}
 
 }

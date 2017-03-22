@@ -23,6 +23,7 @@ import com.qa.cinema.util.JSONUtil;
 import com.qa.cinema.util.showing.MergeShowing;
 import com.qa.cinema.util.showing.PersistShowing;
 import com.qa.cinema.util.showing.RemoveShowing;
+
 import static com.qa.cinema.util.MockJSONUtil.*;
 
 @RunWith(MockitoJUnitRunner.class)
