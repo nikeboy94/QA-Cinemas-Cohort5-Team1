@@ -3,7 +3,8 @@
     var AddMovieController =  function($state, $scope, movieDal, dal) {
         var vm = this;
 
-        vm.addMovie = function(movieToAdd) {
+        vm.addMovie = function(movieToAdd, day, month, year) {
+            movie.releaseDate=(year+"-"+month+"-"+day);
             movieToAdd.posterUrl = document.getElementById('posterUrl').value;
             movieDal.saveMovie(movieToAdd).then(function (results) {
                 vm.movieAddMessage  = results;
