@@ -15,6 +15,26 @@
             </div>
         </section>
 
+
+<link rel="stylesheet" href="css/viewStyleSheets/movie/get-movie-style.css"/>
+
+<div class="container" id="getMovieContainer" ng-controller="getMovieController as ctrl">
+    <section class="row search-row">
+        <div class="col-xs-12 col-sm-10 col-md-8 col-sm-offset-1 col-md-offset-2">
+            <form>
+                <div class="form-group">
+                    <input type="search" name="filmsearch" placeholder="Type anything in here to search for a film" class="form-control form-control-lg" id="film-search" ng-model="filmFilter">
+                </div>
+            </form>
+        </div>
+    </section>
+
+    <div clas="row">
+        <ul class="nav nav-tabs" role="tablist">
+            <li role="presentation" class="active"><a href="getmovie#NowShowing" aria-controls="NowShowing" role="tab" data-toggle="tab">Now Showing</a></li>
+            <li role="presentation"><a href="/getmovie#ComingSoon" aria-controls="ComingSoon" role="tab" data-toggle="tab">Coming Soon</a></li>
+        </ul>
+
         <div class="row">
             <ul class="nav nav-pills nav-justified" role="tablist">
                 <li role="presentation" class="active"><a href="getmovie#NowShowing" aria-controls="NowShowing"
