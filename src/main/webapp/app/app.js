@@ -53,6 +53,7 @@ var movieApp = angular.module('movieApp', ['ui.router', 'ui.bootstrap', 'ngCooki
         all: '*',
         admin: 'admin',
         editor: 'editor',
+        customer: 'customer',
         guest: 'guest'
     }).constant('AUTH_EVENTS', {
         loginSuccess: 'auth-login-success',
