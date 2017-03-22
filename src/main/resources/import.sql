@@ -1,3 +1,4 @@
+INSERT INTO User(email, fName, lName, role, password, salt) VALUES('guestAccount', 'guest', 'guest', 'customer', '...', '...');
 INSERT INTO User(email, fName, lName, role, password, salt) VALUES('a@a.com', 'jane', 'doe', 'admin', '275d1fbfb7b0241c1c1de407bb0b0912bef53119731cea17a7869de65d8eba53', 'salt1');
 INSERT INTO User(email, fName, lName, role, password, salt) VALUES('b@b.com', 'john', 'smith', 'customer', '5147b9e65edbf125e13d9156f1ff33c5170c64232fb2d08c67dc4474d4f10f3e', 'salt2');
 INSERT INTO User(email, fName, lName, role, password, salt) VALUES('o.fahmy@outlook.com', 'john', 'smith', 'customer', '5147b9e65edbf125e13d9156f1ff33c5170c64232fb2d08c67dc4474d4f10f3e', 'salt2');

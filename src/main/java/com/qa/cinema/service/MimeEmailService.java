@@ -1,6 +1,7 @@
 package com.qa.cinema.service;
 
 import java.text.DateFormat;
+import java.text.NumberFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -34,6 +35,35 @@ public class MimeEmailService implements EmailService{
 	
 	JSONUtil util = new JSONUtil();
 	
+	@Override
+	public String sendGuestOrderConfirmation(String orderId, String email) {
+		String ticketsInOrderJSON = ticketService.getTicketsByOrderId(orderId);
+		Ticket[] ticketsInOrder = (Ticket[]) util.getObjectForJSON(ticketsInOrderJSON, Ticket[].class);
+		
+		if (ticketsInOrder == null || ticketsInOrder.length == 0) {
+			return "{\"message\": \" No tickets with this order ID was found\"}"; 
+		}
+		
+		Ticket firstTicket = ticketsInOrder[0];
+		
+		try {
+			InitialContext ic = new InitialContext();
+			Session session = (Session) ic.lookup("java:jboss/mail/Gmail");
+			
+			Message msg = new MimeMessage(session);
+			msg.setRecipients(Message.RecipientType.TO, InternetAddress.parse(email));
+			msg.setSubject("QA Cinemas Order Confirmation: " + orderId);
+			msg.setText(createOrderMessage(ticketsInOrder));
+		
+			Transport.send(msg);
+			return "{\"message\": \"Email succesfully sent\"}";
+		} catch(MessagingException | NamingException e) {
+			LOGGER.info("Exception caught:" + e);
+			return "{\"message\": \"Email could not be sent\"}";
+		}
+	}
+	
+	@Override
 	public String sendOrderConfirmation(String orderId) {
 		
 		String ticketsInOrderJSON = ticketService.getTicketsByOrderId(orderId);
@@ -47,24 +77,22 @@ public class MimeEmailService implements EmailService{
 		
 		
 		try {
-			LOGGER.info("Entered try block. About to setup initial context");
 			InitialContext ic = new InitialContext();
 			Session session = (Session) ic.lookup("java:jboss/mail/Gmail");
 			
-			LOGGER.info("About to setup msg");
 			Message msg = new MimeMessage(session);
 			msg.setRecipients(Message.RecipientType.TO, InternetAddress.parse(firstTicket.getUser().getEmail()));
 			msg.setSubject("QA Cinemas Order Confirmation: " + orderId);
 			msg.setText(createOrderMessage(ticketsInOrder));
 		
 			Transport.send(msg);
-			LOGGER.info("Message sent without error. About to exit method");
 			return "{\"message\": \"Email succesfully sent\"}";
 		} catch(MessagingException | NamingException e) {
 			LOGGER.info("Exception caught:" + e);
 			return "{\"message\": \"Email could not be sent\"}";
 		}
 	}
+	
 	
 	private String createOrderMessage(Ticket[] ticketsInOrder ) {
 
@@ -76,7 +104,14 @@ public class MimeEmailService implements EmailService{
 		
 		Ticket firstTicket = ticketsInOrder[0];
 		
-		String msg = "Hello " + firstTicket.getUser().getFName().substring(0,1).toUpperCase() + firstTicket.getUser().getFName().substring(1) + ",";
+		String msg = "";
+		if(firstTicket.getUser().getEmail().equals("guestAccount")) {
+			msg += "Hello,";
+		} else {
+			msg += "Hello " + firstTicket.getUser().getFName().substring(0,1).toUpperCase() + firstTicket.getUser().getFName().substring(1) + ",";
+		}
+		
+		
 		msg += "\n\n";
 		msg += "You have booked " + numTickets + " ticket";
 		if(numTickets > 1) {
@@ -95,13 +130,20 @@ public class MimeEmailService implements EmailService{
 			msgDate = firstTicket.getShowing().getDateTime();
 		}
 
+		String printPrice = String.format("%.2f", totalPrice);
 		
 		msg += " to see " + firstTicket.getShowing().getMovie().getTitle() + " on " + msgDate + ". \n";
-		msg += "£" + totalPrice + " has been taken from your account. \n";
-		msg += "You can cancel your ticket by visiting your account at least 24 hours before the showing. Your order ID is " + firstTicket.getOrderId() + ". \n\n";
+		msg += "£" + printPrice + " has been taken from your account. \n";
+		
+		if(! firstTicket.getUser().getEmail().equals("guestAccount")) {
+			msg += "You can cancel your ticket by visiting your account at least 24 hours before the showing. Your order ID is " + firstTicket.getOrderId() + ". \n\n";
+		}
+		
 		msg += "Have a great day, \n \n";
 		msg += "QA Cinemas";
 		return msg;
 	}
+
+
 	
 }

@@ -3,11 +3,12 @@
 	var AddShowingController = function($state, $scope, showingDal, screenDal, movieDal) {
 		var vm = this;
 		
-		vm.addShowing = function(screen, movie, dateTime) {
+		vm.addShowing = function(screen, movie, day, month, year, hour, minute) {
 			var showingToAdd = {};
 			showingToAdd.screen = screen;
 			showingToAdd.movie = movie;
-			showingToAdd.dateTime = dateTime;
+			showingToAdd.dateTime = year+"-"+month+"-"+day+"T"+hour+":"+minute+":00";
+
 
 			showingDal.saveShowing(showingToAdd).then(function(results) {
 				vm.showingAddMessage = results;

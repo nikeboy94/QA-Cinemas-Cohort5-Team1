@@ -31,11 +31,29 @@ var movieApp = angular.module('movieApp', ['ui.router', 'ui.bootstrap', 'ngCooki
         }
     })
     
+        //new filter
+    .filter('todayFilter', function () {
+        return function (items) {
+            var dateFrom = new Date(new Date().getTime());
+            var dateTo = new Date(new Date().getTime() + (24 * 60 * 60 * 1000));
+            var arrayToReturn = [];
+            //var today = (dateFrom = new Date(new date())) && (dateFrom = new Date(new date().getMonth())) && (dateFrom = new Date(new date().getMonth().getDay()));
+            for (var i = 0; i < items.length; i++) {
+                var showingDate = new Date(items[i].dateTime);
+                if (showingDate >= dateFrom && showingDate.getDate() == dateFrom.getDate() && showingDate.getMonth() == dateFrom.getMonth() && showingDate.getYear() == dateFrom.getYear())  {
+                    arrayToReturn.push(items[i]);
+                }
+            }
+            return arrayToReturn;
+        }
+    })
+    
     /*Constants regarding user login defined here*/
     .constant('USER_ROLES', {
         all: '*',
         admin: 'admin',
         editor: 'editor',
+        customer: 'customer',
         guest: 'guest'
     }).constant('AUTH_EVENTS', {
         loginSuccess: 'auth-login-success',

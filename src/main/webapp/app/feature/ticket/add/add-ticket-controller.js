@@ -9,7 +9,7 @@
         vm.tempAdultTickets = 0;
 
         vm.addTicket = function (ticket, adultQty, childQty) {
-            if($rootScope.globals.currentUser == undefined) {
+            if($rootScope.globals.currentUser == undefined || $rootScope.globals.currentUser.seats == undefined) {
                 alert("Please pick a seat");
                 return;
             }
@@ -196,6 +196,9 @@
             ticketDal.getPrice(showing.showingId, 'ADULT').then(function (result) {
                 vm.globalAdultPrice = result.price;
                 vm.updatePrice();
+                ticketDal.getAvailableTickets(showing.showingId).then(function(result) {
+                    vm.availableTickets = result.availableTickets;
+                })
             }, function (error) {
                 vm.error = true;
                 vm.errorMessage = error;
