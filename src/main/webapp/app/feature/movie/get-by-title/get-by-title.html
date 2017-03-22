@@ -1,4 +1,4 @@
-<div class="container" ng-controller="getByTitleController as ctrl">
+<div class="container" id="getByTitleContainer" ng-controller="getByTitleController as ctrl">
     <div ng-controller="getShowingByMovieController as ctrler">
         <!--form role="form">
             <input id = "title" placeholder="title" ng-model="title">
@@ -184,7 +184,7 @@
                                     </div>
                                     <div ng-if="globals.currentUser.email == undefined">
                                         <input class="form-control" id="email" placeholder="email"
-                                               ng-model="ticket.user.email">
+                                               ng-model="email" ng-change="ctrlerer.updateEmail(email)">
                                     </div>
                                 </div>
 
@@ -251,7 +251,7 @@
 
         <!-- TRAILER MODAL -->
 
-        <div class="modal" id="myTrailerModal" tabindex="-1" role="dialog"
+        <div class="modal fade" id="myTrailerModal" tabindex="-1" role="dialog"
              aria-labelledby="myModalLabel">
             <div class="modal-dialog modal-lg" id="trailerModalDialog"
                  role="document">
