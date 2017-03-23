@@ -12,6 +12,9 @@
 		vm.getByMovie = function(movieId) {
 			showingDal.getShowingByMovie(movieId).then(function(results) {
 				vm.showings = results;
+				vm.showingsStandard = [];
+				vm.showingsDeluxe = [];
+				filterShowings();
 			}, function(error) {
 				vm.error = true;
 				vm.errorMessage = error;
@@ -101,6 +104,16 @@
                 vm.errorMessage = error;
             });
         };
+        
+        var filterShowings = function () {
+        	angular.forEach(vm.showings, function(value, key) {
+        		if (value.screen.screenId == 3) {
+        			vm.showingsDeluxe.push(value);
+        		} else {
+        			vm.showingsStandard.push(value);
+        		}
+        	})
+        }
 
 
 	};
