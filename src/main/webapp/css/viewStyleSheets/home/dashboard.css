@@ -19,3 +19,7 @@
 .nav-pills > li > a:hover {
 	background-color: #cccccc !important;
 }
+
+div#myModal {
+    color: black;
+}
