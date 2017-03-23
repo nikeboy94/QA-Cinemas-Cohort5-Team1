@@ -19,7 +19,7 @@
                 ticket.user = {};
                 ticket.showing = {};
 
-                if($rootScope.globals.currentUser.showing == undefined) {
+                if($rootScope.globals.currentUser.showing == undefined ) {
                     alert("Please pick a showing");
                     return;
                 }
@@ -28,8 +28,11 @@
 
                 if(vm.overrideEmail != undefined) {
                     ticket.user.email = vm.overrideEmail;
-                } else {
+                } else if ($rootScope.globals.currentUser.email != undefined)  {
                     ticket.user.email = $rootScope.globals.currentUser.email;
+                } else {
+                    alert("Please enter an email address");
+                    return;
                 }
 
             } else if (ticket.user == undefined) {
@@ -138,17 +141,21 @@
                 ticket.user = {};
                 ticket.showing = {};
 
-                ticket.user.email= $rootScope.globals.currentUser.email;
-                ticket.showing.showingId = $rootScope.globals.currentUser.showingId;
+                if($rootScope.globals.currentUser != undefined) {
+                    ticket.user.email= $rootScope.globals.currentUser.email;
+                    ticket.showing.showingId = $rootScope.globals.currentUser.showingId;
+                }
 
-                if($rootScope.globals.currentUser.email == undefined ||  $rootScope.globals.currentUser.showingId == undefined) {
+                if($rootScope.globals.currentUser.showingId == undefined) {
                     alert("Please pick a showing");
                     return;
                 }
 
             } else if (ticket.user == undefined) {
                 ticket.user = {};
-                ticket.user.email= $rootScope.globals.currentUser.email;
+                if($rootScope.globals.currentUser.email != undefined) {
+                    ticket.user.email= $rootScope.globals.currentUser.email;
+                }
             } else if (ticket.showing == undefined){
                 ticket.showing = {};
                 if($rootScope.globals.currentUser.showingId == undefined) {
@@ -159,6 +166,7 @@
                 }
 
             }
+
 
             Auth.setShowingId(ticket.showing.showingId);
             Auth.setTicketQuantity(parseInt(adultQty) + parseInt(childQty));

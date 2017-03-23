@@ -84,14 +84,14 @@
             dal.http.POST_PAYMENT(vm.payment.merchantSessionKey, vm.cardIdentifier.cardIdentifier, vm.price, vm.tXCode).then(function (results) {
                 vm.cardIdentifier = results;
                 ticketDal.addOrder(vm.formatOrder()).then(function(result) {
-                    Auth.clearOrder();
                     if($window.sessionStorage["userInfo"] == undefined) {
                         ticketDal.sendGuestConfirmation(vm.order[0].orderId, vm.order[0].user.email);
                     } else {
                         ticketDal.sendConfirmation(vm.order[0].orderId);
                     }
+                    Auth.clearOrder();
+                    $state.go("ordersummary");
                 });
-                $state.go("ordersummary");
             }, function (error) {
                 alert("Transaction failed. Please try again later.");
                 vm.error = true;
