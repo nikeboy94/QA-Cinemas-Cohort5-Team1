@@ -11,7 +11,7 @@
 }
 
 .nav-pills > li > a {
-    border-radius: 0px;
+    border-radius: 0;
     color: black !important;
     background-color: #808080!important;
 }
