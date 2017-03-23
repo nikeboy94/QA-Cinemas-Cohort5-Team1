@@ -18,7 +18,12 @@
 			});
 
 			vm.today = new Date();
-			vm.tomorrow = new Date(new Date().getTime()+ 24*60*60*1000);
+			vm.tomorrow = new Date(vm.today.getTime()+ 24*60*60*1000);
+			vm.day3 = new Date(vm.today.getTime()+ 24*60*60*1000*2);
+            vm.day4 = new Date(vm.today.getTime()+ 24*60*60*1000*3);
+            vm.day5 = new Date(vm.today.getTime()+ 24*60*60*1000*4);
+            vm.day6 = new Date(vm.today.getTime()+ 24*60*60*1000*5);
+            vm.day7 = new Date(vm.today.getTime()+ 24*60*60*1000*6);
 
             vm.replace = function(showing) {
                 $('#modalShowing').text(showing.showingId);
@@ -50,7 +55,7 @@
             printDate += d.getMinutes() + " ";
 
             return printDate;
-		}
+		};
 
 
         vm.updateAdultQty = function (qty) {
@@ -95,7 +100,7 @@
                 vm.error = true;
                 vm.errorMessage = error;
             });
-        }
+        };
 
 
 	};
