@@ -24,16 +24,14 @@
                             </a>
                         </div>
                     </div>
-                    <div class="col-md-7">
+                    <div class="col-md-7" id="infoBox">
                         <div class="info">
                             <h2>{{ctrl.movies[0].title}}</h2>
-                            <h4>Genre</h4>
                             <div class="row">
-                                <div class="col-md-2">{{ctrl.movies[0].genre}}</div>
+                                <div class="col-md-2" id="movieGenre">{{ctrl.movies[0].genre}}</div>
                             </div>
-                            <h4>Description</h4>
                             <div class="row">
-                                <div class="col-md-10">
+                                <div class="col-md-10" id="movieDescription">
                                     <p>{{ctrl.movies[0].description}}</p>
                                 </div>
 
@@ -45,7 +43,7 @@
                                 </div>
                                 <div class="col-md-6">
                                     <h4>Runtime</h4>
-                                    {{ctrl.movies[0].runtime}}
+                                    {{ctrl.movies[0].runtime}} mins
                                 </div>
                             </div>
                             <div class="row">
