@@ -2,6 +2,7 @@ package com.qa.cinema.service;
 
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+import java.security.SecureRandom;
 import java.util.Collection;
 
 import javax.ejb.Stateless;
@@ -41,7 +42,7 @@ public class DBUserService implements UserService {
 	@Override
 	public String createNewUser(String user) {
 		User newUser = util.getObjectForJSON(user, User.class);
-		newUser.setPassword(hashSHA(newUser.getPassword(), getSalt(newUser.getEmail())));
+		newUser.setPassword(hashSHA(newUser.getPassword(), generateSalt(newUser)));
 		em.persist(newUser);
 		return "{\"message\": \"User successfully added\"}";
 	}
@@ -69,6 +70,20 @@ public class DBUserService implements UserService {
 	public String getSalt(String email) {
 		Query query = em.createQuery("SELECT m.salt from User m WHERE m.email = :email").setParameter("email", email);
 		return (String)query.getSingleResult();
+	}
+	
+	public String generateSalt(User newUser) {
+		SecureRandom rand = new SecureRandom();
+		byte[] saltBytes = new byte[10];
+		rand.nextBytes(saltBytes);
+		
+		StringBuilder sb = new StringBuilder();
+        for (int i = 0; i < saltBytes.length; i++) {
+         sb.append(Integer.toString((saltBytes[i] & 0xff) + 0x100, 16).substring(1));
+        }
+        String salt = sb.toString();
+        newUser.setSalt(salt);
+        return salt;
 	}
 	
 	@Override
