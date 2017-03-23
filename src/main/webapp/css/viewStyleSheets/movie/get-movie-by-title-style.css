@@ -63,13 +63,21 @@
     text-align: center;
     padding: 15px 15px;
     font-size: 15px;
+    border-radius: 5px;
+}
+
+button.timeButton {
+	background-color: #e44204;
+	margin-left: 5px;
+	margin-right: 5px;
+	border-radius: 30px;
 }
 
 .btn-group {
     padding: 10px;
 }
 
-#todayButton:hover, #tomorrowButton:hover, #futureButton:hover {
+.btn-group button:hover {
 	background-color: #da366b;
 }
 
@@ -93,11 +101,17 @@
 
 .jumbotron.inception {
     background: rgb(255, 255, 255); /* For browsers that do not support gradients */
-    background: -webkit-linear-gradient(left top, rgb(174, 174, 174), rgb(68, 68, 68)); /* For Safari 5.1 to 6.0 */
-    background: -o-linear-gradient(bottom right, rgb(174, 174, 174), rgb(68, 68, 68)); /* For Opera 11.1 to 12.0 */
-    background: -moz-linear-gradient(bottom right, rgb(174, 174, 174), rgb(68, 68, 68)); /* For Firefox 3.6 to 15 */
-    background: linear-gradient(to bottom right, rgb(174, 174, 174), rgb(68, 68, 68)); /* Standard syntax (must be last) */
+    background: -webkit-linear-gradient(left top, rgb(115, 115, 115), rgb(29, 28, 28)); /* For Safari 5.1 to 6.0 */
+    background: -o-linear-gradient(bottom right, rgb(115, 115, 115), rgb(29, 28, 28)); /* For Opera 11.1 to 12.0 */
+    background: -moz-linear-gradient(bottom right, rgb(115, 115, 115), rgb(29, 28, 28)); /* For Firefox 3.6 to 15 */
+    background: linear-gradient(to bottom right, rgb(115, 115, 115), rgb(29, 28, 28)); /* Standard syntax (must be last) */
     color: white;
     box-shadow: 0 4px 8px 0 rgba(0,0,0,0.9), 0 6px 20px 0 rgba(0,0,0,0.75);
+    padding: 10px;
+	margin-left: 5px;
+	margin-right: 5px;
 }
 
+.modal{
+	color: black;
+}

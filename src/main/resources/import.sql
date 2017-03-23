@@ -61,7 +61,7 @@ INSERT INTO Showing(showingId, screenId, movieId, dateTime) VALUES(32, 1, 1, '20
 INSERT INTO Showing(showingId, screenId, movieId, dateTime) VALUES(33, 2, 1, '2017-03-28T14:15:00');
 INSERT INTO Showing(showingId, screenId, movieId, dateTime) VALUES(34, 1, 1, '2017-03-28T18:00:00');
 INSERT INTO Showing(showingId, screenId, movieId, dateTime) VALUES(35, 2, 1, '2017-03-28T21:15:00');
-INSERT INTO Showing(showingId, screenId, movieId, dateTime) VALUES(36, 1, 1, '2017-03-25T17:00:00');
+INSERT INTO Showing(showingId, screenId, movieId, dateTime) VALUES(36, 1, 1, '2017-03-29T10:30:00');
 INSERT INTO Showing(showingId, screenId, movieId, dateTime) VALUES(37, 1, 1, '2017-03-21T12:00:00');
 INSERT INTO Showing(showingId, screenId, movieId, dateTime) VALUES(38, 2, 2, '2017-03-25T16:00:00');
 INSERT INTO Showing(showingId, screenId, movieId, dateTime) VALUES(39, 2, 2, '2017-03-21T12:00:00');
