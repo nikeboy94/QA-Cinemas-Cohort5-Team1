@@ -115,3 +115,17 @@ button.timeButton {
 #myBookingModal{
 	color: black;
 }
+
+#movieGenre {
+    font-style: italic;
+    font-weight: 600;
+    font-size: 20px;
+    margin-bottom: 20px;
+}
+
+
+#infoBox {
+    padding: 30px;
+    background: rgba(28, 34, 34, 0.25);
+    border-radius: 10px;
+}
