@@ -85,11 +85,11 @@
 		        }
 		    }
 		    return false;
-		}
+		};
         
         vm.ratedFilm = function() {
         	return containsObject(savedTitle, $rootScope.globals.currentUser.ratings);
-        }
+        };
 
 
     };

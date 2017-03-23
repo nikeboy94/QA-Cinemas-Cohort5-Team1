@@ -14,6 +14,40 @@
             	vm.price += parseInt(vm.order[i].price);
             	vm.displayPrice += parseFloat(vm.order[i].price);
             };
+            paypal.Button.render({
+
+                env: 'sandbox', // Optional: specify 'sandbox' environment
+
+                client: {
+                    sandbox:    'AR_cO7Py4bLzYgHr2XfOGnBpW0jpBW7TE7tN-BnQng7Jat4W358Hz02xnJogCLSXFR1mcxIGyvuhFil7',
+                },
+
+                payment: function() {
+
+                    var env    = this.props.env;
+                    var client = this.props.client;
+
+                    return paypal.rest.payment.create(env, client, {
+                        transactions: [
+                            {
+                                amount: { total: vm.price, currency: 'GBP' }
+                            }
+                        ]
+                    });
+                },
+
+                commit: true, // Optional: show a 'Pay Now' button in the checkout flow
+
+                onAuthorize: function(data, actions) {
+
+                    // Optional: display a confirmation page here
+
+                    return actions.payment.execute().then(function() {
+                        // Show a success page to the buyer
+                    });
+                }
+
+            }, '#paypal-button');
         };
         vm.init();
 
@@ -22,7 +56,6 @@
             vm.formatCardNumber();
             vm.card.expiryDate = vm.card.expiryMonth + vm.card.expiryYear;
             vm.card.cardholderName = "jane doe";
-            Auth.addCard(vm.card);
             vm.createMerchantSessionKey();
         }
 
@@ -51,14 +84,14 @@
             dal.http.POST_PAYMENT(vm.payment.merchantSessionKey, vm.cardIdentifier.cardIdentifier, vm.price, vm.tXCode).then(function (results) {
                 vm.cardIdentifier = results;
                 ticketDal.addOrder(vm.formatOrder()).then(function(result) {
-                    Auth.clearOrder();
                     if($window.sessionStorage["userInfo"] == undefined) {
                         ticketDal.sendGuestConfirmation(vm.order[0].orderId, vm.order[0].user.email);
                     } else {
                         ticketDal.sendConfirmation(vm.order[0].orderId);
                     }
+                    Auth.clearOrder();
+                    $state.go("ordersummary");
                 });
-                $state.go("ordersummary");
             }, function (error) {
                 alert("Transaction failed. Please try again later.");
                 vm.error = true;

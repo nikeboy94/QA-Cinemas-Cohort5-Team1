@@ -1,5 +1,5 @@
 <div id="login-overlay" class="modal-dialog">
-    <div class="modal-content">
+    <div class="modal-content" style="color: black;">
 
         <div class="modal-header">
             <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span
@@ -31,7 +31,7 @@
                     <div class="form-group">
                         <label for="showing">Showing:</label>
                         <select id="showing" class="form-control"
-                                ng-options="showing as (showing.dateTime | date:'EEEE dd MMMM hh:mma') for showing in (ctrl.movieShowingList |dateFilter:ctrl.showings | orderBy: 'dateTime')"
+                                ng-options="showing as ( (showing.dateTime | date:'EEEE dd MMMM hh:mma') + ' (Screen ' + showing.screen.screenId + ' - ' + showing.screen.screenType + ')') for showing in (ctrl.movieShowingList |dateFilter:ctrl.showings | orderBy: 'dateTime')"
                                 ng-model="ticket.showing"
                                 ng-change="ctrl.updateGlobalPrices(ticket.showing)"></select>
                     </div>

@@ -36,6 +36,11 @@ button:hover{
 	box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.15);
 	transition: 0.3s;
 }
+#logo{
+	height:120%;
+
+
+}
 
 .jumbotron{
 	background: rgb(255, 255, 255); /* For browsers that do not support gradients */
@@ -73,7 +78,7 @@ button:hover{
 	bottom: 0;
 	width: 100%;
 	/* Set the fixed height of the footer here */
-	height: 60px;
+	/*height: 60px; */
 	line-height: 60px; /* Vertically center the text there */
 	background-color: #9E9E9E;
 	color: #0D1515;
