@@ -106,9 +106,17 @@
         <div class="form-group">
             <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 col-xl-5">
                 <label for="posterUrl" class="control-label">Poster URL: </label>
-                <input type="text" class="form-control" id="posterUrl" placeholder="Poster URL..." ng-model="movie.posterUrl">
+                <input id="file" type="file"></button></br>
+                <input type="text" class="form-control" id="posterUrl" placeholder="Poster URL..." ng-model="movie.posterUrl"></br>
+                <button class='btn btn-info' ng-click="ctrl.addMoviePoster()">Submit</button>
             </div>
         </div>
+        <!--<div class="form-group">
+            <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 col-xl-5">
+                <input id="file" type="file"></br>
+            <button class='btn btn-info' ng-click="ctrl.addMoviePoster()">Submit</button>
+            </div>
+        </div>-->
         <div class="form-group">
             <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 col-xl-5">
                 <label for="trailerUrl" class="control-label">Trailer URL: </label>
@@ -135,9 +143,6 @@
     </form>
 </div>
 
-
-    Profile Picture: <input id="file" type="file">
-<button class='btn btn-primary' ng-click="ctrl.addMoviePoster()">Submit</button>
 
 
 </div>
