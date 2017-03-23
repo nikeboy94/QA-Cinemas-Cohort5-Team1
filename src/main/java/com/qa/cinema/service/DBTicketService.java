@@ -234,8 +234,12 @@ public class DBTicketService implements TicketService {
 			price *= 1.3;
 		}
 		
-		if(showingDate.getHours() > 19) {
+		if(showingDate.getHours() >= 19) {
 			price *= 1.3;
+		}
+		
+		if(showing.getScreen().getScreenType().equalsIgnoreCase("deluxe")) {
+			price += 5;
 		}
 		
 		if(ticketType == TicketType.CHILD) {
