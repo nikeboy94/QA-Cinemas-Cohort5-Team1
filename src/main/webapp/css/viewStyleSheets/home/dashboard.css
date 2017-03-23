@@ -23,3 +23,7 @@
 div#myModal {
     color: black;
 }
+
+.row.getmovies {
+    background: rgba(93, 25, 43, 0.65);
+}
