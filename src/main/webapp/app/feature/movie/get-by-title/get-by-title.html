@@ -93,184 +93,311 @@
                             <div class="btn-group">
                                 <button id="todayButton"
                                         ng-show="(ctrler.showings|filter: (ctrler.today | date:'yyyy-MM-dd')).length>0"
-                                        type="submit" ng-click="Today = !Today; Tomorrow = false; Future = false">Today
+                                        type="submit" ng-click="Today = !Today; Tomorrow = false; Day3 = false; Day4 = false; Day5 = false; Day6 = false; Day7 = false">Today
                                 </button>
 
                                 <button id="tomorrowButton"
                                         ng-show="(ctrler.showings|filter: (ctrler.tomorrow | date:'yyyy-MM-dd')).length>0"
-                                        type="submit" ng-click="Tomorrow = !Tomorrow; Future = false; Today = false ">
+                                        type="submit" ng-click="Tomorrow = !Tomorrow; Today = false; Day3 = false; Day4 = false; Day5 = false; Day6 = false; Day7 = false">
                                     Tomorrow
                                 </button>
 
-                                <button id="futureButton"
-                                        ng-show="(ctrler.showings|filter: (ctrler.future | date:'yyyy-MM-dd')).length >0"
+                                <button id="day3Button"
+                                        ng-show="(ctrler.showings|filter: (ctrler.day3 | date:'yyyy-MM-dd')).length>0"
+                                        type="submit" ng-click="Day3 = !Day3; Today = false; Tomorrow = false; Day4 = false; Day5 = false; Day6 = false; Day7 = false">
+                                    {{ctrler.day3 | date: 'EEEE, d MMMM'}}
+                                </button>
+
+                                <button id="day4Button"
+                                        ng-show="(ctrler.showings|filter: (ctrler.day4 | date:'yyyy-MM-dd')).length>0"
+                                        type="submit" ng-click="Day4 = !Day4; Tomorrow = false; Today = false; Day3 = false; Day5 = false; Day6 = false; Day7 = false">
+                                    {{ctrler.day4 | date: 'EEEE, d MMMM'}}
+                                </button>
+
+                                <button id="day5Button"
+                                        ng-show="(ctrler.showings|filter: (ctrler.day5 | date:'yyyy-MM-dd')).length>0"
+                                        type="submit" ng-click="Day5 = !Day5; Tomorrow = false; Today = false; Day3 = false; Day4 = false; Day6 = false; Day7 = false">
+                                    {{ctrler.day5 | date: 'EEEE, d MMMM'}}
+                                </button>
+
+                                <button id="day6Button"
+                                        ng-show="(ctrler.showings|filter: (ctrler.day6 | date:'yyyy-MM-dd')).length>0"
+                                        type="submit" ng-click="Day6 = !Day6; Tomorrow = false; Today = false; Day3 = false; Day4 = false; Day5 = false; Day7 = false">
+                                    {{ctrler.day6 | date: 'EEEE, d MMMM'}}
+                                </button>
+
+                                <button id="day7Button"
+                                        ng-show="(ctrler.showings|filter: (ctrler.day7 | date:'yyyy-MM-dd')).length>0"
+                                        type="submit" ng-click="Day7 = !Day7; Tomorrow = false; Today = false; Day3 = false; Day4 = false; Day5 = false; Day6 = false">
+                                    {{ctrler.day7 | date: 'EEEE, d MMMM'}}
+                                </button>
+
+                                <!--button id="futureButton"
+                                        ng-show="(ctrler.showings|filter: (ctrler.future | date:'yyyy-MM-dd')).length>0"
                                         type="submit" ng-click="Future = !Future; Today = false; Tomorrow = false">
                                     Future Showings
-                                </button>
+                                </button-->
                             </div>
                         </div>
                     </div>
+
                     <div ng-show="Today" class="row">
-                        <div class="col-xs-6 col-sm-4 col-xl-3"
-                             ng-repeat="x in ctrler.showings | todayFilter:ctrler.showings | orderBy: 'dateTime'">
-                            <a ng-click="ctrler.replace(x)" data-target="#myBookingModal"
-                               data-showingId="{{x.showingId}}"
-                               data-dateTime="{{x.dateTime | date}}" data-toggle="modal">
-                                <button type="submit">{{x.dateTime | date: 'H:mm'}} <br> Screen {{x.screen.screenId}} - {{x.screen.screenType}}</button>
-                            </a>
+                        <div class="col-md-3"></div>
+                        <div class="col-md-6">
+                            <div class="jumbotron inception center-block">
+                                <h3 class="showingsForTitle">Showing Times for {{ctrler.today | date}}</h3>
+                                <div class="text-center">
+                                    <div class="btn-group">
+                                        <button class="timeButton" ng-repeat="x in ctrler.showings | todayFilter:ctrler.showings | orderBy: 'dateTime'" ng-click="ctrler.replace(x)" data-target="#myBookingModal"
+                                                data-showingId="{{x.showingId}}"
+                                                data-dateTime="{{x.dateTime | date}}" data-toggle="modal" type="submit">{{x.dateTime | date: 'H:mm'}}</button>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
+                        <div class="col-md-6"></div>
                     </div>
 
                     <div ng-show="Tomorrow" class="row">
-                        <div class="col-xs-6 col-sm-4 col-xl-3"
-                             ng-repeat="y in ctrler.showings |filter: (ctrler.tomorrow | date:'yyyy-MM-dd')">
-                            <a ng-click="ctrler.replace(y)" data-target="#myBookingModal"
-                               data-showingId="{{y.showingId}}"
-                               data-dateTime="{{y.dateTime | date}}" data-toggle="modal">
-                                <button type="submit">{{y.dateTime | date: 'H:mm'}} <br> Screen {{y.screen.screenId}} - {{y.screen.screenType}}</button>
-                            </a>
+                        <div class="col-md-3"></div>
+                        <div class="col-md-6">
+                            <div class="jumbotron inception center-block">
+                                <h3 class="showingsForTitle">Showing Times for {{ctrler.tomorrow | date}}:</h3>
+                                <div class="text-center">
+                                    <div class="btn-group">
+                                        <button class="timeButton" ng-repeat="y in ctrler.showings |filter: (ctrler.tomorrow | date:'yyyy-MM-dd')" ng-click="ctrler.replace(y)" data-target="#myBookingModal" data-showingId="{{y.showingId}}"
+                                                data-dateTime="{{y.dateTime | date}}" data-toggle="modal" type="submit">{{y.dateTime | date: 'H:mm'}}</button>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
+                        <div class="col-md-6"></div>
                     </div>
 
-                    <div ng-show="Future" class="row">
+                    <div ng-show="Day3" class="row">
+                        <div class="col-md-3"></div>
+                        <div class="col-md-6">
+                            <div class="jumbotron inception center-block">
+                                <h3 class="showingsForTitle">Showing Times for {{ctrler.day3 | date}}:</h3>
+                                <div class="text-center">
+                                    <div class="btn-group">
+                                        <button class="timeButton" ng-repeat="y in ctrler.showings|filter: (ctrler.day3 | date:'yyyy-MM-dd')" ng-click="ctrler.replace(y)" data-target="#myBookingModal"
+                                                data-showingId="{{y.showingId}}"
+                                                data-dateTime="{{y.dateTime | date}}" data-toggle="modal" type="submit">{{y.dateTime | date: 'H:mm'}}</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6"></div>
+                    </div>
+
+                    <div ng-show="Day4" class="row">
+                        <div class="col-md-3"></div>
+                        <div class="col-md-6">
+                            <div class="jumbotron inception center-block">
+                                <h3 class="showingsForTitle">Showing Times for {{ctrler.day4 | date}}:</h3>
+                                <div class="text-center">
+                                    <div class="btn-group">
+                                        <button class="timeButton" ng-repeat="y in ctrler.showings|filter: (ctrler.day4 | date:'yyyy-MM-dd')" ng-click="ctrler.replace(y)" data-target="#myBookingModal"
+                                                data-showingId="{{y.showingId}}"
+                                                data-dateTime="{{y.dateTime | date}}" data-toggle="modal" type="submit">{{y.dateTime | date: 'H:mm'}}</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6"></div>
+                    </div>
+
+                    <div ng-show="Day5" class="row">
+                        <div class="col-md-3"></div>
+                        <div class="col-md-6">
+                            <div class="jumbotron inception center-block">
+                                <h3 class="showingsForTitle">Showing Times for {{ctrler.day5 | date}}:</h3>
+                                <div class="text-center">
+                                    <div class="btn-group">
+                                        <button class="timeButton" ng-repeat="y in ctrler.showings|filter: (ctrler.day5 | date:'yyyy-MM-dd')" ng-click="ctrler.replace(y)" data-target="#myBookingModal"
+                                                data-showingId="{{y.showingId}}"
+                                                data-dateTime="{{y.dateTime | date}}" data-toggle="modal" type="submit">{{y.dateTime | date: 'H:mm'}}</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6"></div>
+                    </div>
+
+                    <div ng-show="Day6" class="row">
+                        <div class="col-md-3"></div>
+                        <div class="col-md-6">
+                            <div class="jumbotron inception center-block">
+                                <h3 class="showingsForTitle">Showing Times for {{ctrler.day6 | date}}:</h3>
+                                <div class="text-center">
+                                    <div class="btn-group">
+                                        <button class="timeButton" ng-repeat="y in ctrler.showings|filter: (ctrler.day6 | date:'yyyy-MM-dd')" ng-click="ctrler.replace(y)" data-target="#myBookingModal"
+                                                data-showingId="{{y.showingId}}"
+                                                data-dateTime="{{y.dateTime | date}}" data-toggle="modal" type="submit">{{y.dateTime | date: 'H:mm'}}</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6"></div>
+                    </div>
+
+                    <div ng-show="Day7" class="row">
+                        <div class="col-md-3"></div>
+                        <div class="col-md-6">
+                            <div class="jumbotron inception center-block">
+                                <h3 class="showingsForTitle">Showing Times for {{ctrler.day7 | date}}:</h3>
+                                <div class="text-center">
+                                    <div class="btn-group">
+                                        <button class="timeButton" ng-repeat="y in ctrler.showings|filter: (ctrler.day7 | date:'yyyy-MM-dd')" ng-click="ctrler.replace(y)" data-target="#myBookingModal"
+                                                data-showingId="{{y.showingId}}"
+                                                data-dateTime="{{y.dateTime | date}}" data-toggle="modal" type="submit">{{y.dateTime | date: 'H:mm'}}</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6"></div>
+                    </div>
+
+                    <!-- div ng-show="Future" class="row">
                         <div class="col-xs-6 col-sm-4 col-xl-3"
                              ng-repeat="y in ctrler.showings|myFilter:ctrler.showings">
                             <a ng-click="ctrler.replace(y)" data-target="#myBookingModal"
                                data-showingId="{{y.showingId}}"
                                data-dateTime="{{y.dateTime | date}}" data-toggle="modal">
-                                <button type="submit">{{y.dateTime | date: 'EEEE, d MMM H:mm'}} <br> Screen {{y.screen.screenId}} - {{y.screen.screenType}}</button>
+                                <button type="submit">{{y.dateTime | date: 'EEEE, d MMM H:mm'}}</button>
                             </a>
-                        </div>
-                    </div>
-                </div>
-
-
-            </div>
-
-        </div>
-
-
-        <div class="modal" id="myBookingModal" tabindex="-1" role="dialog"
-             aria-labelledby="myModalLabel">
-            <div class="modal-dialog" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <button type="button" class="close" data-dismiss="modal">
-                            <span aria-hidden="true">×</span><span class="sr-only">Close</span>
-                        </button>
-                        <h1 class="modal-title" id="myModalLabel">Select your tickets</h1>
-                    </div>
-
-                    <div class="modal-body">
-                        <div ng-controller="addTicketController as ctrlerer"
-                             ng-submit="testCtrl.addText(qty)">
-
-                            <form role="form">
-                                <div class="form-group">
-                                    <label>Showing:</label>
-                                    <h3>{{ctrl.movies[0].title}}</h3>
-                                    <h3 id="modalShowing" class='showingId'>Showing</h3>
-                                    <h3 id="modalTime" class='dateTime'>DateTime</h3>
-                                    <input type="hidden" id="hiddenShowingId"
-                                           ng-model="ctrlShowing.showingId"
-                                           ng-change="ctrlerer.updateGlobalPrices(ctrlShowing.showingId)">
-                                </div>
-
-                                <h4 ng-show="ctrler.availableTickets">
-                                   There are {{ctrler.availableTickets}} seats left for this showing
-                                </h4>
-
-                                <div class="form-group">
-                                    <label for="email">Email:</label>
-                                    <div ng-if="globals.currentUser.email != undefined">
-                                        <input class="form-control" id="email" placeholder="email"
-                                               ng-model="globals.currentUser.email" disabled>
-                                    </div>
-                                    <div ng-if="globals.currentUser.email == undefined">
-                                        <input class="form-control" id="email" placeholder="email"
-                                               ng-model="email" ng-change="ctrlerer.updateEmail(email)">
-                                    </div>
-                                </div>
-
-                                <div class="col-xs-6">
-                                    <div class="form-group">
-                                        <label for="adultQty">Adult tickets {{ctrler.globalAdultPrice | currency:"£":2}}</label>
-                                        <select id="adultQty" class="form-control" ng-model="adultQty"
-                                                ng-change="ctrler.updateAdultQty(adultQty)">
-                                            <option value="0" selected="selected">0</option>
-                                            <option value="1">1</option>
-                                            <option value="2">2</option>
-                                            <option value="3">3</option>
-                                            <option value="4">4</option>
-                                            <option value="5">5</option>
-                                            <option value="6">6</option>
-                                            <option value="7">7</option>
-                                            <option value="8">8</option>
-                                            <option value="9">9</option>
-                                        </select>
-                                    </div>
-                                </div>
-
-                                <div class="col-xs-6">
-                                    <div class="form-group">
-                                        <label for="childQty">Child tickets {{ctrler.globalChildPrice | currency:"£":2}}</label>
-                                        <select id="childQty" class="form-control" ng-model="childQty"
-                                                ng-change="ctrler.updateChildQty(childQty)">
-                                            <option value="0" selected="selected">0</option>
-                                            <option value="1">1</option>
-                                            <option value="2">2</option>
-                                            <option value="3">3</option>
-                                            <option value="4">4</option>
-                                            <option value="5">5</option>
-                                            <option value="6">6</option>
-                                            <option value="7">7</option>
-                                            <option value="8">8</option>
-                                            <option value="9">9</option>
-                                        </select>
-                                    </div>
-                                </div>
-
-                                <div class="form-group">
-                                    <button class="btn btn-block" type="submit"
-                                            ng-click="ctrlerer.showSeatViewer(adultQty, childQty, ticket)"
-                                            id="viewer" onclick="styleChange(this)">Choose Seats
-                                    </button>
-                                </div>
-
-
-                                <ul id="temp">
-                                    <button type="submit"
-                                            ng-click="ctrlerer.addTicket(ticket, adultQty, childQty)">Continue
-                                    </button>
-                                </ul>
-
-                            </form>
-                            <h2>Total price: {{ctrler.totalPrice | currency:"£":2}}</h2>
-                        </div>
-                    </div>
+                        </div -->
                 </div>
             </div>
 
+
         </div>
 
-        <!-- TRAILER MODAL -->
-
-        <div class="modal fade" id="myTrailerModal" tabindex="-1" role="dialog"
-             aria-labelledby="myModalLabel">
-            <div class="modal-dialog modal-lg" id="trailerModalDialog"
-                 role="document">
-                <div class="modal-content" id="trailerModalContent">
-                    <div class="modal-body">
-                        <div class="videoWrapper">
-                            <iframe width="854" height="480" id="ytplayer"
-                                    src="{{ctrl.createYoutubeUrl(ctrl.movies[0].trailerUrl)}}" frameborder="0"
-                                    allowfullscreen></iframe>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- END OF MODAL -->
     </div>
+
+
+    <div class="modal" id="myBookingModal" tabindex="-1" role="dialog"
+         aria-labelledby="myModalLabel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">
+                        <span aria-hidden="true">×</span><span class="sr-only">Close</span>
+                    </button>
+                    <h1 class="modal-title" id="myModalLabel">Select your tickets</h1>
+                </div>
+
+                <div class="modal-body">
+                    <div ng-controller="addTicketController as ctrlerer"
+                         ng-submit="testCtrl.addText(qty)">
+
+                        <form role="form">
+                            <div class="form-group">
+                                <label->Showing:</label->
+                                <h3>{{ctrl.movies[0].title}}</h3>
+                                <h3 id="modalShowing" class='showingId'>Showing</h3>
+                                <h3 id="modalTime" class='dateTime'>DateTime</h3>
+                                <input type="hidden" id="hiddenShowingId"
+                                       ng-model="ctrlShowing.showingId"
+                                       ng-change="ctrlerer.updateGlobalPrices(ctrlShowing.showingId)">
+                            </div>
+
+                            <h4 ng-show="ctrler.availableTickets">
+                                There are {{ctrler.availableTickets}} seats left for this showing
+                            </h4>
+
+                            <div class="form-group">
+                                <label for="email">Email:</label>
+                                <div ng-if="globals.currentUser.email != undefined">
+                                    <input class="form-control" id="email" placeholder="email"
+                                           ng-model="globals.currentUser.email" disabled>
+                                </div>
+                                <div ng-if="globals.currentUser.email == undefined">
+                                    <input class="form-control" id="email" placeholder="email"
+                                           ng-model="email" ng-change="ctrlerer.updateEmail(email)">
+                                </div>
+                            </div>
+
+                            <div class="col-xs-6">
+                                <div class="form-group">
+                                    <label for="adultQty">Adult tickets {{ctrler.globalAdultPrice | currency:"£":2}}</label>
+                                    <select id="adultQty" class="form-control" ng-model="adultQty"
+                                            ng-change="ctrler.updateAdultQty(adultQty)">
+                                        <option value="0" selected="selected">0</option>
+                                        <option value="1">1</option>
+                                        <option value="2">2</option>
+                                        <option value="3">3</option>
+                                        <option value="4">4</option>
+                                        <option value="5">5</option>
+                                        <option value="6">6</option>
+                                        <option value="7">7</option>
+                                        <option value="8">8</option>
+                                        <option value="9">9</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="col-xs-6">
+                                <div class="form-group">
+                                    <label for="childQty">Child tickets {{ctrler.globalChildPrice | currency:"£":2}}</label>
+                                    <select id="childQty" class="form-control" ng-model="childQty"
+                                            ng-change="ctrler.updateChildQty(childQty)">
+                                        <option value="0" selected="selected">0</option>
+                                        <option value="1">1</option>
+                                        <option value="2">2</option>
+                                        <option value="3">3</option>
+                                        <option value="4">4</option>
+                                        <option value="5">5</option>
+                                        <option value="6">6</option>
+                                        <option value="7">7</option>
+                                        <option value="8">8</option>
+                                        <option value="9">9</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <button class="btn btn-block" type="submit"
+                                        ng-click="ctrlerer.showSeatViewer(adultQty, childQty, ticket)"
+                                        id="viewer" onclick="styleChange(this)">Choose Seats
+                                </button>
+                            </div>
+
+
+                            <ul id="temp">
+                                <button type="submit"
+                                        ng-click="ctrlerer.addTicket(ticket, adultQty, childQty)">Continue
+                                </button>
+                            </ul>
+
+                        </form>
+                        <h2>Total price: {{ctrler.totalPrice | currency:"£":2}}</h2>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- TRAILER MODAL -->
+
+    <div class="modal fade" id="myTrailerModal" tabindex="-1" role="dialog"
+         aria-labelledby="myModalLabel">
+        <div class="modal-dialog modal-lg" id="trailerModalDialog"
+             role="document">
+            <div class="modal-content" id="trailerModalContent">
+                <div class="modal-body">
+                    <div class="videoWrapper">
+                        <iframe width="854" height="480" id="ytplayer"
+                                src="{{ctrl.createYoutubeUrl(ctrl.movies[0].trailerUrl)}}" frameborder="0"
+                                allowfullscreen></iframe>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- END OF MODAL -->
+</div>
 </div>
