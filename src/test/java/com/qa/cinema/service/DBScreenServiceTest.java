@@ -50,12 +50,6 @@ public class DBScreenServiceTest {
 	}
 	
 	@Test
-	public void fakeTest() {
-		assertNull(null);
-	}
-	
-	
-	@Test
 	public void testGetAllScreens() {
 		Collection<Screen> screens = new ArrayList<Screen>();
 		screens.add(new Screen("Standard", "looks ok"));

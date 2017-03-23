@@ -5,6 +5,7 @@ import java.util.List;
 import com.qa.cinema.persistence.Movie;
 import com.qa.cinema.persistence.Screen;
 import com.qa.cinema.persistence.Showing;
+import com.qa.cinema.persistence.User;
 
 public class MockJSONUtil {
 
@@ -62,6 +63,23 @@ public class MockJSONUtil {
 			}
 		}
 		return movieSB.toString();
+	}
+	
+	public static String JSONForUser(List<User> users) {
+		StringBuilder userSB = new StringBuilder();
+		for (User user : users) {
+			userSB.append("{\"email\": \"" + user.getEmail()
+				+ "\", \"fName\": \"" + user.getFName()
+				+ "\", \"lName\": \"" + user.getLName()
+				+ "\", \"role\": \"" + user.getRole()
+				+ "\", \"password\": \"" + user.getPassword()
+				+ "\", \"salt\": \"" + user.getSalt() + "\"}");
+			
+			if (users.indexOf(user) != (users.size() - 1)) {
+				userSB.append(", ");
+			}
+		}
+		return userSB.toString();
 	}
 	
 }
