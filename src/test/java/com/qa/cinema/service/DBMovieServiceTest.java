@@ -53,7 +53,6 @@ public class DBMovieServiceTest {
 	@Before
 	public void setup() {
 		movies = new ArrayList<Movie>();
-		movie = new Movie("title", "genre", new Date(), "classification", "poster", "trailer", 100);
 		showings = new ArrayList<Showing>();
 		showing = new Showing(new Screen(), new Movie(), "2017-04-22T12:00:00");
 		resetShowings();
@@ -153,6 +152,7 @@ public class DBMovieServiceTest {
 	
 	public void resetShowings() {
 		showings.clear();
+		movie = new Movie("title", "genre", new Date(), "classification", "poster", "trailer", 100);
 		showings.add(showing);
 	}
 	
