@@ -43,10 +43,8 @@
 
                         <ul class="dropdown-menu" id="movie">
                             <li><a ui-sref="addmovie" id="add-movie">Add Movie</a></li>
-                            <li><a ui-sref="addmovieposter" id="add-movie-poster">Add Movie Poster</a></li>
                             <li><a ui-sref="getmovie" id="get-movie">Get Movie</a></li>
                             <li><a ui-sref="updatemovie" id="update-movie">Update Movie</a></li>
-                            <li><a ui-sref="deletemovie" id="delete-movie">Delete Movie</a></li>
                             <li><a ui-sref="getmoviebytitle" id="get-movie-by-title">Get movie by title</a></li>
                             <li><a ui-sref="getmoviebygenre" id="get-movie-by-genre">Search Movies By Genre</a></li>
                             <li><a ui-sref="payment">Payment</a></li>
@@ -60,7 +58,6 @@
                             <li><a ui-sref="adduser" id="add-user">Add User</a></li>
                             <li><a ui-sref="getuser" id="get-user">Get User</a></li>
                             <li><a ui-sref="updateuser" id="update-user">Update User</a></li>
-                            <li><a ui-sref="deleteuser" id="delete-user">Delete User</a></li>
                         </ul>
                     </li>
                     <li class="dropdown">
@@ -70,7 +67,6 @@
                             <li><a ui-sref="getshowings" id="get-showings">Get Showings</a></li>
                             <li><a ui-sref="getshowingsbymovie" id="get-showings-by-movie">Get Showings By Movie</a></li>
                             <li><a ui-sref="addshowing" id="add-showing">Add Showing</a></li>
-                            <li><a ui-sref="deleteshowing" id="delete-showing">Delete Showing</a></li>
                             <li><a ui-sref="updateshowing" id="update-showing">Update Showing</a></li>
                         </ul>
                     </li>
@@ -82,33 +78,12 @@
 
                             <li><a ui-sref="gettickets" id="get-user-tickets">Get Tickets</a></li>
                             <li><a ui-sref="updateticket" id="update-ticket">Update Tickets</a></li>
-                            <li><a ui-sref="addticket" id="add-ticket">Add Ticket</a></li>
                             <li><a ui-sref="getavailableticket" id="get-available-ticket">Get Available Tickets For
                                 Showing</a></li>
-                            <li><a ui-sref="deleteticket" id="delete-ticket">Delete Ticket</a></li>
                             <li><a ui-sref="addticketstandalone">Quick book ticket</a></li>
                         </ul>
                     </li>
-                    <li class="dropdown">
-                        <a class="dropdown-toggle">Seat
-                            <span class="caret"></span></a>
-                        <ul class="dropdown-menu" id="seat">
-                            <li><a ui-sref="addseat" id="add-seat">Add Seat</a></li>
-                            <li><a ui-sref="getseat" id="get-seat">Get Seat</a></li>
-                            <li><a ui-sref="updateseat" id="update-seat">Update Seat</a></li>
-                            <li><a ui-sref="deleteseat" id="delete-seat">Delete Seat</a></li>
-                            <li><a ui-sref="viewer" id="viewer">View Seats</a></li>
-                        </ul>
-                    </li>
-                    <li class="dropdown">
-                        <a class="dropdown-toggle">Screen
-                            <span class="caret"></span></a>
-                        <ul class="dropdown-menu" id="screen">
-                            <li><a ui-sref="addscreen" id="add-screen">Add Screen</a></li>
-                            <li><a ui-sref="getscreen" id="get-screen">Get Screen</a></li>
-                            <li><a ui-sref="deletescreen" id="delete-screen">Delete Screen</a></li>
-                        </ul>
-                    </li>
+
                 </ul>
             </div>
             <div ng-if="(globals.currentUser.role != 'admin')">
