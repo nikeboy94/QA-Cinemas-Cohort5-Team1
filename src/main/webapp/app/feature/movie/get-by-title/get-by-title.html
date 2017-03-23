@@ -265,7 +265,7 @@
                             <a ng-click="ctrler.replace(y)" data-target="#myBookingModal"
                                data-showingId="{{y.showingId}}"
                                data-dateTime="{{y.dateTime | date}}" data-toggle="modal">
-                                <button type="submit">{{y.dateTime}}</button>
+                                <button type="submit">{{y.dateTime | date: 'EEEE, d MMM H:mm'}}</button>
                             </a>
                         </div -->
                     </div>

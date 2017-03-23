@@ -31,7 +31,7 @@
                     <div class="form-group">
                         <label for="showing">Showing:</label>
                         <select id="showing" class="form-control"
-                                ng-options="showing as (showing.dateTime | date:'EEEE dd MMMM hh:mma') for showing in (ctrl.movieShowingList |dateFilter:ctrl.showings | orderBy: 'dateTime')"
+                                ng-options="showing as ( (showing.dateTime | date:'EEEE dd MMMM hh:mma') + ' (Screen ' + showing.screen.screenId + ' - ' + showing.screen.screenType + ')') for showing in (ctrl.movieShowingList |dateFilter:ctrl.showings | orderBy: 'dateTime')"
                                 ng-model="ticket.showing"
                                 ng-change="ctrl.updateGlobalPrices(ticket.showing)"></select>
                     </div>
@@ -92,15 +92,14 @@
                         </div>
                     </div>
                     <div class="form-group">
-                        <button class="btn btn-block" type="submit"
+                        <button class="btn btn-info" type="submit"
                                 ng-click="ctrl.showSeatViewer(adultQty, childQty, ticket)" id="viewer"
                                 onclick="styleChange(this)">
                             Choose Seats
                         </button>
                     </div>
-                    <ul id="temp">
-                        <button type="submit" ng-click="ctrl.addTicket(ticket, adultQty, childQty)">Continue</button>
-                    </ul>
+
+                        <button class='btn btn-primary' type="submit" ng-click="ctrl.addTicket(ticket, adultQty, childQty)">Continue</button>
                 </form>
                 <h2>Total price: {{ctrl.totalPrice | currency:"£":2}} </h2>
             </div>
