@@ -141,123 +141,127 @@
                         </div>
                     </div>
 
-                    <div ng-show="Today" class="row">
-                        <div class="col-md-3"></div>
-                        <div class="col-md-6">
-                            <div class="jumbotron inception center-block">
-                                <h3 class="showingsForTitle">Showing Times for {{ctrler.today | date}}</h3>
-                                <div class="text-center">
-                                    <div class="btn-group">
-                                        <button class="timeButton" ng-repeat="x in ctrler.showings | todayFilter:ctrler.showings | orderBy: 'dateTime'" ng-click="ctrler.replace(x)" data-target="#myBookingModal"
-                                                data-showingId="{{x.showingId}}"
-                                                data-dateTime="{{x.dateTime | date}}" data-toggle="modal" type="submit">{{x.dateTime | date: 'H:mm'}}</button>
-                                    </div>
-                                </div>
-                            </div>
+					
+					<div ng-show="Today" class="row">
+					<div class="col-md-3"></div>
+					<div class="col-md-6">
+                    <div class="jumbotron inception center-block">
+                        <h3 class="showingsForTitle">Showing Times for {{ctrler.today | date}}</h3>
+                        <div class="text-center">
+                        <div class="btn-group">
+                                <button class="timeButton" ng-repeat="x in ctrler.showings | todayFilter:ctrler.showings | orderBy: 'dateTime'" ng-click="ctrler.replace(x)" data-target="#myBookingModal"
+                                        data-showingId="{{x.showingId}}"
+                                        data-dateTime="{{x.dateTime | date}}" data-toggle="modal" type="submit">{{x.dateTime | date: 'H:mm'}}</button>
+                        </div>
+                        </div>
+                    </div>
+                    </div>
+                    <div class="col-md-6"></div>   
+                    </div>
+                    
+					<div ng-show="Tomorrow" class="row">
+					<div class="col-md-3"></div>
+					<div class="col-md-6">
+                    <div class="jumbotron inception center-block">
+                        <h3 class="showingsForTitle">Showing Times for {{ctrler.tomorrow | date}}:</h3>
+                        <div class="text-center">
+                        <div class="btn-group">
+                                <button class="timeButton" ng-repeat="y in ctrler.showings |filter: (ctrler.tomorrow | date:'yyyy-MM-dd')" ng-click="ctrler.replace(y)" data-target="#myBookingModal" data-showingId="{{y.showingId}}" 
+                                data-dateTime="{{y.dateTime | date}}" data-toggle="modal" type="submit">{{y.dateTime | date: 'H:mm'}}</button>
+						</div>
+						</div>
+					</div>
+                    </div>
+                    <div class="col-md-6"></div>
+                    </div>
+
+					<div ng-show="Day3" class="row">
+					<div class="col-md-3"></div>
+					<div class="col-md-6">
+					<div class="jumbotron inception center-block">
+                        <h3 class="showingsForTitle">Showing Times for {{ctrler.day3 | date}}:</h3>
+                        <div class="text-center">
+                        <div class="btn-group">
+                               <button class="timeButton" ng-repeat="y in ctrler.showings|filter: (ctrler.day3 | date:'yyyy-MM-dd')" ng-click="ctrler.replace(y)" data-target="#myBookingModal"
+                               data-showingId="{{y.showingId}}"
+                               data-dateTime="{{y.dateTime | date}}" data-toggle="modal" type="submit">{{y.dateTime | date: 'H:mm'}}</button>
+                        </div>
+
                         </div>
                         <div class="col-md-6"></div>
                     </div>
-
-                    <div ng-show="Tomorrow" class="row">
-                        <div class="col-md-3"></div>
-                        <div class="col-md-6">
-                            <div class="jumbotron inception center-block">
-                                <h3 class="showingsForTitle">Showing Times for {{ctrler.tomorrow | date}}:</h3>
-                                <div class="text-center">
-                                    <div class="btn-group">
-                                        <button class="timeButton" ng-repeat="y in ctrler.showings |filter: (ctrler.tomorrow | date:'yyyy-MM-dd')" ng-click="ctrler.replace(y)" data-target="#myBookingModal" data-showingId="{{y.showingId}}"
-                                                data-dateTime="{{y.dateTime | date}}" data-toggle="modal" type="submit">{{y.dateTime | date: 'H:mm'}}</button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-6"></div>
                     </div>
-
-                    <div ng-show="Day3" class="row">
-                        <div class="col-md-3"></div>
-                        <div class="col-md-6">
-                            <div class="jumbotron inception center-block">
-                                <h3 class="showingsForTitle">Showing Times for {{ctrler.day3 | date}}:</h3>
-                                <div class="text-center">
-                                    <div class="btn-group">
-                                        <button class="timeButton" ng-repeat="y in ctrler.showings|filter: (ctrler.day3 | date:'yyyy-MM-dd')" ng-click="ctrler.replace(y)" data-target="#myBookingModal"
-                                                data-showingId="{{y.showingId}}"
-                                                data-dateTime="{{y.dateTime | date}}" data-toggle="modal" type="submit">{{y.dateTime | date: 'H:mm'}}</button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-6"></div>
+					<div class="col-md-6"></div>
                     </div>
 
                     <div ng-show="Day4" class="row">
-                        <div class="col-md-3"></div>
-                        <div class="col-md-6">
-                            <div class="jumbotron inception center-block">
-                                <h3 class="showingsForTitle">Showing Times for {{ctrler.day4 | date}}:</h3>
-                                <div class="text-center">
-                                    <div class="btn-group">
-                                        <button class="timeButton" ng-repeat="y in ctrler.showings|filter: (ctrler.day4 | date:'yyyy-MM-dd')" ng-click="ctrler.replace(y)" data-target="#myBookingModal"
-                                                data-showingId="{{y.showingId}}"
-                                                data-dateTime="{{y.dateTime | date}}" data-toggle="modal" type="submit">{{y.dateTime | date: 'H:mm'}}</button>
-                                    </div>
-                                </div>
-                            </div>
+					<div class="col-md-3"></div>
+					<div class="col-md-6">
+					<div class="jumbotron inception center-block">
+                        <h3 class="showingsForTitle">Showing Times for {{ctrler.day4 | date}}:</h3>
+                        <div class="text-center">
+                        <div class="btn-group">
+                               <button class="timeButton" ng-repeat="y in ctrler.showings|filter: (ctrler.day4 | date:'yyyy-MM-dd')" ng-click="ctrler.replace(y)" data-target="#myBookingModal"
+                               data-showingId="{{y.showingId}}"
+                               data-dateTime="{{y.dateTime | date}}" data-toggle="modal" type="submit">{{y.dateTime | date: 'H:mm'}}</button>
                         </div>
-                        <div class="col-md-6"></div>
+                        </div>
+                    </div>
+                    </div>
+					<div class="col-md-6"></div>
                     </div>
 
                     <div ng-show="Day5" class="row">
-                        <div class="col-md-3"></div>
-                        <div class="col-md-6">
-                            <div class="jumbotron inception center-block">
-                                <h3 class="showingsForTitle">Showing Times for {{ctrler.day5 | date}}:</h3>
-                                <div class="text-center">
-                                    <div class="btn-group">
-                                        <button class="timeButton" ng-repeat="y in ctrler.showings|filter: (ctrler.day5 | date:'yyyy-MM-dd')" ng-click="ctrler.replace(y)" data-target="#myBookingModal"
-                                                data-showingId="{{y.showingId}}"
-                                                data-dateTime="{{y.dateTime | date}}" data-toggle="modal" type="submit">{{y.dateTime | date: 'H:mm'}}</button>
-                                    </div>
-                                </div>
-                            </div>
+					<div class="col-md-3"></div>
+					<div class="col-md-6">
+					<div class="jumbotron inception center-block">
+                        <h3 class="showingsForTitle">Showing Times for {{ctrler.day5 | date}}:</h3>
+                        <div class="text-center">
+                        <div class="btn-group">
+                               <button class="timeButton" ng-repeat="y in ctrler.showings|filter: (ctrler.day5 | date:'yyyy-MM-dd')" ng-click="ctrler.replace(y)" data-target="#myBookingModal"
+                               data-showingId="{{y.showingId}}"
+                               data-dateTime="{{y.dateTime | date}}" data-toggle="modal" type="submit">{{y.dateTime | date: 'H:mm'}}</button>
                         </div>
-                        <div class="col-md-6"></div>
+                        </div>
+                    </div>
+                    </div>
+					<div class="col-md-6"></div>
                     </div>
 
                     <div ng-show="Day6" class="row">
-                        <div class="col-md-3"></div>
-                        <div class="col-md-6">
-                            <div class="jumbotron inception center-block">
-                                <h3 class="showingsForTitle">Showing Times for {{ctrler.day6 | date}}:</h3>
-                                <div class="text-center">
-                                    <div class="btn-group">
-                                        <button class="timeButton" ng-repeat="y in ctrler.showings|filter: (ctrler.day6 | date:'yyyy-MM-dd')" ng-click="ctrler.replace(y)" data-target="#myBookingModal"
-                                                data-showingId="{{y.showingId}}"
-                                                data-dateTime="{{y.dateTime | date}}" data-toggle="modal" type="submit">{{y.dateTime | date: 'H:mm'}}</button>
-                                    </div>
-                                </div>
-                            </div>
+					<div class="col-md-3"></div>
+					<div class="col-md-6">
+					<div class="jumbotron inception center-block">
+                        <h3 class="showingsForTitle">Showing Times for {{ctrler.day6 | date}}:</h3>
+                        <div class="text-center">
+                        <div class="btn-group">
+                               <button class="timeButton" ng-repeat="y in ctrler.showings|filter: (ctrler.day6 | date:'yyyy-MM-dd')" ng-click="ctrler.replace(y)" data-target="#myBookingModal"
+                               data-showingId="{{y.showingId}}"
+                               data-dateTime="{{y.dateTime | date}}" data-toggle="modal" type="submit">{{y.dateTime | date: 'H:mm'}}</button>
                         </div>
-                        <div class="col-md-6"></div>
+                        </div>
+                    </div>
+                    </div>
+					<div class="col-md-6"></div>
                     </div>
 
                     <div ng-show="Day7" class="row">
-                        <div class="col-md-3"></div>
-                        <div class="col-md-6">
-                            <div class="jumbotron inception center-block">
-                                <h3 class="showingsForTitle">Showing Times for {{ctrler.day7 | date}}:</h3>
-                                <div class="text-center">
-                                    <div class="btn-group">
-                                        <button class="timeButton" ng-repeat="y in ctrler.showings|filter: (ctrler.day7 | date:'yyyy-MM-dd')" ng-click="ctrler.replace(y)" data-target="#myBookingModal"
-                                                data-showingId="{{y.showingId}}"
-                                                data-dateTime="{{y.dateTime | date}}" data-toggle="modal" type="submit">{{y.dateTime | date: 'H:mm'}}</button>
-                                    </div>
-                                </div>
-                            </div>
+					<div class="col-md-3"></div>
+					<div class="col-md-6">
+					<div class="jumbotron inception center-block">
+                        <h3 class="showingsForTitle">Showing Times for {{ctrler.day7 | date}}:</h3>
+                        <div class="text-center">
+                        <div class="btn-group">
+                               <button class="timeButton" ng-repeat="y in ctrler.showings|filter: (ctrler.day7 | date:'yyyy-MM-dd')" ng-click="ctrler.replace(y)" data-target="#myBookingModal"
+                               data-showingId="{{y.showingId}}"
+                               data-dateTime="{{y.dateTime | date}}" data-toggle="modal" type="submit">{{y.dateTime | date: 'H:mm'}}</button>
                         </div>
-                        <div class="col-md-6"></div>
+                        </div>
                     </div>
+                    </div>
+					<div class="col-md-6"></div>
+                    </div>
+
 
                     <!-- div ng-show="Future" class="row">
                         <div class="col-xs-6 col-sm-4 col-xl-3"
@@ -268,6 +272,9 @@
                                 <button type="submit">{{y.dateTime | date: 'EEEE, d MMM H:mm'}}</button>
                             </a>
                         </div -->
+
+                    </div>
+
                 </div>
             </div>
 

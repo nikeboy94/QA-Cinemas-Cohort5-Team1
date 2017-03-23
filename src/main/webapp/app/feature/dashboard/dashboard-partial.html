@@ -2,7 +2,7 @@
 <div>
     <!-- Carousel
     ================================================== -->
-    <div class="small hidden-xs" id="myCarousel" class="carousel slide" data-ride="carousel">
+    <div id="myCarousel" class="carousel slide small hidden-xs" data-ride="carousel">
       <ol class="carousel-indicators">
         <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
         <li data-target="#myCarousel" data-slide-to="1"></li>
@@ -10,7 +10,7 @@
       </ol>
       <div class="carousel-inner" role="listbox">
         <div class="item active">
-          <img class="first-slide" src="http://localhost:8080/qa-cinemas4/app/misc/carouselImages/BATB.jpg" alt="First slide">
+          <img class="first-slide" src="http://localhost:8080/qa-cinemas4/app/misc/carouselImages/BATB.jpg" alt="Beauty and the Beast coming soon">
           <div class="container">
             <div class="carousel-caption">
               
@@ -19,7 +19,7 @@
           </div>
         </div>
         <div class="item">
-          <img class="second-slide" src="http://localhost:8080/qa-cinemas4/app/misc/carouselImages/FAF.jpg" alt="Second slide">
+          <img class="second-slide" src="http://localhost:8080/qa-cinemas4/app/misc/carouselImages/FAF.jpg" alt="Fast and Furious 8 and the beast coming soon">
           <div class="container">
             <div class="carousel-caption">
               
@@ -28,7 +28,7 @@
           </div>
         </div>
         <div class="item">
-          <img class="third-slide" src="http://localhost:8080/qa-cinemas4/app/misc/carouselImages/john-wick.jpg" alt="Third slide">
+          <img class="third-slide" src="http://localhost:8080/qa-cinemas4/app/misc/carouselImages/john-wick.jpg" alt="John Wick 2 coming soon">
           <div class="container">
             <div class="carousel-caption">
              
@@ -65,7 +65,7 @@
                   <!-- NOW SHOWING -->
                   <div class="tab-pane active" id="NowShowing" role="tabpanel">
                       <!--<div class="row">-->
-                          <div class="film-poster col-xs-6 col-sm-4 col-xl-3" ng-repeat="film in ctrl.currentMovies | limitTo : 3">
+                          <div class="film-poster col-xs-6 col-sm-3 col-xl-3" ng-repeat="film in ctrl.currentMovies | limitTo : 4">
                               <a ng-click="ctrl.replace(film)" ng-href="/getmovie#myModal" role="button" data-img="{{film.posterUrl}}" data-title="{{film.title}}" data-desc="{{film.description}}" data-toggle="modal">
                                   <img alt="{{film.title}} poster" src="{{film.posterUrl}}" height="550" width="390" class="img-responsive">
                               </a>
@@ -76,7 +76,7 @@
                   <!-- COMING SOON -->
                   <div class="tab-pane" id="ComingSoon" role="tabpanel">
                       <!--<div class="row">-->
-                          <div class="film-poster col-xs-6 col-sm-4 col-xl-3" ng-repeat="film in ctrl.comingSoonMovies | limitTo : 3">
+                          <div class="film-poster col-xs-6 col-sm-3 col-xl-3" ng-repeat="film in ctrl.comingSoonMovies | limitTo : 4">
                               <a ng-click="ctrl.replace(film)" href="/getmovie#myModal" role="button" data-img="{{film.posterUrl}}" data-title="{{film.title}}" data-desc="{{film.description}}" data-toggle="modal">
                                   <img alt="{{film.title}} poster" src="{{film.posterUrl}}" height="550" width="390" class="img-responsive">
                               </a>
@@ -123,7 +123,7 @@
           <p class="lead">Donec ullamcorper nulla non metus auctor fringilla. Vestibulum id ligula porta felis euismod semper. Praesent commodo cursus magna, vel scelerisque nisl consectetur. Fusce dapibus, tellus ac cursus commodo.</p>
         </div>
         <div class="col-md-5">
-          <img class="featurette-image img-responsive center-block" src="http://localhost:8080/qa-cinemas4/app/misc/carouselImages/cinema.jpg" alt="Generic placeholder image">
+          <img class="featurette-image img-responsive center-block" src="http://localhost:8080/qa-cinemas4/app/misc/carouselImages/cinema.jpg" alt="QA Cinemas, it will blow your mind!">
         </div>
       </div>
 
@@ -134,7 +134,7 @@
           <p class="lead">Donec ullamcorper nulla non metus auctor fringilla. Vestibulum id ligula porta felis euismod semper. Praesent commodo cursus magna, vel scelerisque nisl consectetur. Fusce dapibus, tellus ac cursus commodo.</p>
         </div>
         <div class="col-md-5 col-md-pull-7">
-          <img class="featurette-image img-responsive center-block" src="http://localhost:8080/qa-cinemas4/app/misc/carouselImages/burger.jpg" alt="Generic placeholder image">
+          <img class="featurette-image img-responsive center-block" src="http://localhost:8080/qa-cinemas4/app/misc/carouselImages/burger.jpg" alt="Where to eat Locally">
         </div>
       </div>
 
@@ -145,7 +145,7 @@
           <p class="lead">Donec ullamcorper nulla non metus auctor fringilla. Vestibulum id ligula porta felis euismod semper. Praesent commodo cursus magna, vel scelerisque nisl consectetur. Fusce dapibus, tellus ac cursus commodo.</p>
         </div>
         <div class="col-md-5">
-          <img class="featurette-image img-responsive center-block" src="http://localhost:8080/qa-cinemas4/app/misc/carouselImages/ticket.png" alt="Generic placeholder image">
+          <img class="featurette-image img-responsive center-block" src="http://localhost:8080/qa-cinemas4/app/misc/carouselImages/ticket.png" alt="Win a free ticket for QA Cinemas">
         </div>
       </div>
 
