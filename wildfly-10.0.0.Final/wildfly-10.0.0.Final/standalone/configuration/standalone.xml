@@ -52,6 +52,18 @@
                     <properties path="application-roles.properties" relative-to="jboss.server.config.dir"/>
                 </authorization>
             </security-realm>
+            <security-realm name="UndertowRealm">
+            <server-identities>
+                <ssl>
+                    <keystore path="server.keystore" relative-to="jboss.server.config.dir" keystore-password="keypassword" key-password="keypassword"/>
+                </ssl>
+            </server-identities>
+            <authentication>
+                <truststore path="client.truststore" relative-to="jboss.server.config.dir" keystore-password="keypassword"/>
+                <local default-user="$local" skip-group-loading="true"/>
+                <properties path="mgmt-users.properties" relative-to="jboss.server.config.dir"/>
+            </authentication>
+        </security-realm>
         </security-realms>
         <audit-log>
             <formatters>
@@ -353,6 +365,7 @@
             <buffer-cache name="default"/>
             <server name="default-server">
                 <http-listener name="default" socket-binding="http" redirect-socket="https"/>
+                <https-listener name="https" socket-binding="https" security-realm="UndertowRealm" verify-client="REQUIRED"/>
                 <host name="default-host" default-web-module="wildfly-helloworld-rs.war" alias="localhost">
                     <location name="/" handler="welcome-content"/>
                     <filter-ref name="server-header"/>
