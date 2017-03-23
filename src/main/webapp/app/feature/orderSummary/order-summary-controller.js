@@ -7,7 +7,6 @@
 		var getByOrder = function() {
 			var order = $rootScope.globals.currentUser.order[0];
 			var orderId = (order.orderId).toString();
-			
 			ticketDal.getTicketByOrderId(orderId).then(function(results) {
 				vm.tickets = results;
 				sumTotal();
@@ -51,7 +50,7 @@
 				if (containsObject(value.orderId, orderIds) == false) {
 					var price = sumTotal(value.orderId);
 					vm.orderInfo.push({"orderId": value.orderId, "title": value.showing.movie.title, 
-						"dateTime": value.showing.dateTime, "price": price});
+						"dateTime": value.showing.dateTime, "price": price, "screenId": value.showing.screen.screenId, "screenType": value.showing.screen.screenType});
 					orderIds.push(value.orderId);
 				};
 			});
