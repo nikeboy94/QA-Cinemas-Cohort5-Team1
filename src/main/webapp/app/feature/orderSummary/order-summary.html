@@ -1,17 +1,16 @@
-<link rel="stylesheet" href="css/viewStyleSheets/orderSummary/order-summary.css">
 <div class="container">
 <div ng-controller="orderSummaryController as ctrl">
 	<h1>Order Summary</h1>
 
 	<table>
 		<tr><th>Film</th></tr>
-		<tr><td colspan=2>{{ctrl.orderInfo[0].title}}</td></tr>
+		<tr><td>{{ctrl.orderInfo[0].title}}</td></tr>
 		<tr><th>Date</th><th>Time</th></tr>
 		<tr><td style="padding-right: 15px;">{{ctrl.orderInfo[0].dateTime | date}}</td><td>{{ctrl.orderInfo[0].dateTime | date: "hh:mm"}}</td></tr>
 		<tr><th>Screen</th></tr>
 		<tr><td>Screen {{ctrl.orderInfo[0].screenId}} - {{ctrl.orderInfo[0].screenType}} screen</td></tr>
 		<tr><th>Seat</th><th>Price</th></tr>
-		<tr ng-repeat="ticket in ctrl.tickets"><td>Row {{ticket.seat.row}} Column {{ticket.seat.col}} </td>
+		<tr ng-repeat="ticket in ctrl.tickets"><td style="padding-right: 15px;">Row {{ticket.seat.row}} Column {{ticket.seat.col}} </td>
 			<td>&pound{{ticket.price | number: 2}} - {{ticket.ticketType}}</td></tr>
 	</table>
 	<h4>Total: &pound{{ctrl.orderInfo[0].price | number: 2}}</h4>
