@@ -22,9 +22,27 @@
 }
 
 .nav-pills > li.active > a, .nav-pills > li.active > a:hover, .nav-pills > li.active > a:focus {
-	font-color: #9d9d9d !important;
+	color: #9d9d9d !important;
 	background: radial-gradient(#811839, #3F0C1C) !important;
+	font-size: 20px;
 }
+.nav-pills > li > a:focus {
+	color: black !important;
+	background-color: whitesmoke !important;
+	font-size: 20px;
+}
+
+.nav-pills > li > a {
+	border-radius: 0px;
+	color: black !important;
+	background-color: #808080!important;
+	font-size: 20px;
+}
+
+.nav-pills > li > a:hover {
+	background-color: #cccccc !important;
+}
+
 /*
 .nav-tabs {
 	border-bottom-color: #f2f2f2;
@@ -36,6 +54,12 @@
 	border-bottom-color: #f2f2f2;
 	color: black;
 	opacity: 1;
+}
+
+.nav-tabs > li.active > a:hover {
+	background-color: #f2f2f2;
+	opacity: 1;
+	color: black;
 }
 
 .nav-tabs > li > a {
@@ -51,11 +75,6 @@
 	opacity: 0.8;
 }
 
-.nav-tabs > li.active > a:hover {
-	background-color: #f2f2f2;
-	opacity: 1;
-	color: black;
-}
 */
 #film-search {
 	height: 45px;
@@ -75,5 +94,9 @@
 
 #getMovieContainer {
 	padding-top: 15px;
+}
+
+.row.getmovies {
+	background: rgba(93, 25, 43, 0.65);
 }
 

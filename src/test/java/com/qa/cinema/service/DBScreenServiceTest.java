@@ -11,6 +11,7 @@ import org.mockito.runners.MockitoJUnitRunner;
 
 import com.qa.cinema.persistence.Screen;
 import com.qa.cinema.util.JSONUtil;
+import com.qa.cinema.util.MockJSONUtil;
 
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
@@ -51,8 +52,8 @@ public class DBScreenServiceTest {
 		Query mockedQuery = mock(Query.class);
 		when(em.createQuery("SELECT s FROM Screen s")).thenReturn(mockedQuery);
 		when(mockedQuery.getResultList()).thenReturn((List<Screen>) screens);
-		when(util.getJSONForObject(screens)).thenReturn("{ \"screenId\": \"null\", \"screenType\": \"Standard\", \"screenDesc\":\"looks ok\" }");
-		assertEquals("{ \"screenId\": \"null\", \"screenType\": \"Standard\", \"screenDesc\":\"looks ok\" }" , ss.getAllScreens());
+		when(util.getJSONForObject(screens)).thenReturn(MockJSONUtil.JSONForScreen((List<Screen>) screens));
+		assertEquals("{\"screenId\": \"null\", \"screenType\": \"Standard\", \"screenDesc\": \"looks ok\"}" , ss.getAllScreens());
 	}
 
 	
