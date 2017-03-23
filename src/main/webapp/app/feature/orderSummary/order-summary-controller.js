@@ -7,7 +7,6 @@
 		var getByOrder = function() {
 			var order = $rootScope.globals.currentUser.order[0];
 			var orderId = (order.orderId).toString();
-			
 			ticketDal.getTicketByOrderId(orderId).then(function(results) {
 				vm.tickets = results;
 				sumTotal();

@@ -26,7 +26,7 @@
             vm.day7 = new Date(vm.today.getTime()+ 24*60*60*1000*6);
 
             vm.replace = function(showing) {
-                $('#modalShowing').text(showing.showingId);
+                $('#modalShowing').text("Screen " + showing.screen.screenId + " - " + showing.screen.screenType);
                 $('#modalTime').text(vm.convertDate(showing.dateTime));
                 $('#hiddenShowingId').val(showing.showingId);
                 $('#hiddenShowingId').trigger('input');
