@@ -9,7 +9,7 @@
         vm.tempAdultTickets = 0;
 
         vm.addTicket = function (ticket, adultQty, childQty) {
-            if($rootScope.globals.currentUser == undefined) {
+            if($rootScope.globals.currentUser == undefined || $rootScope.globals.currentUser.seats == undefined) {
                 alert("Please pick a seat");
                 return;
             }
@@ -19,12 +19,20 @@
                 ticket.user = {};
                 ticket.showing = {};
 
+                if($rootScope.globals.currentUser.showing == undefined ) {
+                    alert("Please pick a showing");
+                    return;
+                }
+
                 ticket.showing = $rootScope.globals.currentUser.showing;
 
                 if(vm.overrideEmail != undefined) {
                     ticket.user.email = vm.overrideEmail;
-                } else {
+                } else if ($rootScope.globals.currentUser.email != undefined)  {
                     ticket.user.email = $rootScope.globals.currentUser.email;
+                } else {
+                    alert("Please enter an email address");
+                    return;
                 }
 
             } else if (ticket.user == undefined) {
@@ -37,6 +45,10 @@
                 }
             } else if (ticket.showing == undefined) {
                 ticket.showing = {};
+                if($rootScope.globals.currentUser.showing == undefined) {
+                    alert("Please pick a showing!");
+                    return;
+                }
                 ticket.showing = $rootScope.globals.currentUser.showing;
             }
 
@@ -48,6 +60,11 @@
             }
 
             if(adultQty + childQty == 0) {
+                return;
+            }
+
+            if($rootScope.globals.currentUser.seats.length != (parseInt(adultQty) + parseInt(childQty))) {
+                alert("Please pick all your seats!");
                 return;
             }
 
@@ -124,15 +141,32 @@
                 ticket.user = {};
                 ticket.showing = {};
 
-                ticket.user.email= $rootScope.globals.currentUser.email;
-                ticket.showing.showingId = $rootScope.globals.currentUser.showingId;
+                if($rootScope.globals.currentUser != undefined) {
+                    ticket.user.email= $rootScope.globals.currentUser.email;
+                    ticket.showing.showingId = $rootScope.globals.currentUser.showingId;
+                }
+
+                if($rootScope.globals.currentUser.showingId == undefined) {
+                    alert("Please pick a showing");
+                    return;
+                }
+
             } else if (ticket.user == undefined) {
                 ticket.user = {};
-                ticket.user.email= $rootScope.globals.currentUser.email;
+                if($rootScope.globals.currentUser.email != undefined) {
+                    ticket.user.email= $rootScope.globals.currentUser.email;
+                }
             } else if (ticket.showing == undefined){
                 ticket.showing = {};
-                ticket.showing.showingId = $rootScope.globals.currentUser.showingId;
+                if($rootScope.globals.currentUser.showingId == undefined) {
+                    alert("Please pick a showing");
+                    return;
+                } else {
+                    ticket.showing.showingId = $rootScope.globals.currentUser.showingId;
+                }
+
             }
+
 
             Auth.setShowingId(ticket.showing.showingId);
             Auth.setTicketQuantity(parseInt(adultQty) + parseInt(childQty));
@@ -196,6 +230,9 @@
             ticketDal.getPrice(showing.showingId, 'ADULT').then(function (result) {
                 vm.globalAdultPrice = result.price;
                 vm.updatePrice();
+                ticketDal.getAvailableTickets(showing.showingId).then(function(result) {
+                    vm.availableTickets = result.availableTickets;
+                })
             }, function (error) {
                 vm.error = true;
                 vm.errorMessage = error;

@@ -12,16 +12,24 @@
 		vm.getByMovie = function(movieId) {
 			showingDal.getShowingByMovie(movieId).then(function(results) {
 				vm.showings = results;
+				vm.showingsStandard = [];
+				vm.showingsDeluxe = [];
+				filterShowings();
 			}, function(error) {
 				vm.error = true;
 				vm.errorMessage = error;
 			});
 
 			vm.today = new Date();
-			vm.tomorrow = new Date(new Date().getTime()+ 24*60*60*1000);
+			vm.tomorrow = new Date(vm.today.getTime()+ 24*60*60*1000);
+			vm.day3 = new Date(vm.today.getTime()+ 24*60*60*1000*2);
+            vm.day4 = new Date(vm.today.getTime()+ 24*60*60*1000*3);
+            vm.day5 = new Date(vm.today.getTime()+ 24*60*60*1000*4);
+            vm.day6 = new Date(vm.today.getTime()+ 24*60*60*1000*5);
+            vm.day7 = new Date(vm.today.getTime()+ 24*60*60*1000*6);
 
             vm.replace = function(showing) {
-                $('#modalShowing').text(showing.showingId);
+                $('#modalShowing').text("Screen " + showing.screen.screenId + " - " + showing.screen.screenType);
                 $('#modalTime').text(vm.convertDate(showing.dateTime));
                 $('#hiddenShowingId').val(showing.showingId);
                 $('#hiddenShowingId').trigger('input');
@@ -50,7 +58,7 @@
             printDate += d.getMinutes() + " ";
 
             return printDate;
-		}
+		};
 
 
         vm.updateAdultQty = function (qty) {
@@ -80,6 +88,9 @@
             ticketDal.getPrice(showingId, 'ADULT').then(function (result) {
                 vm.globalAdultPrice = result.price;
                 vm.updatePrice();
+                ticketDal.getAvailableTickets(showingId).then(function(result) {
+                    vm.availableTickets = result.availableTickets;
+                });
             }, function (error) {
                 vm.error = true;
                 vm.errorMessage = error;
@@ -92,6 +103,16 @@
                 vm.error = true;
                 vm.errorMessage = error;
             });
+        };
+        
+        var filterShowings = function () {
+        	angular.forEach(vm.showings, function(value, key) {
+        		if (value.screen.screenId == 3) {
+        			vm.showingsDeluxe.push(value);
+        		} else {
+        			vm.showingsStandard.push(value);
+        		}
+        	})
         }
 
 
